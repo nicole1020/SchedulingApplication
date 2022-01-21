@@ -25,5 +25,6 @@ public Main(){}
     public static void main(String[] args) {
         launch(args);
         DBConnection.openConnection();
+        DBConnection.closeConnection();
     }
 }
