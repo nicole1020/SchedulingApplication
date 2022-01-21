@@ -1,5 +1,6 @@
 package Model;
 
+import DAO.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,5 +24,6 @@ public Main(){}
 
     public static void main(String[] args) {
         launch(args);
+        DBConnection.openConnection();
     }
 }
