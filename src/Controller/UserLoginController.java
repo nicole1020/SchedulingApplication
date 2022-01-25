@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.UserLogin;
+import Model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class UserLoginController implements Initializable {
     public Label userNameLabel;
     public Label passwordLabel;
     public Label userLocationLabel;
-
+    private int newUserID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,9 +37,12 @@ public class UserLoginController implements Initializable {
         System.out.println("Date: " + zdt);
         userLocationLabel.setText("Date: " + zdt);
 
+        int uniqueUserID = 0;
+        newUserID = Users.generateUserID(uniqueUserID);
+       System.out.println("User ID Generated: " + newUserID);
     }
 
-    public void onLogin(ActionEvent actionEvent) throws IOException {
+    public void onLogin(ActionEvent actionEvent) throws IOException{
         if (!onPassword() || !onUserNameField()) {
             System.out.println("Error- invalid username and/or password");
             userLocationLabel.setText("Please enter valid username and password");
@@ -46,21 +50,34 @@ public class UserLoginController implements Initializable {
                     new ButtonType[0]);
             alert.showAndWait();
         } else if (onPassword() && onUserNameField()) {
-            System.out.println("to Main Screen");
+            {
+                System.out.println("to Main Screen");
+            }
             try {
 
-                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainScreenController.fxml"));
-                Parent MainScreen = loader.load();
+                UserLogin newUser = new UserLogin(newUserID, "", "", ZoneId.systemDefault());
+                newUser.setUserName(userNameField.getText());
+                newUser.setPassword(password.getText());
+                newUser.setUserLocation(ZoneId.systemDefault());
+                Users.addUser(newUser);
+                userLocationLabel.setText("Login Successful");
+
+                Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(MainScreen, 600.0D, 610.0D);
+                Scene scene = new Scene(root, 600.0D, 610.0D);
                 stage.setTitle("Home Page");
                 stage.setScene(scene);
                 stage.show();
             } catch (Exception var7) {
                 var7.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setContentText("Enter valid inputs");
+                alert.showAndWait();
             }
         }
     }
+
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();
         stage.close();
@@ -68,7 +85,7 @@ public class UserLoginController implements Initializable {
 
     @FXML
     private boolean onPassword() {
-        if (password.equals("test")) {
+        if (password.getText().equals("test")) {
             System.out.println("valid password proceed");
             return true;
         } else {
@@ -78,7 +95,7 @@ public class UserLoginController implements Initializable {
 
     @FXML
     private boolean onUserNameField() {
-        if (userNameField.equals("test")) {
+        if (userNameField.getText().equals("test")) {
             System.out.println("valid username proceed");
             return true;
         } else {

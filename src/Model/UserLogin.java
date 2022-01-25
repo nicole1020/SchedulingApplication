@@ -1,12 +1,17 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.ZoneId;
 
 public class UserLogin {
+
     private int userID;
     private String userName;
     private String password;
     private ZoneId userLocation;
+
 
     public UserLogin(int userID, String userName, String password, ZoneId userLocation) {
         this.userID = userID;
@@ -16,9 +21,11 @@ public class UserLogin {
 
     }
 
+
     public int getUserID() {
         return userID;
     }
+
 
     public void setUserID(int userID) {
         this.userID = userID;
