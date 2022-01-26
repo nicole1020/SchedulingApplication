@@ -38,7 +38,7 @@ public class UserLoginController implements Initializable {
         userLocationLabel.setText("Date: " + zdt);
 
         int uniqueUserID = 0;
-        newUserID = Users.generateUserID(uniqueUserID);
+      //  newUserID = UserDAO.generateUserID(uniqueUserID);
        System.out.println("User ID Generated: " + newUserID);
     }
 
@@ -55,11 +55,11 @@ public class UserLoginController implements Initializable {
             }
             try {
 
-                UserLogin newUser = new UserLogin(newUserID, "", "", ZoneId.systemDefault());
-                newUser.setUserName(userNameField.getText());
-                newUser.setPassword(password.getText());
-                newUser.setUserLocation(ZoneId.systemDefault());
-                Users.addUser(newUser);
+               // UserLogin newUser = new UserLogin(newUserID, "", "", "");
+               // newUser.setUserName(userNameField.getText());
+                //newUser.setPassword(password.getText());
+               // newUser.setUserLocation(userLocationLabel.getText());
+              //  Users.addUser(newUser);
                 userLocationLabel.setText("Login Successful");
 
                 Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
