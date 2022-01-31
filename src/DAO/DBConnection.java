@@ -33,13 +33,4 @@ public abstract class DBConnection {
         }
     }
 
-
-    public static void getConnection() {
-        try {
-            openConnection();
-            System.out.println("Connection opened!");
-        } catch (Exception e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-    }
 }
