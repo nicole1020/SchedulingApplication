@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -45,7 +46,7 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
-
+        appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
     }
 
     public void lookupCustomer(KeyEvent keyEvent) {

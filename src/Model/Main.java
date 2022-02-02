@@ -14,7 +14,8 @@ import javafx.stage.Stage;
  because we will need to access this information later in scheduling.
 
  Next I will work on changing the language of the login screen based on geographic location of the user.
-
+2/2/2022 worked on fuctionality of user DAO file and added customer model java class. I was able to connect my user and customer DB pages to the database.
+ Next I will work on confirmation when user logs into server. 
  */
 public class Main extends Application {
 

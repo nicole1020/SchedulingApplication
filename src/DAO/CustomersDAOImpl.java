@@ -14,10 +14,10 @@ public class CustomersDAOImpl {
     public static ObservableList getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
-            String sqlInquiry = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID FROM customers AND Division_ID from first_level_divisions ";
+            String sqlInquiryC = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID FROM customers AND Division_ID from first_level_divisions ";
 
-            PreparedStatement preps = DriverManager.getConnection("","","").prepareStatement(sqlInquiry);
-            ResultSet cResult = preps.executeQuery();
+            PreparedStatement prepC = DriverManager.getConnection("","","").prepareStatement(sqlInquiryC);
+            ResultSet cResult = prepC.executeQuery();
             while(cResult.next()){
                 String  Customer_Name = cResult.getString("Customer_Name");
                 String Address = cResult.getString("Address");

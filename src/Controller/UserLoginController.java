@@ -43,7 +43,7 @@ public class UserLoginController implements Initializable {
     }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
-        if (!onPassword() || !onUserNameField()) {
+       /* if (!onPassword() || !onUserNameField()) {
             System.out.println("Error- invalid username and/or password");
             userLocationLabel.setText("Please enter valid username and password");
             Alert alert = new Alert(Alert.AlertType.ERROR, "Enter valid userName and Password",
@@ -52,7 +52,7 @@ public class UserLoginController implements Initializable {
         } else if (onPassword() && onUserNameField()) {
             {
                 System.out.println("to Main Screen");
-            }
+            }**/
             try {
 
                // UserLogin newUser = new UserLogin(newUserID, "", "", "");
@@ -76,7 +76,7 @@ public class UserLoginController implements Initializable {
                 alert.showAndWait();
             }
         }
-    }
+
 
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();
@@ -85,21 +85,20 @@ public class UserLoginController implements Initializable {
 
     @FXML
     private boolean onPassword() {
-        if (password.getText().equals("test")) {
+      /*  if (password.getText().equals("test")) {
             System.out.println("valid password proceed");
             return true;
-        } else {
+        } else {}**/
             return false;
         }
-    }
+
 
     @FXML
     private boolean onUserNameField() {
-        if (userNameField.getText().equals("test")) {
+      /*  if (userNameField.getText().equals("test")) {
             System.out.println("valid username proceed");
             return true;
-        } else {
+        } else {}**/
             return false;
-        }
     }
 }
