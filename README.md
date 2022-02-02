@@ -11,9 +11,9 @@ Email: nmau@wgu.edu
 
 IntelliJ IDEA 2021.1.1
 
-JDK 17.0.1
+JDK 11.0.4
 
-JavaFX compatible JDK SDK 17.0.2
+JavaFX compatible JDK SDK 11.0.2
 
 mySQL Connector driver 8.0.25
 

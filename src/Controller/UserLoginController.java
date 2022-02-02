@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import javax.xml.stream.Location;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
@@ -32,10 +33,9 @@ public class UserLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Instant now = Instant.now();
         ZonedDateTime zdt = ZonedDateTime.ofInstant(now,
-                ZoneId.systemDefault());
-
-        System.out.println("Date: " + zdt);
-        userLocationLabel.setText("Date: " + zdt);
+                ZoneId.of(ZoneId.systemDefault().toString()));
+        System.out.println("Date/Time/Division " + zdt);
+        userLocationLabel.setText("Date/Time/Division " + zdt);
 
         int uniqueUserID = 0;
       //  newUserID = UserDAO.generateUserID(uniqueUserID);
