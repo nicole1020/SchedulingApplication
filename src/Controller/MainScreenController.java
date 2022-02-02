@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.CustomersDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,6 +44,7 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customersTable.setItems(CustomersDAOImpl.getAllCustomers());
 
     }
 
