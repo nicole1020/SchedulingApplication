@@ -1,10 +1,5 @@
 package Model;
 
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-
-import java.util.Date;
 
 public class Appointments {
     private int appointmentID;
@@ -13,7 +8,7 @@ public class Appointments {
     private String location;
     private String contact;
     private String type;
-    private String     startDateTime;
+    private String startDateTime;
     private String endDateTime;
     private int customerID;
     private int userID;

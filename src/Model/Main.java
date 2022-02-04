@@ -15,13 +15,15 @@ import javafx.stage.Stage;
 
  Next I will work on changing the language of the login screen based on geographic location of the user.
 2/2/2022 worked on fuctionality of user DAO file and added customer model java class. I was able to connect my user and customer DB pages to the database.
- Next I will work on confirmation when user logs into server. 
+ Next I will work on confirmation when user logs into server.
+ 2/3 worked on appointments model and dao files. will work on user login next
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         primaryStage.setTitle("");
         primaryStage.setScene(new Scene(root, 800,600));
         primaryStage.show();

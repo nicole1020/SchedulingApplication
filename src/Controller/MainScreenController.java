@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -45,8 +46,31 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+        customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer Name"));
+        customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        customersTablePostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("Postal Code"));
+        customersTablePhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
+        customersTableCountry.setCellValueFactory(new PropertyValueFactory<>("Country"));
+        customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
+
+        //Appointments Table Initialized
         appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
+
+        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("AppointmentID"));
+        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
+        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("UserID"));
+
+
     }
 
     public void lookupCustomer(KeyEvent keyEvent) {
