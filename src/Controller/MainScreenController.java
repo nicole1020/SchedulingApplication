@@ -4,10 +4,7 @@ import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -42,7 +39,9 @@ public class MainScreenController implements Initializable {
     public Button addAppointment;
     public Button updateAppointment;
     public Button deleteAppointment;
-    public TextField AppointmentsTextField;
+    public Label resultsLBL;
+    public TextField appointmentsTextField;
+    public Label resultsLBLAppointments;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,5 +100,14 @@ public class MainScreenController implements Initializable {
     }
 
     public void onAppointmentTextField(KeyEvent keyEvent) {
+    }
+
+    public void onExitButtonPressed(ActionEvent actionEvent) {
+    }
+
+    public void onCustomerTextField(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentsTextField(ActionEvent actionEvent) {
     }
 }

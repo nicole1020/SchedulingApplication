@@ -16,7 +16,9 @@ import javafx.stage.Stage;
  Next I will work on changing the language of the login screen based on geographic location of the user.
 2/2/2022 worked on fuctionality of user DAO file and added customer model java class. I was able to connect my user and customer DB pages to the database.
  Next I will work on confirmation when user logs into server.
- 2/3 worked on appointments model and dao files. will work on user login next
+ 2/3 worked on appointments model and dao files. will work on user login next.
+ Fixed slow IntelliJ by following course chatter to load JDK 11 project on JDK 17 VM with updated libraries. It fixed several buggy errors too.
+ Working on main screen in scene bulder and the controller file to test functionality.
  */
 public class Main extends Application {
 
