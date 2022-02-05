@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +43,7 @@ public class MainScreenController implements Initializable {
     public Label resultsLBL;
     public TextField appointmentsTextField;
     public Label resultsLBLAppointments;
+    public Button exitButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -103,6 +105,8 @@ public class MainScreenController implements Initializable {
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     public void onCustomerTextField(ActionEvent actionEvent) {

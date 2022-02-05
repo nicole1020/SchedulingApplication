@@ -14,11 +14,12 @@ import javafx.stage.Stage;
  because we will need to access this information later in scheduling.
 
  Next I will work on changing the language of the login screen based on geographic location of the user.
-2/2/2022 worked on fuctionality of user DAO file and added customer model java class. I was able to connect my user and customer DB pages to the database.
+2/2/2022 worked on functionality of user DAO file and added customer model java class. I was able to connect my user and customer DB pages to the database.
  Next I will work on confirmation when user logs into server.
  2/3 worked on appointments model and dao files. will work on user login next.
  Fixed slow IntelliJ by following course chatter to load JDK 11 project on JDK 17 VM with updated libraries. It fixed several buggy errors too.
- Working on main screen in scene bulder and the controller file to test functionality.
+ Working on main screen in scene builder and the controller file to test functionality. was able to open MainScreen.fxml in IJ without bugging by using "compare with editor" option.
+ Next time I will continue working on main screen controller.
  */
 public class Main extends Application {
 
@@ -35,9 +36,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+
         Users.generateUserID();
         DBConnection.openConnection();
+        launch(args);
         DBConnection.closeConnection();
     }
 }
