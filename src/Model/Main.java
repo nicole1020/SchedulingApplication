@@ -20,6 +20,10 @@ import javafx.stage.Stage;
  Fixed slow IntelliJ by following course chatter to load JDK 11 project on JDK 17 VM with updated libraries. It fixed several buggy errors too.
  Working on main screen in scene builder and the controller file to test functionality. was able to open MainScreen.fxml in IJ without bugging by using "compare with editor" option.
  Next time I will continue working on main screen controller.
+ 2/4 cleaning up code and watching key to keys webinar.
+ 2/7 from key to keys- toy and toy ID are comparable to customer and address. Also divisionID is comparable to locationID.
+ I will model my dao implementation files and model files after these.
+Working on getting my sql code today and debugging.
  */
 public class Main extends Application {
 
