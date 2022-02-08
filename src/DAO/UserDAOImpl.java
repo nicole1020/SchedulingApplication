@@ -16,14 +16,14 @@ public class UserDAOImpl {
         try {
             String sqlInquiry = "SELECT User_ID, User_Name, Password FROM users";
 
-            PreparedStatement preps = DriverManager.getConnection("","","").prepareStatement(sqlInquiry);
+            PreparedStatement preps = connection.prepareStatement(sqlInquiry);
             ResultSet result = preps.executeQuery();
             while(result.next()){
                 int User_ID = result.getInt("User_ID");
                 String User_Name = result.getString("User_Name");
                 String Password = result.getString("Password");
-                UserLogin U = new UserLogin(User_ID, User_Name, Password);
-                userList.add(U);
+                UserLogin ul = new UserLogin(User_ID, User_Name, Password);
+                userList.add(ul);
 
             }
 

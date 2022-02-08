@@ -11,13 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static DAO.DBConnection.connection;
+
 public class AppointmentsDAOImpl {
-    public static ObservableList getAllAppointments() {
+    public static ObservableList <Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
             String sqlInquiryA = "SELECT Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID FROM appointments  ";
 
-            PreparedStatement prepA = DriverManager.getConnection("", "", "").prepareStatement(sqlInquiryA);
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
                 int Appointment_ID = aResult.getInt("Appointment_ID");
@@ -32,8 +34,8 @@ public class AppointmentsDAOImpl {
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 
-                Appointments A = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
-                appointmentsList.add(A);
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                appointmentsList.add(ap);
 
             }
 

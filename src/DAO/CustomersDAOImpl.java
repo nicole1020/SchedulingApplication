@@ -10,13 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static DAO.DBConnection.connection;
+
 public class CustomersDAOImpl {
-    public static ObservableList getAllCustomers() {
+    public static ObservableList <Customers> getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
             String sqlInquiryC = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID FROM customers AND Division_ID from first_level_divisions ";
 
-            PreparedStatement prepC = DriverManager.getConnection("","","").prepareStatement(sqlInquiryC);
+            PreparedStatement prepC = connection.prepareStatement(sqlInquiryC);
             ResultSet cResult = prepC.executeQuery();
             while(cResult.next()){
                 String  Customer_Name = cResult.getString("Customer_Name");
@@ -25,8 +27,8 @@ public class CustomersDAOImpl {
                 int Phone = cResult.getInt("Phone");
                 int Customer_ID  = cResult.getInt("Customer_ID");
                 int Division_ID= cResult.getInt("Division_ID");
-                Customers C = new Customers( Customer_Name, Address, Postal_Code, Phone, Customer_ID, Division_ID );
-                customerList.add(C);
+                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone, Customer_ID, Division_ID );
+                customerList.add(cu);
 
             }
 

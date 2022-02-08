@@ -10,12 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AddressDAOImpl {public static ObservableList getAllAddresses() {
+import static DAO.DBConnection.connection;
+
+public class AddressDAOImpl {public static ObservableList<Address> getAllAddresses() {
     ObservableList<Address> addressList = FXCollections.observableArrayList();
     try {
         String sqlInquiryAd = "SELECT first_level_divisions.Division_ID, first_level_divisions.Division, Country_ID, countries.Country  from first_level_divisions where first_level_divisions.Country_ID = countries.Country_ID ";
 
-        PreparedStatement prepAd = DriverManager.getConnection("","","").prepareStatement(sqlInquiryAd);
+        PreparedStatement prepAd = connection.prepareStatement(sqlInquiryAd);
         ResultSet adResult = prepAd.executeQuery();
         while(adResult.next()){
             int Division_ID= adResult.getInt("Division_ID");
