@@ -49,11 +49,12 @@ public class MainScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+        customersTableCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
         customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer Name"));
         customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
         customersTablePostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("Postal Code"));
         customersTablePhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
+
         customersTableCountry.setCellValueFactory(new PropertyValueFactory<>("Country"));
         customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
 

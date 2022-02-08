@@ -13,10 +13,11 @@ import java.sql.SQLException;
 import static DAO.DBConnection.connection;
 
 public class CustomersDAOImpl {
+
     public static ObservableList <Customers> getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryC = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID FROM customers AND Division_ID from first_level_divisions ";
+            String sqlInquiryC = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID, Division_ID FROM customers ";
 
             PreparedStatement prepC = connection.prepareStatement(sqlInquiryC);
             ResultSet cResult = prepC.executeQuery();
@@ -25,9 +26,10 @@ public class CustomersDAOImpl {
                 String Address = cResult.getString("Address");
                 String Postal_Code = cResult.getString("Postal_Code");
                 int Phone = cResult.getInt("Phone");
+
                 int Customer_ID  = cResult.getInt("Customer_ID");
                 int Division_ID= cResult.getInt("Division_ID");
-                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone, Customer_ID, Division_ID );
+                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone,Customer_ID, Division_ID );
                 customerList.add(cu);
 
             }

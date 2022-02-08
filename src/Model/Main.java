@@ -23,13 +23,13 @@ import javafx.stage.Stage;
  2/4 cleaning up code and watching key to keys webinar.
  2/7 from key to keys- toy and toy ID are comparable to customer and address. Also divisionID is comparable to locationID.
  I will model my dao implementation files and model files after these.
-Working on getting my sql code today and debugging.
+2/8 Working on getting my sql code today and debugging.
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         primaryStage.setTitle("");
         primaryStage.setScene(new Scene(root, 800,600));
