@@ -26,11 +26,11 @@ public class CustomersDAOImpl {
                 String  Customer_Name = cResult.getString("Customer_Name");
                 String Address = cResult.getString("Address");
                 String Postal_Code = cResult.getString("Postal_Code");
-                int Phone = cResult.getInt("Phone");
+                String Phone = cResult.getString("Phone");
                 int Customer_ID  = cResult.getInt("Customer_ID");
                 String Country = cResult.getString("Country");
                 String Division= cResult.getString("Division");
-                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone,Customer_ID, Country, Division  );
+                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone ,Customer_ID, Country, Division  );
                 customerList.add(cu);
 
             }

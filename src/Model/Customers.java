@@ -5,15 +5,15 @@ public class Customers {
     private String customerName;
     private String customerAddress;
     private String postalCode;
-    private int phone;
+    private String phone;
     private int customerID;
     private String country;
     private String division;
 
-    public Customers(String customer_name, String address, String postal_code, int phone, int customer_id, String Country, String Division ) {
-        this.customerName = customer_name;
-        this.customerAddress = address;
-        this.postalCode = postal_code;
+    public Customers(String Customer_Name, String Address, String Postal_Code, String phone, int customer_id, String Country, String Division ) {
+        this.customerName = Customer_Name;
+        this.customerAddress = Address;
+        this.postalCode = Postal_Code;
         this.phone = phone;
         this.customerID = customer_id;
         this.country = Country;
@@ -36,7 +36,7 @@ public class Customers {
         return postalCode;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 

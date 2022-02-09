@@ -50,9 +50,9 @@ public class MainScreenController implements Initializable {
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
 
-        customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer Name"));
-        customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        customersTablePostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("Postal Code"));
+        customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        customersTablePostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         customersTablePhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         customersTableCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
         customersTableCountry.setCellValueFactory(new PropertyValueFactory<>("Country"));

@@ -24,6 +24,10 @@ import javafx.stage.Stage;
  2/7 from key to keys- toy and toy ID are comparable to customer and address. Also divisionID is comparable to locationID.
  I will model my dao implementation files and model files after these.
 2/8 Working on getting my sql code today and debugging.
+ 2/9 working on customers table- data is not populating. i fixed my sql command in my dao file.
+ fixed datatype for phone number from int to string in customers.java so data populated properly  into table.
+ fixed column names in the main controller file so customer name, address and postal code properly loaded data.
+ into customer table.
  */
 public class Main extends Application {
 
