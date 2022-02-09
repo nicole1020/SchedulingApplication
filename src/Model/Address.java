@@ -2,18 +2,23 @@ package Model;
 
 
 
-public class Address  {
+public class Address {
+    private String address;
     private int divisionID;
     private String division;
     private int countryID;
     private String country;
 
-    public Address(int division_ID, String division, int country_ID, String country) {
-
+    public Address(String address, int division_ID, String division, int country_ID, String country) {
+        this.address = address;
         this.divisionID = division_ID;
         this.division = division;
         this.countryID = country_ID;
         this.country = country;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public int getDivisionID() {

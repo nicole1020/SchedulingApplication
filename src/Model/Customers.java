@@ -1,22 +1,23 @@
 package Model;
 
 public class Customers {
-    private int customerID;
+
     private String customerName;
     private String customerAddress;
     private String postalCode;
     private int phone;
+    private int customerID;
+    private String country;
+    private String division;
 
-    private int divisionID;
-
-    public Customers(String customer_name, String address, String postal_code, int phone, int customer_id, int division_id) {
+    public Customers(String customer_name, String address, String postal_code, int phone, int customer_id, String Country, String Division ) {
         this.customerName = customer_name;
         this.customerAddress = address;
         this.postalCode = postal_code;
         this.phone = phone;
-
         this.customerID = customer_id;
-        this.divisionID = division_id;
+        this.country = Country;
+        this.division = Division;
     }
 
     public int getCustomerID() {
@@ -39,8 +40,10 @@ public class Customers {
         return phone;
     }
 
-
-    public int getDivisionID() {
-        return divisionID;
+public String getCountry(){
+        return country;
+}
+    public String getDivision() {
+        return division;
     }
 }
