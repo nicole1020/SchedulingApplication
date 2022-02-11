@@ -28,6 +28,8 @@ import javafx.stage.Stage;
  fixed datatype for phone number from int to string in customers.java so data populated properly  into table.
  fixed column names in the main controller file so customer name, address and postal code properly loaded data.
  into customer table.
+ 2/11 fixed appointmentsDAO and model files to properly load DB data into appointments table. also set up forms for adding/modifying customers
+ and appointments. Will work on coding those next.
  */
 public class Main extends Application {
 

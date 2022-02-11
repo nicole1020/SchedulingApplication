@@ -61,16 +61,16 @@ public class MainScreenController implements Initializable {
         //Appointments Table Initialized
         appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
 
-        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("AppointmentID"));
-        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact"));
-        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("End"));
-        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
-        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("UserID"));
+        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
 
 
     }

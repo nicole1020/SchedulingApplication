@@ -1,36 +1,32 @@
 package Model;
 
 
+import java.sql.Time;
+
 public class Appointments {
     private int appointmentID;
     private String title;
     private String description;
     private String location;
-    private String contact;
+    private int contact;
     private String type;
-    private String startDateTime;
-    private String endDateTime;
+    private Time startDateTime;
+    private Time endDateTime;
     private int customerID;
     private int userID;
 
-    public Appointments(int appointmentID, String title, String description, String location, String contact, String type, String startDateTime, String endDateTime, int customerID, int userID) {
-        this.appointmentID = appointmentID;
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.contact = contact;
-        this.type = type;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.customerID = customerID;
-        this.userID = userID;
+    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Time Start, Time End, int Customer_ID, int User_ID) {
+        this.appointmentID = Appointment_ID;
+        this.title = Title;
+        this.description = Description;
+        this.location = Location;
+        this.contact = Contact_ID;
+        this.type = Type;
+        this.startDateTime = Start;
+        this.endDateTime = End;
+        this.customerID = Customer_ID;
+        this.userID = User_ID;
 
-    }
-
-
-
-
-    public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
     }
 
 
@@ -50,7 +46,7 @@ public class Appointments {
         return location;
     }
 
-    public String getContact() {
+    public int getContact() {
         return contact;
     }
 
@@ -58,11 +54,11 @@ public class Appointments {
         return type;
     }
 
-    public String getStartDateTime() {
+    public Time getStartDateTime() {
         return startDateTime;
     }
 
-    public String getEndDateTime() {
+    public Time getEndDateTime() {
         return endDateTime;
     }
 

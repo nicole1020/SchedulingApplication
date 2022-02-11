@@ -6,10 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalTime;
 
 import static DAO.DBConnection.connection;
 
@@ -17,8 +15,8 @@ public class AppointmentsDAOImpl {
     public static ObservableList <Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID FROM appointments  ";
-
+            String sqlInquiryA = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID\n" +
+                    "FROM appointments";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -28,9 +26,8 @@ public class AppointmentsDAOImpl {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-
-                String Start = aResult.getString("Start");
-                String End = aResult.getString("End");
+                Time Start = aResult.getTime("Start");
+                Time End = aResult.getTime("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 
