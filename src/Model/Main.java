@@ -36,7 +36,7 @@ public class Main extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         primaryStage.setTitle("");
-        primaryStage.setScene(new Scene(root, 800,600));
+        primaryStage.setScene(new Scene(root, 1230,630));
         primaryStage.show();
 
 
