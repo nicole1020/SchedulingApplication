@@ -65,6 +65,8 @@
                   <Insets left="16.0" />
                </padding>
               </Label>
+                <Button fx:id="updateCustomer" layoutX="244.0" layoutY="153.0" mnemonicParsing="false" onAction="#onUpdateCustomer" text="Update" />
+            <Button fx:id="customerSearch" layoutX="184.0" mnemonicParsing="false" onAction="#onCustomerSearch" text="Search" />
             </Pane>
          <GridPane.margin>
             <Insets top="50.0" />
@@ -95,17 +97,14 @@
                     </columns>
                 </TableView>
                 <TextField fx:id="appointmentsTextField" layoutX="172.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="215.0" promptText="Search by Appointment ID or Name" />
-                <Button fx:id="deleteAppointment" layoutX="327.0" layoutY="192.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
-                <Label fx:id="resultsLBLAppointments" layoutX="16.0" layoutY="204.0" prefHeight="17.0" prefWidth="386.0" />
+                <Button fx:id="deleteAppointment" layoutX="323.0" layoutY="183.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
+                <Label fx:id="resultsLBLAppointments" layoutX="15.0" layoutY="212.0" prefHeight="17.0" prefWidth="386.0" />
+                <Button fx:id="updateAppointment" layoutX="172.0" layoutY="183.0" mnemonicParsing="false" onAction="#onUpdateAppointment" text="Update" />
+            <Button fx:id="appointmentsSearch" layoutX="120.0" layoutY="2.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
             </Pane>
         </StackPane>
         <StackPane prefHeight="63.0" prefWidth="400.0" GridPane.columnIndex="1" />
-        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <GridPane.margin>
-                <Insets left="200.0" top="35.0" />
-            </GridPane.margin>
-        </Button>
-      <Label text="Sort by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label text="Sort Appointments by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="55.0" />
          </GridPane.margin>
@@ -115,17 +114,17 @@
             <ToggleGroup fx:id="appointmentsToggle" />
          </toggleGroup>
          <GridPane.margin>
-            <Insets left="55.0" top="55.0" />
+            <Insets left="130.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
       <RadioButton mnemonicParsing="false" text="This Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="170.0" top="55.0" />
+            <Insets left="230.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
       <RadioButton mnemonicParsing="false" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="280.0" top="55.0" />
+            <Insets left="320.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
     </GridPane>
@@ -159,13 +158,12 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <TextField layoutX="981.0" layoutY="35.0" promptText="First and Last Name" />
-   <TextField layoutX="981.0" layoutY="65.0" promptText="555-555-5555" />
-   <TextField editable="false" layoutX="981.0" layoutY="95.0" promptText="Auto-Gen. Disabled" />
-   <ComboBox layoutX="981.0" layoutY="153.0" prefWidth="150.0" promptText="Country" />
-   <ComboBox layoutX="981.0" layoutY="182.0" prefWidth="150.0" promptText="Division" />
+   <TextField fx:id="customerName" layoutX="981.0" layoutY="35.0" promptText="First and Last Name" />
+   <TextField fx:id="customerAddress" layoutX="981.0" layoutY="65.0" promptText="555-555-5555" />
+   <TextField fx:id="customerID" editable="false" layoutX="981.0" layoutY="95.0" promptText="Auto-Gen. Disabled" />
+   <ComboBox fx:id="customerCountry" layoutX="981.0" layoutY="153.0" prefWidth="150.0" promptText="Country" />
+   <ComboBox fx:id="customerDivision" layoutX="981.0" layoutY="182.0" prefWidth="150.0" promptText="Division" />
        <Button fx:id="addCustomer" layoutX="981.0" layoutY="212.0" mnemonicParsing="false" onAction="#onAddCustomer" prefHeight="25.0" prefWidth="38.0" text="Add" />
-       <Button fx:id="updateCustomer" layoutX="1056.0" layoutY="212.0" mnemonicParsing="false" onAction="#onUpdateCustomer" text="Update" />
    <Label layoutX="962.0" layoutY="4.0" text="Add/Update Customer Record">
       <font>
          <Font size="14.0" />
@@ -176,7 +174,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <TextField layoutX="981.0" layoutY="121.0" promptText="Postal Code" />
+   <TextField fx:id="postalCode" layoutX="981.0" layoutY="121.0" promptText="Postal Code" />
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="249.0" prefHeight="20.0" prefWidth="188.0" text="Add/Update Appointment">
       <font>
          <Font size="14.0" />
@@ -232,16 +230,18 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <DatePicker layoutX="982.0" layoutY="481.0" promptText="01/01/2022 9:30 AM" />
-   <TextField editable="false" layoutX="981.0" layoutY="283.0" promptText="Auto-Gen. Disabled" />
-   <TextField layoutX="981.0" layoutY="313.0" promptText="Title" />
-   <TextField layoutX="982.0" layoutY="343.0" promptText="Description" />
-   <TextField layoutX="981.0" layoutY="373.0" promptText="Location" />
-   <ComboBox layoutX="981.0" layoutY="408.0" prefWidth="150.0" promptText="contact" />
-   <ComboBox layoutX="981.0" layoutY="441.0" prefWidth="150.0" promptText="email/phone" />
-   <DatePicker layoutX="982.0" layoutY="509.0" promptText="01/01/2022 10:00 AM" />
-   <ComboBox layoutX="984.0" layoutY="536.0" prefWidth="150.0" promptText="CustomerID" />
-   <ComboBox layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />
+   <DatePicker fx:id="appointmentStart" layoutX="982.0" layoutY="481.0" promptText="01/01/2022 9:30 AM" />
+   <TextField fx:id="appointmentID" editable="false" layoutX="981.0" layoutY="283.0" promptText="Auto-Gen. Disabled" />
+   <TextField fx:id="appointmentTitle" layoutX="981.0" layoutY="313.0" promptText="Title" />
+   <TextField fx:id="appointmentDescription" layoutX="982.0" layoutY="343.0" promptText="Description" />
+   <TextField fx:id="appointmentLocation" layoutX="981.0" layoutY="373.0" promptText="Location" />
+   <ComboBox fx:id="appointmentContact" layoutX="981.0" layoutY="408.0" prefWidth="150.0" promptText="contact" />
+   <ComboBox fx:id="appointmentType" layoutX="981.0" layoutY="441.0" prefWidth="150.0" promptText="email/phone" />
+   <DatePicker fx:id="appointmentEnd" layoutX="982.0" layoutY="509.0" promptText="01/01/2022 10:00 AM" />
+   <ComboBox fx:id="appointmentCustomerID" layoutX="984.0" layoutY="536.0" prefWidth="150.0" promptText="CustomerID" />
+   <ComboBox fx:id="appointmentUserID" layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />
    <Button fx:id="addAppointment" layoutX="984.0" layoutY="601.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add" />
-       <Button fx:id="updateAppointment" layoutX="1069.0" layoutY="601.0" mnemonicParsing="false" onAction="#onUpdateAppointment" text="Update" />
+     <Button fx:id="exitButton" layoutX="1181.0" layoutY="601.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
+   <Button fx:id="saveCustomer" layoutX="1042.0" layoutY="212.0" mnemonicParsing="false" onAction="#onSaveCustomer" text="Save Customer" />
+   <Button fx:id="saveAppointment" layoutX="1042.0" layoutY="601.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
 </AnchorPane>

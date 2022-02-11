@@ -44,6 +44,27 @@ public class MainScreenController implements Initializable {
     public TextField appointmentsTextField;
     public Label resultsLBLAppointments;
     public Button exitButton;
+    public TextField customerName;
+    public TextField customerAddress;
+    public TextField customerID;
+    public ComboBox customerCountry;
+    public ComboBox customerDivision;
+    public TextField postalCode;
+    public ToggleGroup appointmentsToggle;
+    public DatePicker appointmentStart;
+    public TextField appointmentID;
+    public TextField appointmentTitle;
+    public TextField appointmentDescription;
+    public TextField appointmentLocation;
+    public ComboBox appointmentContact;
+    public ComboBox appointmentType;
+    public DatePicker appointmentEnd;
+    public ComboBox appointmentCustomerID;
+    public ComboBox appointmentUserID;
+    public Button saveCustomer;
+    public Button saveAppointment;
+    public Button customerSearch;
+    public Button appointmentsSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -114,5 +135,17 @@ public class MainScreenController implements Initializable {
     }
 
     public void onAppointmentsTextField(ActionEvent actionEvent) {
+    }
+
+    public void onSaveCustomer(ActionEvent actionEvent) {
+    }
+
+    public void onSaveAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onCustomerSearch(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentsSearch(ActionEvent actionEvent) {
     }
 }

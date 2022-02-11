@@ -1,7 +1,11 @@
 package Model;
 
 
+import javafx.scene.control.DatePicker;
+
+import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class Appointments {
     private int appointmentID;
@@ -10,12 +14,12 @@ public class Appointments {
     private String location;
     private int contact;
     private String type;
-    private Time startDateTime;
-    private Time endDateTime;
+    private Date startDateTime;
+    private Date endDateTime;
     private int customerID;
     private int userID;
 
-    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Time Start, Time End, int Customer_ID, int User_ID) {
+    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Date Start, Date End, int Customer_ID, int User_ID) {
         this.appointmentID = Appointment_ID;
         this.title = Title;
         this.description = Description;
@@ -54,11 +58,11 @@ public class Appointments {
         return type;
     }
 
-    public Time getStartDateTime() {
+    public Date getStartDateTime() {
         return startDateTime;
     }
 
-    public Time getEndDateTime() {
+    public Date getEndDateTime() {
         return endDateTime;
     }
 
