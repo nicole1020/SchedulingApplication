@@ -65,6 +65,7 @@ public class MainScreenController implements Initializable {
     public Button saveAppointment;
     public Button customerSearch;
     public Button appointmentsSearch;
+    public String customerPhone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,6 +101,7 @@ public class MainScreenController implements Initializable {
     }
 
     public void onAddCustomer(ActionEvent actionEvent) {
+CustomersDAOImpl.createCustomer( customerName, customerAddress,postalCode, customerPhone, Integer.parseInt(customerID.getId()), customerCountry, customerDivision);
     }
 
     public void onUpdateCustomer(ActionEvent actionEvent) {
