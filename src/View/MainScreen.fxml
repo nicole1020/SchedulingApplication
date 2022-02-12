@@ -40,15 +40,15 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="customersTable" layoutX="92.0" layoutY="29.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="649.0">
+                <TableView fx:id="customersTable" layoutX="92.0" layoutY="29.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="695.0">
                     <columns>
                         <TableColumn fx:id="customersTableCustomerNameCol" prefWidth="104.0" text="Name" />
                         <TableColumn fx:id="customersTableAddressCol" prefWidth="137.0" text="Address" />
                         <TableColumn fx:id="customersTablePostalCodeCol" minWidth="3.0" prefWidth="73.0" text="Postal Code" />
-                        <TableColumn fx:id="customersTablePhoneCol" prefWidth="95.0" text="Phone Number" />
-                        <TableColumn fx:id="customersTableCustomerID" prefWidth="88.0" text="CustomerID" />
+                        <TableColumn fx:id="customersTablePhoneCol" prefWidth="120.0" text="Phone Number" />
+                        <TableColumn fx:id="customersTableCustomerID" prefWidth="75.0" text="CustomerID" />
                         <TableColumn fx:id="customersTableCountry" prefWidth="68.0" text="Country" />
-                        <TableColumn fx:id="customersTableDivision" prefWidth="83.0" text="Division" />
+                        <TableColumn fx:id="customersTableDivision" prefWidth="117.0" text="Division" />
                     </columns>
                 </TableView>
                 <Button fx:id="deleteCustomer" layoutX="399.0" layoutY="153.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" />
@@ -133,48 +133,36 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="864.0" layoutY="77.0" text="Phone ">
+   <Label layoutX="868.0" layoutY="97.0" text="Phone ">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="865.0" layoutY="156.0" text="Country">
+   <Label layoutX="864.0" layoutY="129.0" text="CustomerID">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="865.0" layoutY="185.0" text="Division">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
-   <Label layoutX="864.0" layoutY="97.0" text="CustomerID">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
-   <Label layoutX="864.0" layoutY="57.0" text="Address">
+   <Label layoutX="865.0" layoutY="65.0" text="Address">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
    <TextField fx:id="customerName" layoutX="981.0" layoutY="35.0" promptText="First and Last Name" />
-   <TextField fx:id="customerAddress" layoutX="981.0" layoutY="65.0" promptText="555-555-5555" />
-   <TextField fx:id="customerID" editable="false" layoutX="981.0" layoutY="95.0" promptText="Auto-Gen. Disabled" />
-   <ComboBox fx:id="customerCountry" layoutX="981.0" layoutY="153.0" prefWidth="150.0" promptText="Country" />
-   <ComboBox fx:id="customerDivision" layoutX="981.0" layoutY="182.0" prefWidth="150.0" promptText="Division" />
-       <Button fx:id="addCustomer" layoutX="981.0" layoutY="212.0" mnemonicParsing="false" onAction="#onAddCustomer" prefHeight="25.0" prefWidth="38.0" text="Add" />
+   <TextField fx:id="customerPhone" layoutX="981.0" layoutY="94.0" promptText="555-555-5555" />
+   <ComboBox fx:id="customerCountry" layoutX="862.0" layoutY="182.0" prefWidth="150.0" promptText="Country" />
+   <ComboBox fx:id="customerDivision" layoutX="1015.0" layoutY="182.0" prefWidth="150.0" promptText="Division" />
    <Label layoutX="962.0" layoutY="4.0" text="Add/Update Customer Record">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="864.0" layoutY="124.0" text="Postal Code">
+   <Label layoutX="865.0" layoutY="154.0" text="Postal Code">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <TextField fx:id="postalCode" layoutX="981.0" layoutY="121.0" promptText="Postal Code" />
+   <TextField fx:id="postalCode" layoutX="981.0" layoutY="151.0" promptText="Postal Code" />
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="249.0" prefHeight="20.0" prefWidth="188.0" text="Add/Update Appointment">
       <font>
          <Font size="14.0" />
@@ -240,8 +228,13 @@
    <DatePicker fx:id="appointmentEnd" layoutX="982.0" layoutY="509.0" promptText="01/01/2022 10:00 AM" />
    <ComboBox fx:id="appointmentCustomerID" layoutX="984.0" layoutY="536.0" prefWidth="150.0" promptText="CustomerID" />
    <ComboBox fx:id="appointmentUserID" layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />
-   <Button fx:id="addAppointment" layoutX="984.0" layoutY="601.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add" />
-     <Button fx:id="exitButton" layoutX="1181.0" layoutY="601.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
-   <Button fx:id="saveCustomer" layoutX="1042.0" layoutY="212.0" mnemonicParsing="false" onAction="#onSaveCustomer" text="Save Customer" />
-   <Button fx:id="saveAppointment" layoutX="1042.0" layoutY="601.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
+     <Button fx:id="exitButton" layoutX="1181.0" layoutY="595.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
+   <Button fx:id="saveCustomer" layoutX="981.0" layoutY="214.0" mnemonicParsing="false" onAction="#onSaveCustomer" text="Save Customer" />
+   <Button fx:id="saveAppointment" layoutX="984.0" layoutY="595.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
+   <TextField fx:id="customerAddress" layoutX="981.0" layoutY="62.0" promptText="Address" />
+   <Label fx:id="customerIDLabel" layoutX="1024.0" layoutY="129.0" text="?">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
 </AnchorPane>

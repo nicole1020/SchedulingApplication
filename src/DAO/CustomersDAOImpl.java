@@ -1,20 +1,20 @@
 package DAO;
 
 import Model.Customers;
-import Model.UserLogin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import static DAO.DBConnection.connection;
 
 public class CustomersDAOImpl {
 
-    public static ObservableList <Customers> getAllCustomers() {
+    private static TextField customerID;
+
+    public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
             String sqlInquiryC = "SELECT Customer_Name, Address, Postal_Code, Phone, Customer_ID, Country, Division FROM customers, " +
@@ -22,23 +22,67 @@ public class CustomersDAOImpl {
 
             PreparedStatement prepC = connection.prepareStatement(sqlInquiryC);
             ResultSet cResult = prepC.executeQuery();
-            while(cResult.next()){
-                String  Customer_Name = cResult.getString("Customer_Name");
+            while (cResult.next()) {
+                String Customer_Name = cResult.getString("Customer_Name");
                 String Address = cResult.getString("Address");
                 String Postal_Code = cResult.getString("Postal_Code");
                 String Phone = cResult.getString("Phone");
-                int Customer_ID  = cResult.getInt("Customer_ID");
+                int Customer_ID = cResult.getInt("Customer_ID");
                 String Country = cResult.getString("Country");
-                String Division= cResult.getString("Division");
-                Customers cu = new Customers( Customer_Name, Address, Postal_Code, Phone ,Customer_ID, Country, Division  );
+                String Division = cResult.getString("Division");
+                Customers cu = new Customers(Customer_Name, Address, Postal_Code, Phone, Customer_ID, Country, Division);
                 customerList.add(cu);
 
             }
 
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return customerList;
     }
+
+
+    //create new customer
+    public static void createCustomer(TextField customerName, TextField customerAddress, TextField postalCode, TextField customerPhone, ComboBox customerCountry, ComboBox customerDivision) {
+
+        try {
+
+                String sqlc1="INSERT INTO countries VALUES (?,?)";
+                PreparedStatement psCreate1 = connection.prepareStatement(sqlc1);
+                psCreate1.setString(1, String.valueOf(customerCountry));
+
+                psCreate1.executeQuery();
+
+                String sqlc2="INSERT INTO first_level_divisions VALUES(?,?,?)";
+                PreparedStatement psCreate2 = connection.prepareStatement(sqlc2);
+                psCreate2.setString(1, String.valueOf(customerDivision));
+
+                psCreate2.executeQuery();
+
+                String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,?,?)" ;
+                PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
+                psCreate3.setString(1, String.valueOf(customerName));
+                psCreate3.setString(2, String.valueOf(customerAddress));
+                psCreate3.setString(3, String.valueOf(postalCode));
+                psCreate3.setString(4, String.valueOf(customerPhone));
+
+                psCreate3.executeQuery();
+
+                ResultSet resultcC = psCreate3.getGeneratedKeys();
+                resultcC.next();
+
+                int Customer_ID = resultcC.getInt(1);
+
+                String sqlc4= " INSERT INTO customers VALUES (?)" ;
+                PreparedStatement psCreate4= connection.prepareStatement(sqlc4);
+                psCreate4.setInt(1, Customer_ID);
+                psCreate4.executeQuery();
+            } catch (Exception e) {
+                e.printStackTrace();//print stack trace
+            }
+
+
+        }
+
+
 }

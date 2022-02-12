@@ -22,7 +22,7 @@ public class MainScreenController implements Initializable {
     public TableColumn customersTableCustomerID;
     public TableColumn customersTableCountry;
     public TableColumn customersTableDivision;
-    public Button addCustomer;
+
     public Button updateCustomer;
     public Button deleteCustomer;
     public TextField customerTextField;
@@ -37,7 +37,7 @@ public class MainScreenController implements Initializable {
     public TableColumn appointmentsEndDateTimeCol;
     public TableColumn appointmentsCustomerIDCol;
     public TableColumn appointmentsUserIDCol;
-    public Button addAppointment;
+
     public Button updateAppointment;
     public Button deleteAppointment;
     public Label resultsLBL;
@@ -46,7 +46,7 @@ public class MainScreenController implements Initializable {
     public Button exitButton;
     public TextField customerName;
     public TextField customerAddress;
-    public TextField customerID;
+
     public ComboBox customerCountry;
     public ComboBox customerDivision;
     public TextField postalCode;
@@ -65,6 +65,8 @@ public class MainScreenController implements Initializable {
     public Button saveAppointment;
     public Button customerSearch;
     public Button appointmentsSearch;
+    public TextField customerPhone;
+    public Label customerIDLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,8 +101,7 @@ public class MainScreenController implements Initializable {
     public void lookupCustomer(KeyEvent keyEvent) {
     }
 
-    public void onAddCustomer(ActionEvent actionEvent) {
-    }
+
 
     public void onUpdateCustomer(ActionEvent actionEvent) {
     }
@@ -114,8 +115,6 @@ public class MainScreenController implements Initializable {
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
 
-    public void onAddAppointment(ActionEvent actionEvent) {
-    }
 
     public void onUpdateAppointment(ActionEvent actionEvent) {
     }
@@ -138,7 +137,10 @@ public class MainScreenController implements Initializable {
     }
 
     public void onSaveCustomer(ActionEvent actionEvent) {
+        CustomersDAOImpl.createCustomer( customerName, customerAddress,postalCode, customerPhone, customerCountry, customerDivision);
     }
+
+
 
     public void onSaveAppointment(ActionEvent actionEvent) {
     }

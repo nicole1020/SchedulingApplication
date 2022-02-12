@@ -1,12 +1,19 @@
 package Model;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 public class Customers {
 
     private String customerName;
     private String customerAddress;
     private String postalCode;
     private String phone;
-    private int customerID;
+  /** private Timestamp createDate;
+    private String createdBy;
+    private Timestamp lastUpdate;
+    private String lastUpdateBy;*/
+  private int customerID;
     private String country;
     private String division;
 
@@ -15,6 +22,10 @@ public class Customers {
         this.customerAddress = Address;
         this.postalCode = Postal_Code;
         this.phone = phone;
+        /**this.createDate= Create_Date;
+        this.createdBy = Created_By;
+        this.lastUpdate = Last_Update;
+        this.lastUpdateBy = Last_Update_By;*/
         this.customerID = customer_id;
         this.country = Country;
         this.division = Division;
@@ -39,6 +50,19 @@ public class Customers {
     public String getPhone() {
         return phone;
     }
+    /**
+    public Timestamp getCreateDate(){
+        return createDate;
+    }
+    public String getCreatedBy(){
+        return createdBy;
+    }
+    public Timestamp getLastUpdate(){
+        return lastUpdate;
+    }
+    public String getLastUpdateBy(){
+        return lastUpdateBy;
+    }*/
 
 public String getCountry(){
         return country;
