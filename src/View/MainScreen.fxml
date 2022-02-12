@@ -82,18 +82,18 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="appointmentsTable" layoutX="16.0" layoutY="29.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="765.0">
+                <TableView fx:id="appointmentsTable" layoutX="16.0" layoutY="29.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="828.0">
                     <columns>
-                        <TableColumn fx:id="appointmentsIDCol" prefWidth="106.0" text="Appointment ID" />
-                        <TableColumn fx:id="appointmentsTitleCol" prefWidth="48.0" text="Title" />
-                        <TableColumn fx:id="appointmentsDescriptionCol" prefWidth="86.0" text="Description" />
-                        <TableColumn fx:id="appointmentsLocationCol" text="Location" />
-                        <TableColumn fx:id="appointmentsContactCol" prefWidth="63.0" text="Contact" />
-                        <TableColumn fx:id="appointmentsTypeCol" prefWidth="47.0" text="Type" />
-                        <TableColumn fx:id="appointmentsStartDateTimeCol" prefWidth="102.0" text="Start Date/Time" />
-                        <TableColumn fx:id="appointmentsEndDateTimeCol" prefWidth="90.0" text="End Date/Time" />
-                        <TableColumn fx:id="appointmentsCustomerIDCol" prefWidth="82.0" text="CustomerID" />
-                        <TableColumn fx:id="appointmentsUserIDCol" prefWidth="60.0" text="UserID" />
+                        <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
+                        <TableColumn fx:id="appointmentsTitleCol" prefWidth="36.0" text="Title" />
+                        <TableColumn fx:id="appointmentsDescriptionCol" prefWidth="69.0" text="Description" />
+                        <TableColumn fx:id="appointmentsLocationCol" prefWidth="56.0" text="Location" />
+                        <TableColumn fx:id="appointmentsContactCol" prefWidth="50.0" text="Contact" />
+                        <TableColumn fx:id="appointmentsTypeCol" prefWidth="58.0" text="Type" />
+                        <TableColumn fx:id="appointmentsStartDateTimeCol" prefWidth="181.0" text="Start Date/Time" />
+                        <TableColumn fx:id="appointmentsEndDateTimeCol" prefWidth="160.0" text="End Date/Time" />
+                        <TableColumn fx:id="appointmentsCustomerIDCol" prefWidth="75.0" text="CustomerID" />
+                        <TableColumn fx:id="appointmentsUserIDCol" prefWidth="46.0" text="UserID" />
                     </columns>
                 </TableView>
                 <TextField fx:id="appointmentsTextField" layoutX="172.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="215.0" promptText="Search by Appointment ID or Name" />
