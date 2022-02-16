@@ -31,7 +31,9 @@ import javafx.stage.Stage;
  2/11 fixed appointmentsDAO and model files to properly load DB data into appointments table. also set up forms for adding/modifying customers
  and appointments. Will work on coding those next.
 
- worked on customersDAO adding customer to db. still having issues with properly coding will work on that next.
+ worked on customersDAO adding customer to db. still having issues with properly coding to add new customer will work on that next.
+ 2/15 will work on add customers dao file and java file
+
  */
 public class Main extends Application {
 

@@ -10,7 +10,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.nimbus.State;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
@@ -47,8 +49,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox customerCountry;
-    public ComboBox customerDivision;
+    public ComboBox<String> customerCountry;
+    public ComboBox<String> customerDivision;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -56,11 +58,11 @@ public class MainScreenController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox appointmentContact;
-    public ComboBox appointmentType;
+    public ComboBox<String> appointmentContact;
+    public ComboBox<String> appointmentType;
     public DatePicker appointmentEnd;
-    public ComboBox appointmentCustomerID;
-    public ComboBox appointmentUserID;
+    public ComboBox<Integer> appointmentCustomerID;
+    public ComboBox<Integer> appointmentUserID;
     public Button saveCustomer;
     public Button saveAppointment;
     public Button customerSearch;

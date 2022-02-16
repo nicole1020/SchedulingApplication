@@ -70,15 +70,15 @@ public class CustomersDAOImpl {
 
                 ResultSet resultcC = psCreate3.getGeneratedKeys();
                 resultcC.next();
-
                 int Customer_ID = resultcC.getInt(1);
 
                 String sqlc4= " INSERT INTO customers VALUES (?)" ;
-                PreparedStatement psCreate4= connection.prepareStatement(sqlc4);
+                PreparedStatement psCreate4= connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
                 psCreate4.setInt(1, Customer_ID);
                 psCreate4.executeQuery();
             } catch (Exception e) {
                 e.printStackTrace();//print stack trace
+
             }
 
 
