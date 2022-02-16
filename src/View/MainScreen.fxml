@@ -150,8 +150,8 @@
    </Label>
    <TextField fx:id="customerName" layoutX="981.0" layoutY="35.0" promptText="First and Last Name" />
    <TextField fx:id="customerPhone" layoutX="981.0" layoutY="94.0" promptText="555-555-5555" />
-   <ComboBox fx:id="customerCountry" layoutX="862.0" layoutY="182.0" prefWidth="150.0" promptText="Country" />
-   <ComboBox fx:id="customerDivision" layoutX="1015.0" layoutY="182.0" prefWidth="150.0" promptText="Division" />
+   <ComboBox fx:id="customerCountry" layoutX="862.0" layoutY="182.0" onAction="#onCustomerCountry" prefWidth="150.0" promptText="Country" />
+   <ComboBox fx:id="customerDivision" layoutX="1015.0" layoutY="182.0" onAction="#onCustomerDivision" prefWidth="150.0" promptText="Division" />
    <Label layoutX="962.0" layoutY="4.0" text="Add/Update Customer Record">
       <font>
          <Font size="14.0" />

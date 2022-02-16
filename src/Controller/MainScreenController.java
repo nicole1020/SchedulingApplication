@@ -1,7 +1,9 @@
 package Controller;
 
+import DAO.AddressDAOImpl;
 import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
+import Model.Address;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -9,10 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import javax.swing.plaf.nimbus.State;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
@@ -97,7 +96,11 @@ public class MainScreenController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
 
+//combobox customerCountry
+       // customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
 
+//combobox customerDivision
+//customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
     }
 
     public void lookupCustomer(KeyEvent keyEvent) {
@@ -151,5 +154,13 @@ public class MainScreenController implements Initializable {
     }
 
     public void onAppointmentsSearch(ActionEvent actionEvent) {
+    }
+
+    public void onCustomerCountry(ActionEvent actionEvent) {
+        System.out.println(customerCountry.getValue());
+    }
+
+    public void onCustomerDivision(ActionEvent actionEvent) {
+        System.out.println(customerDivision.getValue());
     }
 }
