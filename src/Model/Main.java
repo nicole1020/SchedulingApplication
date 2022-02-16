@@ -34,6 +34,11 @@ import javafx.stage.Stage;
  worked on customersDAO adding customer to db. still having issues with properly coding to add new customer will work on that next.
  2/15 will work on add customers dao file and java file (customers dao file.)
 
+ 2/16 will work on properly joining information for appointments table display in main Dao file. Will work on creating customer in the java file and dao.
+ also will work on user loginDao to check db for values.
+-- figured out why my data wasnt loading right into "start" and "end" on appointment table- it needed to be string type not date or time.
+ meeting with Instructor Mr. Juan Ruiz at noon to go over my project and make sure I am understanding the requirements.
+
  */
 public class Main extends Application {
 
@@ -51,7 +56,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        Users.generateUserID();
+
         DBConnection.openConnection();
         launch(args);
         DBConnection.closeConnection();

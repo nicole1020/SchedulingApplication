@@ -1,7 +1,5 @@
 package Controller;
 
-import Model.UserLogin;
-import Model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import javax.xml.stream.Location;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
@@ -27,7 +24,7 @@ public class UserLoginController implements Initializable {
     public Label userNameLabel;
     public Label passwordLabel;
     public Label userLocationLabel;
-    private int newUserID;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,10 +34,8 @@ public class UserLoginController implements Initializable {
         System.out.println("Date/Time/Division " + zdt);
         userLocationLabel.setText("Date/Time/Division " + zdt);
 
-        int uniqueUserID = 0;
-      //  newUserID = UserDAO.generateUserID(uniqueUserID);
-       System.out.println("User ID Generated: " + newUserID);
-    }
+
+       }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
        /* if (!onPassword() || !onUserNameField()) {
@@ -55,11 +50,6 @@ public class UserLoginController implements Initializable {
             }**/
             try {
 
-               // UserLogin newUser = new UserLogin(newUserID, "", "", "");
-               // newUser.setUserName(userNameField.getText());
-                //newUser.setPassword(password.getText());
-               // newUser.setUserLocation(userLocationLabel.getText());
-              //  Users.addUser(newUser);
                 userLocationLabel.setText("Login Successful");
 
                 Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
@@ -85,20 +75,14 @@ public class UserLoginController implements Initializable {
 
     @FXML
     private boolean onPassword() {
-      /*  if (password.getText().equals("test")) {
-            System.out.println("valid password proceed");
-            return true;
-        } else {}**/
+
             return false;
         }
 
 
     @FXML
     private boolean onUserNameField() {
-      /*  if (userNameField.getText().equals("test")) {
-            System.out.println("valid username proceed");
-            return true;
-        } else {}**/
+
             return false;
     }
 }

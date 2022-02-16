@@ -1,17 +1,9 @@
 package DAO;
 
 import Model.Appointments;
-import Model.Customers;
-import com.sun.javafx.scene.control.behavior.DatePickerBehavior;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-
 import java.sql.*;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
-
 import static DAO.DBConnection.connection;
 
 public class AppointmentsDAOImpl {
@@ -29,8 +21,8 @@ public class AppointmentsDAOImpl {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                Date Start = aResult.getDate("Start");
-                Date End = aResult.getDate("End");
+                String Start = aResult.getString("Start");
+                String End = aResult.getString("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 

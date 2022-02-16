@@ -14,12 +14,12 @@ public class Appointments {
     private String location;
     private int contact;
     private String type;
-    private Date startDateTime;
-    private Date endDateTime;
+    private String startDateTime;
+    private String endDateTime;
     private int customerID;
     private int userID;
 
-    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Date Start, Date End, int Customer_ID, int User_ID) {
+    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, String Start, String End, int Customer_ID, int User_ID) {
         this.appointmentID = Appointment_ID;
         this.title = Title;
         this.description = Description;
@@ -58,11 +58,11 @@ public class Appointments {
         return type;
     }
 
-    public Date getStartDateTime() {
+    public String getStartDateTime() {
         return startDateTime;
     }
 
-    public Date getEndDateTime() {
+    public String getEndDateTime() {
         return endDateTime;
     }
 

@@ -1,7 +1,6 @@
 package DAO;
 
 import Model.UserLogin;
-import Model.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
