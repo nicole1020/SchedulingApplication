@@ -40,15 +40,15 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="customersTable" layoutX="92.0" layoutY="29.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="695.0">
+                <TableView fx:id="customersTable" layoutX="92.0" layoutY="29.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="746.0">
                     <columns>
-                        <TableColumn fx:id="customersTableCustomerNameCol" prefWidth="104.0" text="Name" />
-                        <TableColumn fx:id="customersTableAddressCol" prefWidth="137.0" text="Address" />
-                        <TableColumn fx:id="customersTablePostalCodeCol" minWidth="3.0" prefWidth="73.0" text="Postal Code" />
-                        <TableColumn fx:id="customersTablePhoneCol" prefWidth="120.0" text="Phone Number" />
-                        <TableColumn fx:id="customersTableCustomerID" prefWidth="75.0" text="CustomerID" />
-                        <TableColumn fx:id="customersTableCountry" prefWidth="68.0" text="Country" />
-                        <TableColumn fx:id="customersTableDivision" prefWidth="117.0" text="Division" />
+                        <TableColumn fx:id="customersTableCustomerNameCol" prefWidth="136.0" text="Name" />
+                        <TableColumn fx:id="customersTableAddressCol" prefWidth="125.0" text="Address" />
+                        <TableColumn fx:id="customersTablePostalCodeCol" minWidth="3.0" prefWidth="84.0" text="Postal Code" />
+                        <TableColumn fx:id="customersTablePhoneCol" prefWidth="109.0" text="Phone Number" />
+                        <TableColumn fx:id="customersTableCustomerID" prefWidth="77.0" text="CustomerID" />
+                        <TableColumn fx:id="customersTableCountry" prefWidth="77.0" text="Country" />
+                        <TableColumn fx:id="customersTableDivision" prefWidth="137.0" text="Division" />
                     </columns>
                 </TableView>
                 <Button fx:id="deleteCustomer" layoutX="399.0" layoutY="153.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" />

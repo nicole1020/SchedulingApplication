@@ -95,7 +95,24 @@ public class MainScreenController implements Initializable {
         appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        System.out.println("Customer IDs:");
+        for(int i = 0; i < CustomersDAOImpl.getAllCustomers().size(); i++) {
+            System.out.println(CustomersDAOImpl.getAllCustomers()
+                    .get(i).getCustomerID());
 
+        }
+        System.out.println("");
+        resultsLBL.setText(CustomersDAOImpl.getAllCustomers().size() + " Customers on File");
+
+
+        System.out.println("Appointment IDs:");
+        for(int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsDAOImpl.getAllAppointments()
+                    .get(i).getAppointmentID());
+
+        }
+        System.out.println("");
+        resultsLBLAppointments.setText(AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
 //combobox customerCountry
        // customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
 
