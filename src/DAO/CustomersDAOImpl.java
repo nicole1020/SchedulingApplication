@@ -1,5 +1,6 @@
 package DAO;
 
+import Controller.MainScreenController;
 import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +41,11 @@ public class CustomersDAOImpl {
         }
         return customerList;
     }
+
+
+
+    //Selection block for Division ComboBox
+
 
 
     //create new customer

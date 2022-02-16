@@ -17,6 +17,10 @@ public class Address {
         this.country = country;
     }
 
+    public Address(String Country) {
+        this.country = Country;
+    }
+
     public String getAddress() {
         return address;
     }

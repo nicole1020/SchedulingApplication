@@ -37,8 +37,7 @@ import javafx.stage.Stage;
  2/16 will work on properly joining information for appointments table display in main Dao file. Will work on creating customer in the java file and dao.
  also will work on user loginDao to check db for values.
 -- figured out why my data wasnt loading right into "start" and "end" on appointment table- it needed to be string type not date or time.
- meeting with Instructor Mr. Juan Ruiz at noon to go over my project and make sure I am understanding the requirements.
-
+ working on adding values to combo box from db. will work on that later too
  */
 public class Main extends Application {
 

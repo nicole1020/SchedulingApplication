@@ -37,4 +37,26 @@ public class AddressDAOImpl {public static ObservableList<Address> getAllAddress
     }
     return addressList;
 }
+    //Selection block for Country ComboBox
+    public static ObservableList<Address> countryComboBox(){
+        ObservableList<Address> countryList = FXCollections.observableArrayList();
+
+        try{
+            String sqlcB="SELECT Country from FROM customers";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            try {
+                String Country = cBResult.getString("Country");
+                Model.Address cL = new Address(Country);
+                countryList.add(cL);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();//print stack trace
+
+        }
+
+        return countryList;
+    }
 }

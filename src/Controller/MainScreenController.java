@@ -114,7 +114,7 @@ public class MainScreenController implements Initializable {
         System.out.println("");
         resultsLBLAppointments.setText(AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
 //combobox customerCountry
-       // customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
+        customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.countryComboBox()));
 
 //combobox customerDivision
 //customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
