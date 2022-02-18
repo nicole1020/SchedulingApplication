@@ -4,6 +4,8 @@ import DAO.AddressDAOImpl;
 import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
 import Model.Address;
+import Model.Customers;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,7 +14,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static DAO.DBConnection.connection;
 
 public class MainScreenController implements Initializable {
     public TableView customersTable;
@@ -71,6 +78,9 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Combo Box Country selection initialized
+        //   customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.countryComboBox()));
+
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
 
@@ -113,16 +123,12 @@ public class MainScreenController implements Initializable {
         }
         System.out.println("");
         resultsLBLAppointments.setText(AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
-//combobox customerCountry
-        customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.countryComboBox()));
 
 //combobox customerDivision
 //customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
     }
-
     public void lookupCustomer(KeyEvent keyEvent) {
     }
-
 
 
     public void onUpdateCustomer(ActionEvent actionEvent) {
@@ -159,7 +165,16 @@ public class MainScreenController implements Initializable {
     }
 
     public void onSaveCustomer(ActionEvent actionEvent) {
-        CustomersDAOImpl.createCustomer( customerName, customerAddress,postalCode, customerPhone, customerCountry, customerDivision);
+        String name = customerName.getText();
+        String address = customerAddress.getText();
+        String postalcode = postalCode.getText();
+        String phone = customerPhone.getText();
+        String country = customerCountry.getValue();
+        String division = customerDivision.getValue();
+        CustomersDAOImpl.createCustomer( name, address,postalcode, phone, CustomersDAOImpl.getCustomerID(), country, division);
+
+        customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+
     }
 
 
@@ -174,9 +189,15 @@ public class MainScreenController implements Initializable {
     }
 
     public void onCustomerCountry(ActionEvent actionEvent) {
-        System.out.println(customerCountry.getValue());
+        String sql = "SELECT * Country FROM countries";
+        try {
+            PreparedStatement psComboBox = connection.prepareStatement(sql);
+             rs =
+            System.out.println(customerCountry.getValue());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
     public void onCustomerDivision(ActionEvent actionEvent) {
         System.out.println(customerDivision.getValue());
     }

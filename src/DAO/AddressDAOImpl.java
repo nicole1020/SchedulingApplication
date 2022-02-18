@@ -1,5 +1,6 @@
 package DAO;
 
+import Controller.MainScreenController;
 import Model.Address;
 import Model.Customers;
 import javafx.collections.FXCollections;
@@ -42,10 +43,11 @@ public class AddressDAOImpl {public static ObservableList<Address> getAllAddress
         ObservableList<Address> countryList = FXCollections.observableArrayList();
 
         try{
-            String sqlcB="SELECT Country from FROM customers";
+            String sqlcB="SELECT * Country from FROM countries";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             try {
+
                 String Country = cBResult.getString("Country");
                 Model.Address cL = new Address(Country);
                 countryList.add(cL);

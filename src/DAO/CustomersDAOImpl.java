@@ -48,47 +48,49 @@ public class CustomersDAOImpl {
 
 
 
-    //create new customer
-    public static void createCustomer(TextField customerName, TextField customerAddress, TextField postalCode, TextField customerPhone, ComboBox customerCountry, ComboBox customerDivision) {
 
+
+    public static Object getCustomerID() {
+
+        return null;
+    }
+    //create new customer
+    public static void createCustomer(String name, String address, String postalcode, String phone, Object customerID, String country, String division) {
         try {
 
-                String sqlc1="INSERT INTO countries VALUES (?,?)";
-                PreparedStatement psCreate1 = connection.prepareStatement(sqlc1);
-                psCreate1.setString(1, String.valueOf(customerCountry));
+            String sqlc1="INSERT INTO countries VALUES (?,?)";
+            PreparedStatement psCreate1 = connection.prepareStatement(sqlc1);
+            psCreate1.setString(1, String.valueOf(country));
 
-                psCreate1.executeQuery();
+            psCreate1.executeQuery();
 
-                String sqlc2="INSERT INTO first_level_divisions VALUES(?,?,?)";
-                PreparedStatement psCreate2 = connection.prepareStatement(sqlc2);
-                psCreate2.setString(1, String.valueOf(customerDivision));
+            String sqlc2="INSERT INTO first_level_divisions VALUES(?,?,?)";
+            PreparedStatement psCreate2 = connection.prepareStatement(sqlc2);
+            psCreate2.setString(1, String.valueOf(division));
 
-                psCreate2.executeQuery();
+            psCreate2.executeQuery();
 
-                String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,?,?)" ;
-                PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
-                psCreate3.setString(1, String.valueOf(customerName));
-                psCreate3.setString(2, String.valueOf(customerAddress));
-                psCreate3.setString(3, String.valueOf(postalCode));
-                psCreate3.setString(4, String.valueOf(customerPhone));
+            String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,?,?)" ;
+            PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
+            psCreate3.setString(1, String.valueOf(name));
+            psCreate3.setString(2, String.valueOf(address));
+            psCreate3.setString(3, String.valueOf(postalcode));
+            psCreate3.setString(4, String.valueOf(phone));
 
-                psCreate3.executeQuery();
+            psCreate3.executeQuery();
 
-                ResultSet resultcC = psCreate3.getGeneratedKeys();
-                resultcC.next();
-                int Customer_ID = resultcC.getInt(1);
+            ResultSet resultcC = psCreate3.getGeneratedKeys();
+            resultcC.next();
+            int Customer_ID = resultcC.getInt(1);
 
-                String sqlc4= " INSERT INTO customers VALUES (?)" ;
-                PreparedStatement psCreate4= connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
-                psCreate4.setInt(1, Customer_ID);
-                psCreate4.executeQuery();
-            } catch (Exception e) {
-                e.printStackTrace();//print stack trace
-
-            }
-
+            String sqlc4= " INSERT INTO customers VALUES (?)" ;
+            PreparedStatement psCreate4= connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
+            psCreate4.setInt(1, Customer_ID);
+            psCreate4.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();//print stack trace
 
         }
 
-
+    }
 }

@@ -38,6 +38,8 @@ import javafx.stage.Stage;
  also will work on user loginDao to check db for values.
 -- figured out why my data wasnt loading right into "start" and "end" on appointment table- it needed to be string type not date or time.
  working on adding values to combo box from db. will work on that later too
+ 2/18 continue working on add customer form-combo boxes and all.
+
  */
 public class Main extends Application {
 
