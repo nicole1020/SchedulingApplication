@@ -5,6 +5,8 @@ import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
 import Model.Address;
 import Model.Customers;
+import Model.Main;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -55,8 +57,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox<Address> customerCountry;
-    public ComboBox<Address> customerDivision;
+    public ComboBox<MainScreenController> customerCountry;
+    public ComboBox<MainScreenController> customerDivision;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -189,19 +191,30 @@ public class MainScreenController implements Initializable {
     }
 
     public void onCustomerCountry(ActionEvent actionEvent) {
+        {
+            ObservableList<MainScreenController> countryList = FXCollections.observableArrayList();
 
-        try {
-            String sql = "SELECT * Country FROM countries";
-            PreparedStatement psComboBox = connection.prepareStatement(sql);
-            ResultSet rs = psComboBox.executeQuery();
-            while(rs.next()) {
-               // String Country = rs.getString("country");
-                customerCountry.setItems(AddressDAOImpl.countryComboBox());
-                System.out.println(customerCountry.getValue());
+            try{
+                String sqlcB="SELECT * Country from FROM countries";
+                PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+                ResultSet cBResult = prepcB.executeQuery();
+                try {
+
+                    String Country = cBResult.getString("Country");
+                    MainScreenController cL = new MainScreenController();
+                    while (cBResult.next()) {
+                        countryList.add(cL);
+                        customerCountry.setItems(countryList);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }catch (Exception e) {
+                e.printStackTrace();//print stack trace
+
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
     public void onCustomerDivision(ActionEvent actionEvent) {
