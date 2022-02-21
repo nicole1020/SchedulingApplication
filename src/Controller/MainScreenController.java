@@ -55,8 +55,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox<String> customerCountry;
-    public ComboBox<String> customerDivision;
+    public ComboBox<Address> customerCountry;
+    public ComboBox<Address> customerDivision;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -169,8 +169,8 @@ public class MainScreenController implements Initializable {
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
-        String country = customerCountry.getValue();
-        String division = customerDivision.getValue();
+        String country = String.valueOf(customerCountry.getValue());
+        String division = String.valueOf(customerDivision.getValue());
         CustomersDAOImpl.createCustomer( name, address,postalcode, phone, CustomersDAOImpl.getCustomerID(), country, division);
 
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
@@ -189,11 +189,17 @@ public class MainScreenController implements Initializable {
     }
 
     public void onCustomerCountry(ActionEvent actionEvent) {
-        String sql = "SELECT * Country FROM countries";
+
         try {
+            String sql = "SELECT * Country FROM countries";
             PreparedStatement psComboBox = connection.prepareStatement(sql);
-             rs =
-            System.out.println(customerCountry.getValue());
+            ResultSet rs = psComboBox.executeQuery();
+            while(rs.next()) {
+               // String Country = rs.getString("country");
+                customerCountry.setItems(AddressDAOImpl.countryComboBox());
+                System.out.println(customerCountry.getValue());
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

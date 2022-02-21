@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 -- figured out why my data wasnt loading right into "start" and "end" on appointment table- it needed to be string type not date or time.
  working on adding values to combo box from db. will work on that later too
  2/18 continue working on add customer form-combo boxes and all.
+ 2/21 working on combo boxes
 
  */
 public class Main extends Application {

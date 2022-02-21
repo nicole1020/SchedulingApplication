@@ -1,12 +1,9 @@
 package DAO;
 
-import Controller.MainScreenController;
 import Model.Address;
-import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
