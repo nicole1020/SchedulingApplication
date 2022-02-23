@@ -128,22 +128,22 @@
          </GridPane.margin>
       </RadioButton>
     </GridPane>
-   <Label layoutX="864.0" layoutY="37.0" text="Customer Name">
+   <Label layoutX="863.0" layoutY="37.0" text="Customer Name">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="868.0" layoutY="97.0" text="Phone ">
+   <Label layoutX="863.0" layoutY="97.0" text="Phone ">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="864.0" layoutY="129.0" text="CustomerID">
+   <Label layoutX="863.0" layoutY="129.0" text="CustomerID">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="865.0" layoutY="65.0" text="Address">
+   <Label layoutX="863.0" layoutY="65.0" text="Address">
       <font>
          <Font size="14.0" />
       </font>
@@ -157,7 +157,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="865.0" layoutY="154.0" text="Postal Code">
+   <Label layoutX="863.0" layoutY="154.0" text="Postal Code">
       <font>
          <Font size="14.0" />
       </font>
@@ -178,7 +178,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="866.0" layoutY="345.0" text="Description">
+   <Label layoutX="863.0" layoutY="346.0" text="Description">
       <font>
          <Font size="14.0" />
       </font>
@@ -188,32 +188,32 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="862.0" layoutY="410.0" text="Contact">
+   <Label layoutX="863.0" layoutY="410.0" text="Contact">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="862.0" layoutY="443.0" text="Type">
+   <Label layoutX="863.0" layoutY="443.0" text="Type">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="861.0" layoutY="484.0" text="Start Date/Time">
+   <Label layoutX="863.0" layoutY="484.0" text="Start Date/Time">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="864.0" layoutY="512.0" text="End Date/Time">
+   <Label layoutX="863.0" layoutY="512.0" text="End Date/Time">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="864.0" layoutY="548.0" text="CustomerID">
+   <Label layoutX="863.0" layoutY="539.0" text="CustomerID">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="865.0" layoutY="568.0" text="UserID">
+   <Label layoutX="863.0" layoutY="569.0" text="UserID">
       <font>
          <Font size="14.0" />
       </font>

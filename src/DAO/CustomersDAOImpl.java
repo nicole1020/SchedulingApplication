@@ -93,4 +93,10 @@ public class CustomersDAOImpl {
         }
 
     }
+
+    public static void updateCustomer() {
+    }
+    public static void deleteCustomer(){
+
+    }
 }

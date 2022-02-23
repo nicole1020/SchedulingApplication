@@ -3,6 +3,7 @@ package DAO;
 import Model.Address;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +37,7 @@ public class AddressDAOImpl {public static ObservableList<Address> getAllAddress
     return addressList;
 }
     //Selection block for Country ComboBox
-    public static ObservableList<Address> countryComboBox(){
+    public static ObservableList<Address> countryComboBox() {
         ObservableList<Address> countryList = FXCollections.observableArrayList();
 
         try{
@@ -46,8 +47,10 @@ public class AddressDAOImpl {public static ObservableList<Address> getAllAddress
             try {
 
                 String Country = cBResult.getString("Country");
+                while(cBResult.next()){
                 Model.Address cL = new Address(Country);
                 countryList.add(cL);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

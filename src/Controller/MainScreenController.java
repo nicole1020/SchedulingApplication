@@ -57,8 +57,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox<MainScreenController> customerCountry;
-    public ComboBox<MainScreenController> customerDivision;
+    public ComboBox<String> customerCountry;
+    public ComboBox<String> customerDivision;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -80,8 +80,8 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Combo Box Country selection initialized
-        //   customerCountry.getItems().addAll(String.valueOf(AddressDAOImpl.countryComboBox()));
+
+
 
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
@@ -108,7 +108,7 @@ public class MainScreenController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         System.out.println("Customer IDs:");
-        for(int i = 0; i < CustomersDAOImpl.getAllCustomers().size(); i++) {
+        for (int i = 0; i < CustomersDAOImpl.getAllCustomers().size(); i++) {
             System.out.println(CustomersDAOImpl.getAllCustomers()
                     .get(i).getCustomerID());
 
@@ -118,7 +118,7 @@ public class MainScreenController implements Initializable {
 
 
         System.out.println("Appointment IDs:");
-        for(int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
+        for (int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
             System.out.println(AppointmentsDAOImpl.getAllAppointments()
                     .get(i).getAppointmentID());
 
@@ -129,6 +129,7 @@ public class MainScreenController implements Initializable {
 //combobox customerDivision
 //customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
     }
+
     public void lookupCustomer(KeyEvent keyEvent) {
     }
 
@@ -137,6 +138,7 @@ public class MainScreenController implements Initializable {
     }
 
     public void onDeleteCustomer(ActionEvent actionEvent) {
+        CustomersDAOImpl.deleteCustomer();
     }
 
     public void customerIsSelected(MouseEvent mouseEvent) {
@@ -167,18 +169,32 @@ public class MainScreenController implements Initializable {
     }
 
     public void onSaveCustomer(ActionEvent actionEvent) {
+
         String name = customerName.getText();
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
-        String country = String.valueOf(customerCountry.getValue());
-        String division = String.valueOf(customerDivision.getValue());
-        CustomersDAOImpl.createCustomer( name, address,postalcode, phone, CustomersDAOImpl.getCustomerID(), country, division);
+        String country = customerCountry.getValue();
+        String division = customerDivision.getValue();
+
+if (country == null){
+    return;
+}
+if (division == null) {
+    return;
+
+
+}
+    if (updateCustomer == null){
+        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, customerIDLabel.getId(), country, division);
+    }
+    else{
+        CustomersDAOImpl.updateCustomer();
+    }
 
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
 
     }
-
 
 
     public void onSaveAppointment(ActionEvent actionEvent) {
@@ -190,34 +206,13 @@ public class MainScreenController implements Initializable {
     public void onAppointmentsSearch(ActionEvent actionEvent) {
     }
 
-    public void onCustomerCountry(ActionEvent actionEvent) {
-        {
-            ObservableList<MainScreenController> countryList = FXCollections.observableArrayList();
 
-            try{
-                String sqlcB="SELECT * Country from FROM countries";
-                PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-                ResultSet cBResult = prepcB.executeQuery();
-                try {
-
-                    String Country = cBResult.getString("Country");
-                    MainScreenController cL = new MainScreenController();
-                    while (cBResult.next()) {
-                        countryList.add(cL);
-                        customerCountry.setItems(countryList);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }catch (Exception e) {
-                e.printStackTrace();//print stack trace
-
-            }
-
-
-        }
-    }
     public void onCustomerDivision(ActionEvent actionEvent) {
         System.out.println(customerDivision.getValue());
+    }
+
+    public void onCustomerCountry(ActionEvent actionEvent) {
+      //  customerCountry.getItems().addAll(AddressDAOImpl.countryComboBox());
+
     }
 }
