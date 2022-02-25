@@ -150,8 +150,8 @@
    </Label>
    <TextField fx:id="customerName" layoutX="981.0" layoutY="35.0" promptText="First and Last Name" />
    <TextField fx:id="customerPhone" layoutX="981.0" layoutY="94.0" promptText="555-555-5555" />
-   <ComboBox fx:id="customerCountry" layoutX="862.0" layoutY="182.0" onAction="#onCustomerCountry" prefWidth="150.0" promptText="Country" />
-   <ComboBox fx:id="customerDivision" layoutX="1015.0" layoutY="182.0" onAction="#onCustomerDivision" prefWidth="150.0" promptText="Division" />
+   <ComboBox fx:id="customerCountry" layoutX="862.0" layoutY="182.0" onAction="#onCustomerCountry" prefWidth="150.0" promptText="Country" visibleRowCount="5" />
+   <ComboBox fx:id="customerDivision" layoutX="1015.0" layoutY="182.0" onAction="#onCustomerDivision" prefHeight="25.0" prefWidth="174.0" promptText="Select Your Country...." visibleRowCount="5" />
    <Label layoutX="962.0" layoutY="4.0" text="Add/Update Customer Record">
       <font>
          <Font size="14.0" />
@@ -224,7 +224,7 @@
    <TextField fx:id="appointmentDescription" layoutX="982.0" layoutY="343.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="981.0" layoutY="373.0" promptText="Location" />
    <ComboBox fx:id="appointmentContact" layoutX="981.0" layoutY="408.0" prefWidth="150.0" promptText="contact" />
-   <ComboBox fx:id="appointmentType" layoutX="981.0" layoutY="441.0" prefWidth="150.0" promptText="email/phone" />
+   <ComboBox fx:id="appointmentType" layoutX="981.0" layoutY="441.0" prefWidth="150.0" />
    <DatePicker fx:id="appointmentEnd" layoutX="982.0" layoutY="509.0" promptText="01/01/2022 10:00 AM" />
    <ComboBox fx:id="appointmentCustomerID" layoutX="984.0" layoutY="536.0" prefWidth="150.0" promptText="CustomerID" />
    <ComboBox fx:id="appointmentUserID" layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />

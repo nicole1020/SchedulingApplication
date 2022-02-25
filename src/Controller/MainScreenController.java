@@ -57,8 +57,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox<String> customerCountry;
-    public ComboBox<String> customerDivision;
+    public ComboBox<Address> customerCountry;
+    public ComboBox<Address> customerDivision;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -80,8 +80,9 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//customerCountry.setItems(AddressDAOImpl.getAllCountries());
 
-
+        customerCountry.getItems().addAll(AddressDAOImpl.getAllCountries());
 
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
@@ -174,8 +175,8 @@ public class MainScreenController implements Initializable {
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
-        String country = customerCountry.getValue();
-        String division = customerDivision.getValue();
+        String country = String.valueOf(customerCountry.getValue());
+        String division = String.valueOf(customerDivision.getValue());
 
 if (country == null){
     return;
@@ -186,7 +187,7 @@ if (division == null) {
 
 }
     if (updateCustomer == null){
-        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, customerIDLabel.getId(), country, division);
+        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, country, division);
     }
     else{
         CustomersDAOImpl.updateCustomer();
@@ -212,7 +213,7 @@ if (division == null) {
     }
     //Selection block for customerCountry ComboBox
     public void onCustomerCountry(ActionEvent actionEvent) {
-      //  customerCountry.getItems().addAll(AddressDAOImpl.countryComboBox());
-        System.out.println(customerCountry.getValue());
+      //  customerCountry.getItems().addAll(AddressDAOImpl.getAllCountries());
+    System.out.println(customerCountry.getValue());
     }
 }

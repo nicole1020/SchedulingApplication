@@ -40,6 +40,8 @@ import javafx.stage.Stage;
  working on adding values to combo box from db. will work on that later too
  2/18 continue working on add customer form-combo boxes and all.
  2/21 working on combo boxes
+ 2/24 went to LiS for help with combo boxes - country and division in add customer.
+
 
  */
 public class Main extends Application {

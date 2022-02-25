@@ -1,10 +1,8 @@
 package DAO;
 
-import Controller.MainScreenController;
 import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
@@ -43,13 +41,8 @@ public class CustomersDAOImpl {
     }
 
 
-
-    public static Object getCustomerID() {
-
-        return null;
-    }
     //create new customer
-    public static void createCustomer(String name, String address, String postalcode, String phone, Object customerID, String country, String division) {
+    public static void createCustomer(String name, String address, String postalcode, String phone, String country, String division) {
         try {
 
             String sqlc1="INSERT INTO countries VALUES (null,?)";
