@@ -2,13 +2,14 @@ package Model;
 
 
 
-public class Address {
+public class Address extends Customers {
 
     private int divisionID;
     private String division;
 
 
     public Address(int division_ID, String division) {
+        super();
 
         this.divisionID = division_ID;
         this.division = division;
@@ -28,7 +29,7 @@ public class Address {
    @Override
 
     public String toString(){
-        return(Integer.toString(divisionID) + division );
+        return(divisionID + division );
     }
 }
 
