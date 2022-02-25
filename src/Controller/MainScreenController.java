@@ -206,13 +206,13 @@ if (division == null) {
     public void onAppointmentsSearch(ActionEvent actionEvent) {
     }
 
-
+    //Selection block for customerDivision ComboBox
     public void onCustomerDivision(ActionEvent actionEvent) {
         System.out.println(customerDivision.getValue());
     }
-
+    //Selection block for customerCountry ComboBox
     public void onCustomerCountry(ActionEvent actionEvent) {
       //  customerCountry.getItems().addAll(AddressDAOImpl.countryComboBox());
-
+        System.out.println(customerCountry.getValue());
     }
 }

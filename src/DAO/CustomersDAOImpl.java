@@ -44,12 +44,6 @@ public class CustomersDAOImpl {
 
 
 
-    //Selection block for Division ComboBox
-
-
-
-
-
     public static Object getCustomerID() {
 
         return null;
@@ -58,19 +52,19 @@ public class CustomersDAOImpl {
     public static void createCustomer(String name, String address, String postalcode, String phone, Object customerID, String country, String division) {
         try {
 
-            String sqlc1="INSERT INTO countries VALUES (?,?)";
+            String sqlc1="INSERT INTO countries VALUES (null,?)";
             PreparedStatement psCreate1 = connection.prepareStatement(sqlc1);
             psCreate1.setString(1, String.valueOf(country));
 
             psCreate1.executeQuery();
 
-            String sqlc2="INSERT INTO first_level_divisions VALUES(?,?,?)";
+            String sqlc2="INSERT INTO first_level_divisions VALUES(null,?,null)";
             PreparedStatement psCreate2 = connection.prepareStatement(sqlc2);
             psCreate2.setString(1, String.valueOf(division));
 
             psCreate2.executeQuery();
 
-            String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,?,?)" ;
+            String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,null)" ;
             PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
             psCreate3.setString(1, String.valueOf(name));
             psCreate3.setString(2, String.valueOf(address));
