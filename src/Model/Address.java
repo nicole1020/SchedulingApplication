@@ -3,28 +3,18 @@ package Model;
 
 
 public class Address {
-    private String address;
+
     private int divisionID;
     private String division;
-    private int countryID;
-    private String country;
 
-    public Address(String address, int division_ID, String division, int country_ID, String Country) {
-        this.address = address;
+
+    public Address(int division_ID, String division) {
+
         this.divisionID = division_ID;
         this.division = division;
-        this.countryID = country_ID;
-        this.country = Country;
+
     }
 
-    public Address(String country) {
-        this.country = country;
-    }
-
-
-    public String getAddress() {
-        return address;
-    }
 
     public int getDivisionID() {
         return divisionID;
@@ -34,13 +24,13 @@ public class Address {
         return division;
     }
 
-    public int getCountryID() {
-        return countryID;
-    }
 
-    public String getCountry() {
-        return country;
+   @Override
+
+    public String toString(){
+        return(Integer.toString(divisionID) + division );
     }
 }
+
 
 

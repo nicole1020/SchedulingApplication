@@ -28,6 +28,10 @@ public class Customers {
         this.division = Division;
     }
 
+    public Customers(String Country) {
+        this.country = Country;
+    }
+
     public int getCustomerID() {
         return customerID;
     }
@@ -66,5 +70,10 @@ public String getCountry(){
 }
     public String getDivision() {
         return division;
+    }
+    @Override
+
+    public String toString(){
+        return( country );
     }
 }

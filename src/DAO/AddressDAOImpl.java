@@ -11,54 +11,32 @@ import java.sql.SQLException;
 
 import static DAO.DBConnection.connection;
 
-public class AddressDAOImpl {public static ObservableList<Address> getAllAddresses() {
-    ObservableList<Address> addressList = FXCollections.observableArrayList();
-    try {
-        String sqlInquiryAd = "SELECT Address from customers AND first_level_divisions.Division_ID, first_level_divisions.Division, Country_ID, countries.Country  from first_level_divisions where first_level_divisions.Country_ID = countries.Country_ID ";
+public class AddressDAOImpl {
+    public static ObservableList<Address> getAllAddresses() {
+        ObservableList<Address> addressList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryAd = "SELECT  first_level_divisions.Division_ID, first_level_divisions.Division from first_level_divisions where first_level_divisions.Country_ID = countries.Country_ID ";
 
-        PreparedStatement prepAd = connection.prepareStatement(sqlInquiryAd);
-        ResultSet adResult = prepAd.executeQuery();
-        while(adResult.next()){
-            String Address = adResult.getString("Address");
-            int Division_ID= adResult.getInt("Division_ID");
-            String Division = adResult.getString("Division");
-            int Country_ID= adResult.getInt("Country_ID");
-            String  Country = adResult.getString("Country");
+            PreparedStatement prepAd = connection.prepareStatement(sqlInquiryAd);
+            ResultSet adResult = prepAd.executeQuery();
+            while (adResult.next()) {
 
-            Model.Address ad = new Address( Address, Division_ID, Division, Country_ID, Country );
-            addressList.add(ad);
+                int Division_ID = adResult.getInt("Division_ID");
+                String Division = adResult.getString("Division");
 
-        }
 
-    }
-    catch (SQLException ex) {
-        ex.printStackTrace();
-    }
-    return addressList;
-}
-    //Selection block for Country ComboBox
-    public static ObservableList<Address> getAllCountries() {
-        ObservableList<Address> countryList = FXCollections.observableArrayList();
+                Model.Address ad = new Address( Division_ID, Division);
+                addressList.add(ad);
 
-        try{
-            String sqlcB="SELECT * Country from FROM countries";
-            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-            ResultSet cBResult = prepcB.executeQuery();
-            try {
-
-                String country = cBResult.getString("Country");
-                while(cBResult.next()){
-                Address cL = new Address(country);
-                countryList.add(cL);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }catch (Exception e) {
-            e.printStackTrace();//print stack trace
 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-
-        return countryList;
+        return addressList;
     }
+
+
+
+
 }

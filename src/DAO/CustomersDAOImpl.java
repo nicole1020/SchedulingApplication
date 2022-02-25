@@ -45,19 +45,19 @@ public class CustomersDAOImpl {
     public static void createCustomer(String name, String address, String postalcode, String phone, String country, String division) {
         try {
 
-            String sqlc1="INSERT INTO countries VALUES (null,?)";
+            String sqlc1 = "INSERT INTO countries VALUES (null,?)";
             PreparedStatement psCreate1 = connection.prepareStatement(sqlc1);
             psCreate1.setString(1, String.valueOf(country));
 
             psCreate1.executeQuery();
 
-            String sqlc2="INSERT INTO first_level_divisions VALUES(null,?,null)";
+            String sqlc2 = "INSERT INTO first_level_divisions VALUES(null,?,null)";
             PreparedStatement psCreate2 = connection.prepareStatement(sqlc2);
             psCreate2.setString(1, String.valueOf(division));
 
             psCreate2.executeQuery();
 
-            String sqlc3= " INSERT INTO customers VALUES (NULL, ?,?,?,?,null)" ;
+            String sqlc3 = " INSERT INTO customers VALUES (NULL, ?,?,?,?,null)";
             PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
             psCreate3.setString(1, String.valueOf(name));
             psCreate3.setString(2, String.valueOf(address));
@@ -70,8 +70,8 @@ public class CustomersDAOImpl {
             resultcC.next();
             int Customer_ID = resultcC.getInt(1);
 
-            String sqlc4= " INSERT INTO customers VALUES (?)" ;
-            PreparedStatement psCreate4= connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
+            String sqlc4 = " INSERT INTO customers VALUES (?)";
+            PreparedStatement psCreate4 = connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
             psCreate4.setInt(1, Customer_ID);
             psCreate4.executeQuery();
         } catch (Exception e) {
@@ -83,7 +83,27 @@ public class CustomersDAOImpl {
 
     public static void updateCustomer() {
     }
-    public static void deleteCustomer(){
+
+    public static void deleteCustomer() {
 
     }
+
+   /* public static ObservableList<Customers> getAllCountries() {
+        ObservableList<Customers> countryList = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT Country from FROM countries";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            while (cBResult.next()) {
+
+                String Country = cBResult.getString("Country");
+                Customers cL = new Customers(Country);
+                countryList.add(cL);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countryList;
+    }**/
 }

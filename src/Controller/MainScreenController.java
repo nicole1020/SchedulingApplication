@@ -57,8 +57,8 @@ public class MainScreenController implements Initializable {
     public TextField customerName;
     public TextField customerAddress;
 
-    public ComboBox<Address> customerCountry;
-    public ComboBox<Address> customerDivision;
+    public ComboBox<Customers> customerCountryCombo;
+    public ComboBox<Address> customerDivisionCombo;
     public TextField postalCode;
     public ToggleGroup appointmentsToggle;
     public DatePicker appointmentStart;
@@ -80,9 +80,6 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//customerCountry.setItems(AddressDAOImpl.getAllCountries());
-
-        customerCountry.getItems().addAll(AddressDAOImpl.getAllCountries());
 
         //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
@@ -126,8 +123,10 @@ public class MainScreenController implements Initializable {
         }
         System.out.println("");
         resultsLBLAppointments.setText(AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
-
+//combobox customerCountry
+        customerCountryCombo.setItems(CustomersDAOImpl.getAllCustomers());
 //combobox customerDivision
+        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses());
 //customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
     }
 
@@ -175,8 +174,8 @@ public class MainScreenController implements Initializable {
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
-        String country = String.valueOf(customerCountry.getValue());
-        String division = String.valueOf(customerDivision.getValue());
+        Customers country = customerCountryCombo.getValue();
+        Address division = customerDivisionCombo.getValue();
 
 if (country == null){
     return;
@@ -187,7 +186,7 @@ if (division == null) {
 
 }
     if (updateCustomer == null){
-        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, country, division);
+        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, String.valueOf(customerCountryCombo.getValue()), String.valueOf(customerDivisionCombo.getValue()));
     }
     else{
         CustomersDAOImpl.updateCustomer();
@@ -209,11 +208,11 @@ if (division == null) {
 
     //Selection block for customerDivision ComboBox
     public void onCustomerDivision(ActionEvent actionEvent) {
-        System.out.println(customerDivision.getValue());
+        System.out.println(customerDivisionCombo.getValue());
     }
     //Selection block for customerCountry ComboBox
     public void onCustomerCountry(ActionEvent actionEvent) {
       //  customerCountry.getItems().addAll(AddressDAOImpl.getAllCountries());
-    System.out.println(customerCountry.getValue());
+    System.out.println(customerCountryCombo.getValue());
     }
 }
