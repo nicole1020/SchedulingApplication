@@ -3,7 +3,6 @@ package DAO;
 import Model.Address;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,12 +11,12 @@ import java.sql.SQLException;
 import static DAO.DBConnection.connection;
 
 public class AddressDAOImpl {
-    public static ObservableList<Address> getAllAddresses() {
+    public static ObservableList<Address> getAllAddresses(Integer countryID) {
         ObservableList<Address> addressList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryAd = "SELECT  first_level_divisions.Division_ID, first_level_divisions.Division from first_level_divisions where first_level_divisions.Country_ID = countries.Country_ID ";
-
+            String sqlInquiryAd = "SELECT  first_level_divisions.Division_ID, first_level_divisions.Division from first_level_divisions, countries where first_level_divisions.Country_ID = countries.Country_ID AND first_level_divisions.Country_ID = ?";
             PreparedStatement prepAd = connection.prepareStatement(sqlInquiryAd);
+            prepAd.setInt(1, countryID);
             ResultSet adResult = prepAd.executeQuery();
             while (adResult.next()) {
 

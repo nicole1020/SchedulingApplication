@@ -11,36 +11,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="630.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
-    <GridPane prefHeight="613.0" prefWidth="800.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="201.4" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="463.4" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="463.4" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
-         <RowConstraints maxHeight="420.0" minHeight="10.0" prefHeight="351.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" GridPane.rowIndex="1">
-            <Pane layoutX="16.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="746.0">
-                <StackPane.margin>
-                    <Insets bottom="150.0" />
-                </StackPane.margin>
-                <Label layoutX="91.0" layoutY="6.0" text="Customers">
+
+
+                <Label layoutX="26.0" layoutY="38.0" text="Customers">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="customersTable" layoutX="92.0" layoutY="29.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="746.0">
+                <TableView fx:id="customersTable" layoutX="24.0" layoutY="63.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="746.0">
                     <columns>
                         <TableColumn fx:id="customersTableCustomerNameCol" prefWidth="136.0" text="Name" />
                         <TableColumn fx:id="customersTableAddressCol" prefWidth="125.0" text="Address" />
@@ -51,12 +33,11 @@
                         <TableColumn fx:id="customersTableDivision" prefWidth="137.0" text="Division" />
                     </columns>
                 </TableView>
-                <Button fx:id="deleteCustomer" layoutX="399.0" layoutY="153.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" />
-                <TextField fx:id="customerTextField" layoutX="236.0" onAction="#onCustomerTextField" onKeyPressed="#lookupCustomer" prefHeight="25.0" prefWidth="229.0" promptText="Search by Customer ID or Name">
+                <TextField fx:id="customerTextField" layoutX="129.0" layoutY="35.0" onAction="#onCustomerTextField" onKeyPressed="#lookupCustomer" prefHeight="25.0" prefWidth="229.0" promptText="Search by Customer ID or Name">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
-                <Label fx:id="resultsLBL" layoutX="92.0" layoutY="178.0" prefHeight="17.0" prefWidth="649.0" />
+                <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
                       <Font size="16.0" />
@@ -65,51 +46,18 @@
                   <Insets left="16.0" />
                </padding>
               </Label>
-                <Button fx:id="updateCustomer" layoutX="244.0" layoutY="153.0" mnemonicParsing="false" onAction="#onUpdateCustomer" text="Update" />
-            <Button fx:id="customerSearch" layoutX="184.0" mnemonicParsing="false" onAction="#onCustomerSearch" text="Search" />
-            </Pane>
-         <GridPane.margin>
-            <Insets top="50.0" />
-         </GridPane.margin>
-        </StackPane>
-        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3">
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="416.0">
-                <StackPane.margin>
-                    <Insets bottom="150.0" />
-                </StackPane.margin>
-                <Label layoutX="16.0" layoutY="4.0" text="Appointments">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <TableView fx:id="appointmentsTable" layoutX="16.0" layoutY="29.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="828.0">
-                    <columns>
-                        <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
-                        <TableColumn fx:id="appointmentsTitleCol" prefWidth="36.0" text="Title" />
-                        <TableColumn fx:id="appointmentsDescriptionCol" prefWidth="69.0" text="Description" />
-                        <TableColumn fx:id="appointmentsLocationCol" prefWidth="56.0" text="Location" />
-                        <TableColumn fx:id="appointmentsContactCol" prefWidth="50.0" text="Contact" />
-                        <TableColumn fx:id="appointmentsTypeCol" prefWidth="58.0" text="Type" />
-                        <TableColumn fx:id="appointmentsStartDateTimeCol" prefWidth="181.0" text="Start Date/Time" />
-                        <TableColumn fx:id="appointmentsEndDateTimeCol" prefWidth="160.0" text="End Date/Time" />
-                        <TableColumn fx:id="appointmentsCustomerIDCol" prefWidth="75.0" text="CustomerID" />
-                        <TableColumn fx:id="appointmentsUserIDCol" prefWidth="46.0" text="UserID" />
-                    </columns>
-                </TableView>
-                <TextField fx:id="appointmentsTextField" layoutX="172.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="215.0" promptText="Search by Appointment ID or Name" />
-                <Button fx:id="deleteAppointment" layoutX="323.0" layoutY="183.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
-                <Label fx:id="resultsLBLAppointments" layoutX="15.0" layoutY="212.0" prefHeight="17.0" prefWidth="386.0" />
-                <Button fx:id="updateAppointment" layoutX="172.0" layoutY="183.0" mnemonicParsing="false" onAction="#onUpdateAppointment" text="Update" />
-            <Button fx:id="appointmentsSearch" layoutX="120.0" layoutY="2.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
-            </Pane>
-        </StackPane>
-        <StackPane prefHeight="63.0" prefWidth="400.0" GridPane.columnIndex="1" />
-      <Label text="Sort Appointments by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="customerSearch" layoutX="360.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCustomerSearch" text="Search" />
+
+             <Button fx:id="clearCustomer" layoutX="895.0" layoutY="214.0" mnemonicParsing="false" onAction="#onClearCustomer" text="Clear" />
+             <Button fx:id="deleteCustomer" layoutX="333.0" layoutY="202.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" />
+
+
+      <Label layoutX="463.0" layoutY="272.0" text="Sort Appointments by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="55.0" />
          </GridPane.margin>
       </Label>
-      <RadioButton mnemonicParsing="false" text="Current Week" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton layoutX="644.0" layoutY="270.0" mnemonicParsing="false" text="Current Week" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <toggleGroup>
             <ToggleGroup fx:id="appointmentsToggle" />
          </toggleGroup>
@@ -117,17 +65,15 @@
             <Insets left="130.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="This Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton layoutX="754.0" layoutY="270.0" mnemonicParsing="false" text="This Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="230.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton mnemonicParsing="false" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="320.0" top="55.0" />
-         </GridPane.margin>
+      <RadioButton layoutX="598.0" layoutY="270.0" mnemonicParsing="false" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+
       </RadioButton>
-    </GridPane>
+    
    <Label layoutX="863.0" layoutY="37.0" text="Customer Name">
       <font>
          <Font size="14.0" />
@@ -237,4 +183,29 @@
          <Font size="14.0" />
       </font>
    </Label>
+          <TableView fx:id="appointmentsTable" layoutX="24.0" layoutY="292.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="828.0">
+              <columns>
+                  <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
+                  <TableColumn fx:id="appointmentsTitleCol" prefWidth="36.0" text="Title" />
+                  <TableColumn fx:id="appointmentsDescriptionCol" prefWidth="69.0" text="Description" />
+                  <TableColumn fx:id="appointmentsLocationCol" prefWidth="56.0" text="Location" />
+                  <TableColumn fx:id="appointmentsContactCol" prefWidth="50.0" text="Contact" />
+                  <TableColumn fx:id="appointmentsTypeCol" prefWidth="58.0" text="Type" />
+                  <TableColumn fx:id="appointmentsStartDateTimeCol" prefWidth="181.0" text="Start Date/Time" />
+                  <TableColumn fx:id="appointmentsEndDateTimeCol" prefWidth="160.0" text="End Date/Time" />
+                  <TableColumn fx:id="appointmentsCustomerIDCol" prefWidth="75.0" text="CustomerID" />
+                  <TableColumn fx:id="appointmentsUserIDCol" prefWidth="46.0" text="UserID" />
+              </columns>
+          </TableView>
+          <Button fx:id="clearAppointment" layoutX="892.0" layoutY="595.0" mnemonicParsing="false" onAction="#onClearAppointment" text="Clear" />
+          <Button fx:id="deleteAppointment" layoutX="333.0" layoutY="469.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
+             <Label layoutX="24.0" layoutY="269.0" text="Appointments">
+                 <font>
+                     <Font size="14.0" />
+                 </font>
+             </Label>
+             <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="266.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="215.0" promptText="Search by Appointment ID or Name" />
+             <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" />
+         <Button fx:id="appointmentsSearch" layoutX="344.0" layoutY="266.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
+
 </AnchorPane>
