@@ -45,15 +45,15 @@ public class CustomersDAOImpl {
     //create new customer
     public static void createCustomer(String name, String address, String postalcode, String phone, Integer division) {
         try {
-            String sqlc3 = " INSERT INTO customers VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
-            PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
-            psCreate3.setString(1, String.valueOf(name));
-            psCreate3.setString(2, String.valueOf(address));
-            psCreate3.setString(3, String.valueOf(postalcode));
-            psCreate3.setString(4, String.valueOf(phone));
-            psCreate3.setInt(5, division);
+            String sqlc = " INSERT INTO customers VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
+            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+            psCreate.setString(1, String.valueOf(name));
+            psCreate.setString(2, String.valueOf(address));
+            psCreate.setString(3, String.valueOf(postalcode));
+            psCreate.setString(4, String.valueOf(phone));
+            psCreate.setInt(5, division);
 
-            psCreate3.execute();
+            psCreate.execute();
 
         } catch (Exception e) {
             e.printStackTrace();//print stack trace
@@ -62,10 +62,30 @@ public class CustomersDAOImpl {
 
     }
 
-    public static void updateCustomer() {
+    public static void updateCustomer(Integer customerID, String name, String address, String postalcode, String phone, Integer division) { try {
+        String sqlc3 = " UPDATE  customers set ( customerID = ?, name = ?,address = ?,postalcode = ?,phone = ?,now(),'nm',now(),'nm',division =?)";
+        PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
+        psCreate3.setString(1, String.valueOf(customerID));
+        psCreate3.setString(2, String.valueOf(name));
+        psCreate3.setString(3, String.valueOf(address));
+        psCreate3.setString(4, String.valueOf(postalcode));
+        psCreate3.setString(5, String.valueOf(phone));
+        psCreate3.setInt(6, division);
+
+        psCreate3.execute();
+
+    } catch (Exception e) {
+        e.printStackTrace();//print stack trace
+
+    }
     }
 
     public static void deleteCustomer() {
+        try{
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -88,4 +108,6 @@ public class CustomersDAOImpl {
         }
         return countryList;
     }
+
+
 }

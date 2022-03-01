@@ -42,6 +42,7 @@ import javafx.stage.Stage;
  2/21 working on combo boxes
  2/24 attempted to go to LiS for help with combo boxes - country and division in add customer.
 2/26 appointment with Mr. Kinkead for assistance with combo boxes and add customer. he spent almost an hour fixing my code. He noted next time to come an hour late to live instructor support so the line is shorter.
+He fixed my code in my main screen - add customer because I had new customer pointing to a button instead of checking existance of customerID.
 
  */
 public class Main extends Application {

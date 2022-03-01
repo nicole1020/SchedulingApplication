@@ -1,6 +1,6 @@
 package Model;
 
-public class Country {
+public class Country extends Customers{
     private Integer countryID;
     private String countryName;
 
@@ -18,6 +18,10 @@ public class Country {
     }
     public String toString(){
         return(countryName );
+    }
+
+    public String toString(String country) {
+        return country;
     }
 }
 

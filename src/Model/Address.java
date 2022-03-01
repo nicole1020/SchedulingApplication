@@ -2,7 +2,7 @@ package Model;
 
 
 
-public class Address {
+public class Address extends Customers {
 
     private int divisionID;
     private String division;

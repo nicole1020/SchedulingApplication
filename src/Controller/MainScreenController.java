@@ -81,6 +81,8 @@ public class MainScreenController implements Initializable {
     public Button clearCustomer;
     public Button clearAppointment;
     private  Integer customerID = 0;
+    public Customers selectedCustomer;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -129,9 +131,7 @@ public class MainScreenController implements Initializable {
         resultsLBLAppointments.setText("Report: " + AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
 //combobox customerCountry
         customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
-//combobox customerDivision
-       // customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses());
-//customerDivision.getItems().addAll(String.valueOf(AddressDAOImpl.getAllAddresses()));
+
     }
 
     public void lookupCustomer(KeyEvent keyEvent) {
@@ -180,20 +180,16 @@ public class MainScreenController implements Initializable {
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
 
-if (division == null) {
-    return;
-
-
-}
-    if (customerID == 0){
-        CustomersDAOImpl.createCustomer( name,  address, postalcode, phone, division.getDivisionID());
-    }
-    else{
-        CustomersDAOImpl.updateCustomer();
-    }
-
+        if (division == null) {
+            return;
+        }
+        if (customerID == 0) {
+            CustomersDAOImpl.createCustomer(name, address, postalcode, phone, division.getDivisionID());
+        } else {
+            CustomersDAOImpl.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
+            );
+        }
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
-
     }
 
 
@@ -211,18 +207,41 @@ if (division == null) {
         System.out.println(customerDivisionCombo.getValue());
     }
 
-    //Selection block for customerCountry ComboBox
+    //Selection block for customerCountry ComboBox which on selection triggers customerDivisionCombo
     public void onCustomerCountry(ActionEvent actionEvent) {
-      //  customerCountry.getItems().addAll(AddressDAOImpl.getAllCountries());
+
         Country c = customerCountryCombo.getValue();
         customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(c.getCountryID()));
 
     System.out.println(customerCountryCombo.getValue());
+        System.out.println(customerDivisionCombo.getValue());
     }
 
     public void onClearCustomer(ActionEvent actionEvent) {
     }
 
     public void onClearAppointment(ActionEvent actionEvent) {
+    }
+
+
+    
+
+    public void onEditAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onEditCustomer(ActionEvent actionEvent) {
+
+        editedCustomer((Customers) this.customersTable.getSelectionModel().getSelectedItems());
+
+            }
+    public void editedCustomer(Customers theCustomer) {
+        this.selectedCustomer = theCustomer;
+        this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
+        this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
+        this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
+        this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
+        this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
+        String  selectedCustomerCountry = customerCountryCombo.getValue().toString(selectedCustomer.getCountry());
+       // this.customerDivisionCombo.setValue(((Address) selectedCustomer).getDivision()).toString();
     }
 }

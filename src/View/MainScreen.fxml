@@ -17,7 +17,7 @@
 <AnchorPane prefHeight="630.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
 
 
-                <Label layoutX="26.0" layoutY="38.0" text="Customers">
+                <Label layoutX="24.0" layoutY="38.0" text="Customers">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -52,7 +52,7 @@
              <Button fx:id="deleteCustomer" layoutX="333.0" layoutY="202.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" />
 
 
-      <Label layoutX="463.0" layoutY="272.0" text="Sort Appointments by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label layoutX="463.0" layoutY="270.0" text="Sort Appointments by:" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="55.0" />
          </GridPane.margin>
@@ -65,7 +65,7 @@
             <Insets left="130.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton layoutX="754.0" layoutY="270.0" mnemonicParsing="false" text="This Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton layoutX="750.0" layoutY="270.0" mnemonicParsing="false" text="Current Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="230.0" top="55.0" />
          </GridPane.margin>
@@ -98,7 +98,7 @@
    <TextField fx:id="customerPhone" layoutX="981.0" layoutY="94.0" promptText="555-555-5555" />
    <ComboBox fx:id="customerCountryCombo" layoutX="862.0" layoutY="182.0" onAction="#onCustomerCountry" prefWidth="150.0" promptText="Country" visibleRowCount="5" />
    <ComboBox fx:id="customerDivisionCombo" layoutX="1015.0" layoutY="182.0" onAction="#onCustomerDivision" prefHeight="25.0" prefWidth="174.0" promptText="Select Your Country...." visibleRowCount="5" />
-   <Label layoutX="962.0" layoutY="4.0" text="Add/Update Customer Record">
+   <Label layoutX="962.0" layoutY="8.0" text="Add/Update Customer Record">
       <font>
          <Font size="14.0" />
       </font>
@@ -109,7 +109,7 @@
       </font>
    </Label>
    <TextField fx:id="postalCode" layoutX="981.0" layoutY="151.0" promptText="Postal Code" />
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="249.0" prefHeight="20.0" prefWidth="188.0" text="Add/Update Appointment">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="253.0" prefHeight="20.0" prefWidth="188.0" text="Add/Update Appointment">
       <font>
          <Font size="14.0" />
       </font>
@@ -165,7 +165,7 @@
       </font>
    </Label>
    <DatePicker fx:id="appointmentStart" layoutX="982.0" layoutY="481.0" promptText="01/01/2022 9:30 AM" />
-   <TextField fx:id="appointmentID" editable="false" layoutX="981.0" layoutY="283.0" promptText="Auto-Gen. Disabled" />
+   <TextField fx:id="appointmentID" disable="true" editable="false" layoutX="981.0" layoutY="283.0" promptText="Auto-Gen. Disabled" />
    <TextField fx:id="appointmentTitle" layoutX="981.0" layoutY="313.0" promptText="Title" />
    <TextField fx:id="appointmentDescription" layoutX="982.0" layoutY="343.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="981.0" layoutY="373.0" promptText="Location" />
@@ -176,7 +176,7 @@
    <ComboBox fx:id="appointmentUserID" layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />
      <Button fx:id="exitButton" layoutX="1181.0" layoutY="595.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
    <Button fx:id="saveCustomer" layoutX="981.0" layoutY="214.0" mnemonicParsing="false" onAction="#onSaveCustomer" text="Save Customer" />
-   <Button fx:id="saveAppointment" layoutX="984.0" layoutY="595.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
+   <Button fx:id="saveAppointment" layoutX="981.0" layoutY="595.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
    <TextField fx:id="customerAddress" layoutX="981.0" layoutY="62.0" promptText="Address" />
    <Label fx:id="customerIDLabel" layoutX="1024.0" layoutY="129.0" text="?">
       <font>
@@ -197,15 +197,17 @@
                   <TableColumn fx:id="appointmentsUserIDCol" prefWidth="46.0" text="UserID" />
               </columns>
           </TableView>
-          <Button fx:id="clearAppointment" layoutX="892.0" layoutY="595.0" mnemonicParsing="false" onAction="#onClearAppointment" text="Clear" />
+          <Button fx:id="clearAppointment" layoutX="895.0" layoutY="595.0" mnemonicParsing="false" onAction="#onClearAppointment" text="Clear" />
           <Button fx:id="deleteAppointment" layoutX="333.0" layoutY="469.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
              <Label layoutX="24.0" layoutY="269.0" text="Appointments">
                  <font>
                      <Font size="14.0" />
                  </font>
              </Label>
-             <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="266.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="215.0" promptText="Search by Appointment ID or Name" />
+             <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="229.0" promptText="Search by Appointment ID or Name" />
              <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" />
-         <Button fx:id="appointmentsSearch" layoutX="344.0" layoutY="266.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
+         <Button fx:id="appointmentsSearch" layoutX="360.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
+   <Button fx:id="editCustomer" layoutX="237.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" text="Edit" />
+   <Button fx:id="editAppointment" layoutX="237.0" layoutY="469.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit" />
 
 </AnchorPane>
