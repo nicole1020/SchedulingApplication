@@ -74,8 +74,8 @@ public class MainScreenController implements Initializable {
     public Button clearCustomer;
     public Button clearAppointment;
     private  Integer customerID = 0;
-    public updateCustomer selectedCustomer = null;
-    private updateCustomer uc;
+    public Customers selectedCustomer = null;
+    private Customers uc = null;
 
 
     @Override
@@ -219,7 +219,7 @@ public class MainScreenController implements Initializable {
 
     public void onEditAppointment(ActionEvent actionEvent) {
     }
-    public void editedCustomer(updateCustomer theCustomer) {
+    public void editedCustomer(Customers theCustomer) {
         this.selectedCustomer = theCustomer;
         this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
         this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
@@ -232,7 +232,7 @@ public class MainScreenController implements Initializable {
     public void onEditCustomer(ActionEvent actionEvent) {
         //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
 
-        editedCustomer((updateCustomer) this.customersTable.getSelectionModel().getSelectedItems());
+        editedCustomer((Customers) this.customersTable.getSelectionModel().getSelectedItems());
 
 
 
