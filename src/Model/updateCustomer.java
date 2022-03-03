@@ -1,11 +1,13 @@
 package Model;
 
-public class updateCustomer extends Customers {
+public class updateCustomer extends Address {
 
-private String divisionName;
-    public updateCustomer(int customer_id, String customerName, String address, String postalCode, String phone, String divisionName) {
-        super(customer_id, customerName, address, postalCode, phone, divisionName);
-
+private String division;
+    public updateCustomer(int division_ID, String division) {
+        super( division_ID, division);
+this.division = division;
     }
-
+public String getDivision(){
+        return  division;
+}
 }

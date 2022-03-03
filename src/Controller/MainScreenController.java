@@ -30,8 +30,6 @@ public class MainScreenController implements Initializable {
     public TableColumn customersTableCustomerID;
     public TableColumn customersTableCountry;
     public TableColumn customersTableDivision;
-
-    public Button updateCustomer;
     public Button deleteCustomer;
     public TextField customerTextField;
     public TableView appointmentsTable;
@@ -45,8 +43,6 @@ public class MainScreenController implements Initializable {
     public TableColumn appointmentsEndDateTimeCol;
     public TableColumn appointmentsCustomerIDCol;
     public TableColumn appointmentsUserIDCol;
-
-    public Button updateAppointment;
     public Button deleteAppointment;
     public Label resultsLBL;
     public TextField appointmentsTextField;
@@ -78,7 +74,7 @@ public class MainScreenController implements Initializable {
     public Button clearCustomer;
     public Button clearAppointment;
     private  Integer customerID = 0;
-    public updateCustomer selectedCustomer;
+    public updateCustomer selectedCustomer = null;
     private updateCustomer uc;
 
 
@@ -228,13 +224,13 @@ public class MainScreenController implements Initializable {
     }
     public void editedCustomer(updateCustomer theCustomer) {
         this.selectedCustomer = theCustomer;
-        this.customerName.setText(String.valueOf(this.uc.getCustomerName()));
-        this.customerAddress.setText(String.valueOf(this.uc.getCustomerAddress()));
-        this.postalCode.setText(String.valueOf(this.uc.getPostalCode()));
-        this.customerPhone.setText(String.valueOf(this.uc.getPhone()));
-        this.customerIDLabel.setText(String.valueOf(this.uc.getCustomerID()));
-         this.customerCountryCombo.getValue().toString(this.uc.getCountry());
-      //   this.customerDivisionCombo.getValue().toString(this.uc.getDivision());
+        this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
+        this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
+        this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
+        this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
+        this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
+         this.customerCountryCombo.getValue().toString(this.selectedCustomer.getCountry());
+         this.customerDivisionCombo.getValue().toString(this.selectedCustomer.getDivision());
     }
     public void onEditCustomer(ActionEvent actionEvent) {
         //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
