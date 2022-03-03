@@ -230,7 +230,7 @@ public class MainScreenController implements Initializable {
         this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
     }
     public void onEditCustomer(ActionEvent actionEvent) {
-        //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
+
 
         editedCustomer((Customers) this.customersTable.getSelectionModel().getSelectedItems());
 
