@@ -55,10 +55,9 @@ public class Customers {
         return country;
     }
 
-    public String getDivision() {
+public String getDivision(){
         return division;
-    }
-
+}
     @Override
 
     public String toString() {

@@ -21,11 +21,9 @@ public class Address extends Customers {
         return divisionID;
     }
 
-  public String getDivision(){
+    public String getDivision(){
         return division;
-  }
-
-
+    }
    @Override
 
     public String toString(){

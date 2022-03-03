@@ -132,9 +132,6 @@ public class MainScreenController implements Initializable {
     }
 
 
-    public void onUpdateCustomer(ActionEvent actionEvent) {
-    }
-
     public void onDeleteCustomer(ActionEvent actionEvent) {
         CustomersDAOImpl.deleteCustomer();
     }
@@ -229,12 +226,13 @@ public class MainScreenController implements Initializable {
         this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
-         this.customerCountryCombo.getValue().toString(this.selectedCustomer.getCountry());
-        this.customerDivisionCombo.getValue();
+        this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());
+        this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
     }
     public void onEditCustomer(ActionEvent actionEvent) {
         //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
-        editedCustomer((Model.updateCustomer)( this.customersTable.getSelectionModel().getSelectedItems()));
+
+        editedCustomer((updateCustomer) this.customersTable.getSelectionModel().getSelectedItems());
 
 
 
