@@ -230,7 +230,7 @@ public class MainScreenController implements Initializable {
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
          this.customerCountryCombo.getValue().toString(this.selectedCustomer.getCountry());
-         this.customerDivisionCombo.getValue().toString(this.selectedCustomer.getDivision());
+        this.customerDivisionCombo.getValue();
     }
     public void onEditCustomer(ActionEvent actionEvent) {
         //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
