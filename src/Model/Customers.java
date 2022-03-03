@@ -6,23 +6,15 @@ public class Customers {
     private String customerAddress;
     private String postalCode;
     private String phone;
-  /** private Timestamp createDate;
-    private String createdBy;
-    private Timestamp lastUpdate;
-    private String lastUpdateBy;*/
-  private int customerID;
+    private int customerID;
     private String country;
     private String division;
 
-    public Customers(String Customer_Name, String Address, String Postal_Code, String phone, int customer_id, String Country, String Division ) {
+    public Customers(String Customer_Name, String Address, String Postal_Code, String phone, int customer_id, String Country, String Division) {
         this.customerName = Customer_Name;
         this.customerAddress = Address;
         this.postalCode = Postal_Code;
         this.phone = phone;
-        /**this.createDate= Create_Date;
-        this.createdBy = Created_By;
-        this.lastUpdate = Last_Update;
-        this.lastUpdateBy = Last_Update_By;*/
         this.customerID = customer_id;
         this.country = Country;
         this.division = Division;
@@ -34,6 +26,9 @@ public class Customers {
 
     public Customers() {
 
+    }
+
+    public Customers(int customer_id, String customerName, String address, String postalCode, String phone, String division) {
     }
 
     public int getCustomerID() {
@@ -55,30 +50,18 @@ public class Customers {
     public String getPhone() {
         return phone;
     }
-    /**
-    public Timestamp getCreateDate(){
-        return createDate;
-    }
-    public String getCreatedBy(){
-        return createdBy;
-    }
-    public Timestamp getLastUpdate(){
-        return lastUpdate;
-    }
-    public String getLastUpdateBy(){
-        return lastUpdateBy;
-    }
-     * @return*/
 
-public String getCountry(){
+    public String getCountry() {
         return country;
-}
+    }
+
     public String getDivision() {
         return division;
     }
+
     @Override
 
-    public String toString(){
-        return( country );
+    public String toString() {
+        return (country);
     }
 }

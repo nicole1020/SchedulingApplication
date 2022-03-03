@@ -3,10 +3,7 @@ package Controller;
 import DAO.AddressDAOImpl;
 import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
-import Model.Address;
-import Model.Country;
-import Model.Customers;
-import Model.Main;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,7 +78,8 @@ public class MainScreenController implements Initializable {
     public Button clearCustomer;
     public Button clearAppointment;
     private  Integer customerID = 0;
-    public Customers selectedCustomer;
+    public updateCustomer selectedCustomer;
+    private updateCustomer uc;
 
 
     @Override
@@ -228,20 +226,22 @@ public class MainScreenController implements Initializable {
 
     public void onEditAppointment(ActionEvent actionEvent) {
     }
-
-    public void onEditCustomer(ActionEvent actionEvent) {
-
-        editedCustomer((Customers) this.customersTable.getSelectionModel().getSelectedItems());
-
-            }
-    public void editedCustomer(Customers theCustomer) {
+    public void editedCustomer(updateCustomer theCustomer) {
         this.selectedCustomer = theCustomer;
-        this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
-        this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
-        this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
-        this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
-        this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
-        String  selectedCustomerCountry = customerCountryCombo.getValue().toString(selectedCustomer.getCountry());
-       // this.customerDivisionCombo.setValue(((Address) selectedCustomer).getDivision()).toString();
+        this.customerName.setText(String.valueOf(this.uc.getCustomerName()));
+        this.customerAddress.setText(String.valueOf(this.uc.getCustomerAddress()));
+        this.postalCode.setText(String.valueOf(this.uc.getPostalCode()));
+        this.customerPhone.setText(String.valueOf(this.uc.getPhone()));
+        this.customerIDLabel.setText(String.valueOf(this.uc.getCustomerID()));
+         this.customerCountryCombo.getValue().toString(this.uc.getCountry());
+      //   this.customerDivisionCombo.getValue().toString(this.uc.getDivision());
     }
+    public void onEditCustomer(ActionEvent actionEvent) {
+        //Product p = (Product)this.productsTable.getSelectionModel().getSelectedItem();
+        editedCustomer((Model.updateCustomer)( this.customersTable.getSelectionModel().getSelectedItems()));
+
+
+
+    }
+
 }

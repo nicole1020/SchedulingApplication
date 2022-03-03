@@ -21,9 +21,9 @@ public class Address extends Customers {
         return divisionID;
     }
 
-    public String getDivision() {
+  public String getDivision(){
         return division;
-    }
+  }
 
 
    @Override
@@ -31,6 +31,9 @@ public class Address extends Customers {
     public String toString(){
         return("["+divisionID +"] " + division );
     }
+
+
+
 }
 
 
