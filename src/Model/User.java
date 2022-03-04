@@ -1,11 +1,6 @@
 package Model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.time.ZoneId;
-
-public class UserLogin {
+public class User {
 
     private int userID;
     private String userName;
@@ -13,7 +8,7 @@ public class UserLogin {
 
 
 
-    public UserLogin(int userID, String userName, String password) {
+    public User(int userID, String userName, String password) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;

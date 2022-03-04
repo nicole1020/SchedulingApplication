@@ -43,16 +43,18 @@ import javafx.stage.Stage;
  2/24 attempted to go to LiS for help with combo boxes - country and division in add customer.
 2/26 appointment with Mr. Kinkead for assistance with combo boxes and add customer. he spent almost an hour fixing my code. He noted next time to come an hour late to live instructor support so the line is shorter.
 He fixed my code in my main screen - add customer because I had new customer pointing to a button instead of checking existance of customerID.
-
+3/2 working on update customer- having issues populating table to form
+ 3/4 appointment with Mr. Ruiz, but 10 minutes before I realized it is much like the modify product-associated parts screen and I figured it out.
+ will work on user login controller next.
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         primaryStage.setTitle("");
-        primaryStage.setScene(new Scene(root, 1230,630));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
 

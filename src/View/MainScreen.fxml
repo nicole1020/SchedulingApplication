@@ -144,12 +144,12 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="863.0" layoutY="484.0" text="Start Date/Time">
+   <Label layoutX="863.0" layoutY="484.0" text="Date">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="863.0" layoutY="512.0" text="End Date/Time">
+   <Label layoutX="863.0" layoutY="512.0" text="Start/End Times">
       <font>
          <Font size="14.0" />
       </font>
@@ -164,14 +164,13 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <DatePicker fx:id="appointmentStart" layoutX="982.0" layoutY="481.0" promptText="01/01/2022 9:30 AM" />
+   <DatePicker fx:id="appointmentStart" layoutX="982.0" layoutY="481.0" prefHeight="25.0" prefWidth="101.0" promptText="01/01/2022 9:30 AM" />
    <TextField fx:id="appointmentID" disable="true" editable="false" layoutX="981.0" layoutY="283.0" promptText="Auto-Gen. Disabled" />
    <TextField fx:id="appointmentTitle" layoutX="981.0" layoutY="313.0" promptText="Title" />
    <TextField fx:id="appointmentDescription" layoutX="982.0" layoutY="343.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="981.0" layoutY="373.0" promptText="Location" />
    <ComboBox fx:id="appointmentContact" layoutX="981.0" layoutY="408.0" prefWidth="150.0" promptText="contact" />
    <ComboBox fx:id="appointmentType" layoutX="981.0" layoutY="441.0" prefWidth="150.0" />
-   <DatePicker fx:id="appointmentEnd" layoutX="982.0" layoutY="509.0" promptText="01/01/2022 10:00 AM" />
    <ComboBox fx:id="appointmentCustomerID" layoutX="984.0" layoutY="536.0" prefWidth="150.0" promptText="CustomerID" />
    <ComboBox fx:id="appointmentUserID" layoutX="984.0" layoutY="566.0" prefWidth="150.0" promptText="UserID" />
      <Button fx:id="exitButton" layoutX="1181.0" layoutY="595.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
@@ -209,5 +208,7 @@
          <Button fx:id="appointmentsSearch" layoutX="360.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
    <Button fx:id="editCustomer" layoutX="237.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" text="Edit" />
    <Button fx:id="editAppointment" layoutX="237.0" layoutY="469.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit" />
+   <ComboBox fx:id="appointmentType1" layoutX="981.0" layoutY="510.0" prefHeight="25.0" prefWidth="74.0" />
+   <ComboBox fx:id="appointmentType11" layoutX="1058.0" layoutY="510.0" prefHeight="25.0" prefWidth="74.0" />
 
 </AnchorPane>

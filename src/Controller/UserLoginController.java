@@ -1,5 +1,8 @@
 package Controller;
 
+import DAO.CustomersDAOImpl;
+import DAO.UserDAOImpl;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,7 @@ public class UserLoginController implements Initializable {
     public Label userNameLabel;
     public Label passwordLabel;
     public Label userLocationLabel;
+    private static User loggedUser;
 
 
     @Override
@@ -31,32 +35,41 @@ public class UserLoginController implements Initializable {
         Instant now = Instant.now();
         ZonedDateTime zdt = ZonedDateTime.ofInstant(now,
                 ZoneId.of(ZoneId.systemDefault().toString()));
-        System.out.println("Date/Time/Division " + zdt);
-        userLocationLabel.setText("Date/Time/Division " + zdt);
+        System.out.println("Date/Time Zone " + zdt);
+        userLocationLabel.setText(ZoneId.systemDefault().toString());
 
 
        }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
-       /* if (!onPassword() || !onUserNameField()) {
-            System.out.println("Error- invalid username and/or password");
-            userLocationLabel.setText("Please enter valid username and password");
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter valid userName and Password",
-                    new ButtonType[0]);
-            alert.showAndWait();
-        } else if (onPassword() && onUserNameField()) {
-            {
-                System.out.println("to Main Screen");
-            }**/
-            try {
+        String userName = userNameField.getText();
+        String passwordEntry = password.getText();
+        if (userName == null) {
+            return;
+        }
+        if (passwordEntry == null) {
+            return;
+        }
+
+         else {
+            loggedUser = UserDAOImpl.validateUser(userName, passwordEntry);
+            if(loggedUser == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setContentText("Enter valid inputs");
+                alert.showAndWait();
+            return;
+            }
+        try {
 
                 userLocationLabel.setText("Login Successful");
 
                 Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 600.0D, 610.0D);
+                Scene scene = new Scene(root);
                 stage.setTitle("Home Page");
                 stage.setScene(scene);
+                stage.centerOnScreen();
                 stage.show();
             } catch (Exception var7) {
                 var7.printStackTrace();
@@ -65,6 +78,7 @@ public class UserLoginController implements Initializable {
                 alert.setContentText("Enter valid inputs");
                 alert.showAndWait();
             }
+         }
         }
 
 
