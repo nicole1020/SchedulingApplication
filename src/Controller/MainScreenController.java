@@ -4,8 +4,6 @@ import DAO.AddressDAOImpl;
 import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
 import Model.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,12 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import static DAO.DBConnection.connection;
 
 public class MainScreenController implements Initializable {
     public TableView customersTable;
@@ -219,6 +212,10 @@ public class MainScreenController implements Initializable {
 
     public void onEditAppointment(ActionEvent actionEvent) {
     }
+    public void onEditCustomer(ActionEvent actionEvent) {
+      editedCustomer(  this.selectedCustomer = ((Customers)this.customersTable.getSelectionModel().getSelectedItem()));
+
+   }
     public void editedCustomer(Customers theCustomer) {
         this.selectedCustomer = theCustomer;
         this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
@@ -229,13 +226,6 @@ public class MainScreenController implements Initializable {
         this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());
         this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
     }
-    public void onEditCustomer(ActionEvent actionEvent) {
 
-
-        editedCustomer((Customers) this.customersTable.getSelectionModel().getSelectedItems());
-
-
-
-    }
 
 }
