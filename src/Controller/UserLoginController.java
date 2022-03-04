@@ -28,6 +28,8 @@ public class UserLoginController implements Initializable {
     public Label passwordLabel;
     public Label userLocationLabel;
     private static User loggedUser;
+    private static ResourceBundle french;
+    private static ResourceBundle everywhereElse;
 
 
     @Override

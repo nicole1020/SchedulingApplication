@@ -45,7 +45,11 @@ import javafx.stage.Stage;
 He fixed my code in my main screen - add customer because I had new customer pointing to a button instead of checking existance of customerID.
 3/2 working on update customer- having issues populating table to form
  3/4 appointment with Mr. Ruiz, but 10 minutes before I realized it is much like the modify product-associated parts screen and I figured it out.
- will work on user login controller next.
+ will work on user login controller next. He helped me with confirming user login information in the DAO file.
+ He also helped me with appointments table getting the date time in separate boxes.
+ He also helped me with how I would go about deciding if someone was french or english speaking in the user login form
+
+ next time I will work on setting user login errors and labels to show proper language if french or english speaking.
  */
 public class Main extends Application {
 

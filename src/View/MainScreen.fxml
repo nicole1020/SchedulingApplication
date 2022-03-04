@@ -6,10 +6,13 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
@@ -37,7 +40,7 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
-                <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" />
+                <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
                       <Font size="16.0" />
@@ -98,7 +101,7 @@
    <TextField fx:id="customerPhone" layoutX="981.0" layoutY="94.0" promptText="555-555-5555" />
    <ComboBox fx:id="customerCountryCombo" layoutX="862.0" layoutY="182.0" onAction="#onCustomerCountry" prefWidth="150.0" promptText="Country" visibleRowCount="5" />
    <ComboBox fx:id="customerDivisionCombo" layoutX="1015.0" layoutY="182.0" onAction="#onCustomerDivision" prefHeight="25.0" prefWidth="174.0" promptText="Select Your Country...." visibleRowCount="5" />
-   <Label layoutX="962.0" layoutY="8.0" text="Add/Update Customer Record">
+   <Label layoutX="962.0" layoutY="8.0" text="Add or Update Customer Record">
       <font>
          <Font size="14.0" />
       </font>
@@ -109,7 +112,7 @@
       </font>
    </Label>
    <TextField fx:id="postalCode" layoutX="981.0" layoutY="151.0" promptText="Postal Code" />
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="253.0" prefHeight="20.0" prefWidth="188.0" text="Add/Update Appointment">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="965.0" layoutY="253.0" prefHeight="20.0" prefWidth="188.0" text="Add or Update Appointment">
       <font>
          <Font size="14.0" />
       </font>
@@ -204,11 +207,26 @@
                  </font>
              </Label>
              <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="229.0" promptText="Search by Appointment ID or Name" />
-             <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" />
+             <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
          <Button fx:id="appointmentsSearch" layoutX="360.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
-   <Button fx:id="editCustomer" layoutX="237.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" text="Edit" />
-   <Button fx:id="editAppointment" layoutX="237.0" layoutY="469.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit" />
+   <Button fx:id="editCustomer" layoutX="189.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" prefHeight="25.0" prefWidth="120.0" text="Edit Customer" />
+   <Button fx:id="editAppointment" layoutX="189.0" layoutY="469.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit Appointment" />
    <ComboBox fx:id="appointmentType1" layoutX="981.0" layoutY="510.0" prefHeight="25.0" prefWidth="74.0" />
    <ComboBox fx:id="appointmentType11" layoutX="1058.0" layoutY="510.0" prefHeight="25.0" prefWidth="74.0" />
+   <Separator halignment="LEFT" layoutY="243.0" prefWidth="1250.0">
+      <effect>
+         <Lighting bumpInput="$null">
+            <light>
+               <Light.Distant />
+            </light>
+         </Lighting>
+      </effect>
+   </Separator>
+   <Button fx:id="deleteAppointment1" layoutX="508.0" layoutY="472.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Click here to generate Reports" textFill="#0c4acf" />
+   <Label layoutX="477.0" layoutY="472.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
 
 </AnchorPane>
