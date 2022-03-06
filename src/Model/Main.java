@@ -50,6 +50,7 @@ He fixed my code in my main screen - add customer because I had new customer poi
  He also helped me with how I would go about deciding if someone was french or english speaking in the user login form
 
  next time I will work on moving the appointments to another screen. creating forms for add/update appointments. setting user login errors and labels to show proper language if french or english speaking.
+ 3/5 worked on making proper screens for add/update appointments/customers
  */
 public class Main extends Application {
 
