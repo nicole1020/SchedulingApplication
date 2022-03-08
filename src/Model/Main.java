@@ -51,13 +51,16 @@ He fixed my code in my main screen - add customer because I had new customer poi
 
  next time I will work on moving the appointments to another screen. creating forms for add/update appointments. setting user login errors and labels to show proper language if french or english speaking.
  3/5 worked on making proper screens for add/update appointments/customers
+ 3/7 worked on add/update customer. will work on delete and appointments next.
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-         Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+
         primaryStage.setTitle("");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

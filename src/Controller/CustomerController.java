@@ -33,7 +33,7 @@ public class CustomerController implements Initializable {
     public Button updateCustomer;
     public Label resultsLBLAppointments;
     public Button editCustomer;
-
+    public Customers selectedCustomer = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Hello World");
@@ -85,14 +85,14 @@ public class CustomerController implements Initializable {
 
     public void onEditCustomer(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/ModifyProductScreen.fxml"));
-            Parent UpdateCustomerScreen = (Parent)loader.load();
-            UpdateCustomerController controller = (UpdateCustomerController) loader.getController();
-            controller.editedCustomer(  this.selectedCustomer = ((Customers)this.customersTable.getSelectionModel().getSelectedItem()));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateCustomer.fxml"));
+            Parent UpdateCustomerScreen = loader.load();
+            UpdateCustomerController controller = loader.getController();
+            controller.editedCustomer((Customers)this.customersTable.getSelectionModel().getSelectedItem());
             System.out.println("Update Customer Clicked");
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(UpdateCustomerScreen);
-            stage.setTitle("Modify Product");
+            stage.setTitle("Update Customer Record");
             stage.setScene(scene);
             stage.show();
         } catch (Exception var7) {
@@ -101,5 +101,16 @@ public class CustomerController implements Initializable {
     }
 
     public void onAddCustomer(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AddNewCustomer.fxml"));
+            Parent root = (Parent)loader.load();
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Add New Customer");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
     }
 }

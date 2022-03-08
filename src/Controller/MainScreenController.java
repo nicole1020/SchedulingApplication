@@ -213,18 +213,18 @@ public class MainScreenController implements Initializable {
     public void onEditAppointment(ActionEvent actionEvent) {
     }
     public void onEditCustomer(ActionEvent actionEvent) {
-      editedCustomer(  this.selectedCustomer = ((Customers)this.customersTable.getSelectionModel().getSelectedItem()));
+        //editedCustomer(  this.selectedCustomer = ((Customers)this.customersTable.getSelectionModel().getSelectedItem()));
 
    }
     public void editedCustomer(Customers theCustomer) {
-        this.selectedCustomer = theCustomer;
+     /*  this.selectedCustomer = theCustomer;
         this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
         this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
         this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
         this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());
-        this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
+        this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());**/
     }
 
 
