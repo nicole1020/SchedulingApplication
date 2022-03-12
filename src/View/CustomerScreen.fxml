@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerController">
+
+
+                <Label layoutX="24.0" layoutY="38.0" text="Customers">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="customersTable" layoutX="24.0" layoutY="63.0" maxWidth="851.0" onMouseClicked="#customerIsSelected" prefHeight="113.0" prefWidth="746.0">
+                    <columns>
+                        <TableColumn fx:id="customersTableCustomerNameCol" prefWidth="136.0" text="Name" />
+                        <TableColumn fx:id="customersTableAddressCol" prefWidth="125.0" text="Address" />
+                        <TableColumn fx:id="customersTablePostalCodeCol" minWidth="3.0" prefWidth="84.0" text="Postal Code" />
+                        <TableColumn fx:id="customersTablePhoneCol" prefWidth="109.0" text="Phone Number" />
+                        <TableColumn fx:id="customersTableCustomerID" prefWidth="77.0" text="CustomerID" />
+                        <TableColumn fx:id="customersTableCountry" prefWidth="77.0" text="Country" />
+                        <TableColumn fx:id="customersTableDivision" prefWidth="137.0" text="Division" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="customerTextField" layoutX="129.0" layoutY="35.0" onAction="#onCustomerTextField" onKeyPressed="#lookupCustomer" prefHeight="25.0" prefWidth="229.0" promptText="Search by Customer ID or Name">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></TextField>
+                <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
+            <Button fx:id="customerSearch" layoutX="360.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCustomerSearch" text="Search" />
+             <Button fx:id="deleteCustomer" layoutX="400.0" layoutY="202.0" mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete Selected Customer" />
+     <Button fx:id="exitButton" layoutX="709.0" layoutY="252.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Close" />
+          <Button fx:id="addCustomer" layoutX="57.0" layoutY="202.0" mnemonicParsing="false" onAction="#onAddCustomer" text="Add New Customer" />
+             <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
+   <Button fx:id="editCustomer" layoutX="189.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" prefHeight="25.0" prefWidth="179.0" text="Update Selected Customer" />
+   <Label layoutX="477.0" layoutY="472.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+
+</AnchorPane>

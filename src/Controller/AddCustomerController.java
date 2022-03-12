@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +44,8 @@ public class AddCustomerController implements Initializable {
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     public void onSaveCustomer(ActionEvent actionEvent) {

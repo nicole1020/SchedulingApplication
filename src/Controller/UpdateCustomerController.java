@@ -7,12 +7,10 @@ import Model.Country;
 import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UpdateCustomerController implements Initializable {
@@ -66,16 +64,29 @@ public class UpdateCustomerController implements Initializable {
 
     }
     public void editedCustomer(Customers theCustomer) {
+
         this.selectedCustomer = theCustomer;
         this.customerName.setText(String.valueOf(this.selectedCustomer.getCustomerName()));
         this.customerAddress.setText(String.valueOf(this.selectedCustomer.getCustomerAddress()));
         this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
-        this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());
-        this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
-    }
+        for (Country C : customerCountryCombo.getItems()) {
+            if (Objects.equals(selectedCustomer.getCountry(), C.getCountry())) {
+                customerCountryCombo.setValue(C);
+                break;
+            }
+        for (Address A : customerDivisionCombo.getItems()) {
+                if (Objects.equals(selectedCustomer.getDivision(), A.getDivision())) {
+                    customerDivisionCombo.setValue(A);
+                    break;
+                }
+                // this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());}
+                // this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
 
+            }
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
