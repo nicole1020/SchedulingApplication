@@ -44,5 +44,6 @@
          <Font size="14.0" />
       </font>
    </Label>
+   <Button fx:id="appointmentsButton" layoutX="25.0" layoutY="252.0" mnemonicParsing="false" onAction="#onAppointmentsButton" prefHeight="25.0" prefWidth="290.0" text="Appointments Scheduler And Reports-&gt;" textFill="#0c4acf" />
 
 </AnchorPane>

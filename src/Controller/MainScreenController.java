@@ -126,7 +126,7 @@ public class MainScreenController implements Initializable {
 
 
     public void onDeleteCustomer(ActionEvent actionEvent) {
-        CustomersDAOImpl.deleteCustomer();
+       // CustomersDAOImpl.deleteCustomer();
     }
 
     public void customerIsSelected(MouseEvent mouseEvent) {

@@ -1,6 +1,8 @@
 package Controller;
 
 import DAO.CustomersDAOImpl;
+import Model.Address;
+import Model.Appointments;
 import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -34,6 +37,9 @@ public class CustomerController implements Initializable {
     public Label resultsLBLAppointments;
     public Button editCustomer;
     public Customers selectedCustomer = null;
+    public Button addCustomer;
+    public Button appointmentsButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Hello World");
@@ -73,8 +79,14 @@ public class CustomerController implements Initializable {
     }
 
     public void onDeleteCustomer(ActionEvent actionEvent) {
-            CustomersDAOImpl.deleteCustomer();
-    }
+
+        CustomersDAOImpl.deleteCustomer(  this.customersTable.getSelectionModel().getSelectedItem());
+
+            }
+
+
+
+
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -107,6 +119,20 @@ public class CustomerController implements Initializable {
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setTitle("Add New Customer");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
+    }
+
+    public void onAppointmentsButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent)loader.load();
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
             stage.setScene(scene);
             stage.show();
         } catch (Exception var6) {

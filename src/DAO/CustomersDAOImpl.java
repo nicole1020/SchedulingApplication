@@ -30,6 +30,7 @@ public class CustomersDAOImpl {
                 int Customer_ID = cResult.getInt("Customer_ID");
                 String Country = cResult.getString("Country");
                 String Division = cResult.getString("Division");
+
                 Customers cu = new Customers(Customer_Name, Address, Postal_Code, Phone, Customer_ID, Country, Division);
                 customerList.add(cu);
 
@@ -80,9 +81,16 @@ public class CustomersDAOImpl {
     }
     }
 
-    public static void deleteCustomer() {
+    public static void deleteCustomer(int Customer_ID, int Division_ID) {
         try{
-
+    String sqlDC = "Delete FROM customers WHERE Customer_ID = ?";
+    PreparedStatement psDC = connection.prepareStatement(sqlDC);
+    psDC.setInt(1, Customer_ID);
+    psDC.execute();
+            String sqlDC2 = " Delete FROM first_level_divisions WHERE Division_ID = ?";
+            PreparedStatement psDC2 = connection.prepareStatement(sqlDC2);
+            psDC2.setInt(1, Division_ID);
+            psDC2.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

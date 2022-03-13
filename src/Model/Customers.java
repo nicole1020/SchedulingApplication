@@ -18,6 +18,8 @@ public class Customers {
         this.customerID = customer_id;
         this.country = Country;
         this.division = Division;
+
+
     }
 
     public Customers(String Country) {
@@ -30,6 +32,8 @@ public class Customers {
 
     public Customers(int customer_id, String customerName, String address, String postalCode, String phone, String division) {
     }
+
+
 
     public int getCustomerID() {
         return customerID;
@@ -63,4 +67,7 @@ public String getDivision(){
     public String toString() {
         return (country);
     }
+
+
+
 }
