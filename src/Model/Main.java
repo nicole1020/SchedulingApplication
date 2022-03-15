@@ -52,6 +52,8 @@ He fixed my code in my main screen - add customer because I had new customer poi
  next time I will work on moving the appointments to another screen. creating forms for add/update appointments. setting user login errors and labels to show proper language if french or english speaking.
  3/5 worked on making proper screens for add/update appointments/customers
  3/7 worked on add/update customer. will work on delete and appointments next.
+ 3/15 I was trying to delete customer and figured out i needed to pass in the instance of customer and getCustomerID into the deleteCustomer method in the DAO file
+
  */
 public class Main extends Application {
 

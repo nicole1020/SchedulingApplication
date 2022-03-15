@@ -42,7 +42,7 @@ public class CustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Hello World");
+        System.out.println("Customer Database Main Screen");
 
     //Customers Table Initialized
         customersTable.setItems(CustomersDAOImpl.getAllCustomers());
@@ -80,7 +80,12 @@ public class CustomerController implements Initializable {
 
     public void onDeleteCustomer(ActionEvent actionEvent) {
 
-        CustomersDAOImpl.deleteCustomer(  this.customersTable.getSelectionModel().getSelectedItem());
+        Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
+       // int customerID = Integer.parseInt(customersTableCustomerID.getText());
+      //  String DivisionID = customersTableDivision.getText();
+
+
+        CustomersDAOImpl.deleteCustomer( p.getCustomerID() );
 
             }
 
