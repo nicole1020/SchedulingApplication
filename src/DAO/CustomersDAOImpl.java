@@ -87,10 +87,7 @@ public class CustomersDAOImpl {
     PreparedStatement psDC = connection.prepareStatement(sqlDC);
     psDC.setInt(1, Customer_ID);
     psDC.execute();
-          /*  String sqlDC2 = " Delete FROM first_level_divisions WHERE Division_ID = ?";
-            PreparedStatement psDC2 = connection.prepareStatement(sqlDC2);
-            psDC2.setInt(1, Division_ID);
-            psDC2.execute();**/
+
         } catch (Exception e) {
             e.printStackTrace();
         }

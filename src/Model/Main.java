@@ -53,7 +53,7 @@ He fixed my code in my main screen - add customer because I had new customer poi
  3/5 worked on making proper screens for add/update appointments/customers
  3/7 worked on add/update customer. will work on delete and appointments next.
  3/15 I was trying to delete customer and figured out i needed to pass in the instance of customer and getCustomerID into the deleteCustomer method in the DAO file
-
+I also had been attempting to delete the division ID which was unnecessary.
  */
 public class Main extends Application {
 
