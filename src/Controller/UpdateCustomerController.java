@@ -8,6 +8,7 @@ import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class UpdateCustomerController implements Initializable {
     public Label customerIDLabel;
     public Customers selectedCustomer = null;
     private  Integer customerID = 0;
+    private Integer divisionID = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
     }
 
@@ -43,6 +45,8 @@ public class UpdateCustomerController implements Initializable {
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     public void onSaveCustomer(ActionEvent actionEvent) {
@@ -71,12 +75,29 @@ public class UpdateCustomerController implements Initializable {
         this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
+        int countryToChoose = -1;
+        try{
+            countryToChoose = Integer.parseInt(String.valueOf(customerCountryCombo.getValue()));
+            if(countryToChoose <=0 ||countryToChoose > customerID)
+                return;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         for (Country C : customerCountryCombo.getItems()) {
             if (Objects.equals(selectedCustomer.getCountry(), C.getCountry())) {
                 customerCountryCombo.setValue(C);
                 break;
             }
-        for (Address A : customerDivisionCombo.getItems()) {
+            int divisionToChoose = -1;
+            try{
+                divisionToChoose = Integer.parseInt(String.valueOf(customerDivisionCombo.getValue()));
+                if(divisionToChoose <=0 ||divisionToChoose > divisionID )
+                    return;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            for (Address A : customerDivisionCombo.getItems()) {
                 if (Objects.equals(selectedCustomer.getDivision(), A.getDivision())) {
                     customerDivisionCombo.setValue(A);
                     break;
