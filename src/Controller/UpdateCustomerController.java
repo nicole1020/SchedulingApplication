@@ -76,18 +76,25 @@ public class UpdateCustomerController implements Initializable {
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
         int countryToChoose = -1;
-        try{
+       /* try{
             countryToChoose = Integer.parseInt(String.valueOf(customerCountryCombo.getValue()));
             if(countryToChoose <=0 ||countryToChoose > customerID)
                 return;
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
+        int countryID = 0;
+
         for (Country C : customerCountryCombo.getItems()) {
-            if (Objects.equals(selectedCustomer.getCountry(), C.getCountry())) {
+        if (C.getCountryName().equals(theCustomer.getCountry())){
+            customerCountryCombo.getSelectionModel().select(C);
+            countryID = C.getCountryID();
+            break;
+          /* if (Objects.equals(selectedCustomer.getCountry(), C.getCountry())) {
                 customerCountryCombo.setValue(C);
-                break;
+
+
             }
             int divisionToChoose = -1;
             try{
@@ -101,15 +108,30 @@ public class UpdateCustomerController implements Initializable {
                 if (Objects.equals(selectedCustomer.getDivision(), A.getDivision())) {
                     customerDivisionCombo.setValue(A);
                     break;
-                }
+                }**/
                 // this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());}
                 // this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
 
+            }
+            //Country c = customerCountryCombo.getSelectionModel().getSelectedItem();
+          //  System.out.println(c.getCountryID()+ "****");
+
+
+
+        }
+        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(countryID));
+        for(Address D:customerDivisionCombo.getItems()){
+            if(D.getDivision().equals(theCustomer.getDivision())){
+                customerDivisionCombo.getSelectionModel().select(D);
+                break;
             }
         }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
+        //customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(1));
+
     }
 }

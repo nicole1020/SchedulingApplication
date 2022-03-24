@@ -10,6 +10,7 @@ public class Customers {
     private String country;
     private String division;
 
+
     public Customers(String Customer_Name, String Address, String Postal_Code, String phone, int customer_id, String Country, String Division) {
         this.customerName = Customer_Name;
         this.customerAddress = Address;
