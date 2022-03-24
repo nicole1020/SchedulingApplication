@@ -66,7 +66,7 @@ public class UserLoginController implements Initializable {
 
                 userLocationLabel.setText("Login Successful");
 
-                Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setTitle("Home Page");

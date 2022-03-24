@@ -62,7 +62,7 @@
               </columns>
           </TableView>
           <Button fx:id="deleteAppointment" layoutX="477.0" layoutY="460.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
-             <Label layoutX="24.0" layoutY="269.0" text="Appointments">
+             <Label layoutX="24.0" layoutY="269.0" text="Appointments" textFill="#0c4acf">
                  <font>
                      <Font size="14.0" />
                  </font>
@@ -77,5 +77,6 @@
          <Font size="14.0" />
       </font>
    </Label>
+   <Button fx:id="toCustomersScreen" layoutX="50.0" layoutY="513.0" mnemonicParsing="false" onAction="#onToCustomersScreen" prefHeight="25.0" prefWidth="229.0" text="&lt;&lt;&lt; Return to Customers Screen" textFill="#164f05" />
 
 </AnchorPane>
