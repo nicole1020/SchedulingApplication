@@ -28,6 +28,12 @@ public class AddCustomerController implements Initializable {
     public Label customerIDLabel;
     private  Integer customerID = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
+        customerName.clear();
+        customerAddress.clear();
+        customerPhone.clear();
+        postalCode.clear();
+        customerCountryCombo.getSelectionModel().clearSelection();
+        customerDivisionCombo.getSelectionModel().clearSelection();
     }
 
     public void onCustomerCountry(ActionEvent actionEvent) {
