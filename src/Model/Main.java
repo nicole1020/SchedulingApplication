@@ -55,6 +55,7 @@ He fixed my code in my main screen - add customer because I had new customer poi
  3/15 I was trying to delete customer and figured out i needed to pass in the instance of customer and getCustomerID into the deleteCustomer method in the DAO file
 I also had been attempting to delete the division ID which was unnecessary.
  3.24 will meet with Mr. Wabara for help with combo box for update customer- the combo box isnt auto filling with chosen customer country/division.
+ 4/4 will work on clear buttons on updatecustomer form.
  */
 public class Main extends Application {
 

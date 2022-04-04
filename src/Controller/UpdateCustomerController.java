@@ -29,6 +29,14 @@ public class UpdateCustomerController implements Initializable {
     private  Integer customerID = 0;
     private Integer divisionID = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
+        customerName.clear();
+        customerAddress.clear();
+        customerPhone.clear();
+        postalCode.clear();
+        customerCountryCombo.getSelectionModel().clearSelection();
+        customerDivisionCombo.getSelectionModel().clearSelection();
+
+
     }
 
     public void onCustomerCountry(ActionEvent actionEvent) {
@@ -75,53 +83,18 @@ public class UpdateCustomerController implements Initializable {
         this.postalCode.setText(String.valueOf(this.selectedCustomer.getPostalCode()));
         this.customerPhone.setText(String.valueOf(this.selectedCustomer.getPhone()));
         this.customerIDLabel.setText(String.valueOf(this.selectedCustomer.getCustomerID()));
-        int countryToChoose = -1;
-       /* try{
-            countryToChoose = Integer.parseInt(String.valueOf(customerCountryCombo.getValue()));
-            if(countryToChoose <=0 ||countryToChoose > customerID)
-                return;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }*/
         int countryID = 0;
 
         for (Country C : customerCountryCombo.getItems()) {
-        if (C.getCountryName().equals(theCustomer.getCountry())){
-            customerCountryCombo.getSelectionModel().select(C);
-            countryID = C.getCountryID();
-            break;
-          /* if (Objects.equals(selectedCustomer.getCountry(), C.getCountry())) {
-                customerCountryCombo.setValue(C);
-
-
+            if (C.getCountryName().equals(theCustomer.getCountry())) {
+                customerCountryCombo.getSelectionModel().select(C);
+                countryID = C.getCountryID();
+                break;
             }
-            int divisionToChoose = -1;
-            try{
-                divisionToChoose = Integer.parseInt(String.valueOf(customerDivisionCombo.getValue()));
-                if(divisionToChoose <=0 ||divisionToChoose > divisionID )
-                    return;
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            for (Address A : customerDivisionCombo.getItems()) {
-                if (Objects.equals(selectedCustomer.getDivision(), A.getDivision())) {
-                    customerDivisionCombo.setValue(A);
-                    break;
-                }**/
-                // this.customerCountryCombo.getEditor().setText(selectedCustomer.getCountry());}
-                // this.customerDivisionCombo.getEditor().setText(selectedCustomer.getDivision());
-
-            }
-            //Country c = customerCountryCombo.getSelectionModel().getSelectedItem();
-          //  System.out.println(c.getCountryID()+ "****");
-
-
-
         }
         customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(countryID));
-        for(Address D:customerDivisionCombo.getItems()){
-            if(D.getDivision().equals(theCustomer.getDivision())){
+        for (Address D : customerDivisionCombo.getItems()) {
+            if (D.getDivision().equals(theCustomer.getDivision())) {
                 customerDivisionCombo.getSelectionModel().select(D);
                 break;
             }
@@ -129,9 +102,6 @@ public class UpdateCustomerController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
-        //customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(1));
-
     }
 }
