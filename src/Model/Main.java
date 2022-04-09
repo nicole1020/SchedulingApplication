@@ -56,14 +56,15 @@ He fixed my code in my main screen - add customer because I had new customer poi
 I also had been attempting to delete the division ID which was unnecessary.
  3.24 will meet with Mr. Wabara for help with combo box for update customer- the combo box isnt auto filling with chosen customer country/division.
  4/4 will work on clear buttons on updatecustomer form.
+ 4/9 working on update customer and add appointment and update appointment screens.
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-         Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
-         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
 
         primaryStage.setTitle("");
         primaryStage.setScene(new Scene(root));
