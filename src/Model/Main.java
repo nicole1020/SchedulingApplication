@@ -56,7 +56,8 @@ He fixed my code in my main screen - add customer because I had new customer poi
 I also had been attempting to delete the division ID which was unnecessary.
  3.24 will meet with Mr. Wabara for help with combo box for update customer- the combo box isnt auto filling with chosen customer country/division.
  4/4 will work on clear buttons on updatecustomer form.
- 4/9 working on update customer and add appointment and update appointment screens.
+ 4/9 working on update  and add appointment and update appointment screens. set up so initial load goes to customer screen for easier navigation for now.
+ got main appointmentwindow working. just need to add button and report functionality
  */
 public class Main extends Application {
 
