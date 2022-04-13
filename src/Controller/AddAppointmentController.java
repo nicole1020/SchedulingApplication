@@ -39,14 +39,26 @@ public class AddAppointmentController implements Initializable {
     public Button editAppointment;
     public Button deleteAppointment1;
     public Button toCustomersScreen;
+    public Button addAppointment;
+    public DatePicker appointmentStart;
+    public TextField appointmentID;
+    public TextField appointmentTitle;
+    public TextField appointmentDescription;
+    public TextField appointmentLocation;
+    public ComboBox appointmentContact;
+    public ComboBox appointmentType;
+    public ComboBox appointmentCustomerID;
+    public ComboBox appointmentUserID;
+    public Button clearAppointment;
+    public ComboBox appointmentType1;
+    public ComboBox appointmentType11;
+
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) {
-    }
 
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
@@ -101,5 +113,14 @@ public class AddAppointmentController implements Initializable {
         resultsLBLAppointments.setText("Report: " + AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
 
 
+    }
+
+    public void onAddAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onClearAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onSaveAppointment(ActionEvent actionEvent) {
     }
 }

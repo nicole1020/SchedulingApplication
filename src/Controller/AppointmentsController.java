@@ -68,11 +68,21 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) {
-    }
 
+
+    public void onAddAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/AddNewAppointment.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home Page");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
 

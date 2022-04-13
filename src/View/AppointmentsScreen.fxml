@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddAppointmentController">
+<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppointmentsController">
                 <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
@@ -45,8 +45,8 @@
       <RadioButton layoutX="598.0" layoutY="270.0" mnemonicParsing="false" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
 
       </RadioButton>
-     <Button fx:id="exitButton" layoutX="789.0" layoutY="500.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
-   <Button fx:id="saveAppointment" layoutX="129.0" layoutY="460.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Add New Appointment" />
+     <Button fx:id="exitButton" layoutX="789.0" layoutY="510.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
+   <Button fx:id="addAppointment" layoutX="129.0" layoutY="470.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add New Appointment" />
           <TableView fx:id="appointmentsTable" layoutX="24.0" layoutY="292.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="828.0">
               <columns>
                   <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
@@ -61,7 +61,7 @@
                   <TableColumn fx:id="appointmentsUserIDCol" prefWidth="46.0" text="UserID" />
               </columns>
           </TableView>
-          <Button fx:id="deleteAppointment" layoutX="477.0" layoutY="460.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
+          <Button fx:id="deleteAppointment" layoutX="477.0" layoutY="470.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
              <Label layoutX="24.0" layoutY="269.0" text="Appointments" textFill="#0c4acf">
                  <font>
                      <Font size="14.0" />
@@ -70,13 +70,13 @@
              <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="229.0" promptText="Search by Appointment ID or Name" />
              <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
          <Button fx:id="appointmentsSearch" layoutX="360.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
-   <Button fx:id="editAppointment" layoutX="296.0" layoutY="460.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit Appointment" />
-   <Button fx:id="deleteAppointment1" layoutX="598.0" layoutY="460.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Click here to generate Reports" textFill="#0c4acf" />
+   <Button fx:id="editAppointment" layoutX="296.0" layoutY="470.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit Appointment" />
+   <Button fx:id="deleteAppointment1" layoutX="598.0" layoutY="470.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Click here to generate Reports" textFill="#0c4acf" />
    <Label layoutX="477.0" layoutY="472.0">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Button fx:id="toCustomersScreen" layoutX="50.0" layoutY="513.0" mnemonicParsing="false" onAction="#onToCustomersScreen" prefHeight="25.0" prefWidth="229.0" text="&lt;&lt;&lt; Return to Customers Screen" textFill="#164f05" />
+   <Button fx:id="toCustomersScreen" layoutX="50.0" layoutY="510.0" mnemonicParsing="false" onAction="#onToCustomersScreen" prefHeight="25.0" prefWidth="229.0" text="&lt;&lt;&lt; Return to Customers Screen" textFill="#164f05" />
 
 </AnchorPane>

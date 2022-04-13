@@ -58,6 +58,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  4/4 will work on clear buttons on updatecustomer form.
  4/9 working on update  and add appointment and update appointment screens. set up so initial load goes to customer screen for easier navigation for now.
  got main appointmentwindow working. just need to add button and report functionality
+ 4/13 will continue to work on appointments functionality.
  */
 public class Main extends Application {
 
@@ -66,6 +67,7 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
 
         primaryStage.setTitle("");
         primaryStage.setScene(new Scene(root));
