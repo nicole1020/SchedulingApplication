@@ -52,6 +52,7 @@ public class AddAppointmentController implements Initializable {
     public Button clearAppointment;
     public ComboBox appointmentType1;
     public ComboBox appointmentType11;
+    public Button backButton;
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -91,28 +92,6 @@ public class AddAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
-
-        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsDAOImpl.getAllAppointments()
-                    .get(i).getAppointmentID());
-
-        }
-        System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
-
-
     }
 
     public void onAddAppointment(ActionEvent actionEvent) {
@@ -122,5 +101,19 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onSaveAppointment(ActionEvent actionEvent) {
+    }
+
+    public void onBackButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent)loader.load();
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
     }
 }

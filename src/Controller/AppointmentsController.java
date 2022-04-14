@@ -73,7 +73,6 @@ public class AppointmentsController implements Initializable {
     }
 
 
-
     public void onAddAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/AddNewAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -83,6 +82,7 @@ public class AppointmentsController implements Initializable {
         stage.centerOnScreen();
         stage.show();
     }
+
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
 
@@ -102,12 +102,16 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Home Page");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AddNewAppointment.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
     }
 }
