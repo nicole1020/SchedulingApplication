@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import static DAO.DBConnection.connection;
 
 public class AppointmentsDAOImpl {
-    public static ObservableList <Appointments> getAllAppointments() {
+    public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
             String sqlInquiryA = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID\n" +
@@ -43,15 +43,20 @@ public class AppointmentsDAOImpl {
     //create new appointment
 
 
-    public static void createAppointment(String title, String description, String location, Appointments contact, Appointments type, LocalDate date, Appointments startTime, Appointments endTime, Customers customerid, User user) {
+    public static void createAppointment(String title, String description, String location, String type, String date, String startTime, String endTime, int customerid, int user, int contact) {
         try {
-            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
+            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
             psCreate.setString(1, String.valueOf(title));
             psCreate.setString(2, String.valueOf(description));
             psCreate.setString(3, String.valueOf(location));
-            psCreate.setString(4, String.valueOf(contact));
-            psCreate.setInt(5, division);
+            psCreate.setString(4, String.valueOf(type));
+            psCreate.setString(5, String.valueOf(date));
+            psCreate.setString(6, String.valueOf(startTime));
+            psCreate.setString(7, String.valueOf(endTime));
+            psCreate.setInt(8, customerid);
+            psCreate.setInt(9, user);
+            psCreate.setInt(10, contact);
 
             psCreate.execute();
 
@@ -60,4 +65,24 @@ public class AppointmentsDAOImpl {
 
         }
     }
+
+    public static void updateAppointment(Integer appointmentid, String title, String description, String location, Appointments type, String date, String startTime, String endTime, int customerID, int user, int contact) throws SQLException {
+        String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
+        PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+        psCreate.setInt(1, appointmentid);
+        psCreate.setString(2, String.valueOf(title));
+        psCreate.setString(3, String.valueOf(description));
+        psCreate.setString(4, String.valueOf(location));
+        psCreate.setString(5, String.valueOf(type));
+        psCreate.setString(6, String.valueOf(date));
+        psCreate.setString(7, String.valueOf(startTime));
+        psCreate.setString(8, String.valueOf(endTime));
+        psCreate.setInt(9, customerID);
+        psCreate.setInt(10, user);
+        psCreate.setInt(11, contact);
+        psCreate.execute();
+
+    }
+
 }
+

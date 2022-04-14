@@ -32,15 +32,15 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox appointmentContact;
-    public ComboBox appointmentType;
-    public ComboBox appointmentCustomerID;
-    public ComboBox appointmentUserID;
+    public ComboBox <Appointments> appointmentContact;
+    public ComboBox <Appointments>appointmentType;
+    public ComboBox<Customers> appointmentCustomerID;
+    public ComboBox<User> appointmentUserID;
     public Button clearAppointment;
     public Button backButton;
     public DatePicker appointmentDate;
-    public ComboBox appointmentStartTime;
-    public ComboBox appointmentEndTime;
+    public ComboBox<Appointments> appointmentStartTime;
+    public ComboBox<Appointments> appointmentEndTime;
 
     private  Integer appointmentid = 0;
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -102,22 +102,21 @@ public class AddAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Appointments contact = (Appointments) appointmentContact.getValue();
-        Appointments type = (Appointments) appointmentType.getValue();
+        Appointments contact = appointmentContact.getValue();
+        Appointments type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
-        Appointments startTime = (Appointments) appointmentStartTime.getValue();
-        Appointments endTime = (Appointments) appointmentEndTime.getValue();
-        Customers customerid = (Customers) appointmentCustomerID.getValue();
-        User user = (User) appointmentUserID.getValue();
+        Appointments startTime = appointmentStartTime.getValue();
+        Appointments endTime = appointmentEndTime.getValue();
+        Customers customerid = appointmentCustomerID.getValue();
+        User user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerid==null ||contact ==null || type == null || date == null) {
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location, contact.getContact(),type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID());
+            AppointmentsDAOImpl.createAppointment(title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID()), contact.getContact();
         } else {
-            CustomersDAOImpl.updateAppointment( customerID, name, address, postalcode,phone , division.getDivisionID()
-            );
+            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID()), contact.getContact();
         }
 
 
