@@ -39,6 +39,7 @@ public class AppointmentsController implements Initializable {
     public Button editAppointment;
     public Button deleteAppointment1;
     public Button toCustomersScreen;
+    public Button addAppointment;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

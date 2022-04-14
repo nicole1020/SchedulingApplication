@@ -1,13 +1,14 @@
 package Controller;
 
-import DAO.AppointmentsDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -19,27 +20,6 @@ import java.util.ResourceBundle;
 public class AddAppointmentController implements Initializable {
     public Button saveAppointment;
     public Button exitButton;
-    public ToggleGroup appointmentsToggle;
-    public Label resultsLBL;
-    public TableView appointmentsTable;
-    public TableColumn appointmentsIDCol;
-    public TableColumn appointmentsTitleCol;
-    public TableColumn appointmentsDescriptionCol;
-    public TableColumn appointmentsLocationCol;
-    public TableColumn appointmentsContactCol;
-    public TableColumn appointmentsTypeCol;
-    public TableColumn appointmentsStartDateTimeCol;
-    public TableColumn appointmentsEndDateTimeCol;
-    public TableColumn appointmentsCustomerIDCol;
-    public TableColumn appointmentsUserIDCol;
-    public Button deleteAppointment;
-    public TextField appointmentsTextField;
-    public Label resultsLBLAppointments;
-    public Button appointmentsSearch;
-    public Button editAppointment;
-    public Button deleteAppointment1;
-    public Button toCustomersScreen;
-    public Button addAppointment;
     public DatePicker appointmentStart;
     public TextField appointmentID;
     public TextField appointmentTitle;
@@ -53,6 +33,9 @@ public class AddAppointmentController implements Initializable {
     public ComboBox appointmentType1;
     public ComboBox appointmentType11;
     public Button backButton;
+    public DatePicker appointmentDate;
+    public ComboBox appointmentStartTime;
+    public ComboBox appointmentEndTime;
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -98,6 +81,16 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onClearAppointment(ActionEvent actionEvent) {
+        appointmentTitle.clear();
+        appointmentDescription.clear();
+        appointmentLocation.clear();
+        appointmentContact.getSelectionModel().clearSelection();
+        appointmentType.getSelectionModel().clearSelection();
+        appointmentDate.getEditor().clear();
+        appointmentStartTime.getSelectionModel().clearSelection();
+        appointmentEndTime.getSelectionModel().clearSelection();
+        appointmentCustomerID.getSelectionModel().clearSelection();
+        appointmentUserID.getSelectionModel().clearSelection();
     }
 
     public void onSaveAppointment(ActionEvent actionEvent) {
