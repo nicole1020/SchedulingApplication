@@ -109,12 +109,12 @@ public class AddAppointmentController implements Initializable {
         Appointments endTime = (Appointments) appointmentEndTime.getValue();
         Customers customerid = (Customers) appointmentCustomerID.getValue();
         User user = (User) appointmentUserID.getValue();
-        if (user == null || contact == null || startTime == null || endTime == null || customerid==null ||contact ==null || type == null || date == null) {
+        if (user == null  || startTime == null || endTime == null || customerid==null ||contact ==null || type == null || date == null) {
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(name, address, postalcode, phone, division.getDivisionID());
+            AppointmentsDAOImpl.createAppointment(title, description, location, contact.getContact(),type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID());
         } else {
             CustomersDAOImpl.updateAppointment( customerID, name, address, postalcode,phone , division.getDivisionID()
             );

@@ -1,9 +1,13 @@
 package DAO;
 
 import Model.Appointments;
+import Model.Customers;
+import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
+import java.time.LocalDate;
+
 import static DAO.DBConnection.connection;
 
 public class AppointmentsDAOImpl {
@@ -37,14 +41,16 @@ public class AppointmentsDAOImpl {
         return appointmentsList;
     }
     //create new appointment
-    public static void createAppointment(String name, String address, String postalcode, String phone, Integer division) {
+
+
+    public static void createAppointment(String title, String description, String location, Appointments contact, Appointments type, LocalDate date, Appointments startTime, Appointments endTime, Customers customerid, User user) {
         try {
             String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
-            psCreate.setString(1, String.valueOf(name));
-            psCreate.setString(2, String.valueOf(address));
-            psCreate.setString(3, String.valueOf(postalcode));
-            psCreate.setString(4, String.valueOf(phone));
+            psCreate.setString(1, String.valueOf(title));
+            psCreate.setString(2, String.valueOf(description));
+            psCreate.setString(3, String.valueOf(location));
+            psCreate.setString(4, String.valueOf(contact));
             psCreate.setInt(5, division);
 
             psCreate.execute();
@@ -53,7 +59,5 @@ public class AppointmentsDAOImpl {
             e.printStackTrace();//print stack trace
 
         }
-
     }
-
 }
