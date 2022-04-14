@@ -1,5 +1,10 @@
 package Controller;
 
+import DAO.AppointmentsDAOImpl;
+import DAO.CustomersDAOImpl;
+import Model.Address;
+import Model.Appointments;
+import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,14 +35,12 @@ public class AddAppointmentController implements Initializable {
     public ComboBox appointmentCustomerID;
     public ComboBox appointmentUserID;
     public Button clearAppointment;
-    public ComboBox appointmentType1;
-    public ComboBox appointmentType11;
     public Button backButton;
     public DatePicker appointmentDate;
     public ComboBox appointmentStartTime;
     public ComboBox appointmentEndTime;
 
-
+    private  Integer appointmentID = 0;
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
@@ -93,8 +96,31 @@ public class AddAppointmentController implements Initializable {
         appointmentUserID.getSelectionModel().clearSelection();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) {
+    public void onSaveAppointment(ActionEvent actionEvent) { String name = customerName.getText();
+        String title = appointmentTitle.getText();
+        String description = appointmentDescription.getText();
+        String location = appointmentLocation.getText();
+        Address contact = appointmentContact.getValue();
+        Appointments type = appointmentType.getValue();
+        DatePicker date = appointmentDate.getValue();
+        Appointments startTime = appointmentStartTime.getValue();
+        Appointments endTime = appointmentEndTime.getValue();
+        Customers customerid = appointmentCustomerID.getValue();
+        Customers user = appointmentUserID.getValue();
+        if (user == null || contact == null || startTime == null || endTime == null || customerid==null ||contact ==null || type == null || date == null) {
+            return;
+        }
+
+        if (appointmentID == 0) {
+            AppointmentsDAOImpl.createAppointment(name, address, postalcode, phone, division.getDivisionID());
+        } else {
+            CustomersDAOImpl.updateAppointment( customerID, name, address, postalcode,phone , division.getDivisionID()
+            );
+        }
+
+
     }
+
 
     public void onBackButton(ActionEvent actionEvent) {
         try {

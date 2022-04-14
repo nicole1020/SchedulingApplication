@@ -60,7 +60,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  got main appointmentwindow working. just need to add button and report functionality
  4/13 will continue to work on appointments functionality.
  4/14 from appointments screen add appointment was not working. I realized the code to load the add new appointment screen in the appointment controller was not
- properly coded. Added code to clear button on addappointmentcontroller.
+ properly coded. Added code to clear button on addappointmentcontroller. working on adding new appointment-save button.
  */
 public class Main extends Application {
 
