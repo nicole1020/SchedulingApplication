@@ -36,4 +36,24 @@ public class AppointmentsDAOImpl {
         }
         return appointmentsList;
     }
+    //create new appointment
+    public static void createAppointment(String name, String address, String postalcode, String phone, Integer division) {
+        try {
+            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
+            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+            psCreate.setString(1, String.valueOf(name));
+            psCreate.setString(2, String.valueOf(address));
+            psCreate.setString(3, String.valueOf(postalcode));
+            psCreate.setString(4, String.valueOf(phone));
+            psCreate.setInt(5, division);
+
+            psCreate.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();//print stack trace
+
+        }
+
+    }
+
 }
