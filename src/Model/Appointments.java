@@ -15,6 +15,8 @@ public class Appointments {
     private int contact;
     private String type;
     private String startDateTime;
+    private String startTime;
+    private String endTime;
     private String endDateTime;
     private int customerID;
     private int userID;
@@ -32,6 +34,8 @@ public class Appointments {
         this.userID = User_ID;
 
     }
+public String getEndTime(){return endTime;}
+    public String getStartTime(){return startTime;}
 
 
     public int getAppointmentID() {
