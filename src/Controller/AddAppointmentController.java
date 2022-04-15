@@ -1,11 +1,10 @@
 package Controller;
 
+import DAO.AddressDAOImpl;
 import DAO.AppointmentsDAOImpl;
 import DAO.CustomersDAOImpl;
-import Model.Address;
-import Model.Appointments;
-import Model.Customers;
-import Model.User;
+import DAO.UserDAOImpl;
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,8 +33,8 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentLocation;
     public ComboBox <Appointments> appointmentContact;
     public ComboBox <Appointments>appointmentType;
-    public ComboBox<Customers> appointmentCustomerID;
-    public ComboBox<User> appointmentUserID;
+    public ComboBox<Appointments> appointmentCustomerID;
+    public ComboBox<Appointments> appointmentUserID;
     public Button clearAppointment;
     public Button backButton;
     public DatePicker appointmentDate;
@@ -79,7 +78,11 @@ public class AddAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Appointments Table Initialized
+        //Appointments
+        String cid = appointmentID.getText();
+        appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointments(cid.getCustomerID()));
+
+
     }
 
     public void onAddAppointment(ActionEvent actionEvent) {
