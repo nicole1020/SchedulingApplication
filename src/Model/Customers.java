@@ -31,11 +31,6 @@ public class Customers {
 
     }
 
-    public Customers(int customer_id, String customerName, String address, String postalCode, String phone, String division) {
-    }
-
-
-
     public int getCustomerID() {
         return customerID;
     }
