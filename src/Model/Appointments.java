@@ -34,7 +34,17 @@ public class Appointments {
         this.userID = User_ID;
 
     }
-public String getEndTime(){return endTime;}
+
+
+    public Appointments(Integer customer_id) {
+        this.customerID = customer_id;
+    }
+
+    public Appointments(String type) {
+        this.type = type;
+    }
+
+    public String getEndTime(){return endTime;}
     public String getStartTime(){return startTime;}
 
 

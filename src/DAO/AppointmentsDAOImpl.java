@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Appointments;
+import Model.Country;
 import Model.Customers;
 import Model.User;
 import javafx.collections.FXCollections;
@@ -83,6 +84,65 @@ public class AppointmentsDAOImpl {
         psCreate.execute();
 
     }
+    public static ObservableList<Appointments> getAllAppointmentCustomerIDs() {
+        ObservableList<Appointments> appointmentCustomerIDs = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT * FROM appointments";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            try {
+                Integer Customer_ID = cBResult.getInt("Customer_ID");
+                Appointments aID = new Appointments(Customer_ID);
 
+                appointmentCustomerIDs.add(aID);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentCustomerIDs;
+    }
+    public static ObservableList<Appointments> getAllAppointmentTypes() {
+        ObservableList<Appointments> appointmentTypes = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT * FROM appointments";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            try {
+                String type = cBResult.getString("type");
+                Appointments aT = new Appointments(type);
+
+                appointmentTypes.add(aT);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentTypes;
+    }
+    public static ObservableList<Appointments> getAllAppointmentDates() {
+        ObservableList<Appointments> appointmentDates = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT * FROM appointments";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            try {
+                String date = cBResult.getString("date");
+                Appointments aD = new Appointments(date);
+
+                appointmentDates.add(aD);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentDates;
+    }
 }
 

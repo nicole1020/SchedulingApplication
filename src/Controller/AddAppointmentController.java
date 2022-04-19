@@ -80,7 +80,9 @@ public class AddAppointmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Appointments
         String cid = appointmentID.getText();
-        appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointments(cid.getCustomerID()));
+        appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointmentCustomerIDs());
+        appointmentType.setItems(AppointmentsDAOImpl.getAllAppointmentTypes());
+        appointmentDate.setItems(AppointmentsDAOImpl.getAllAppointmentDates());
 
 
     }
@@ -110,16 +112,16 @@ public class AddAppointmentController implements Initializable {
         LocalDate date = appointmentDate.getValue();
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
-        Customers customerid = appointmentCustomerID.getValue();
-        User user = appointmentUserID.getValue();
+        Appointments customerid = appointmentCustomerID.getValue();
+        Appointments user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerid==null ||contact ==null || type == null || date == null) {
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID()), contact.getContact();
+            AppointmentsDAOImpl.createAppointment(title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
-            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID()), contact.getContact();
+            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location,type,date, startTime, endTime, customerid.getCustomerID(),user.getUserID(), contact.getContact());
         }
 
 
