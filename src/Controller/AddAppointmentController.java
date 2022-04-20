@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -82,7 +83,7 @@ public class AddAppointmentController implements Initializable {
         String cid = appointmentID.getText();
         appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsDAOImpl.getAllAppointmentTypes());
-        appointmentDate.setItems(AppointmentsDAOImpl.getAllAppointmentDates());
+        appointmentDate.setConverter((StringConverter<LocalDate>) AppointmentsDAOImpl.getAllAppointmentDates());
 appointmentUserID.setItems(AppointmentsDAOImpl.getAllAppointmentUserIds());
 appointmentContact.setItems(AppointmentsDAOImpl.getAllAppointmentContacts());
 
