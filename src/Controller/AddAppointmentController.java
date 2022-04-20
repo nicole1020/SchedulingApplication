@@ -86,6 +86,9 @@ public class AddAppointmentController implements Initializable {
         appointmentDate.setConverter((StringConverter<LocalDate>) AppointmentsDAOImpl.getAllAppointmentDates());
 appointmentUserID.setItems(AppointmentsDAOImpl.getAllAppointmentUserIds());
 appointmentContact.setItems(AppointmentsDAOImpl.getAllAppointmentContacts());
+appointmentStartTime.setItems(AppointmentsDAOImpl.getAllAppointmentStartTimes());
+appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
+
 
     }
 

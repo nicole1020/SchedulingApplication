@@ -1,11 +1,10 @@
 package Model;
 
 
-import javafx.scene.control.DatePicker;
-
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Appointments {
     private int appointmentID;
@@ -14,22 +13,22 @@ public class Appointments {
     private String location;
     private int contact;
     private String type;
-    private String startDateTime;
-    private String startTime;
-    private String endTime;
-    private String endDateTime;
+    private Date startDate;
+    private Time startTime;
+    private ZonedDateTime endTime;
+    private ZonedDateTime endDate;
     private int customerID;
     private int userID;
 
-    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, String Start, String End, int Customer_ID, int User_ID) {
+    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Date Start, ZonedDateTime End, int Customer_ID, int User_ID) {
         this.appointmentID = Appointment_ID;
         this.title = Title;
         this.description = Description;
         this.location = Location;
         this.contact = Contact_ID;
         this.type = Type;
-        this.startDateTime = Start;
-        this.endDateTime = End;
+        this.startDate = Start;
+        this.endDate = End;
         this.customerID = Customer_ID;
         this.userID = User_ID;
 
@@ -48,8 +47,20 @@ public class Appointments {
 
     }
 
-    public String getEndTime(){return endTime;}
-    public String getStartTime(){return startTime;}
+
+
+
+
+    public Appointments(Time start, Date startDate) {
+        this.startDate = startDate;
+        this.startTime = start;
+    }
+
+   // public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
+   // }
+
+    public ZonedDateTime getEndTime(){return endTime;}
+    public Time getStartTime(){return startTime;}
 
 
     public int getAppointmentID() {
@@ -76,12 +87,12 @@ public class Appointments {
         return type;
     }
 
-    public String getStartDateTime() {
-        return startDateTime;
+    public ZonedDateTime getStartDate() {
+        return startDate;
     }
 
-    public String getEndDateTime() {
-        return endDateTime;
+    public ZonedDateTime getEndDateTime() {
+        return endDate;
     }
 
     public int getCustomerID() {

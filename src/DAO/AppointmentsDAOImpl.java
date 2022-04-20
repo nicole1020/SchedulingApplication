@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static DAO.DBConnection.connection;
 
@@ -172,6 +173,30 @@ public class AppointmentsDAOImpl {
             e.printStackTrace();
         }
         return appointmentContacts;
+    }
+
+    public static ObservableList<Appointments> getAllAppointmentStartTimes() {
+        ObservableList<Appointments> appointmentStartTimes = FXCollections.observableArrayList();
+        try {
+            String sqlAST = "SELECT start from appointments";
+            PreparedStatement prepAST = connection.prepareStatement(sqlAST);
+            ResultSet ASTResult = prepAST.executeQuery();
+            while (ASTResult.next()) {
+                Time start = ASTResult.getTime("start");
+                Date startDate = ASTResult.getDate("start");
+
+                Appointments aC = new Appointments(start, startDate);
+
+
+                appointmentStartTimes.add(aC);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentStartTimes;
+    }
+
+    public static ObservableList<Appointments> getAllAppointmentEndTimes() {
     }
 }
 
