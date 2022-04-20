@@ -62,6 +62,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  4/14 from appointments screen add appointment was not working. I realized the code to load the add new appointment screen in the appointment controller was not
  properly coded. Added code to clear button on addappointmentcontroller. working on adding new appointment-save button.
  next i will properly set up combo boxes in the addnewappointment fxml and controller.
+ 4/19 worked on combo boxes in add appointments controller and helper files. Will work on time/date combo box creation next using the webinar as source.
  */
 public class Main extends Application {
 

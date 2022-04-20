@@ -44,6 +44,10 @@ public class Appointments {
         this.type = type;
     }
 
+    public Appointments() {
+
+    }
+
     public String getEndTime(){return endTime;}
     public String getStartTime(){return startTime;}
 

@@ -16,6 +16,10 @@ public class User {
 
     }
 
+    public User(Integer user_id) {
+        this.userID= user_id;
+    }
+
     public int getUserID() {
         return userID;
     }

@@ -1,9 +1,6 @@
 package DAO;
 
-import Model.Appointments;
-import Model.Country;
-import Model.Customers;
-import Model.User;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
@@ -90,13 +87,11 @@ public class AppointmentsDAOImpl {
             String sqlcB = "SELECT * FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
-            try {
+            while (cBResult.next()) {
                 Integer Customer_ID = cBResult.getInt("Customer_ID");
                 Appointments aID = new Appointments(Customer_ID);
 
                 appointmentCustomerIDs.add(aID);
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
 
         } catch (SQLException e) {
@@ -110,15 +105,12 @@ public class AppointmentsDAOImpl {
             String sqlcB = "SELECT * FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
-            try {
+            while (cBResult.next()) {
                 String type = cBResult.getString("type");
                 Appointments aT = new Appointments(type);
 
                 appointmentTypes.add(aT);
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,19 +122,56 @@ public class AppointmentsDAOImpl {
             String sqlcB = "SELECT * FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
-            try {
+            while (cBResult.next()) {
                 String date = cBResult.getString("date");
                 Appointments aD = new Appointments(date);
 
                 appointmentDates.add(aD);
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return appointmentDates;
+    }
+
+    public static ObservableList<User> getAllAppointmentUserIds() {
+        ObservableList<User> appointmentUserID = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT * FROM appointments";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            while (cBResult.next()) {
+                Integer User_ID = cBResult.getInt("User_ID");
+                User aU = new User(User_ID);
+
+                appointmentUserID.add(aU);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentUserID;
+    }
+
+
+    public static ObservableList<Contacts> getAllAppointmentContacts() {
+        ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
+        try {
+            String sqlAC = "SELECT Contact_ID, Contact_Name, email FROM contacts WHERE Contact_ID.contacts = Contact_ID.appointments";
+            PreparedStatement prepAC = connection.prepareStatement(sqlAC);
+            ResultSet ACResult = prepAC.executeQuery();
+            while (ACResult.next()) {
+                Integer Contact_ID = ACResult.getInt("Contact_ID");
+                String Contact_Name = ACResult.getString("Contact_Name");
+                String email = ACResult.getString("email");
+                Contacts aC = new Contacts(Contact_ID,Contact_Name, email);
+
+
+                appointmentContacts.add(aC);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentContacts;
     }
 }
 
