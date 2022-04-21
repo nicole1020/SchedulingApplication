@@ -13,14 +13,14 @@ public class Appointments {
     private String location;
     private int contact;
     private String type;
-    private Date startDate;
-    private Time startTime;
-    private ZonedDateTime endTime;
-    private ZonedDateTime endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private LocalDateTime endDate;
     private int customerID;
     private int userID;
 
-    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, Date Start, ZonedDateTime End, int Customer_ID, int User_ID) {
+    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, LocalDateTime Start, LocalDateTime End, int Customer_ID, int User_ID) {
         this.appointmentID = Appointment_ID;
         this.title = Title;
         this.description = Description;
@@ -51,16 +51,16 @@ public class Appointments {
 
 
 
-    public Appointments(Time start, Date startDate) {
-        this.startDate = startDate;
+    public Appointments(LocalDateTime start) {
+
         this.startTime = start;
     }
 
    // public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
    // }
 
-    public ZonedDateTime getEndTime(){return endTime;}
-    public Time getStartTime(){return startTime;}
+    public LocalDateTime getEndTime(){return endTime;}
+    public LocalDateTime getStartTime(){return startTime;}
 
 
     public int getAppointmentID() {
@@ -87,11 +87,11 @@ public class Appointments {
         return type;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDateTime() {
+    public LocalDateTime getEndDateTime() {
         return endDate;
     }
 

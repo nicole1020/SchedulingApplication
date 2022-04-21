@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import static DAO.DBConnection.connection;
 
@@ -24,8 +25,8 @@ public class AppointmentsDAOImpl {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                String Start = aResult.getString("Start");
-                String End = aResult.getString("End");
+                LocalDateTime Start = LocalDateTime.parse(aResult.getString("Start"));
+                LocalDateTime End = LocalDateTime.parse(aResult.getString("End"));
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 
@@ -42,7 +43,7 @@ public class AppointmentsDAOImpl {
     //create new appointment
 
 
-    public static void createAppointment(String title, String description, String location, String type, String date, String startTime, String endTime, int customerid, int user, int contact) {
+    public static void createAppointment(String title, String description, String location, String type, LocalDateTime date, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
         try {
             String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
@@ -182,10 +183,10 @@ public class AppointmentsDAOImpl {
             PreparedStatement prepAST = connection.prepareStatement(sqlAST);
             ResultSet ASTResult = prepAST.executeQuery();
             while (ASTResult.next()) {
-                Time start = ASTResult.getTime("start");
-                Date startDate = ASTResult.getDate("start");
+                LocalDateTime start = LocalDateTime.parse(ASTResult.getString("start"));
 
-                Appointments aC = new Appointments(start, startDate);
+
+                Appointments aC = new Appointments(start);
 
 
                 appointmentStartTimes.add(aC);
@@ -197,6 +198,22 @@ public class AppointmentsDAOImpl {
     }
 
     public static ObservableList<Appointments> getAllAppointmentEndTimes() {
+
+            ObservableList<Appointments> appointmentEndTimes = FXCollections.observableArrayList();
+            try {
+                String sqlAE = "SELECT start from appointments";
+                PreparedStatement prepAE = connection.prepareStatement(sqlAE);
+                ResultSet AEResult = prepAE.executeQuery();
+                while (AEResult.next()) {
+                    LocalDateTime end = LocalDateTime.parse(AEResult.getString("End"));
+                    Appointments aE = new Appointments(end);
+                    appointmentEndTimes.add(aE);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return appointmentEndTimes;
+        }
     }
-}
+
 
