@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AppointmentsController implements Initializable {
@@ -75,7 +76,7 @@ public class AppointmentsController implements Initializable {
 
 
     public void onAddAppointment(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/AddNewAppointment.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/AddNewAppointment.fxml")));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home Page");

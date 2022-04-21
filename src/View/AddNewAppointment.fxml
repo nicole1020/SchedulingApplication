@@ -64,7 +64,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <DatePicker fx:id="appointmentDate" layoutX="182.0" layoutY="381.0" prefHeight="25.0" prefWidth="101.0" promptText="01/01/2022 9:30 AM" />
+   <DatePicker fx:id="appointmentDate" layoutX="182.0" layoutY="381.0" onAction="#onAppointmentDate" prefHeight="25.0" prefWidth="101.0" promptText="01/01/2022 9:30 AM" />
    <TextField fx:id="appointmentID" disable="true" editable="false" layoutX="181.0" layoutY="183.0" promptText="Auto-Gen. Disabled" />
    <TextField fx:id="appointmentTitle" layoutX="181.0" layoutY="213.0" promptText="Title" />
    <TextField fx:id="appointmentDescription" layoutX="182.0" layoutY="243.0" promptText="Description" />

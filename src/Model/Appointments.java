@@ -1,10 +1,7 @@
 package Model;
 
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public class Appointments {
     private int appointmentID;
@@ -13,14 +10,15 @@ public class Appointments {
     private String location;
     private int contact;
     private String type;
-    private LocalDateTime startDate;
+    private String startDate;
     private LocalDateTime startTime;
+    private LocalDateTime date;
     private LocalDateTime endTime;
-    private LocalDateTime endDate;
+    private String endDate;
     private int customerID;
     private int userID;
 
-    public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, LocalDateTime Start, LocalDateTime End, int Customer_ID, int User_ID) {
+    /*public Appointments(int Appointment_ID, String Title, String Description, String Location, int Contact_ID, String Type, LocalDateTime Start, LocalDateTime End, int Customer_ID, int User_ID) {
         this.appointmentID = Appointment_ID;
         this.title = Title;
         this.description = Description;
@@ -32,9 +30,24 @@ public class Appointments {
         this.customerID = Customer_ID;
         this.userID = User_ID;
 
+    }**/
+
+    public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
+        this.appointmentID = appointment_id;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.contact = contact_id;
+        this.type = type;
+        this.startDate = start;
+        this.endDate = end;
+        this.customerID = customer_id;
+        this.userID = user_id;
     }
 
-
+    public LocalDateTime getDate () {
+        return date;
+}
     public Appointments(Integer customer_id) {
         this.customerID = customer_id;
     }
@@ -87,11 +100,11 @@ public class Appointments {
         return type;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getEndDateTime() {
+    public String getEndDateTime() {
         return endDate;
     }
 

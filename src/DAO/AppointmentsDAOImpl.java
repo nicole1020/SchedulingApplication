@@ -1,11 +1,13 @@
 package DAO;
 
+import Controller.AddAppointmentController;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 import static DAO.DBConnection.connection;
@@ -25,8 +27,8 @@ public class AppointmentsDAOImpl {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                LocalDateTime Start = LocalDateTime.parse(aResult.getString("Start"));
-                LocalDateTime End = LocalDateTime.parse(aResult.getString("End"));
+                String Start = aResult.getString("Start");
+                String End = aResult.getString("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 

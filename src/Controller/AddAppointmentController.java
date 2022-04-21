@@ -19,6 +19,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -82,7 +83,7 @@ public class AddAppointmentController implements Initializable {
         String cid = appointmentID.getText();
         appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsDAOImpl.getAllAppointmentTypes());
-        appointmentDate.setDayCellFactory((Callback<DatePicker, DateCell>) AppointmentsDAOImpl.getAllAppointmentDates());
+        appointmentDate.getEditor();
 appointmentUserID.setItems(AppointmentsDAOImpl.getAllAppointmentUserIds());
 appointmentContact.setItems(AppointmentsDAOImpl.getAllAppointmentContacts());
 appointmentStartTime.setItems(AppointmentsDAOImpl.getAllAppointmentStartTimes());
@@ -107,7 +108,7 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         appointmentUserID.getSelectionModel().clearSelection();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) {
+    public void onSaveAppointment(ActionEvent actionEvent) throws SQLException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
@@ -123,9 +124,9 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location,type,date, startTime, endTime, customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType() , date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
-            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location,type,date, startTime, endTime, customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }
 
 
@@ -144,5 +145,8 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         } catch (Exception var6) {
             var6.printStackTrace();
         }
+    }
+
+    public void onAppointmentDate(ActionEvent actionEvent) {
     }
 }

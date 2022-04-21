@@ -65,7 +65,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  4/19 worked on combo boxes in add appointments controller and helper files. Will work on time/date combo box creation next using the webinar as source.
  4/20 and 4/21 worked on combo boxes for appointments and setting localdatetime for value from DB.
  I will work on proper time conversion and appointments java file still.
-
+4/21 debugged my code. still need to work on time classes in All appointment files for cohesiveness.
  */
 public class Main extends Application {
 
