@@ -66,6 +66,9 @@ I also had been attempting to delete the division ID which was unnecessary.
  4/20 and 4/21 worked on combo boxes for appointments and setting localdatetime for value from DB.
  I will work on proper time conversion and appointments java file still.
 4/21 debugged my code. still need to work on time classes in All appointment files for cohesiveness.
+ 5/13 cloned application from my github-saved. had to remove javafx versions from fxml code so it would stop throwing errors.
+ using this format - xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+ 5/14 studying time formatting so i can properly set up appointments screen.
  */
 public class Main extends Application {
 
