@@ -44,6 +44,7 @@ public class AppointmentsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         //Appointments Table Initialized
         appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
 
@@ -53,7 +54,7 @@ public class AppointmentsController implements Initializable {
         appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
