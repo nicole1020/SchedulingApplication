@@ -4,6 +4,8 @@ import Controller.AddAppointmentController;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -185,7 +187,7 @@ public class AppointmentsDAOImpl {
             PreparedStatement prepAST = connection.prepareStatement(sqlAST);
             ResultSet ASTResult = prepAST.executeQuery();
             while (ASTResult.next()) {
-                LocalDateTime start = LocalDateTime.parse(ASTResult.getString("start"));
+                String start = ASTResult.getString("start");
 
 
                 Appointments aC = new Appointments(start);
@@ -207,7 +209,7 @@ public class AppointmentsDAOImpl {
                 PreparedStatement prepAE = connection.prepareStatement(sqlAE);
                 ResultSet AEResult = prepAE.executeQuery();
                 while (AEResult.next()) {
-                    LocalDateTime end = LocalDateTime.parse(AEResult.getString("End"));
+                    String end = AEResult.getString("End");
                     Appointments aE = new Appointments(end);
                     appointmentEndTimes.add(aE);
                 }

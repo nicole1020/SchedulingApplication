@@ -1,7 +1,10 @@
 package Model;
 
 
+import javafx.scene.control.DatePicker;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Appointments {
     private int appointmentID;
@@ -11,8 +14,8 @@ public class Appointments {
     private int contact;
     private String type;
     private String startDate;
-    private LocalDateTime startTime;
-    private LocalDateTime date;
+    private String startTime;
+    private DatePicker date;
     private LocalDateTime endTime;
     private String endDate;
     private int customerID;
@@ -45,16 +48,14 @@ public class Appointments {
         this.userID = user_id;
     }
 
-    public LocalDateTime getDate () {
+    public DatePicker getDate () {
         return date;
 }
     public Appointments(Integer customer_id) {
         this.customerID = customer_id;
     }
 
-    public Appointments(String type) {
-        this.type = type;
-    }
+
 
     public Appointments() {
 
@@ -64,7 +65,7 @@ public class Appointments {
 
 
 
-    public Appointments(LocalDateTime start) {
+    public Appointments(String start) {
 
         this.startTime = start;
     }
@@ -73,7 +74,7 @@ public class Appointments {
    // }
 
     public LocalDateTime getEndTime(){return endTime;}
-    public LocalDateTime getStartTime(){return startTime;}
+    public String getStartTime(){return startTime;}
 
 
     public int getAppointmentID() {

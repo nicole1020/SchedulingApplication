@@ -69,6 +69,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  5/13 cloned application from my github-saved. had to remove javafx versions from fxml code so it would stop throwing errors.
  using this format - xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
  5/14 studying time formatting so i can properly set up appointments screen.
+ 5/16 working on add appointment screen- making it possible to save new appointment.
  */
 public class Main extends Application {
 

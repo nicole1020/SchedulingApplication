@@ -124,7 +124,7 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType() , date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType() , date, LocalDateTime.parse(startTime.getStartTime()), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
             AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }
