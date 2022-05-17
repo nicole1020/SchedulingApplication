@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
  I received email back from Miss Carolyn asking if it was my inputs I was comparing or comparing themselves to strings.
@@ -79,7 +82,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        Locale currentLocale = Locale.getDefault();
+        Locale locale = new Locale("en_FR");
+        ResourceBundle resourceB = ResourceBundle.getBundle("Resouces.loginLabels", locale);
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
