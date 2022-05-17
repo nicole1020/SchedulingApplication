@@ -9,14 +9,14 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.UserLoginController">
    <Button fx:id="login" layoutX="226.0" layoutY="200.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="62.0" text="Login" />
    <Button fx:id="cancel" layoutX="306.0" layoutY="200.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="69.0" text="Cancel" />
-   <Label fx:id="userNameLabel" layoutX="161.0" layoutY="101.0" text="%UserName" />
-   <Label fx:id="passwordLabel" layoutX="161.0" layoutY="154.0" text="%Password" />
-   <TextField fx:id="userNameField" layoutX="226.0" layoutY="97.0" onAction="#onUserNameField" promptText="%Enter Username" />
-   <TextField fx:id="password" layoutX="226.0" layoutY="150.0" onAction="#onPassword" promptText="%Enter Password " />
+   <Label fx:id="userNameLabel" layoutX="161.0" layoutY="101.0" text="UserName" />
+   <Label fx:id="passwordLabel" layoutX="161.0" layoutY="154.0" text="Password" />
+   <TextField fx:id="userNameField" layoutX="226.0" layoutY="97.0" onAction="#onUserNameField" promptText="Enter Username" />
+   <TextField fx:id="password" layoutX="226.0" layoutY="150.0" onAction="#onPassword" promptText="Enter Password " />
    <Label layoutX="63.0" layoutY="38.0" prefHeight="35.0" prefWidth="210.0" text="Scheduling Application Login">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <Label fx:id="%userLocationLabel" layoutX="67.0" layoutY="282.0" prefHeight="17.0" prefWidth="508.0" />
+   <Label fx:id="userLocationLabel" layoutX="67.0" layoutY="282.0" prefHeight="17.0" prefWidth="508.0" />
 </AnchorPane>

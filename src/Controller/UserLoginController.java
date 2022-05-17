@@ -29,23 +29,21 @@ public class UserLoginController implements Initializable {
     public Label passwordLabel;
     public Label userLocationLabel;
     private static User loggedUser;
-    private static ResourceBundle loginLabels;
-    private static ResourceBundle french;
-    private static ResourceBundle everywhereElse;
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Instant now = Instant.now();
+      Instant now = Instant.now();
         ZonedDateTime zdt = ZonedDateTime.ofInstant(now,
                 ZoneId.of(ZoneId.systemDefault().toString()));
         System.out.println("Date/Time Zone " + zdt);
         userLocationLabel.setText(ZoneId.systemDefault().toString());
-        Locale currentLocale = new Locale("fr", "CA", "UNIX");
-        ResourceBundle loginLabels = ResourceBundle.getBundle(
-                "ButtonLabel", currentLocale);
-
-       }
+     /*  Locale currentLocale = new Locale("fr", "CA", "UNIX");
+      ResourceBundle resourceB = ResourceBundle.getBundle("Resources.loginLabels", currentLocale);
+**/
+    }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
         String userName = userNameField.getText();

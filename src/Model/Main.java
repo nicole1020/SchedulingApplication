@@ -82,17 +82,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Locale currentLocale = Locale.getDefault();
-        Locale locale = new Locale("en_FR");
-        ResourceBundle resourceB = ResourceBundle.getBundle("Resouces.loginLabels", locale);
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
+       // Locale currentLocale = Locale.getDefault();
+        //Locale locale = new Locale("en_FR");
+       // ResourceBundle resourceB = ResourceBundle.getBundle("Resources.loginLabels", locale);
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
-
+        Scene scene = new Scene(root);
         primaryStage.setTitle("");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
 
 
