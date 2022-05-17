@@ -79,13 +79,14 @@ I also had been attempting to delete the division ID which was unnecessary.
 
  */
 public class Main extends Application {
+    public static ResourceBundle resourceB;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-       // Locale currentLocale = Locale.getDefault();
-        //Locale locale = new Locale("en_FR");
-       // ResourceBundle resourceB = ResourceBundle.getBundle("Resources.loginLabels", locale);
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        Locale.setDefault(Locale.FRENCH);
+
+        resourceB = ResourceBundle.getBundle("Resources.Nat", Locale.getDefault());
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));

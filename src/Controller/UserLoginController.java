@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.CustomersDAOImpl;
 import DAO.UserDAOImpl;
+import Model.Main;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +44,11 @@ public class UserLoginController implements Initializable {
      /*  Locale currentLocale = new Locale("fr", "CA", "UNIX");
       ResourceBundle resourceB = ResourceBundle.getBundle("Resources.loginLabels", currentLocale);
 **/
+        passwordLabel.setText(Main.resourceB.getString("password"));
+        userNameLabel.setText(Main.resourceB.getString("username"));
+        userNameField.setText(Main.resourceB.getString("enter_username"));
+        password.setText(Main.resourceB.getString("enter_password"));
+
     }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
