@@ -106,11 +106,11 @@ public class AppointmentsController implements Initializable {
 
     public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AddNewAppointment.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
             Parent root = (Parent) loader.load();
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setTitle("Customer Screen");
             stage.setScene(scene);
             stage.show();
         } catch (Exception var6) {

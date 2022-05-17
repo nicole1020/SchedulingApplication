@@ -1,16 +1,16 @@
 package DAO;
 
-import Controller.AddAppointmentController;
-import Model.*;
+import Model.Appointments;
+import Model.Contacts;
+import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.DatePicker;
 
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
 
 import static DAO.DBConnection.connection;
 

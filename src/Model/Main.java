@@ -70,6 +70,8 @@ I also had been attempting to delete the division ID which was unnecessary.
  using this format - xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
  5/14 studying time formatting so i can properly set up appointments screen.
  5/16 working on add appointment screen- making it possible to save new appointment.
+ fixed start date column in appointments so it would properly load data.
+ worked on trying to get "to String" to work in add appointments screen. Might need to make a new java class.
  */
 public class Main extends Application {
 

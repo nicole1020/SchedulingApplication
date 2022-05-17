@@ -82,6 +82,7 @@ public class AddAppointmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Appointments
         String cid = appointmentID.getText();
+        DatePicker aDate = appointmentDate;
         appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsDAOImpl.getAllAppointmentTypes());
         appointmentDate.getEditor();
