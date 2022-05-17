@@ -17,6 +17,7 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class UserLoginController implements Initializable {
@@ -28,6 +29,7 @@ public class UserLoginController implements Initializable {
     public Label passwordLabel;
     public Label userLocationLabel;
     private static User loggedUser;
+    private static ResourceBundle loginLabels;
     private static ResourceBundle french;
     private static ResourceBundle everywhereElse;
 
@@ -39,7 +41,9 @@ public class UserLoginController implements Initializable {
                 ZoneId.of(ZoneId.systemDefault().toString()));
         System.out.println("Date/Time Zone " + zdt);
         userLocationLabel.setText(ZoneId.systemDefault().toString());
-
+        Locale currentLocale = new Locale("fr", "CA", "UNIX");
+        ResourceBundle loginLabels = ResourceBundle.getBundle(
+                "ButtonLabel", currentLocale);
 
        }
 

@@ -72,14 +72,16 @@ I also had been attempting to delete the division ID which was unnecessary.
  5/16 working on add appointment screen- making it possible to save new appointment.
  fixed start date column in appointments so it would properly load data.
  worked on trying to get "to String" to work in add appointments screen. Might need to make a new java class.
+ 5/17 using course material to get french language to populate in user login screen based on user's location.
+
  */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
 
         primaryStage.setTitle("");
