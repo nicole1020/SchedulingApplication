@@ -162,7 +162,7 @@ public class AppointmentsDAOImpl {
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
-            String sqlAC = "SELECT Contact_ID, Contact_Name, email FROM contacts WHERE Contact_ID.contacts = Contact_ID.appointments";
+            String sqlAC = "SELECT * FROM contacts";
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
             ResultSet ACResult = prepAC.executeQuery();
             while (ACResult.next()) {
@@ -183,7 +183,7 @@ public class AppointmentsDAOImpl {
     public static ObservableList<Appointments> getAllAppointmentStartTimes() {
         ObservableList<Appointments> appointmentStartTimes = FXCollections.observableArrayList();
         try {
-            String sqlAST = "SELECT start from appointments";
+            String sqlAST = "SELECT * from appointments";
             PreparedStatement prepAST = connection.prepareStatement(sqlAST);
             ResultSet ASTResult = prepAST.executeQuery();
             while (ASTResult.next()) {
@@ -205,7 +205,7 @@ public class AppointmentsDAOImpl {
 
             ObservableList<Appointments> appointmentEndTimes = FXCollections.observableArrayList();
             try {
-                String sqlAE = "SELECT start from appointments";
+                String sqlAE = "SELECT * from appointments";
                 PreparedStatement prepAE = connection.prepareStatement(sqlAE);
                 ResultSet AEResult = prepAE.executeQuery();
                 while (AEResult.next()) {

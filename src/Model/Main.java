@@ -76,7 +76,8 @@ I also had been attempting to delete the division ID which was unnecessary.
  fixed start date column in appointments so it would properly load data.
  worked on trying to get "to String" to work in add appointments screen. Might need to make a new java class.
  5/17 using course material to get french language to populate in user login screen based on user's location.
-
+Went to live support and course instructor Mr. Wabara helped me with resource bundle in userlogin and main controllers.
+ 5/18 debugging appointments controller- my sql was wrong in the get all contacts and end time/date columns still need to work on to string. Will continue to work on add appointment controller and go to live support again tonight.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;
