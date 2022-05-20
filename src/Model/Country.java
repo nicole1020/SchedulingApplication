@@ -20,8 +20,5 @@ public class Country extends Customers{
         return(countryName );
     }
 
-    public String toString(String country) {
-        return country;
-    }
 }
 

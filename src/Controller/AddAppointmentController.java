@@ -115,7 +115,7 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
-        Appointments type = appointmentType.getValue();
+        TypeOfAppointment type = (TypeOfAppointment) appointmentType.getValue();
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
@@ -126,7 +126,7 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType() , date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType(), date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
             AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }

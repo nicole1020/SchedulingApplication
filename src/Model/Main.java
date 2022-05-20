@@ -78,6 +78,7 @@ I also had been attempting to delete the division ID which was unnecessary.
  5/17 using course material to get french language to populate in user login screen based on user's location.
 Went to live support and course instructor Mr. Wabara helped me with resource bundle in userlogin and main controllers.
  5/18 debugging appointments controller- my sql was wrong in the get all contacts and end time/date columns still need to work on to string. Will continue to work on add appointment controller and go to live support again tonight.
+ 5/20 working on populating combo box options properly- will make java classes for each combo box
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;
