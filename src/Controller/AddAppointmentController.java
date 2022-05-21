@@ -19,6 +19,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+import static java.util.Calendar.AM;
+
 public class AddAppointmentController implements Initializable {
     public Button saveAppointment;
     public Button exitButton;
@@ -74,17 +76,17 @@ public class AddAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         //Appointments
         String cid = appointmentID.getText();
         DatePicker aDate = appointmentDate;
         appointmentCustomerID.setItems(AppointmentsHelperFile.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelperFile.getAllAppointmentTypes());
         appointmentDate.getEditor();
-appointmentUserID.setItems(AppointmentsHelperFile.getAllAppointmentUserIds());
-appointmentContact.setItems(AppointmentsHelperFile.getAllAppointmentContacts());
-appointmentStartTime.setItems(AppointmentsHelperFile.getAllAppointmentStartTimes());
-appointmentEndTime.setItems(AppointmentsHelperFile.getAllAppointmentEndTimes());
-
+        appointmentUserID.setItems(AppointmentsHelperFile.getAllAppointmentUserIds());
+        appointmentContact.setItems(AppointmentsHelperFile.getAllAppointmentContacts());
+        appointmentStartTime.setItems(AppointmentsHelperFile.getAllAppointmentStartTimes().sorted());
+        appointmentEndTime.setItems(AppointmentsHelperFile.getAllAppointmentEndTimes());
 
     }
 
