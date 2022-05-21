@@ -112,7 +112,7 @@ appointmentEndTime.setItems(AppointmentsHelperFile.getAllAppointmentEndTimes());
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
-        Customers customerID = appointmentCustomerID.getValue();
+        CustomerIDsAppointments customerID = (CustomerIDsAppointments) appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerID==null ||contact ==null || type == null || date == null) {
             return;

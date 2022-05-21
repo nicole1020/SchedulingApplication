@@ -80,7 +80,7 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  5/18 debugging appointments controller- my sql was wrong in the get all contacts and end time/date columns still need to work on to string. Will continue to work on add appointment controller and go to live support again tonight.
  5/20 working on populating combo box options properly- will make java classes for each combo box. successfully used existing contacts class to load contactID to combo box in add appointments.
  also fixed type combo box by properly setting up the type variable- String toString was not working because I never properly declared type.
-
+-need to fix code to make sure appointments and customerID populating in the helper file- which is why theyre not populating in the combo box.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;

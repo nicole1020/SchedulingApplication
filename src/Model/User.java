@@ -32,7 +32,9 @@ public class User {
         return password;
     }
 
-
+public String toString(){
+        return String.valueOf((userID));
+}
 
 
 }
