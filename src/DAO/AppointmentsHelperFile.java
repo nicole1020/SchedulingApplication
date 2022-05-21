@@ -90,7 +90,7 @@ public class AppointmentsHelperFile {
     public static ObservableList<Appointments> getAllAppointmentCustomerIDs() {
         ObservableList<Appointments> appointmentCustomerIDs = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT * FROM appointments";
+            String sqlcB = "SELECT * FROM customers";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
