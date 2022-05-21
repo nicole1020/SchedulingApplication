@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 import static DAO.DBConnection.connection;
 
-public class CustomersDAOImpl {
+public class CustomersHelperFile {
 
     private static TextField customerID;
 

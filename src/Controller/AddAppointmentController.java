@@ -1,9 +1,6 @@
 package Controller;
 
-import DAO.AddressDAOImpl;
-import DAO.AppointmentsDAOImpl;
-import DAO.CustomersDAOImpl;
-import DAO.UserDAOImpl;
+import DAO.AppointmentsHelperFile;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
@@ -83,13 +76,13 @@ public class AddAppointmentController implements Initializable {
         //Appointments
         String cid = appointmentID.getText();
         DatePicker aDate = appointmentDate;
-        appointmentCustomerID.setItems(AppointmentsDAOImpl.getAllAppointmentCustomerIDs());
-        appointmentType.setItems(AppointmentsDAOImpl.getAllAppointmentTypes());
+        appointmentCustomerID.setItems(AppointmentsHelperFile.getAllAppointmentCustomerIDs());
+        appointmentType.setItems(AppointmentsHelperFile.getAllAppointmentTypes());
         appointmentDate.getEditor();
-appointmentUserID.setItems(AppointmentsDAOImpl.getAllAppointmentUserIds());
-appointmentContact.setItems(AppointmentsDAOImpl.getAllAppointmentContacts());
-appointmentStartTime.setItems(AppointmentsDAOImpl.getAllAppointmentStartTimes());
-appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
+appointmentUserID.setItems(AppointmentsHelperFile.getAllAppointmentUserIds());
+appointmentContact.setItems(AppointmentsHelperFile.getAllAppointmentContacts());
+appointmentStartTime.setItems(AppointmentsHelperFile.getAllAppointmentStartTimes());
+appointmentEndTime.setItems(AppointmentsHelperFile.getAllAppointmentEndTimes());
 
 
     }
@@ -119,16 +112,16 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
-        Appointments customerID = appointmentCustomerID.getValue();
+        Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerID==null ||contact ==null || type == null || date == null) {
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsDAOImpl.createAppointment(title, description, location, type.getType(), date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelperFile.createAppointment(title, description, location, type.getType(), date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
-            AppointmentsDAOImpl.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelperFile.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }
 
 

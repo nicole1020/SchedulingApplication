@@ -64,6 +64,4 @@ public String getDivision(){
         return (country);
     }
 
-
-
 }

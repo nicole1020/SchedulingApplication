@@ -1,8 +1,6 @@
 package Controller;
 
-import DAO.CustomersDAOImpl;
-import Model.Address;
-import Model.Appointments;
+import DAO.CustomersHelperFile;
 import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -45,7 +42,7 @@ public class CustomerController implements Initializable {
         System.out.println("Customer Database Main Screen");
 
     //Customers Table Initialized
-        customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+        customersTable.setItems(CustomersHelperFile.getAllCustomers());
 
         customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -56,13 +53,13 @@ public class CustomerController implements Initializable {
         customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
 
         System.out.println("Customer IDs:");
-        for (int i = 0; i < CustomersDAOImpl.getAllCustomers().size(); i++) {
-            System.out.println(CustomersDAOImpl.getAllCustomers()
+        for (int i = 0; i < CustomersHelperFile.getAllCustomers().size(); i++) {
+            System.out.println(CustomersHelperFile.getAllCustomers()
                     .get(i).getCustomerID());
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + CustomersDAOImpl.getAllCustomers().size() + " Customers on File");
+        resultsLBL.setText("Report: " + CustomersHelperFile.getAllCustomers().size() + " Customers on File");
 
 
     }
@@ -85,7 +82,7 @@ public class CustomerController implements Initializable {
       //  String DivisionID = customersTableDivision.getText();
 
 
-        CustomersDAOImpl.deleteCustomer( p.getCustomerID() );
+        CustomersHelperFile.deleteCustomer( p.getCustomerID() );
 
             }
 

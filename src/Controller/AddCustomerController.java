@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.AddressDAOImpl;
-import DAO.CustomersDAOImpl;
+import DAO.AddressHelperFile;
+import DAO.CustomersHelperFile;
 import Model.Address;
 import Model.Country;
 import javafx.event.ActionEvent;
@@ -42,7 +42,7 @@ public class AddCustomerController implements Initializable {
 
     public void onCustomerCountry(ActionEvent actionEvent) {
         Country c = customerCountryCombo.getValue();
-        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(c.getCountryID()));
+        customerDivisionCombo.setItems(AddressHelperFile.getAllAddresses(c.getCountryID()));
 
         System.out.println(customerCountryCombo.getValue());
         System.out.println(customerDivisionCombo.getValue());
@@ -69,9 +69,9 @@ public class AddCustomerController implements Initializable {
             return;
         }
         if (customerID == 0) {
-            CustomersDAOImpl.createCustomer(name, address, postalcode, phone, division.getDivisionID());
+            CustomersHelperFile.createCustomer(name, address, postalcode, phone, division.getDivisionID());
         } else {
-            CustomersDAOImpl.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
+            CustomersHelperFile.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
             );
         }
 
@@ -80,7 +80,7 @@ public class AddCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
+        customerCountryCombo.setItems(CustomersHelperFile.getAllCountries());
     }
 
     public void onBackButton(ActionEvent actionEvent) throws IOException {

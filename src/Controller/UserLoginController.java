@@ -1,7 +1,6 @@
 package Controller;
 
-import DAO.CustomersDAOImpl;
-import DAO.UserDAOImpl;
+import DAO.UserHelperFile;
 import Model.Main;
 import Model.User;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class UserLoginController implements Initializable {
@@ -62,7 +60,7 @@ public class UserLoginController implements Initializable {
         }
 
          else {
-            loggedUser = UserDAOImpl.validateUser(userName, passwordEntry);
+            loggedUser = UserHelperFile.validateUser(userName, passwordEntry);
             if(loggedUser == null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");

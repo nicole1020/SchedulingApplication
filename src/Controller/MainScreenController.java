@@ -1,8 +1,8 @@
 package Controller;
 
-import DAO.AddressDAOImpl;
-import DAO.AppointmentsDAOImpl;
-import DAO.CustomersDAOImpl;
+import DAO.AddressHelperFile;
+import DAO.AppointmentsHelperFile;
+import DAO.CustomersHelperFile;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -75,7 +75,7 @@ public class MainScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Customers Table Initialized
-        customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+        customersTable.setItems(CustomersHelperFile.getAllCustomers());
 
         customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -86,7 +86,7 @@ public class MainScreenController implements Initializable {
         customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
 
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
+        appointmentsTable.setItems(AppointmentsHelperFile.getAllAppointments());
 
         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -99,25 +99,25 @@ public class MainScreenController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         System.out.println("Customer IDs:");
-        for (int i = 0; i < CustomersDAOImpl.getAllCustomers().size(); i++) {
-            System.out.println(CustomersDAOImpl.getAllCustomers()
+        for (int i = 0; i < CustomersHelperFile.getAllCustomers().size(); i++) {
+            System.out.println(CustomersHelperFile.getAllCustomers()
                     .get(i).getCustomerID());
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + CustomersDAOImpl.getAllCustomers().size() + " Customers on File");
+        resultsLBL.setText("Report: " + CustomersHelperFile.getAllCustomers().size() + " Customers on File");
 
 
         System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsDAOImpl.getAllAppointments()
+        for (int i = 0; i < AppointmentsHelperFile.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelperFile.getAllAppointments()
                     .get(i).getAppointmentID());
 
         }
         System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelperFile.getAllAppointments().size() + " Appointments on File");
 //combobox customerCountry
-        customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
+        customerCountryCombo.setItems(CustomersHelperFile.getAllCountries());
 
     }
 
@@ -168,12 +168,12 @@ public class MainScreenController implements Initializable {
             return;
         }
         if (customerID == 0) {
-            CustomersDAOImpl.createCustomer(name, address, postalcode, phone, division.getDivisionID());
+            CustomersHelperFile.createCustomer(name, address, postalcode, phone, division.getDivisionID());
         } else {
-            CustomersDAOImpl.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
+            CustomersHelperFile.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
             );
         }
-        customersTable.setItems(CustomersDAOImpl.getAllCustomers());
+        customersTable.setItems(CustomersHelperFile.getAllCustomers());
     }
 
 
@@ -195,7 +195,7 @@ public class MainScreenController implements Initializable {
     public void onCustomerCountry(ActionEvent actionEvent) {
 
         Country c = customerCountryCombo.getValue();
-        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(c.getCountryID()));
+        customerDivisionCombo.setItems(AddressHelperFile.getAllAddresses(c.getCountryID()));
 
     System.out.println(customerCountryCombo.getValue());
         System.out.println(customerDivisionCombo.getValue());

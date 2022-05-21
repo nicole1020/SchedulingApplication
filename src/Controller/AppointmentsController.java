@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.AppointmentsDAOImpl;
+import DAO.AppointmentsHelperFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,7 +46,7 @@ public class AppointmentsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsDAOImpl.getAllAppointments());
+        appointmentsTable.setItems(AppointmentsHelperFile.getAllAppointments());
 
         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -59,13 +59,13 @@ public class AppointmentsController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsDAOImpl.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsDAOImpl.getAllAppointments()
+        for (int i = 0; i < AppointmentsHelperFile.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelperFile.getAllAppointments()
                     .get(i).getAppointmentID());
 
         }
         System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsDAOImpl.getAllAppointments().size() + " Appointments on File");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelperFile.getAllAppointments().size() + " Appointments on File");
 
 
     }

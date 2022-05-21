@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.AddressDAOImpl;
-import DAO.CustomersDAOImpl;
+import DAO.AddressHelperFile;
+import DAO.CustomersHelperFile;
 import Model.Address;
 import Model.Country;
 import Model.Customers;
@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UpdateCustomerController implements Initializable {
@@ -41,7 +40,7 @@ public class UpdateCustomerController implements Initializable {
 
     public void onCustomerCountry(ActionEvent actionEvent) {
         Country c = customerCountryCombo.getValue();
-        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(c.getCountryID()));
+        customerDivisionCombo.setItems(AddressHelperFile.getAllAddresses(c.getCountryID()));
 
         System.out.println(customerCountryCombo.getValue());
         System.out.println(customerDivisionCombo.getValue());
@@ -68,9 +67,9 @@ public class UpdateCustomerController implements Initializable {
             return;
         }
         if (customerID == 0) {
-            CustomersDAOImpl.createCustomer(name, address, postalcode, phone, division.getDivisionID());
+            CustomersHelperFile.createCustomer(name, address, postalcode, phone, division.getDivisionID());
         } else {
-            CustomersDAOImpl.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
+            CustomersHelperFile.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
             );
         }
 
@@ -92,7 +91,7 @@ public class UpdateCustomerController implements Initializable {
                 break;
             }
         }
-        customerDivisionCombo.setItems(AddressDAOImpl.getAllAddresses(countryID));
+        customerDivisionCombo.setItems(AddressHelperFile.getAllAddresses(countryID));
         for (Address D : customerDivisionCombo.getItems()) {
             if (D.getDivision().equals(theCustomer.getDivision())) {
                 customerDivisionCombo.getSelectionModel().select(D);
@@ -102,6 +101,6 @@ public class UpdateCustomerController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerCountryCombo.setItems(CustomersDAOImpl.getAllCountries());
+        customerCountryCombo.setItems(CustomersHelperFile.getAllCountries());
     }
 }

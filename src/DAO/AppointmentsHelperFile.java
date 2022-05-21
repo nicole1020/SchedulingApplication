@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 import static DAO.DBConnection.connection;
 
-public class AppointmentsDAOImpl {
+public class AppointmentsHelperFile {
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
