@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -28,7 +29,7 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentLocation;
     public ComboBox <Contacts> appointmentContact;
     public ComboBox <Appointments>appointmentType;
-    public ComboBox<Appointments> appointmentCustomerID;
+    public ComboBox<CustomerIDsAppointments> appointmentCustomerID;
     public ComboBox<User> appointmentUserID;
     public Button clearAppointment;
     public Button backButton;

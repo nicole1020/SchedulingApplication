@@ -2,6 +2,7 @@ package DAO;
 
 import Model.Appointments;
 import Model.Contacts;
+import Model.CustomerIDsAppointments;
 import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,15 +88,15 @@ public class AppointmentsHelperFile {
         psCreate.execute();
 
     }
-    public static ObservableList<Appointments> getAllAppointmentCustomerIDs() {
-        ObservableList<Appointments> appointmentCustomerIDs = FXCollections.observableArrayList();
+    public static ObservableList<CustomerIDsAppointments> getAllAppointmentCustomerIDs() {
+        ObservableList<CustomerIDsAppointments> appointmentCustomerIDs = FXCollections.observableArrayList();
         try {
             String sqlcB = "SELECT * FROM customers";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
                 Integer Customer_ID = cBResult.getInt("Customer_ID");
-                Appointments aID = new Appointments(Customer_ID);
+                CustomerIDsAppointments aID = new CustomerIDsAppointments(Customer_ID);
 
                 appointmentCustomerIDs.add(aID);
             }
