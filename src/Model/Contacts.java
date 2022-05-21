@@ -25,6 +25,7 @@ public class Contacts extends Appointments{
     public String getEmail() {
         return email;
     }
+    @Override
     public String toString(){
         return String.valueOf((contactID));
     }

@@ -35,8 +35,7 @@ public class Appointments {
         this.userID = user_id;
     }**/
 
-    public Appointments(String type) {
-    }
+ 
 
     public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
         this.appointmentID = appointment_id;
@@ -49,6 +48,10 @@ public class Appointments {
         this.endDate = end;
         this.customerID = customer_id;
         this.userID = user_id;
+    }
+
+    public Appointments(String type) {
+        this.type = type;
     }
 
     public DatePicker getDate() {
@@ -102,6 +105,11 @@ public class Appointments {
     public int getUserID() {
         return userID;}
 
+
+
+    public String toString() {
+        return (type);
+    }
 
 
 }

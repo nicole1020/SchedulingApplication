@@ -115,7 +115,7 @@ appointmentEndTime.setItems(AppointmentsDAOImpl.getAllAppointmentEndTimes());
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
-        TypeOfAppointment type = (TypeOfAppointment) appointmentType.getValue();
+        Appointments type = appointmentType.getValue();
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
