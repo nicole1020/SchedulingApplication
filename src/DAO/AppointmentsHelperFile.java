@@ -1,9 +1,6 @@
 package DAO;
 
-import Model.Appointments;
-import Model.Contacts;
-import Model.CustomerIDsAppointments;
-import Model.User;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static DAO.DBConnection.connection;
 
@@ -57,8 +55,8 @@ public class AppointmentsHelperFile {
             psCreate.setString(3, String.valueOf(location));
             psCreate.setString(4, String.valueOf(type));
             psCreate.setString(5, String.valueOf(date));
-            psCreate.setString(6, String.valueOf(startTime));
-            psCreate.setString(7, String.valueOf(endTime));
+            psCreate.setObject(6, startTime);
+            psCreate.setObject(7, endTime);
             psCreate.setInt(8, customerid);
             psCreate.setInt(9, user);
             psCreate.setInt(10, contact);
