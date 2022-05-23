@@ -1,15 +1,16 @@
 package Model;
 
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class StartTime extends Appointments{
-private LocalTime startDate;
-    public StartTime(LocalTime date) {
+private LocalDateTime startDate;
+    public StartTime(LocalDateTime date) {
         this.startDate = date;
 
     }
-    public LocalTime getStartDate(){
+    public LocalDateTime getStartDate(){
         return startDate;
     }
 }

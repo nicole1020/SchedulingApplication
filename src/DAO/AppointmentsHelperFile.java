@@ -4,16 +4,18 @@ import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Map;
 
 import static DAO.DBConnection.connection;
 
 public class AppointmentsHelperFile {
+
+    private static Object LocalDateTime;
+    private static Calendar calendar;
+
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
@@ -28,8 +30,8 @@ public class AppointmentsHelperFile {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                String Start = aResult.getString("Start");
-                String End = aResult.getString("End");
+                LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
+                LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
 
@@ -43,6 +45,18 @@ public class AppointmentsHelperFile {
         }
         return appointmentsList;
     }
+
+    private static Map<String, Class<?>> getEndTime() {
+        return null;
+    }
+
+    private static Map<String, Class<?>> getStartTime() {
+        return null;
+    }
+
+    private static Map<String, Class<?>> setStartTime() {
+        return null;
+    }
     //create new appointment
 
 
@@ -54,7 +68,7 @@ public class AppointmentsHelperFile {
             psCreate.setString(2, String.valueOf(description));
             psCreate.setString(3, String.valueOf(location));
             psCreate.setString(4, String.valueOf(type));
-            psCreate.setString(5, String.valueOf(date));
+            psCreate.setDate(5, Date.valueOf(String.valueOf(date)), calendar);
             psCreate.setObject(6, startTime);
             psCreate.setObject(7, endTime);
             psCreate.setInt(8, customerid);
@@ -77,9 +91,9 @@ public class AppointmentsHelperFile {
         psCreate.setString(3, String.valueOf(description));
         psCreate.setString(4, String.valueOf(location));
         psCreate.setString(5, String.valueOf(type));
-        psCreate.setString(6, String.valueOf(date));
-        psCreate.setString(7, String.valueOf(startTime));
-        psCreate.setString(8, String.valueOf(endTime));
+        psCreate.setDate(6, Date.valueOf(String.valueOf(date)));
+        psCreate.setObject(7, String.valueOf(startTime));
+        psCreate.setObject(8, String.valueOf(endTime));
         psCreate.setInt(9, customerID);
         psCreate.setInt(10, user);
         psCreate.setInt(11, contact);
@@ -217,6 +231,8 @@ public class AppointmentsHelperFile {
             }
             return appointmentEndTimes;
         }
-    }
+
+
+}
 
 

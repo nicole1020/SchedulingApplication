@@ -56,6 +56,7 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onEditAppointment(ActionEvent actionEvent) {
+
     }
 
     public void onAppointmentsTextField(ActionEvent actionEvent) {

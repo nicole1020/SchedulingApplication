@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.AppointmentsHelperFile;
+import Model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -96,6 +97,20 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onEditAppointment(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
+            Parent UpdateAppointmentScreen = loader.load();
+            UpdateAppointmentController controller = loader.getController();
+            controller.editedAppointment((Appointments)this.appointmentsTable.getSelectionModel().getSelectedItem());
+            System.out.println("Update Appointment Clicked");
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(UpdateAppointmentScreen);
+            stage.setTitle("Update Appointment Record");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var7) {
+            var7.printStackTrace();
+        }
     }
 
     public void onAppointmentsTextField(ActionEvent actionEvent) {

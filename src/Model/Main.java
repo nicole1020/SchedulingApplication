@@ -82,6 +82,8 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  also fixed type combo box by properly setting up the type variable- String toString was not working because I never properly declared type.
 -need to fix code to make sure appointments and customerID populating in the helper file- which is why theyre not populating in the combo box.
  5/21- fixed customerID combo box in appointments by updating combo box<CustomerIDsAppointments>  instead of <Appointments>
+ 5/23 fixing start and end classes in Appointments java and helper files to be LocalDateTime designated instead of strings.
+ so far I have it set up I need to work on appointment scheduling breakdown.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;
