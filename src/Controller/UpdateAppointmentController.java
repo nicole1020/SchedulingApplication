@@ -36,7 +36,7 @@ public class UpdateAppointmentController {
         this.appointmentTitle.setText(String.valueOf(this.selectedAppointment.getTitle()));
         this.appointmentDescription.setText(String.valueOf(this.selectedAppointment.getDescription()));
         this.appointmentLocation.setText(String.valueOf(this.selectedAppointment.getLocation()));
-        this.appointmentContact.setText(String.valueOf(this.selectedAppointment.getContact()));
+       /*this.appointmentContact.setText(String.valueOf(this.selectedAppointment.getContact()));
         this.appointmentType.setText(String.valueOf(this.selectedAppointment.getType()));
         this.appointmentDate.setText(String.valueOf(this.selectedAppointment.getDate()));
         this.appointmentStart.setText(String.valueOf(this.selectedAppointment.getStartTime()));
@@ -57,7 +57,7 @@ public class UpdateAppointmentController {
                 customerDivisionCombo.getSelectionModel().select(D);
                 break;
             }
-        }
+        }**/
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
