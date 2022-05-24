@@ -19,8 +19,8 @@ public class AppointmentsHelperFile {
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID\n" +
-                    "FROM appointments";
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {

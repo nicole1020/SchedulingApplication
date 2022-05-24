@@ -116,7 +116,7 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
         Appointments startTime = appointmentStartTime.getValue();
         Appointments endTime = appointmentEndTime.getValue();
-        CustomerIDsAppointments customerID = (CustomerIDsAppointments) appointmentCustomerID.getValue();
+        CustomerIDsAppointments customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerID==null ||contact ==null || type == null || date == null) {
             return;
