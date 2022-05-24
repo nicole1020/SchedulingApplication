@@ -84,6 +84,7 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  5/21- fixed customerID combo box in appointments by updating combo box<CustomerIDsAppointments>  instead of <Appointments>
  5/23 fixing start and end classes in Appointments java and helper files to be LocalDateTime designated instead of strings.
  so far I have it set up I need to work on appointment scheduling breakdown.
+ 5/23 fixing onsave code for addappointment. working on sql and java files using key to keys as a guide.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;

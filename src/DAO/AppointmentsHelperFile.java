@@ -62,7 +62,7 @@ public class AppointmentsHelperFile {
 
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime date, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
         try {
-            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
+            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
             psCreate.setString(1, String.valueOf(title));
             psCreate.setString(2, String.valueOf(description));
@@ -71,9 +71,9 @@ public class AppointmentsHelperFile {
             psCreate.setDate(5, Date.valueOf(String.valueOf(date)), calendar);
             psCreate.setObject(6, startTime);
             psCreate.setObject(7, endTime);
-            psCreate.setInt(8, customerid);
-            psCreate.setInt(9, user);
-            psCreate.setInt(10, contact);
+          //  psCreate.setInt(8, customerid);
+         //   psCreate.setInt(9, user);
+          //  psCreate.setInt(10, contact);
 
             psCreate.execute();
 
