@@ -2,11 +2,14 @@ package Model;
 
 import DAO.DBConnection;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.time.LocalTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -85,6 +88,7 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  5/23 fixing start and end classes in Appointments java and helper files to be LocalDateTime designated instead of strings.
  so far I have it set up I need to work on appointment scheduling breakdown.
  5/23 fixing onsave code for addappointment. working on sql and java files using key to keys as a guide.
+5/24 met with Mr wabara in live instructor support to help with creating appointment times, and sql code in appointments.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;
@@ -108,8 +112,17 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
+        LocalTime start = LocalTime.of(0,0);
+        for(int i = 1; i<24 ; i++){
 
+            startTime.add(LocalTime.of(i, 0));
+            if(i == 23) startTime.add(LocalTime.of(0,0));
+           // System.out.println(LocalTime.of(i,0));
 
+        }
+        for(LocalTime lt: startTime)
+            System.out.println(lt);
         DBConnection.openConnection();
         launch(args);
         DBConnection.closeConnection();

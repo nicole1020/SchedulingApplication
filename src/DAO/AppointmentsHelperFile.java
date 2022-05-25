@@ -30,7 +30,9 @@ public class AppointmentsHelperFile {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
+                aResult.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
+                aResult.getTimestamp("End").toLocalDateTime();
                 LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
@@ -62,15 +64,17 @@ public class AppointmentsHelperFile {
 
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime date, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
         try {
+
             String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
             psCreate.setString(1, String.valueOf(title));
             psCreate.setString(2, String.valueOf(description));
             psCreate.setString(3, String.valueOf(location));
             psCreate.setString(4, String.valueOf(type));
-            psCreate.setDate(5, Date.valueOf(String.valueOf(date)), calendar);
+            psCreate.setTimestamp(Timestamp.valueOf(Start));
             psCreate.setObject(6, startTime);
             psCreate.setObject(7, endTime);
+
           //  psCreate.setInt(8, customerid);
          //   psCreate.setInt(9, user);
           //  psCreate.setInt(10, contact);
