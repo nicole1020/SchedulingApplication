@@ -12,6 +12,9 @@ public class Contacts extends Appointments{
         this.email = email;
     }
 
+    public Contacts(Integer contact_id) {
+    }
+
     public int getContactID() {
         return contactID;
     }

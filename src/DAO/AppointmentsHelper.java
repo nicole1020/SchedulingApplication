@@ -62,7 +62,7 @@ public class AppointmentsHelperFile {
     //create new appointment
 
 
-    public static void createAppointment(String title, String description, String location, String type, LocalDateTime date, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
+    public static void createAppointment(String title, String description, String location, String type, LocalDateTime date,Timestamp Start, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
         try {
 
             String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
@@ -104,35 +104,16 @@ public class AppointmentsHelperFile {
         psCreate.execute();
 
     }
-    public static ObservableList<CustomerIDsAppointments> getAllAppointmentCustomerIDs() {
-        ObservableList<CustomerIDsAppointments> appointmentCustomerIDs = FXCollections.observableArrayList();
-        try {
-            String sqlcB = "SELECT * FROM customers";
-            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-            ResultSet cBResult = prepcB.executeQuery();
-            while (cBResult.next()) {
-                Integer Customer_ID = cBResult.getInt("Customer_ID");
-                CustomerIDsAppointments aID = new CustomerIDsAppointments(Customer_ID);
 
-                appointmentCustomerIDs.add(aID);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return appointmentCustomerIDs;
-    }
-    public static ObservableList<Appointments> getAllAppointmentTypes() {
-        ObservableList<Appointments> appointmentTypes = FXCollections.observableArrayList();
+    public static ObservableList<String> getAllAppointmentTypes() {
+        ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT * FROM appointments";
+            String sqlcB = "SELECT type FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
                 String type = cBResult.getString("type");
-                Appointments aT = new Appointments(type);
-
-                appointmentTypes.add(aT);
+                appointmentTypes.add(type);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,7 +141,7 @@ public class AppointmentsHelperFile {
     public static ObservableList<User> getAllAppointmentUserIds() {
         ObservableList<User> appointmentUserID = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT * FROM appointments";
+            String sqlcB = "SELECT user FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
@@ -179,14 +160,12 @@ public class AppointmentsHelperFile {
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
-            String sqlAC = "SELECT * FROM contacts";
+            String sqlAC = "SELECT Contact_ID FROM contacts";
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
             ResultSet ACResult = prepAC.executeQuery();
             while (ACResult.next()) {
                 Integer Contact_ID = ACResult.getInt("Contact_ID");
-                String Contact_Name = ACResult.getString("Contact_Name");
-                String email = ACResult.getString("email");
-                Contacts aC = new Contacts(Contact_ID,Contact_Name, email);
+                Contacts aC = new Contacts(Contact_ID);
 
 
                 appointmentContacts.add(aC);
@@ -200,7 +179,7 @@ public class AppointmentsHelperFile {
     public static ObservableList<Appointments> getAllAppointmentStartTimes() {
         ObservableList<Appointments> appointmentStartTimes = FXCollections.observableArrayList();
         try {
-            String sqlAST = "SELECT * from appointments";
+            String sqlAST = "SELECT start from appointments";
             PreparedStatement prepAST = connection.prepareStatement(sqlAST);
             ResultSet ASTResult = prepAST.executeQuery();
             while (ASTResult.next()) {
@@ -222,7 +201,7 @@ public class AppointmentsHelperFile {
 
             ObservableList<Appointments> appointmentEndTimes = FXCollections.observableArrayList();
             try {
-                String sqlAE = "SELECT * from appointments";
+                String sqlAE = "SELECT end from appointments";
                 PreparedStatement prepAE = connection.prepareStatement(sqlAE);
                 ResultSet AEResult = prepAE.executeQuery();
                 while (AEResult.next()) {

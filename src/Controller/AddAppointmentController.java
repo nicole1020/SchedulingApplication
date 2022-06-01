@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.AppointmentsHelperFile;
+import DAO.CustomersHelperFile;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import static java.util.Calendar.AM;
@@ -30,14 +32,15 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentDescription;
     public TextField appointmentLocation;
     public ComboBox <Contacts> appointmentContact;
-    public ComboBox <Appointments>appointmentType;
-    public ComboBox<CustomerIDsAppointments> appointmentCustomerID;
+    public ComboBox <String>appointmentType;
+    public ComboBox<Customers> appointmentCustomerID;
     public ComboBox<User> appointmentUserID;
     public Button clearAppointment;
     public Button backButton;
     public DatePicker appointmentDate;
-    public ComboBox<Appointments> appointmentStartTime;
-    public ComboBox<Appointments> appointmentEndTime;
+    //set to business hours 8 AM to 10 PM EST
+    public ComboBox<LocalTime> appointmentStartTime;
+    public ComboBox<LocalTime> appointmentEndTime;
 
     private  Integer appointmentid = 0;
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -81,13 +84,13 @@ public class AddAppointmentController implements Initializable {
         //Appointments
         String cid = appointmentID.getText();
         DatePicker aDate = appointmentDate;
-        appointmentCustomerID.setItems(AppointmentsHelperFile.getAllAppointmentCustomerIDs());
+        appointmentCustomerID.setItems(CustomersHelperFile.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelperFile.getAllAppointmentTypes());
         appointmentDate.getEditor();
         appointmentUserID.setItems(AppointmentsHelperFile.getAllAppointmentUserIds());
         appointmentContact.setItems(AppointmentsHelperFile.getAllAppointmentContacts());
-        appointmentStartTime.setItems(AppointmentsHelperFile.getAllAppointmentStartTimes().sorted());
-        appointmentEndTime.setItems(AppointmentsHelperFile.getAllAppointmentEndTimes());
+        appointmentStartTime.setItems(LocalTime
+        //appointmentEndTime
 
     }
 

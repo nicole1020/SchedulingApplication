@@ -89,6 +89,7 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  so far I have it set up I need to work on appointment scheduling breakdown.
  5/23 fixing onsave code for addappointment. working on sql and java files using key to keys as a guide.
 5/24 met with Mr wabara in live instructor support to help with creating appointment times, and sql code in appointments.
+ 6/1 met with mr ruiz live instructor support- he helped me navigate my program with properly setting up appointment availability.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;

@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Appointments;
+import Model.Contacts;
 import Model.Country;
 import Model.Customers;
 import javafx.collections.FXCollections;
@@ -115,7 +116,23 @@ public class CustomersHelperFile {
         }
         return countryList;
     }
+    public static ObservableList<Customers> getAllAppointmentCustomerIDs() {
+        ObservableList<Customers> appointmentCustomerIDs = FXCollections.observableArrayList();
+        try {
+            String sqlcB = "SELECT Customer_ID FROM customers";
+            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
+            ResultSet cBResult = prepcB.executeQuery();
+            while (cBResult.next()) {
+                int Customer_ID = cBResult.getInt("Customer_ID");
+                Customers cC = new Customers(Customer_ID);
+                appointmentCustomerIDs.add(cC);
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentCustomerIDs;
+    }
 
 
 }

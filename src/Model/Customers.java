@@ -31,6 +31,9 @@ public class Customers {
 
     }
 
+    public Customers(int customer_id) {
+    }
+
     public int getCustomerID() {
         return customerID;
     }
