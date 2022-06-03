@@ -1,8 +1,8 @@
 package Controller;
 
-import DAO.AddressHelperFile;
-import DAO.AppointmentsHelperFile;
-import DAO.CustomersHelperFile;
+import DAO.AddressHelper;
+import DAO.AppointmentsHelper;
+import DAO.CustomersHelper;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -75,7 +75,7 @@ public class MainScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Customers Table Initialized
-        customersTable.setItems(CustomersHelperFile.getAllCustomers());
+        customersTable.setItems(CustomersHelper.getAllCustomers());
 
         customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -86,7 +86,7 @@ public class MainScreenController implements Initializable {
         customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
 
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsHelperFile.getAllAppointments());
+        appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -99,25 +99,25 @@ public class MainScreenController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         System.out.println("Customer IDs:");
-        for (int i = 0; i < CustomersHelperFile.getAllCustomers().size(); i++) {
-            System.out.println(CustomersHelperFile.getAllCustomers()
+        for (int i = 0; i < CustomersHelper.getAllCustomers().size(); i++) {
+            System.out.println(CustomersHelper.getAllCustomers()
                     .get(i).getCustomerID());
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + CustomersHelperFile.getAllCustomers().size() + " Customers on File");
+        resultsLBL.setText("Report: " + CustomersHelper.getAllCustomers().size() + " Customers on File");
 
 
         System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsHelperFile.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsHelperFile.getAllAppointments()
+        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelper.getAllAppointments()
                     .get(i).getAppointmentID());
 
         }
         System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsHelperFile.getAllAppointments().size() + " Appointments on File");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 //combobox customerCountry
-        customerCountryCombo.setItems(CustomersHelperFile.getAllCountries());
+        customerCountryCombo.setItems(CustomersHelper.getAllCountries());
 
     }
 
@@ -168,12 +168,12 @@ public class MainScreenController implements Initializable {
             return;
         }
         if (customerID == 0) {
-            CustomersHelperFile.createCustomer(name, address, postalcode, phone, division.getDivisionID());
+            CustomersHelper.createCustomer(name, address, postalcode, phone, division.getDivisionID());
         } else {
-            CustomersHelperFile.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
+            CustomersHelper.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
             );
         }
-        customersTable.setItems(CustomersHelperFile.getAllCustomers());
+        customersTable.setItems(CustomersHelper.getAllCustomers());
     }
 
 
@@ -195,7 +195,7 @@ public class MainScreenController implements Initializable {
     public void onCustomerCountry(ActionEvent actionEvent) {
 
         Country c = customerCountryCombo.getValue();
-        customerDivisionCombo.setItems(AddressHelperFile.getAllAddresses(c.getCountryID()));
+        customerDivisionCombo.setItems(AddressHelper.getAllAddresses(c.getCountryID()));
 
     System.out.println(customerCountryCombo.getValue());
         System.out.println(customerDivisionCombo.getValue());

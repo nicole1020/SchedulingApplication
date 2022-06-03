@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.AppointmentsHelperFile;
-import DAO.CustomersHelperFile;
+import DAO.AppointmentsHelper;
+import DAO.CustomersHelper;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +16,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
-
-import static java.util.Calendar.AM;
 
 public class AddAppointmentController implements Initializable {
     public Button saveAppointment;
@@ -84,12 +81,12 @@ public class AddAppointmentController implements Initializable {
         //Appointments
         String cid = appointmentID.getText();
         DatePicker aDate = appointmentDate;
-        appointmentCustomerID.setItems(CustomersHelperFile.getAllAppointmentCustomerIDs());
-        appointmentType.setItems(AppointmentsHelperFile.getAllAppointmentTypes());
+        appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());
+        appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
         appointmentDate.getEditor();
-        appointmentUserID.setItems(AppointmentsHelperFile.getAllAppointmentUserIds());
-        appointmentContact.setItems(AppointmentsHelperFile.getAllAppointmentContacts());
-        appointmentStartTime.setItems(LocalTime
+        appointmentUserID.setItems(AppointmentsHelper.getAllAppointmentUserIds());
+        appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
+        appointmentStartTime.setItems(appointmentStartTime.getItems());
         //appointmentEndTime
 
     }
@@ -115,20 +112,20 @@ public class AddAppointmentController implements Initializable {
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
-        Appointments type = appointmentType.getValue();
+        String type = appointmentType.getValue();
         LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
-        Appointments startTime = appointmentStartTime.getValue();
-        Appointments endTime = appointmentEndTime.getValue();
-        CustomerIDsAppointments customerID = appointmentCustomerID.getValue();
+        LocalTime startTime = appointmentStartTime.getValue();
+        LocalTime endTime = appointmentEndTime.getValue();
+        Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
         if (user == null  || startTime == null || endTime == null || customerID==null ||contact ==null || type == null || date == null) {
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsHelperFile.createAppointment(title, description, location, type.getType(), date, startTime.getStartTime(), endTime.getEndTime(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelper.createAppointment(title, description, location, type, date, startTime, endTime, customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
-            AppointmentsHelperFile.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }
 
 

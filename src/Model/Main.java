@@ -90,6 +90,8 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  5/23 fixing onsave code for addappointment. working on sql and java files using key to keys as a guide.
 5/24 met with Mr wabara in live instructor support to help with creating appointment times, and sql code in appointments.
  6/1 met with mr ruiz live instructor support- he helped me navigate my program with properly setting up appointment availability.
+ 6/3 debugging code so it complies to instructor suggestions- changed "type" combo box to string from appointment class. changed customerID to customers from appointments,
+ and changed start and end times to LocalTimes from appointment classes. Will work on setting appointment times and combo boxes for start times and end times.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;

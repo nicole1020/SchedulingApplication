@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.CustomersHelperFile;
+import DAO.CustomersHelper;
 import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +42,7 @@ public class CustomerController implements Initializable {
         System.out.println("Customer Database Main Screen");
 
     //Customers Table Initialized
-        customersTable.setItems(CustomersHelperFile.getAllCustomers());
+        customersTable.setItems(CustomersHelper.getAllCustomers());
 
         customersTableCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         customersTableAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -53,13 +53,13 @@ public class CustomerController implements Initializable {
         customersTableDivision.setCellValueFactory(new PropertyValueFactory<>("Division"));
 
         System.out.println("Customer IDs:");
-        for (int i = 0; i < CustomersHelperFile.getAllCustomers().size(); i++) {
-            System.out.println(CustomersHelperFile.getAllCustomers()
+        for (int i = 0; i < CustomersHelper.getAllCustomers().size(); i++) {
+            System.out.println(CustomersHelper.getAllCustomers()
                     .get(i).getCustomerID());
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + CustomersHelperFile.getAllCustomers().size() + " Customers on File");
+        resultsLBL.setText("Report: " + CustomersHelper.getAllCustomers().size() + " Customers on File");
 
 
     }
@@ -82,7 +82,7 @@ public class CustomerController implements Initializable {
       //  String DivisionID = customersTableDivision.getText();
 
 
-        CustomersHelperFile.deleteCustomer( p.getCustomerID() );
+        CustomersHelper.deleteCustomer( p.getCustomerID() );
 
             }
 

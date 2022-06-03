@@ -6,12 +6,13 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Map;
 
 import static DAO.DBConnection.connection;
 
-public class AppointmentsHelperFile {
+public class AppointmentsHelper {
 
     private static Object LocalDateTime;
     private static Calendar calendar;
@@ -62,7 +63,7 @@ public class AppointmentsHelperFile {
     //create new appointment
 
 
-    public static void createAppointment(String title, String description, String location, String type, LocalDateTime date,Timestamp Start, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
+   /*public static void createAppointment(String title, String description, String location, String type, LocalDateTime date,Timestamp Start, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
         try {
 
             String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
@@ -85,9 +86,9 @@ public class AppointmentsHelperFile {
             e.printStackTrace();//print stack trace
 
         }
-    }
+    }**/
 
-    public static void updateAppointment(Integer appointmentid, String title, String description, String location, Appointments type, String date, String startTime, String endTime, int customerID, int user, int contact) throws SQLException {
+    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, String date, String startTime, String endTime, int customerID, int user, int contact) throws SQLException {
         String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
         PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
         psCreate.setInt(1, appointmentid);
@@ -216,6 +217,8 @@ public class AppointmentsHelperFile {
         }
 
 
+    public static void createAppointment(String title, String description, String location, String type, java.time.LocalDateTime date, LocalTime startTime, LocalTime endTime, int customerID, int userID, int contact) {
+    }
 }
 
 

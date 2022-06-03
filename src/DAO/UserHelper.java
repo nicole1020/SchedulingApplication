@@ -8,7 +8,7 @@ import java.sql.*;
 
 import static DAO.DBConnection.*;
 
-public class UserHelperFile {
+public class UserHelper {
 
     public static ObservableList<User> getAllUsers(Integer userID) {
         ObservableList<User> userList = FXCollections.observableArrayList();

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import static DAO.DBConnection.connection;
 
-public class AddressHelperFile {
+public class AddressHelper {
     public static ObservableList<Address> getAllAddresses(Integer countryID) {
         ObservableList<Address> addressList = FXCollections.observableArrayList();
         try {

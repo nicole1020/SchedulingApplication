@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.AppointmentsHelperFile;
+import DAO.AppointmentsHelper;
 import Model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +47,7 @@ public class AppointmentsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsHelperFile.getAllAppointments());
+        appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -60,13 +60,13 @@ public class AppointmentsController implements Initializable {
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsHelperFile.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsHelperFile.getAllAppointments()
+        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelper.getAllAppointments()
                     .get(i).getAppointmentID());
 
         }
         System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsHelperFile.getAllAppointments().size() + " Appointments on File");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
 
     }

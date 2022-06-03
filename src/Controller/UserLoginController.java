@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.UserHelperFile;
+import DAO.UserHelper;
 import Model.Main;
 import Model.User;
 import javafx.event.ActionEvent;
@@ -60,7 +60,7 @@ public class UserLoginController implements Initializable {
         }
 
          else {
-            loggedUser = UserHelperFile.validateUser(userName, passwordEntry);
+            loggedUser = UserHelper.validateUser(userName, passwordEntry);
             if(loggedUser == null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
