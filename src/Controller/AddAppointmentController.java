@@ -31,7 +31,7 @@ public class AddAppointmentController implements Initializable {
     public ComboBox <Contacts> appointmentContact;
     public ComboBox <String>appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
-    public ComboBox<User> appointmentUserID;
+    public ComboBox<User> appointmentUserName;
     public Button clearAppointment;
     public Button backButton;
     public DatePicker appointmentDate;
@@ -84,7 +84,7 @@ public class AddAppointmentController implements Initializable {
         appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
         appointmentDate.getEditor();
-        appointmentUserID.setItems(AppointmentsHelper.getAllAppointmentUserIds());
+        appointmentUserName.setItems(AppointmentsHelper.getAllAppointmentUserNames());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
         appointmentStartTime.setItems(appointmentStartTime.getItems());
         //appointmentEndTime
@@ -104,7 +104,7 @@ public class AddAppointmentController implements Initializable {
         appointmentStartTime.getSelectionModel().clearSelection();
         appointmentEndTime.getSelectionModel().clearSelection();
         appointmentCustomerID.getSelectionModel().clearSelection();
-        appointmentUserID.getSelectionModel().clearSelection();
+        appointmentUserName.getSelectionModel().clearSelection();
     }
 
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException {
@@ -117,8 +117,8 @@ public class AddAppointmentController implements Initializable {
         LocalTime startTime = appointmentStartTime.getValue();
         LocalTime endTime = appointmentEndTime.getValue();
         Customers customerID = appointmentCustomerID.getValue();
-        User user = appointmentUserID.getValue();
-        if (user == null  || startTime == null || endTime == null || customerID==null ||contact ==null || type == null || date == null) {
+        User user = appointmentUserName.getValue();
+        if (user == null || startTime == null || endTime == null || customerID == null || contact == null || type == null) {
             return;
         }
 

@@ -13,6 +13,7 @@ public class Contacts extends Appointments{
     }
 
     public Contacts(Integer contact_id) {
+        this.contactID = contact_id;
     }
 
     public int getContactID() {

@@ -16,8 +16,8 @@ public class User {
 
     }
 
-    public User(Integer user_id) {
-        this.userID= user_id;
+    public User(String  user_name) {
+        this.userName= user_name;
     }
 
     public int getUserID() {
@@ -33,7 +33,7 @@ public class User {
     }
 
 public String toString(){
-        return String.valueOf((userID));
+        return String.valueOf((userName));
 }
 
 

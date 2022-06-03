@@ -139,22 +139,24 @@ public class AppointmentsHelper {
         return appointmentDates;
     }
 
-    public static ObservableList<User> getAllAppointmentUserIds() {
-        ObservableList<User> appointmentUserID = FXCollections.observableArrayList();
+    public static ObservableList<User> getAllAppointmentUserNames() {
+        ObservableList<User> appointmentUserName = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT user FROM appointments";
+            String sqlcB = "SELECT User_Name FROM users";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
-                Integer User_ID = cBResult.getInt("User_ID");
-                User aU = new User(User_ID);
+                String User_Name = cBResult.getString("User_Name");
 
-                appointmentUserID.add(aU);
+                User aC = new User(User_Name);
+
+
+                appointmentUserName.add(aC);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return appointmentUserID;
+        return appointmentUserName;
     }
 
 

@@ -32,7 +32,9 @@ public class Customers {
     }
 
     public Customers(int customer_id) {
-    }
+
+    this.customerID = customer_id;}
+
 
     public int getCustomerID() {
         return customerID;
@@ -64,7 +66,7 @@ public String getDivision(){
     @Override
 
     public String toString() {
-        return (country);
+        return String.valueOf((customerID));
     }
 
 }
