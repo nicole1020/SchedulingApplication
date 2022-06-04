@@ -3,6 +3,8 @@ package Controller;
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
 import Model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
@@ -86,8 +89,31 @@ public class AddAppointmentController implements Initializable {
         appointmentDate.getEditor();
         appointmentUserName.setItems(AppointmentsHelper.getAllAppointmentUserNames());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
-        appointmentStartTime.setItems(appointmentStartTime.getItems());
-        //appointmentEndTime
+        ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
+        LocalTime start = LocalTime.of(0,0);
+        for(int i = 1; i<24 ; i++){
+
+            startTime.add(LocalTime.of(i, 0));
+            if(i == 23) startTime.add(LocalTime.of(0,0));
+            // System.out.println(LocalTime.of(i,0));
+
+        }
+        for(LocalTime lt: startTime)
+            System.out.println(lt);
+        appointmentStartTime.setItems( startTime);
+        ObservableList<LocalTime> endTime = FXCollections.observableArrayList();
+        LocalTime end = LocalTime.of(0,0);
+        for(int i = 1; i<24 ; i++){
+
+            endTime.add(LocalTime.of(i, 0));
+            if(i == 23) endTime.add(LocalTime.of(0,0));
+            // System.out.println(LocalTime.of(i,0));
+
+        }
+        for(LocalTime lt: endTime)
+            System.out.println(lt);
+
+        appointmentEndTime.setItems(endTime);
 
     }
 
@@ -113,7 +139,7 @@ public class AddAppointmentController implements Initializable {
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
         String type = appointmentType.getValue();
-        LocalDateTime date = LocalDateTime.from(appointmentDate.getValue());
+        LocalDateTime Start = LocalDateTime.from(appointmentDate.getValue());
         LocalTime startTime = appointmentStartTime.getValue();
         LocalTime endTime = appointmentEndTime.getValue();
         Customers customerID = appointmentCustomerID.getValue();
@@ -123,9 +149,9 @@ public class AddAppointmentController implements Initializable {
         }
 
         if (appointmentid == 0) {
-            AppointmentsHelper.createAppointment(title, description, location, type, date, startTime, endTime, customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelper.createAppointment(title, description, location, type, Start, startTime, endTime, customerID.getCustomerID(),user.getUserID(), contact.getContact());
         } else {
-            AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , date.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , Start.toString() , startTime.toString(), endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
         }
 
 

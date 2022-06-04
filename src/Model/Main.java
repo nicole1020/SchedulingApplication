@@ -93,7 +93,7 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  6/3 debugging code so it complies to instructor suggestions- changed "type" combo box to string from appointment class. changed customerID to customers from appointments,
  and changed start and end times to LocalTimes from appointment classes. Will work on setting appointment times and combo boxes for start times and end times.
  successfully updated each  corresponding java files to reflect proper "toString" commands on combo box items.
-
+will fix java code for combo box appointment times and proper sql code for save appointments tomorrow.
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;
