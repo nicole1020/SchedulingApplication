@@ -223,27 +223,48 @@ public class AppointmentsHelper {
 
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalTime startTime, LocalTime endTime, int customerID, int userID, int contact) {
         try {
-
-            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
+            String sqlc = "INSERT INTO customers VALUES(NULL, ?,?,?,?,?,'NM',NOW(),'NM',?)";
             PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
-            psCreate.setString(1, String.valueOf(title));
-            psCreate.setString(2, String.valueOf(description));
-            psCreate.setString(3, String.valueOf(location));
-            psCreate.setString(4, String.valueOf(type));
-            psCreate.setTimestamp(5, Timestamp.valueOf(Start));
-            psCreate.setObject(6, startTime);
-            psCreate.setObject(7, endTime);
-
-
             psCreate.execute();
+            ResultSet rs = psCreate.getGeneratedKeys();
+            rs.next();
+            int customerid = rs.getInt(1);
 
             String sqlc2 = "INSERT INTO contacts VALUES(NULL, ?,?)";
             PreparedStatement psCreate2 = connection.prepareStatement(sqlc2, Statement.RETURN_GENERATED_KEYS);
             psCreate2.execute();
 
-            String sqlc3 = "INSERT INTO customers VALUES(NULL, ?,?,?,?,?,'NM',NOW(),'NM',?)";
+         //   ResultSet rs2 = psCreate2.getGeneratedKeys();
+           // rs2.next();
+           // int contact = rs2.getInt(1);
+
+            String sqlc3 = "INSERT INTO users VALUES(NULL,null,now(),'nm',now(),'nm')";
             PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
             psCreate3.execute();
+
+            ResultSet rs3 = psCreate3.getGeneratedKeys();
+            rs3.next();
+            int user = rs3.getInt(1);
+
+            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
+
+            PreparedStatement psCreate4 = connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
+            psCreate4.setString(1, String.valueOf(title));
+            psCreate4.setString(2, String.valueOf(description));
+            psCreate4.setString(3, String.valueOf(location));
+            psCreate4.setString(4, String.valueOf(type));
+            psCreate4.setTimestamp(5, Timestamp.valueOf(Start));
+            psCreate4.setObject(6, startTime);
+            psCreate4.setObject(7, endTime);
+             psCreate4.setInt(8, customerid);
+               psCreate4.setInt(9, user);
+             psCreate4.setInt(10, contact);
+
+
+            psCreate3.execute();
+
+
+
 
             //insert here first for referential integrity - flip order 6/4
             //  psCreate.setInt(8, customerid);

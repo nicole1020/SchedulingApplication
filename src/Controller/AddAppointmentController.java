@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
@@ -43,6 +44,8 @@ public class AddAppointmentController implements Initializable {
     public ComboBox<LocalTime> appointmentEndTime;
 
     private  Integer appointmentid = 0;
+    private CharSequence date;
+
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
@@ -139,7 +142,8 @@ public class AddAppointmentController implements Initializable {
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
         String type = appointmentType.getValue();
-        LocalDateTime Start = LocalDateTime.from(appointmentDate.getValue());
+       // LocalDateTime Start = LocalDateTime.from(appointmentDate.getValue());
+        LocalDateTime Start = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("MM/DD/YY HH:mm"));
         LocalTime startTime = appointmentStartTime.getValue();
         LocalTime endTime = appointmentEndTime.getValue();
         Customers customerID = appointmentCustomerID.getValue();

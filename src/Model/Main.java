@@ -94,6 +94,10 @@ Went to live support and course instructor Mr. Wabara helped me with resource bu
  and changed start and end times to LocalTimes from appointment classes. Will work on setting appointment times and combo boxes for start times and end times.
  successfully updated each  corresponding java files to reflect proper "toString" commands on combo box items.
 will fix java code for combo box appointment times and proper sql code for save appointments tomorrow.
+ 6/6 fixed an issue with customerID not populating into the appointments table properly- i somehow deleted the getter for customerID in appointments java class. I fixed it by adding the getter
+
+ working on null pointer exception for saving appointment.
+
  */
 public class Main extends Application {
     public static ResourceBundle resourceB;

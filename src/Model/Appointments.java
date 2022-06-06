@@ -65,6 +65,11 @@ public class Appointments extends Customers {
 
     }
 
+    @Override
+    public int getCustomerID() {
+        return customerID;
+    }
+
     public LocalDateTime getEndTime() {
         return endTime;
     }
