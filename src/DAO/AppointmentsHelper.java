@@ -88,26 +88,12 @@ public class AppointmentsHelper {
             e.printStackTrace();//print stack trace
 
         }
-    }**/
-
-    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, String date, String startTime, String endTime, int customerID, int user, int contact) throws SQLException {
-        String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
-        PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
-        psCreate.setInt(1, appointmentid);
-        psCreate.setString(2, String.valueOf(title));
-        psCreate.setString(3, String.valueOf(description));
-        psCreate.setString(4, String.valueOf(location));
-        psCreate.setString(5, String.valueOf(type));
-        psCreate.setDate(6, Date.valueOf(String.valueOf(date)));
-        psCreate.setObject(7, String.valueOf(startTime));
-        psCreate.setObject(8, String.valueOf(endTime));
-        psCreate.setInt(9, customerID);
-        psCreate.setInt(10, user);
-        psCreate.setInt(11, contact);
-        psCreate.execute();
-
     }
 
+    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, String startTime, String endTime,  int customerID, int user, int contact) throws SQLException {
+
+    }
+**/
     public static ObservableList<String> getAllAppointmentTypes() {
         ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
@@ -220,7 +206,7 @@ public class AppointmentsHelper {
             return appointmentEndTimes;
         }
 
-
+/*
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalTime startTime, LocalTime endTime, int customerID, int userID, int contact) {
         try {
             String sqlc = "INSERT INTO customers VALUES(NULL, ?,?,?,?,?,'NM',NOW(),'NM',?)";
@@ -254,7 +240,7 @@ public class AppointmentsHelper {
             psCreate4.setString(3, String.valueOf(location));
             psCreate4.setString(4, String.valueOf(type));
             psCreate4.setTimestamp(5, Timestamp.valueOf(Start));
-            psCreate4.setObject(6, startTime);
+
             psCreate4.setObject(7, endTime);
              psCreate4.setInt(8, customerid);
                psCreate4.setInt(9, user);
@@ -275,6 +261,81 @@ public class AppointmentsHelper {
 
         }
     }
+**/
+    public static void createAppointment(String title, String description, String location, String type, java.time.LocalDateTime start, LocalTime endTime, int customerID, int userID, int contact) {
+        try {
+            String sqlc = "INSERT INTO customers VALUES(NULL, ?,?,?,?,?,'NM',NOW(),'NM',?)";
+            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+            psCreate.execute();
+            ResultSet rs = psCreate.getGeneratedKeys();
+            rs.next();
+            int customerid = rs.getInt(1);
+
+            String sqlc2 = "INSERT INTO contacts VALUES(NULL, ?,?)";
+            PreparedStatement psCreate2 = connection.prepareStatement(sqlc2, Statement.RETURN_GENERATED_KEYS);
+            psCreate2.execute();
+
+            //   ResultSet rs2 = psCreate2.getGeneratedKeys();
+            // rs2.next();
+            // int contact = rs2.getInt(1);
+
+            String sqlc3 = "INSERT INTO users VALUES(NULL,null,now(),'nm',now(),'nm')";
+            PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
+            psCreate3.execute();
+
+            ResultSet rs3 = psCreate3.getGeneratedKeys();
+            rs3.next();
+            int user = rs3.getInt(1);
+
+            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
+
+            PreparedStatement psCreate4 = connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
+            psCreate4.setString(1, String.valueOf(title));
+            psCreate4.setString(2, String.valueOf(description));
+            psCreate4.setString(3, String.valueOf(location));
+            psCreate4.setString(4, String.valueOf(type));
+            psCreate4.setTimestamp(5, Timestamp.valueOf(Start));
+
+            psCreate4.setObject(7, endTime);
+            psCreate4.setInt(8, customerid);
+            psCreate4.setInt(9, user);
+            psCreate4.setInt(10, contact);
+
+
+            psCreate3.execute();
+
+
+
+
+            //insert here first for referential integrity - flip order 6/4
+            //  psCreate.setInt(8, customerid);
+            //   psCreate.setInt(9, user);
+            //  psCreate.setInt(10, contact);
+        } catch (Exception e) {
+            e.printStackTrace();//print stack trace
+
+        }
+    }
+
+    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, String Start, String startTime, String endTime, int customerID, int user, int contact) throws SQLException {
+        String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
+        PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+        psCreate.setInt(1, appointmentid);
+        psCreate.setString(2, String.valueOf(title));
+        psCreate.setString(3, String.valueOf(description));
+        psCreate.setString(4, String.valueOf(location));
+        psCreate.setString(5, String.valueOf(type));
+
+        psCreate.setObject(7, String.valueOf(Start));
+        psCreate.setObject(8, String.valueOf(startTime));
+        psCreate.setObject(8, String.valueOf(endTime));
+        psCreate.setInt(9, customerID);
+        psCreate.setInt(10, user);
+        psCreate.setInt(11, contact);
+        psCreate.execute();
+
+    }
 }
+
 
 

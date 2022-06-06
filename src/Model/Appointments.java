@@ -12,11 +12,11 @@ public class Appointments extends Customers {
     private String location;
     private int contact;
     private String type;
-    private LocalDateTime startDate;
+    private LocalDateTime startDateTime;
     private LocalDateTime startTime;
     private DatePicker date;
     private LocalDateTime endTime;
-    private LocalDateTime endDate;
+    private LocalDateTime endDateTime;
     private int customerID;
     private int userID;
 
@@ -43,8 +43,8 @@ public class Appointments extends Customers {
         this.location = location;
         this.contact = contact_id;
         this.type = type;
-        this.startDate = start;
-        this.endDate = end;
+        this.startDateTime = start;
+        this.endDateTime = end;
         this.customerID = customer_id;
         this.userID = user_id;
     }
@@ -100,10 +100,10 @@ public class Appointments extends Customers {
         return type;}
 
     public LocalDateTime getStartDate() {
-        return startDate;}
+        return startDateTime;}
 
     public LocalDateTime getEndDateTime() {
-        return endDate;}
+        return endDateTime;}
 
 
     public int getUserID() {
