@@ -9,9 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 /**
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
@@ -104,10 +106,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Locale.setDefault(Locale.FRENCH);
-
-       // resourceB = ResourceBundle.getBundle("Resources.Nat", Locale.getDefault());
-       // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
+        Locale.setDefault(Locale.FRENCH);
+        resourceB = ResourceBundle.getBundle("Resources.Nat", Locale.getDefault());
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
          Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
@@ -121,17 +122,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
-        LocalTime start = LocalTime.of(0,0);
-        for(int i = 1; i<24 ; i++){
-
-            startTime.add(LocalTime.of(i, 0));
-            if(i == 23) startTime.add(LocalTime.of(0,0));
-           // System.out.println(LocalTime.of(i,0));
-
-        }
-        for(LocalTime lt: startTime)
-            System.out.println(lt);
         DBConnection.openConnection();
         launch(args);
         DBConnection.closeConnection();
