@@ -18,6 +18,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -159,6 +161,7 @@ public class AddAppointmentController implements Initializable {
 
     public void onAppointmentStartTime(ActionEvent actionEvent) {
         LocalTime start = appointmentStartTime.getValue();
+
         appointmentEndTime.setItems(AppointmentTimes.getAllEndTimes(start));
     }
 }

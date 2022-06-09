@@ -9,32 +9,34 @@ import java.time.ZoneId;
 public class AppointmentTimes extends Appointments {
     public static ObservableList<LocalTime> getAllAppointmentTimes() {
         ObservableList<LocalTime> appointmentTime = FXCollections.observableArrayList();
-        ZoneId timeDifference = ZoneId.systemDefault();
-        if (timeDifference == ZoneId.of("GMT")) {
-            for (int i = 8; i < 22; i++) {
+
+            for (int i = 0; i < 24; i++) {
 
                 appointmentTime.add(LocalTime.of(i, 0));
                 appointmentTime.add(LocalTime.of(i, 15));
                 appointmentTime.add(LocalTime.of(i, 30));
                 appointmentTime.add(LocalTime.of(i, 45));
-
+                if (i == 23) {
+                    appointmentTime.add(LocalTime.of(i, 0));
+                    appointmentTime.add(LocalTime.of(i, 15));
+                    appointmentTime.add(LocalTime.of(i, 30));
+                    appointmentTime.add(LocalTime.of(i, 45));
+                    // System.out.println(LocalTime.of(i,0));
+                }
             }
-            if (timeDifference == ZoneId.of("EST")) {
-                for (int i = 10; i < 24; i++) {
+        /*    ZoneId timeDifference = ZoneId.systemDefault();
+        if (timeDifference == ZoneId.of("EST")) {
+        if (timeDifference == ZoneId.of("GMT")) {
+                for (int i = 8; i < 22; i++) {
 
                     appointmentTime.add(LocalTime.of(i, 0));
                     appointmentTime.add(LocalTime.of(i, 15));
                     appointmentTime.add(LocalTime.of(i, 30));
                     appointmentTime.add(LocalTime.of(i, 45));
-                    if (i == 23) {
-                        appointmentTime.add(LocalTime.of(i, 0));
-                        appointmentTime.add(LocalTime.of(i, 15));
-                        appointmentTime.add(LocalTime.of(i, 30));
-                        appointmentTime.add(LocalTime.of(i, 45));
-                        // System.out.println(LocalTime.of(i,0));
 
 
-                    }
+
+
                 }
                 if (timeDifference == ZoneId.of("CST")) {
 
@@ -59,7 +61,8 @@ public class AppointmentTimes extends Appointments {
                     }
                 }
             }
-        }
+        }**/
+
         return appointmentTime;
     }
 
@@ -89,4 +92,5 @@ public class AppointmentTimes extends Appointments {
 
         return endTime;
     }
+
 }
