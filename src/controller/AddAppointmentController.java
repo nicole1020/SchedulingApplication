@@ -3,8 +3,6 @@ package controller;
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
 import model.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -94,9 +92,7 @@ public class AddAppointmentController implements Initializable {
         appointmentUserName.setItems(AppointmentsHelper.getAllAppointmentUserNames());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
 
-        appointmentStartTime.setItems(AppointmentTimes.startTimes());
-
-        appointmentEndTime.setItems(AppointmentTimes.endTimes());
+        appointmentStartTime.setItems(AppointmentTimes.getAllAppointmentTimes());
 
     }
 
@@ -159,5 +155,10 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onAppointmentDate(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentStartTime(ActionEvent actionEvent) {
+        LocalTime start = appointmentStartTime.getValue();
+        appointmentEndTime.setItems(AppointmentTimes.getAllEndTimes(start));
     }
 }

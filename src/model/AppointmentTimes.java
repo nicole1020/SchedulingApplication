@@ -4,43 +4,47 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.time.temporal.TemporalAdjuster;
 
-public class AppointmentTimes {
-    public static ObservableList<LocalTime> startTimes() {
-        ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
+public class AppointmentTimes extends Appointments {
+    public static ObservableList<LocalTime> getAllAppointmentTimes() {
+        ObservableList<LocalTime> appointmentTime = FXCollections.observableArrayList();
 
-        LocalTime start = LocalTime.of(0, 0);
+
         for (int i = 0; i < 24; i++) {
 
-            startTime.add(LocalTime.of(i, 0));
-            startTime.add(LocalTime.of(i, 15));
-            startTime.add(LocalTime.of(i, 30));
-            startTime.add(LocalTime.of(i, 45));
+            appointmentTime.add(LocalTime.of(i, 0));
+            appointmentTime.add(LocalTime.of(i, 15));
+            appointmentTime.add(LocalTime.of(i, 30));
+            appointmentTime.add(LocalTime.of(i, 45));
             if (i == 23) {
-                startTime.add(LocalTime.of(i, 0));
-                startTime.add(LocalTime.of(i, 15));
-                startTime.add(LocalTime.of(i, 30));
-                startTime.add(LocalTime.of(i, 45));
+                appointmentTime.add(LocalTime.of(i, 0));
+                appointmentTime.add(LocalTime.of(i, 15));
+                appointmentTime.add(LocalTime.of(i, 30));
+                appointmentTime.add(LocalTime.of(i, 45));
                 // System.out.println(LocalTime.of(i,0));
             }
         }
-        return startTime;
+        return appointmentTime;
     }
 
-    public static  ObservableList<LocalTime>  endTimes() {
+    public static  ObservableList<LocalTime>  getAllEndTimes(LocalTime start) {
         ObservableList<LocalTime> endTime = FXCollections.observableArrayList();
-        LocalTime end = LocalTime.of(0, 0);
-        for (int i = 0; i < 24; i++) {
+        LocalTime end = start.plusMinutes(15);
+        for (int i = end.getHour() ; i < 24; i++ ) {
 
             endTime.add(LocalTime.of(i, 0));
             endTime.add(LocalTime.of(i, 15));
             endTime.add(LocalTime.of(i, 30));
             endTime.add(LocalTime.of(i, 45));
+
             if (i == 23) {
                 endTime.add(LocalTime.of(i, 0));
                 endTime.add(LocalTime.of(i, 15));
                 endTime.add(LocalTime.of(i, 30));
                 endTime.add(LocalTime.of(i, 45));
+
                 // System.out.println(LocalTime.of(i,0));
             }
         }
