@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Country extends Customers{
     private Integer countryID;

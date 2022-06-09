@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
 import DAO.AppointmentsHelper;
-import Model.Appointments;
+import model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

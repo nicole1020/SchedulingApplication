@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="578.0" prefWidth="472.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.AddAppointmentController">
+<AnchorPane prefHeight="578.0" prefWidth="472.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AddAppointmentController">
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="100.0" prefHeight="25.0" prefWidth="223.0" text="New Appointment Creator">
       <font>
          <Font size="16.0" />

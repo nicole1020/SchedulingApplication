@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Model.Appointments;
+import model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

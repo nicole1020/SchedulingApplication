@@ -1,9 +1,8 @@
-package Controller;
+package controller;
 
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
-import Model.*;
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+import model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +14,14 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.TimeZone;
 
 public class AddAppointmentController implements Initializable {
     public Button saveAppointment;
@@ -97,47 +93,10 @@ public class AddAppointmentController implements Initializable {
         appointmentDate.getEditor();
         appointmentUserName.setItems(AppointmentsHelper.getAllAppointmentUserNames());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
-        ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
-           //     hoursDifference = UTC to EST - 8 AM EST is 12:00 noon UTC, 10PM EST is 2 AM UST
 
-        LocalTime start = LocalTime.of(0,0);
-        for(int i = 0; i<24 ; i++){
+        appointmentStartTime.setItems(AppointmentTimes.startTimes());
 
-            startTime.add(LocalTime.of(i, 0 ));
-            startTime.add(LocalTime.of(i, 15));
-            startTime.add(LocalTime.of(i, 30));
-            startTime.add(LocalTime.of(i, 45));
-            if(i == 23) {
-                startTime.add(LocalTime.of(i, 0));
-                startTime.add(LocalTime.of(i, 15));
-                startTime.add(LocalTime.of(i, 30));
-                startTime.add(LocalTime.of(i, 45));
-                // System.out.println(LocalTime.of(i,0));
-            }
-        }
-        for(LocalTime st: startTime)
-            System.out.println(st);
-        appointmentStartTime.setItems( startTime);
-        ObservableList<LocalTime> endTime = FXCollections.observableArrayList();
-        LocalTime end = LocalTime.of(0,0);
-        for(int i = 0; i<24 ; i++){
-
-            endTime.add(LocalTime.of(i, 0));
-            endTime.add(LocalTime.of(i, 15));
-            endTime.add(LocalTime.of(i, 30));
-            endTime.add(LocalTime.of(i, 45));
-            if(i == 23) {
-                endTime.add(LocalTime.of(i, 0));
-                endTime.add(LocalTime.of(i, 15));
-                endTime.add(LocalTime.of(i, 30));
-                endTime.add(LocalTime.of(i, 45));
-                // System.out.println(LocalTime.of(i,0));
-            }
-        }
-        for(LocalTime et: endTime)
-            System.out.println(et);
-
-        appointmentEndTime.setItems(endTime);
+        appointmentEndTime.setItems(AppointmentTimes.endTimes());
 
     }
 

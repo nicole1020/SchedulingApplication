@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
 import DAO.AddressHelper;
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
-import Model.*;
+import model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

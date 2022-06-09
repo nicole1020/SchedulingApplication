@@ -1,8 +1,7 @@
-package Controller;
+package controller;
 
 import DAO.UserHelper;
-import Model.Main;
-import Model.User;
+import model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

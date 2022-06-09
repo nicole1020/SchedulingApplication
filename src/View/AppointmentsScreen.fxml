@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.AppointmentsController">
+<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
                 <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>

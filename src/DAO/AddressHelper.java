@@ -1,6 +1,6 @@
 package DAO;
 
-import Model.Address;
+import model.Address;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,7 +24,7 @@ public class AddressHelper {
                 String Division = adResult.getString("Division");
 
 
-                Model.Address ad = new Address( Division_ID, Division);
+                model.Address ad = new Address( Division_ID, Division);
                 addressList.add(ad);
 
             }

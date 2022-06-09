@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
 import DAO.CustomersHelper;
-import Model.Customers;
+import model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -116,7 +116,7 @@ public class CustomerController implements Initializable {
 
     public void onAddCustomer(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AddNewCustomer.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/View/AddNewCustomer.fxml"));
             Parent root = (Parent)loader.load();
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

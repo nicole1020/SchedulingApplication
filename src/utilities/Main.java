@@ -1,4 +1,4 @@
-package Model;
+package utilities;
 
 import DAO.DBConnection;
 import javafx.application.Application;
@@ -99,6 +99,7 @@ will fix java code for combo box appointment times and proper sql code for save 
  6/6 fixed an issue with customerID not populating into the appointments table properly- i somehow deleted the getter for customerID in appointments java class. I fixed it by adding the getter
 
  working on null pointer exception for saving appointment.
+ 6/8 went to live support met with mr ruiz for help with resource bundles, setting appointment times.
 
  */
 public class Main extends Application {
@@ -106,10 +107,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Locale.setDefault(new Locale("fr","FR"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);

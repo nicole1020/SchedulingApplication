@@ -1,15 +1,12 @@
 package DAO;
 
-import Model.Appointments;
-import Model.Contacts;
-import Model.Country;
-import Model.Customers;
+import model.Country;
+import model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 import static DAO.DBConnection.connection;
 
