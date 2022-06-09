@@ -98,9 +98,7 @@ public class AddAppointmentController implements Initializable {
         appointmentUserName.setItems(AppointmentsHelper.getAllAppointmentUserNames());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
         ObservableList<LocalTime> startTime = FXCollections.observableArrayList();
-           TimeZone timezone = TimeZone.getDefault();
-          String offsetId = timezone.toZoneId().getRules().getStandardOffset(Instant.now()).getId();
-        //     hoursDifference = UTC to EST - 8 AM EST is 12:00 noon UTC, 10PM EST is 2 AM UST
+           //     hoursDifference = UTC to EST - 8 AM EST is 12:00 noon UTC, 10PM EST is 2 AM UST
 
         LocalTime start = LocalTime.of(0,0);
         for(int i = 0; i<24 ; i++){
@@ -109,13 +107,13 @@ public class AddAppointmentController implements Initializable {
             startTime.add(LocalTime.of(i, 15));
             startTime.add(LocalTime.of(i, 30));
             startTime.add(LocalTime.of(i, 45));
-            if(i == 23) startTime.add(LocalTime.of(0,0));
-            startTime.add(LocalTime.of(i, 0 ));
-            startTime.add(LocalTime.of(i, 15));
-            startTime.add(LocalTime.of(i, 30));
-            startTime.add(LocalTime.of(i, 45));
-            // System.out.println(LocalTime.of(i,0));
-
+            if(i == 23) {
+                startTime.add(LocalTime.of(i, 0));
+                startTime.add(LocalTime.of(i, 15));
+                startTime.add(LocalTime.of(i, 30));
+                startTime.add(LocalTime.of(i, 45));
+                // System.out.println(LocalTime.of(i,0));
+            }
         }
         for(LocalTime st: startTime)
             System.out.println(st);
@@ -128,13 +126,13 @@ public class AddAppointmentController implements Initializable {
             endTime.add(LocalTime.of(i, 15));
             endTime.add(LocalTime.of(i, 30));
             endTime.add(LocalTime.of(i, 45));
-            if(i == 23) endTime.add(LocalTime.of(0,0));
-            endTime.add(LocalTime.of(i, 0 ));
-            endTime.add(LocalTime.of(i, 15));
-            endTime.add(LocalTime.of(i, 30));
-            endTime.add(LocalTime.of(i, 45));
-            // System.out.println(LocalTime.of(i,0));
-
+            if(i == 23) {
+                endTime.add(LocalTime.of(i, 0));
+                endTime.add(LocalTime.of(i, 15));
+                endTime.add(LocalTime.of(i, 30));
+                endTime.add(LocalTime.of(i, 45));
+                // System.out.println(LocalTime.of(i,0));
+            }
         }
         for(LocalTime et: endTime)
             System.out.println(et);

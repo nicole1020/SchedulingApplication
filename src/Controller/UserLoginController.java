@@ -17,6 +17,7 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class UserLoginController implements Initializable {
@@ -28,24 +29,18 @@ public class UserLoginController implements Initializable {
     public Label passwordLabel;
     public Label userLocationLabel;
     private static User loggedUser;
-
+    private ResourceBundle resourceB = ResourceBundle.getBundle("language", Locale.getDefault());
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      Instant now = Instant.now();
-        ZonedDateTime zdt = ZonedDateTime.ofInstant(now,
-                ZoneId.of(ZoneId.systemDefault().toString()));
-        System.out.println("Date/Time Zone " + zdt);
+
         userLocationLabel.setText(ZoneId.systemDefault().toString());
-     /*  Locale currentLocale = new Locale("fr", "CA", "UNIX");
-      ResourceBundle resourceB = ResourceBundle.getBundle("Resources.loginLabels", currentLocale);
-**/
-        passwordLabel.setText(Main.resourceB.getString("password"));
-        userNameLabel.setText(Main.resourceB.getString("username"));
-        userNameField.setText(Main.resourceB.getString("enter_username"));
-        password.setText(Main.resourceB.getString("enter_password"));
+        passwordLabel.setText(resourceB.getString("password"));
+        userNameLabel.setText(resourceB.getString("username"));
+        userNameField.setPromptText(resourceB.getString("enter_username"));
+        password.setPromptText(resourceB.getString("enter_password"));
 
     }
 
@@ -71,7 +66,7 @@ public class UserLoginController implements Initializable {
         try {
 
                 userLocationLabel.setText("Login Successful");
-
+                Locale.setDefault(new Locale("en","US"));
                 Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);

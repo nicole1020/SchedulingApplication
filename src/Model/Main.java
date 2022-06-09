@@ -102,16 +102,14 @@ will fix java code for combo box appointment times and proper sql code for save 
 
  */
 public class Main extends Application {
-    public static ResourceBundle resourceB;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Locale.setDefault(Locale.FRENCH);
-        resourceB = ResourceBundle.getBundle("Resources.Nat", Locale.getDefault());
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml"),resourceB );
+        //Locale.setDefault(new Locale("fr","FR"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-         Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
