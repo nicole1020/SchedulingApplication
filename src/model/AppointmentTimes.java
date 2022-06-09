@@ -5,13 +5,12 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 
 public class AppointmentTimes extends Appointments {
     public static ObservableList<LocalTime> getAllAppointmentTimes() {
         ObservableList<LocalTime> appointmentTime = FXCollections.observableArrayList();
         ZoneId timeDifference = ZoneId.systemDefault();
-        if (timeDifference == ZoneId.ofOffset("GMT", ZoneOffset.ofHours(0))) {
+        if (timeDifference == ZoneId.of("GMT")) {
             for (int i = 8; i < 22; i++) {
 
                 appointmentTime.add(LocalTime.of(i, 0));
@@ -20,7 +19,7 @@ public class AppointmentTimes extends Appointments {
                 appointmentTime.add(LocalTime.of(i, 45));
 
             }
-            if (timeDifference == ZoneId.ofOffset("EST", ZoneOffset.ofHours(2))) {
+            if (timeDifference == ZoneId.of("EST")) {
                 for (int i = 10; i < 24; i++) {
 
                     appointmentTime.add(LocalTime.of(i, 0));
@@ -37,7 +36,7 @@ public class AppointmentTimes extends Appointments {
 
                     }
                 }
-                if (timeDifference == ZoneId.ofOffset("CST", ZoneOffset.ofHours(-1))) {
+                if (timeDifference == ZoneId.of("CST")) {
 
                     for (int i = 7; i < 21; i++) {
 
@@ -47,7 +46,7 @@ public class AppointmentTimes extends Appointments {
                         appointmentTime.add(LocalTime.of(i, 45));
 
                     }
-                    if (timeDifference == ZoneId.ofOffset("PST", ZoneOffset.ofHours(1))) {
+                    if (timeDifference == ZoneId.of("PST")) {
 
                         for (int i = 9; i < 23; i++) {
 
