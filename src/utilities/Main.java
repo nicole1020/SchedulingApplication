@@ -100,7 +100,11 @@ will fix java code for combo box appointment times and proper sql code for save 
 
  working on null pointer exception for saving appointment.
  6/8 went to live support met with mr ruiz for help with resource bundles, setting appointment times.
+6/9 went to live support and met with Mr Kinkead, he helped with save appointment and appointment time set up and creation. I learned about
+ converting date and localtime to localdatetime by passing in the locally stored dates and times.
+ I also learned how to properly use time offset from EST to user's localtime.
 
+ will work on updateappointment controller and making sure the combo boxes properly populate with the right data.
  */
 public class Main extends Application {
     @Override

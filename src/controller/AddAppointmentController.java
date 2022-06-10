@@ -141,7 +141,7 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid == 0) {
             AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
         } else {
-            //AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , start, endTime.toString(), customerID.getCustomerID(),user.getUserID(), contact.getContact());
+            AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
         }
 
 

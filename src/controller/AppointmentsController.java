@@ -107,6 +107,7 @@ public class AppointmentsController implements Initializable {
             Scene scene = new Scene(UpdateAppointmentScreen);
             stage.setTitle("Update Appointment Record");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var7) {
             var7.printStackTrace();
