@@ -5,7 +5,10 @@ import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
 import DAO.UserHelper;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
@@ -54,19 +57,17 @@ public class UpdateAppointmentController implements Initializable {
                 break;
             }
         }
-for(String date : appointmentDate.getEditor()) {
-    if (date.equals(theAppointment.getDate().toString())) {
-        this.appointmentDate.getEditor().setText(date);
-        break;
-    }
-}
-for(LocalTime start : appointmentStart.getItems()) {
-  if(LocalTime.of(start)==((theAppointment.getStartTime().toLocalTime()))){
-    this.appointmentStart.getSelectionModel().select(start);
-    break;
-}}
-        LocalTime end =  theAppointment.getEndTime().toLocalTime();
-        this.appointmentEnd.getSelectionModel().select(end);
+
+        LocalDateTime start = theAppointment.getStartDateTime();
+        LocalDate date = start.toLocalDate();
+        this.appointmentDate.setValue(date);
+
+        LocalTime startTime  = start.toLocalTime();
+        this.appointmentStart.setValue(startTime);
+
+        LocalDateTime end = theAppointment.getEndDateTime();
+        LocalTime endTime = end.toLocalTime();
+        this.appointmentEnd.setValue(endTime);
 
 
         for (Customers customerID : appointmentCustomerID.getItems()) {
@@ -158,12 +159,26 @@ for(LocalTime start : appointmentStart.getItems()) {
     }
 
     public void onAppointmentDate(ActionEvent actionEvent) {
-        appointmentDate.setPromptText(String.valueOf(LocalDate.now()));
+
     }
 
     public void onAppointmentStart(ActionEvent actionEvent) {
         LocalTime start = appointmentStart.getValue();
 
         appointmentEnd.setItems(AppointmentTimes.getAllAppointmentTimes(false));
+    }
+
+    public void onBackButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent)loader.load();
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
     }
 }

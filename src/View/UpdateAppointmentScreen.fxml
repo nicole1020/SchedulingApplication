@@ -64,7 +64,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <DatePicker fx:id="appointmentDate" layoutX="182.0" layoutY="381.0" onAction="#onAppointmentDate" prefHeight="25.0" prefWidth="101.0" promptText="01/01/2022 9:30 AM" />
+   <DatePicker fx:id="appointmentDate" layoutX="182.0" layoutY="381.0" prefHeight="25.0" prefWidth="101.0" promptText="01/01/2022 9:30 AM" />
    <TextField fx:id="appointmentTitle" layoutX="181.0" layoutY="213.0" promptText="Title" />
    <TextField fx:id="appointmentDescription" layoutX="182.0" layoutY="243.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="181.0" layoutY="273.0" promptText="Location" />
@@ -78,4 +78,5 @@
    <ComboBox fx:id="appointmentStart" layoutX="181.0" layoutY="410.0" onAction="#onAppointmentStart" prefHeight="25.0" prefWidth="74.0" />
    <ComboBox fx:id="appointmentEnd" layoutX="258.0" layoutY="410.0" prefHeight="25.0" prefWidth="74.0" />
    <Label layoutX="233.0" layoutY="188.0" text="?" />
+   <Button fx:id="back" layoutX="25.0" layoutY="495.0" mnemonicParsing="false" onAction="#onBackButton" text="Button" />
 </AnchorPane>

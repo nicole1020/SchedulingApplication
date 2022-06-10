@@ -101,7 +101,7 @@ public class Appointments extends Customers {
     public String getType() {
         return type;}
 
-    public LocalDateTime getStartDate() {
+    public LocalDateTime getStartDateTime() {
         return startDateTime;}
 
     public LocalDateTime getEndDateTime() {
