@@ -10,7 +10,7 @@ import static DAO.DBConnection.*;
 
 public class UserHelper {
 
-    public static ObservableList<User> getAllUsers(Integer userID) {
+    public static ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
         try {
             String sqlInquiry = "SELECT User_ID, User_Name, Password FROM users";

@@ -150,12 +150,14 @@ public class AppointmentsHelper {
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
-            String sqlAC = "SELECT Contact_ID FROM contacts";
+            String sqlAC = "SELECT Contact_ID, Contact_Name, Email FROM contacts";
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
             ResultSet ACResult = prepAC.executeQuery();
             while (ACResult.next()) {
                 Integer Contact_ID = ACResult.getInt("Contact_ID");
-                Contacts aC = new Contacts(Contact_ID);
+                String Contact_Name = ACResult.getString("Contact_Name");
+                String Email = ACResult.getString("Email");
+                Contacts aC = new Contacts(Contact_ID, Contact_Name, Email);
 
 
                 appointmentContacts.add(aC);
@@ -261,47 +263,23 @@ public class AppointmentsHelper {
         }
     }
 **/
-    public static void createAppointment(String title, String description, String location, String type, java.time.LocalDateTime start, LocalTime endTime, int customerID, int userID, int contact) {
+    public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
-            String sqlc = "INSERT INTO customers VALUES(NULL, ?,?,?,?,?,'NM',NOW(),'NM',?)";
-            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
-            psCreate.execute();
-            ResultSet rs = psCreate.getGeneratedKeys();
-            rs.next();
-            int customerid = rs.getInt(1);
+            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
 
-            String sqlc2 = "INSERT INTO contacts VALUES(NULL, ?,?)";
-            PreparedStatement psCreate2 = connection.prepareStatement(sqlc2, Statement.RETURN_GENERATED_KEYS);
-            psCreate2.execute();
-
-            //   ResultSet rs2 = psCreate2.getGeneratedKeys();
-            // rs2.next();
-            // int contact = rs2.getInt(1);
-
-            String sqlc3 = "INSERT INTO users VALUES(NULL,null,now(),'nm',now(),'nm')";
-            PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
-            psCreate3.execute();
-
-            ResultSet rs3 = psCreate3.getGeneratedKeys();
-            rs3.next();
-            int user = rs3.getInt(1);
-
-            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
-
-            PreparedStatement psCreate4 = connection.prepareStatement(sqlc4, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement psCreate4 = connection.prepareStatement(sqlc4);
             psCreate4.setString(1, String.valueOf(title));
             psCreate4.setString(2, String.valueOf(description));
             psCreate4.setString(3, String.valueOf(location));
             psCreate4.setString(4, String.valueOf(type));
             psCreate4.setTimestamp(5, Timestamp.valueOf(Start));
+            psCreate4.setTimestamp(6, Timestamp.valueOf(endTime));
+            psCreate4.setInt(7, customerID);
+            psCreate4.setInt(8, userID);
+            psCreate4.setInt(9, contact);
 
-            psCreate4.setObject(7, endTime);
-            psCreate4.setInt(8, customerid);
-            psCreate4.setInt(9, user);
-            psCreate4.setInt(10, contact);
 
-
-            psCreate3.execute();
+            psCreate4.execute();
 
 
 
