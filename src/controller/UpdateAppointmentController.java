@@ -15,6 +15,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 
 public class UpdateAppointmentController implements Initializable {
@@ -53,27 +54,21 @@ public class UpdateAppointmentController implements Initializable {
                 break;
             }
         }
-       /* LocalDate date = appointmentDate.getValue();
-        String dateToCompare = date.toString();
-    for( String dateToCompare : appointmentDate.toString()){
-    if (dateToCompare.equals(String.valueOf(theAppointment.getDate()))){
-        appointmentDate.getEditor().setText(String.valueOf(dateToCompare));
+for(String date : appointmentDate.getEditor()) {
+    if (date.equals(theAppointment.getDate().toString())) {
+        this.appointmentDate.getEditor().setText(date);
+        break;
+    }
+}
+for(LocalTime start : appointmentStart.getItems()) {
+  if(LocalTime.of(start)==((theAppointment.getStartTime().toLocalTime()))){
+    this.appointmentStart.getSelectionModel().select(start);
+    break;
+}}
+        LocalTime end =  theAppointment.getEndTime().toLocalTime();
+        this.appointmentEnd.getSelectionModel().select(end);
 
-}}**/
 
-          for (LocalTime start : appointmentStart.getItems()) {
-            if (start.equals(theAppointment.getStartTime())) {
-                appointmentStart.getSelectionModel().select(start);
-                break;
-            }
-        }
-
-        for (LocalTime endApt : appointmentEnd.getItems()) {
-            if (endApt.equals (theAppointment.getStartTime())) {
-                appointmentEnd.getSelectionModel().select(endApt);
-                break;
-            }
-        }
         for (Customers customerID : appointmentCustomerID.getItems()) {
             if (customerID.getCustomerID() ==(theAppointment.getCustomerID())) {
                 appointmentCustomerID.getSelectionModel().select(customerID);
@@ -163,6 +158,7 @@ public class UpdateAppointmentController implements Initializable {
     }
 
     public void onAppointmentDate(ActionEvent actionEvent) {
+        appointmentDate.setPromptText(String.valueOf(LocalDate.now()));
     }
 
     public void onAppointmentStart(ActionEvent actionEvent) {

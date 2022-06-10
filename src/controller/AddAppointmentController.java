@@ -162,12 +162,14 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
-    public void onAppointmentDate(ActionEvent actionEvent) {
-    }
 
     public void onAppointmentStartTime(ActionEvent actionEvent) {
         LocalTime start = appointmentStartTime.getValue();
 
         appointmentEndTime.setItems(AppointmentTimes.getAllAppointmentTimes(false));
+    }
+
+    public void onAppointmentDate(ActionEvent actionEvent) {
+        appointmentDate.setPromptText(String.valueOf(LocalDate.now()));
     }
 }
