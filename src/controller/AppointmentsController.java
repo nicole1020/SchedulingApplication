@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -52,29 +55,33 @@ public class AppointmentsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Appointments Table Initialized
-        appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
-        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsHelper.getAllAppointments()
-                    .get(i).getAppointmentID());
+
+
+            System.out.println("All Appointments Displaying- All radio button selected");
+            appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
+
+            appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+            appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+            appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+            appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+            appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+            appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+            appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+            appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+            appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+            appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+            System.out.println("Appointment IDs:");
+            for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+                System.out.println(AppointmentsHelper.getAllAppointments()
+                        .get(i).getAppointmentID());
+
+            }
+            System.out.println("");
+            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
         }
-        System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
-
-    }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -142,15 +149,27 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
+        if(currentWeekRadioButton.isSelected()){
+            appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments((Period.between(LocalDate.now(), LocalDate.ofEpochDay(7)))));
+            System.out.println("Current Week Appointments Displayed- current week radio button selected");
+        }
 
     }
 
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
+        if(currentMonthRadioButton.isSelected()){
+            appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointments(Period.between(LocalDate.now(), LocalDate.ofEpochDay(30))));
+            System.out.println("Current Month Appointments Displayed- current month radio button selected");
+
+        }
     }
 
     public void onAllSortRadioButton(ActionEvent actionEvent) {
+        if (allSortRadioButton.isSelected()) {
+            System.out.println("All Appointments Displaying- All radio button selected");
+            appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
+        }
     }
-
     public void onGenerateReports(ActionEvent actionEvent) {
     }
 }

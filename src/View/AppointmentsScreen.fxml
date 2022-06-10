@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
+<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
                 <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
@@ -42,7 +41,7 @@
             <Insets left="230.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton fx:id="allSortRadioButton" layoutX="598.0" layoutY="270.0" mnemonicParsing="false" onAction="#onAllSortRadioButton" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton fx:id="allSortRadioButton" layoutX="598.0" layoutY="270.0" mnemonicParsing="false" onAction="#onAllSortRadioButton" selected="true" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
 
       </RadioButton>
      <Button fx:id="exitButton" layoutX="789.0" layoutY="510.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />

@@ -9,6 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -49,7 +50,6 @@ public class AppointmentsHelper {
         }
         return appointmentsList;
     }
-
 
 
     public static ObservableList<String> getAllAppointmentTypes() {
@@ -124,6 +124,69 @@ public class AppointmentsHelper {
         return appointmentContacts;
     }
 
+    public static ObservableList<Appointments> getCurrentWeekAppointments(Period period) {
+        ObservableList<Appointments> currentWeekAppointmentsList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            ResultSet aResult = prepA.executeQuery();
+            while (aResult.next()) {
+                int Appointment_ID = aResult.getInt("Appointment_ID");
+                String Title = aResult.getString("Title");
+                String Description = aResult.getString("Description");
+                String Location = aResult.getString("Location");
+                int Contact_ID = aResult.getInt("Contact_ID");
+                String Type = aResult.getString("Type");
+                aResult.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
+                aResult.getTimestamp("End").toLocalDateTime();
+                LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
+                int Customer_ID = aResult.getInt("Customer_ID");
+                int User_ID = aResult.getInt("User_ID");
+
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                currentWeekAppointmentsList.add(ap);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return currentWeekAppointmentsList;
+    }
+
+    public static ObservableList<Appointments> getCurrentMonthAppointments(Period period) {
+        ObservableList<Appointments> currentMonthAppointmentsList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            ResultSet aResult = prepA.executeQuery();
+            while (aResult.next()) {
+                int Appointment_ID = aResult.getInt("Appointment_ID");
+                String Title = aResult.getString("Title");
+                String Description = aResult.getString("Description");
+                String Location = aResult.getString("Location");
+                int Contact_ID = aResult.getInt("Contact_ID");
+                String Type = aResult.getString("Type");
+                aResult.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
+                aResult.getTimestamp("End").toLocalDateTime();
+                LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
+                int Customer_ID = aResult.getInt("Customer_ID");
+                int User_ID = aResult.getInt("User_ID");
+
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                currentMonthAppointmentsList.add(ap);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return currentMonthAppointmentsList;
+    }
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
