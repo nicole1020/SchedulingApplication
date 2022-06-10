@@ -15,15 +15,12 @@ import model.*;
 import javafx.event.ActionEvent;
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.*;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 
 public class UpdateAppointmentController implements Initializable {
     public ComboBox <LocalTime>appointmentStart;
-    public TextField appointmentID;
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
@@ -158,9 +155,6 @@ public class UpdateAppointmentController implements Initializable {
         appointmentStart.setItems(AppointmentTimes.getAllAppointmentTimes(true));
     }
 
-    public void onAppointmentDate(ActionEvent actionEvent) {
-
-    }
 
     public void onAppointmentStart(ActionEvent actionEvent) {
         LocalTime start = appointmentStart.getValue();

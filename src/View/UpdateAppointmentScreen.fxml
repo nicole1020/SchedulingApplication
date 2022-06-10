@@ -78,5 +78,5 @@
    <ComboBox fx:id="appointmentStart" layoutX="181.0" layoutY="410.0" onAction="#onAppointmentStart" prefHeight="25.0" prefWidth="74.0" />
    <ComboBox fx:id="appointmentEnd" layoutX="258.0" layoutY="410.0" prefHeight="25.0" prefWidth="74.0" />
    <Label layoutX="233.0" layoutY="188.0" text="?" />
-   <Button fx:id="back" layoutX="25.0" layoutY="495.0" mnemonicParsing="false" onAction="#onBackButton" text="Button" />
+   <Button fx:id="back" layoutX="25.0" layoutY="495.0" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
 </AnchorPane>
