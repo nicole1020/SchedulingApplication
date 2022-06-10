@@ -17,9 +17,6 @@ import static DAO.DBConnection.connection;
 
 public class AppointmentsHelper {
 
-    private static Object LocalDateTime;
-    private static Calendar calendar;
-    private static String Start;
 
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
@@ -53,49 +50,8 @@ public class AppointmentsHelper {
         return appointmentsList;
     }
 
-    private static Map<String, Class<?>> getEndTime() {
-        return null;
-    }
-
-    private static Map<String, Class<?>> getStartTime() {
-        return null;
-    }
-
-    private static Map<String, Class<?>> setStartTime() {
-        return null;
-    }
-    //create new appointment
 
 
-   /*public static void createAppointment(String title, String description, String location, String type, LocalDateTime date,Timestamp Start, LocalDateTime startTime, LocalDateTime endTime, int customerid, int user, int contact) {
-        try {
-
-            String sqlc = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
-            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
-            psCreate.setString(1, String.valueOf(title));
-            psCreate.setString(2, String.valueOf(description));
-            psCreate.setString(3, String.valueOf(location));
-            psCreate.setString(4, String.valueOf(type));
-            psCreate.setTimestamp(Timestamp.valueOf(Start));
-            psCreate.setObject(6, startTime);
-            psCreate.setObject(7, endTime);
-
-          //  psCreate.setInt(8, customerid);
-         //   psCreate.setInt(9, user);
-          //  psCreate.setInt(10, contact);
-
-            psCreate.execute();
-
-        } catch (Exception e) {
-            e.printStackTrace();//print stack trace
-
-        }
-    }
-
-    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, String startTime, String endTime,  int customerID, int user, int contact) throws SQLException {
-
-    }
-**/
     public static ObservableList<String> getAllAppointmentTypes() {
         ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
@@ -111,23 +67,7 @@ public class AppointmentsHelper {
         }
         return appointmentTypes;
     }
-    public static ObservableList<Date> getAllAppointmentDates(DatePicker appointmentDate) {
-        ObservableList<Date> appointmentDates = FXCollections.observableArrayList();
-        try {
-            String sqlcB = "SELECT * FROM appointments";
-            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-            ResultSet cBResult = prepcB.executeQuery();
-            while (cBResult.next()) {
-                Date date = cBResult.getDate("date");
 
-
-                appointmentDates.add(date);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return appointmentDates;
-    }
 
     public static ObservableList<Timestamp> getAllAppointmentStartTimes() {
         ObservableList<Timestamp> appointmentStartTimes = FXCollections.observableArrayList();
@@ -224,6 +164,18 @@ public class AppointmentsHelper {
         psCreate.setInt(11, contact);
         psCreate.execute();
 
+    }
+
+    public static void deleteAppointment(int appointmentID) {
+        try{
+            String sqlDC = "Delete FROM appointments WHERE Appointment_ID = ?";
+            PreparedStatement psDC = connection.prepareStatement(sqlDC);
+            psDC.setInt(1, appointmentID);
+            psDC.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

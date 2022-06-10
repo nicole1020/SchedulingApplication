@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.AppointmentsHelper;
+import DAO.CustomersHelper;
 import model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,10 @@ public class AppointmentsController implements Initializable {
     public Button deleteAppointment1;
     public Button toCustomersScreen;
     public Button addAppointment;
+    public RadioButton currentWeekRadioButton;
+    public RadioButton currentMonthRadioButton;
+    public RadioButton allSortRadioButton;
+    public Button generateReportsButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,6 +96,8 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onDeleteAppointment(ActionEvent actionEvent) {
+        Appointments ap = (Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem();
+        AppointmentsHelper.deleteAppointment( ap.getAppointmentID() );
     }
 
     public void onAppointmentsSearch(ActionEvent actionEvent) {
@@ -132,5 +139,18 @@ public class AppointmentsController implements Initializable {
         } catch (Exception var6) {
             var6.printStackTrace();
         }
+    }
+
+    public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
+
+    }
+
+    public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
+    }
+
+    public void onAllSortRadioButton(ActionEvent actionEvent) {
+    }
+
+    public void onGenerateReports(ActionEvent actionEvent) {
     }
 }

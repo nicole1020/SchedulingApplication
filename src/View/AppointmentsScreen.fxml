@@ -6,13 +6,13 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
+<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
                 <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
@@ -29,7 +29,7 @@
             <Insets top="55.0" />
          </GridPane.margin>
       </Label>
-      <RadioButton layoutX="644.0" layoutY="270.0" mnemonicParsing="false" text="Current Week" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton fx:id="currentWeekRadioButton" layoutX="644.0" layoutY="270.0" mnemonicParsing="false" onAction="#onCurrentWeekRadioButton" text="Current Week" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <toggleGroup>
             <ToggleGroup fx:id="appointmentsToggle" />
          </toggleGroup>
@@ -37,12 +37,12 @@
             <Insets left="130.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton layoutX="750.0" layoutY="270.0" mnemonicParsing="false" text="Current Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton fx:id="currentMonthRadioButton" layoutX="750.0" layoutY="270.0" mnemonicParsing="false" onAction="#onCurrentMonthRadioButton" text="Current Month" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="230.0" top="55.0" />
          </GridPane.margin>
       </RadioButton>
-      <RadioButton layoutX="598.0" layoutY="270.0" mnemonicParsing="false" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <RadioButton fx:id="allSortRadioButton" layoutX="598.0" layoutY="270.0" mnemonicParsing="false" onAction="#onAllSortRadioButton" text="All" toggleGroup="$appointmentsToggle" GridPane.columnIndex="1" GridPane.rowIndex="2">
 
       </RadioButton>
      <Button fx:id="exitButton" layoutX="789.0" layoutY="510.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
@@ -67,11 +67,9 @@
                      <Font size="14.0" />
                  </font>
              </Label>
-             <TextField fx:id="appointmentsTextField" layoutX="129.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAppointmentsTextField" onKeyPressed="#onAppointmentTextField" prefHeight="25.0" prefWidth="229.0" promptText="Search by Appointment ID or Name" />
              <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
-         <Button fx:id="appointmentsSearch" layoutX="360.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAppointmentsSearch" text="Search" />
    <Button fx:id="editAppointment" layoutX="296.0" layoutY="470.0" mnemonicParsing="false" onAction="#onEditAppointment" text="Edit Appointment" />
-   <Button fx:id="deleteAppointment1" layoutX="598.0" layoutY="470.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Click here to generate Reports" textFill="#0c4acf" />
+   <Button fx:id="generateReportsButton" layoutX="598.0" layoutY="470.0" mnemonicParsing="false" onAction="#onGenerateReports" text="Click here to generate Reports" textFill="#0c4acf" />
    <Label layoutX="477.0" layoutY="472.0">
       <font>
          <Font size="14.0" />

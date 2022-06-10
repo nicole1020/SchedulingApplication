@@ -55,9 +55,12 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onDeleteAppointment(ActionEvent actionEvent) {
+
     }
 
     public void onAppointmentsSearch(ActionEvent actionEvent) {
+
+
     }
 
     public void onEditAppointment(ActionEvent actionEvent) {
