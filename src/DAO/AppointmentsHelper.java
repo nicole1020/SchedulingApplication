@@ -111,7 +111,7 @@ public class AppointmentsHelper {
         }
         return appointmentTypes;
     }
-    public static ObservableList<Date> getAllAppointmentDates() {
+    public static ObservableList<Date> getAllAppointmentDates(DatePicker appointmentDate) {
         ObservableList<Date> appointmentDates = FXCollections.observableArrayList();
         try {
             String sqlcB = "SELECT * FROM appointments";

@@ -105,6 +105,7 @@ will fix java code for combo box appointment times and proper sql code for save 
  I also learned how to properly use time offset from EST to user's localtime.
 
  will work on updateappointment controller and making sure the combo boxes properly populate with the right data.
+ 6/10 working on listeners on date picker and combo boxes(if necessary)
  */
 public class Main extends Application {
     @Override
