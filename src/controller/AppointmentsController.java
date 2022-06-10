@@ -58,7 +58,7 @@ public class AppointmentsController implements Initializable {
 
 
 
-            System.out.println("All Appointments Displaying- All radio button selected");
+            System.out.println("All Appointments Displaying");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
             appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
@@ -151,7 +151,7 @@ public class AppointmentsController implements Initializable {
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
         if(currentWeekRadioButton.isSelected()){
             appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments((Period.between(LocalDate.now(), LocalDate.ofEpochDay(7)))));
-            System.out.println("Current Week Appointments Displayed- current week radio button selected");
+            System.out.println("Current Week's Appointments Displayed");
         }
 
     }
@@ -159,14 +159,14 @@ public class AppointmentsController implements Initializable {
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
         if(currentMonthRadioButton.isSelected()){
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointments(Period.between(LocalDate.now(), LocalDate.ofEpochDay(30))));
-            System.out.println("Current Month Appointments Displayed- current month radio button selected");
+            System.out.println("Current Month's Appointments Displayed");
 
         }
     }
 
     public void onAllSortRadioButton(ActionEvent actionEvent) {
         if (allSortRadioButton.isSelected()) {
-            System.out.println("All Appointments Displaying- All radio button selected");
+            System.out.println("All Appointments Displayed");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
         }
     }

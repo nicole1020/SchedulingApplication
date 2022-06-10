@@ -108,6 +108,8 @@ will fix java code for combo box appointment times and proper sql code for save 
  6/10 working on listeners on date picker and combo boxes(if necessary)
  emailed Mr. kinkead and he helped me understand where I'm having trouble with updatecontroller. he suggested i breakup localdatetime into local date and local time for the proper combo boxes and set it up accordingly.
  fixed the issues. working on delete appointment next.
+ added delete appointment.
+ working on radio buttons to sort by week, month, all.- so far onaction is not working;
  */
 public class Main extends Application {
     @Override
