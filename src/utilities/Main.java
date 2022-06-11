@@ -110,6 +110,8 @@ will fix java code for combo box appointment times and proper sql code for save 
  fixed the issues. working on delete appointment next.
  added delete appointment.
  working on radio buttons to sort by week, month, all.- so far onaction is not working;
+ 6/11 working on radio buttons, emailed Mr. Kinkead for advice. He is checking my sql in next interaction.
+
  */
 public class Main extends Application {
     @Override
