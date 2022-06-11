@@ -1,26 +1,44 @@
 package controller;
 
 import DAO.UserHelper;
-import model.User;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.*;
 
 public class UserLoginController implements Initializable {
+    private static Logger logger = Logger.getLogger("ErrorChangeLogging");
+    private static FileHandler fh;
+
+    static {
+        try {
+            fh = new FileHandler("login_activity.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Button login;
     public Button cancel;
-    public TextField userNameField;
+    public TextField userName;
     public TextField password;
     public Label userNameLabel;
     public Label passwordLabel;
@@ -33,36 +51,54 @@ public class UserLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         userLocationLabel.setText(ZoneId.systemDefault().toString());
         passwordLabel.setText(resourceB.getString("password"));
         userNameLabel.setText(resourceB.getString("username"));
-        userNameField.setPromptText(resourceB.getString("enter_username"));
+        userName.setPromptText(resourceB.getString("enter_username"));
         password.setPromptText(resourceB.getString("enter_password"));
 
     }
 
     public void onLogin(ActionEvent actionEvent) throws IOException{
-        String userName = userNameField.getText();
+
+
+        String userName = this.userName.getText();
         String passwordEntry = password.getText();
         if (userName == null) {
             return;
+            
+            
         }
         if (passwordEntry == null) {
             return;
         }
 
          else {
+
             loggedUser = UserHelper.validateUser(userName, passwordEntry);
+
+             logger.addHandler(fh);
+            logger.setLevel(Level.ALL);
+
             if(loggedUser == null){
+                logger.info(("User: "+ this.userName.getText() +    "gave invalid login at " + LocalDateTime.now()+ "" + ZoneId.systemDefault()));
+
+                System.out.println("Attempted Login by user: " + this.userName.getText() );
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setContentText("Enter valid inputs");
                 alert.showAndWait();
+
             return;
+
             }
         try {
+            System.out.println("Successful Login by user: " + this.userName.getText() );
+            logger.info( "User: " + this.userName.getText() + "gave valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
 
-                userLocationLabel.setText("Login Successful");
+
+            userLocationLabel.setText("Login Successful");
                 Locale.setDefault(new Locale("en","US"));
                 Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -87,16 +123,23 @@ public class UserLoginController implements Initializable {
         stage.close();
     }
 
+
+
+
+
     @FXML
     private boolean onPassword() {
-
-            return false;
-        }
-
-
+        password.textProperty().addListener((observable, oldValue, newValue) ->
+                System.out.println("password Text Changed (newValue: " + newValue + ")\n"));
+        return false;
+    }
     @FXML
-    private boolean onUserNameField() {
+    private void onUserNameField() {
+        userName.textProperty().addListener((observable, oldValue, newValue) ->
+                System.out.println(("userName Text Changed (newValue: " + newValue + ")\n")));
 
-            return false;
+    }
+
+    public <E> void UserLoginController(SetChangeListener.Change<? extends E> change) {
     }
 }

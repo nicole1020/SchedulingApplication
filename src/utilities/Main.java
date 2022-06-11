@@ -1,19 +1,21 @@
 package utilities;
 
 import DAO.DBConnection;
+
+
+import com.sun.javafx.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.time.Instant;
-import java.time.LocalTime;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.TimeZone;
+import model.ErrorChangeLogging;
+import java.util.logging.*;
+import java.io.IOException;
+import java.util.logging.FileHandler;
 
 /**
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
@@ -114,26 +116,27 @@ will fix java code for combo box appointment times and proper sql code for save 
 
  */
 public class Main extends Application {
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+
+    public void start(Stage primaryStage) throws Exception {
         //Locale.setDefault(new Locale("fr","FR"));
 
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
-       // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-         Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-}
-
+    }
 
     public static void main(String[] args) {
-        DBConnection.openConnection();
+
+            DBConnection.openConnection();
         launch(args);
         DBConnection.closeConnection();
     }
 }
+

@@ -1,6 +1,5 @@
 package model;
 
-import DAO.AppointmentsHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.*;

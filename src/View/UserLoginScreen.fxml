@@ -11,7 +11,7 @@
    <Button fx:id="cancel" layoutX="306.0" layoutY="200.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="69.0" text="Cancel" />
    <Label fx:id="userNameLabel" layoutX="118.0" layoutY="101.0" prefHeight="17.0" prefWidth="99.0" text="UserName" textAlignment="JUSTIFY" />
    <Label fx:id="passwordLabel" layoutX="118.0" layoutY="154.0" prefHeight="17.0" prefWidth="93.0" text="Password" textAlignment="RIGHT" />
-   <TextField fx:id="userNameField" layoutX="226.0" layoutY="97.0" onAction="#onUserNameField" prefHeight="25.0" prefWidth="174.0" promptText="Enter Username" />
+   <TextField fx:id="userName" layoutX="226.0" layoutY="97.0" onAction="#onUserNameField" prefHeight="25.0" prefWidth="174.0" promptText="Enter Username" />
    <TextField fx:id="password" layoutX="226.0" layoutY="150.0" onAction="#onPassword" prefHeight="25.0" prefWidth="174.0" promptText="Enter Password " />
    <Label layoutX="63.0" layoutY="38.0" prefHeight="35.0" prefWidth="210.0" text="Scheduling Application Login">
       <font>
