@@ -4,17 +4,16 @@ import controller.UserLoginController;
 import javafx.collections.SetChangeListener;
 
 public class ErrorChangeLogging<E> implements SetChangeListener<E> {
-
-private UserLoginController validateUserLog;
+    private UserLoginController writeLoginActivity;
 public ErrorChangeLogging(UserLoginController validateUserLog){
     super();
-    this.validateUserLog = validateUserLog;
+
 }
 
     @Override
     public void onChanged(Change<? extends E> change) {
         try {
-            this.validateUserLog.UserLoginController(change);
+            this.writeLoginActivity.writeLoginActivity(change);
         } catch (Exception e) {
 
             e.printStackTrace();

@@ -15,7 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -82,7 +84,8 @@ public class UserLoginController implements Initializable {
             logger.setLevel(Level.ALL);
 
             if(loggedUser == null){
-                logger.info(("User: "+ this.userName.getText() +    "gave invalid login at " + LocalDateTime.now()+ "" + ZoneId.systemDefault()));
+
+                logger.info(("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
 
                 System.out.println("Attempted Login by user: " + this.userName.getText() );
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -95,7 +98,7 @@ public class UserLoginController implements Initializable {
             }
         try {
             System.out.println("Successful Login by user: " + this.userName.getText() );
-            logger.info( "User: " + this.userName.getText() + "gave valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
+            logger.info( "User with UserName: " +  "'" + this.userName.getText()+  "' " + "had valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
 
 
             userLocationLabel.setText("Login Successful");
@@ -114,10 +117,10 @@ public class UserLoginController implements Initializable {
                 alert.setContentText("Enter valid inputs");
                 alert.showAndWait();
             }
-         }
+            logger.fine("complete");
+
         }
-
-
+        }
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();
         stage.close();
@@ -140,6 +143,18 @@ public class UserLoginController implements Initializable {
 
     }
 
-    public <E> void UserLoginController(SetChangeListener.Change<? extends E> change) {
+    public <E> void writeLoginActivity(SetChangeListener.Change<? extends E> change) {
+        PrintWriter fw = null;
+        try {
+            fw = new PrintWriter("login_activity.txt");
+            BufferedWriter bufferedW = new BufferedWriter(fw);
+            bufferedW.write("User with UserName:"+  " '" +this.userName.getText()+ "' "  +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
+            bufferedW.newLine();
+            fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 }
