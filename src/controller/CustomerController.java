@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
-    public TableView customersTable;
+    public TableView <Customers> customersTable;
     public TableColumn customersTableCustomerNameCol;
     public TableColumn customersTableAddressCol;
     public TableColumn customersTablePostalCodeCol;
@@ -25,12 +25,9 @@ public class CustomerController implements Initializable {
     public TableColumn customersTableCustomerID;
     public TableColumn customersTableCountry;
     public TableColumn customersTableDivision;
-    public TextField customerTextField;
     public Label resultsLBL;
-    public Button customerSearch;
     public Button deleteCustomer;
     public Button exitButton;
-    public Button updateCustomer;
     public Label resultsLBLAppointments;
     public Button editCustomer;
     public Customers selectedCustomer = null;

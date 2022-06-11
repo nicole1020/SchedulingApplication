@@ -14,25 +14,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.*;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class UserLoginController implements Initializable {
     private static Logger logger = Logger.getLogger("ErrorChangeLogging");
-    private static FileHandler fh;
+   /***/ private static FileHandler fh;
 
     static {
         try {
-            fh = new FileHandler("login_activity.txt");
+            fh = new FileHandler("utilities.login_activity.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,6 +85,7 @@ public class UserLoginController implements Initializable {
             if(loggedUser == null){
 
                 logger.info(("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
+                logger.log(Level.WARNING,("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
 
                 System.out.println("Attempted Login by user: " + this.userName.getText() );
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -127,8 +127,22 @@ public class UserLoginController implements Initializable {
     }
 
 
+    public void  printLog() {
+        PrintWriter fw = null;
+        try {
+            fw = new PrintWriter("utilities.login_activity.txt");
+            BufferedWriter bufferedW = new BufferedWriter(fw);
+            bufferedW.write(this.userName.getText());
+            bufferedW.write(String.valueOf(LocalDateTime.now()));
+            bufferedW.write(ZoneId.systemDefault().toString());
+            bufferedW.newLine();
+            fw.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
 
+        }
+    }
 
     @FXML
     private boolean onPassword() {
@@ -144,17 +158,6 @@ public class UserLoginController implements Initializable {
     }
 
     public <E> void writeLoginActivity(SetChangeListener.Change<? extends E> change) {
-        PrintWriter fw = null;
-        try {
-            fw = new PrintWriter("login_activity.txt");
-            BufferedWriter bufferedW = new BufferedWriter(fw);
-            bufferedW.write("User with UserName:"+  " '" +this.userName.getText()+ "' "  +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
-            bufferedW.newLine();
-            fw.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
     }
 }

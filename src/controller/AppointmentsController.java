@@ -26,8 +26,7 @@ public class AppointmentsController implements Initializable {
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
     public Button exitButton;
-    public Button saveAppointment;
-    public TableView appointmentsTable;
+    public TableView <Appointments> appointmentsTable;
     public TableColumn appointmentsIDCol;
     public TableColumn appointmentsTitleCol;
     public TableColumn appointmentsDescriptionCol;
@@ -39,11 +38,8 @@ public class AppointmentsController implements Initializable {
     public TableColumn appointmentsCustomerIDCol;
     public TableColumn appointmentsUserIDCol;
     public Button deleteAppointment;
-    public TextField appointmentsTextField;
     public Label resultsLBLAppointments;
-    public Button appointmentsSearch;
     public Button editAppointment;
-    public Button deleteAppointment1;
     public Button toCustomersScreen;
     public Button addAppointment;
     public RadioButton currentWeekRadioButton;
@@ -103,10 +99,7 @@ public class AppointmentsController implements Initializable {
 
     public void onDeleteAppointment(ActionEvent actionEvent) {
         Appointments ap = (Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem();
-        AppointmentsHelper.deleteAppointment( ap.getAppointmentID() );
-    }
-
-    public void onAppointmentsSearch(ActionEvent actionEvent) {
+        AppointmentsHelper.deleteAppointment(ap.getAppointmentID());
     }
 
     public void onEditAppointment(ActionEvent actionEvent) {
@@ -114,9 +107,9 @@ public class AppointmentsController implements Initializable {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
             Parent UpdateAppointmentScreen = loader.load();
             UpdateAppointmentController controller = loader.getController();
-            controller.editedAppointment((Appointments)this.appointmentsTable.getSelectionModel().getSelectedItem());
+            controller.editedAppointment((Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem());
             System.out.println("Update Appointment Clicked");
-            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(UpdateAppointmentScreen);
             stage.setTitle("Update Appointment Record");
             stage.setScene(scene);
@@ -126,13 +119,6 @@ public class AppointmentsController implements Initializable {
             var7.printStackTrace();
         }
     }
-
-    public void onAppointmentsTextField(ActionEvent actionEvent) {
-    }
-
-    public void onAppointmentTextField(KeyEvent keyEvent) {
-    }
-
     public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
@@ -148,29 +134,25 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
-        if(currentWeekRadioButton.isSelected()){
-              System.out.println("Current Week's Appointments Displayed");
+        if (currentWeekRadioButton.isSelected()) {
+            System.out.println("Current Week's Appointments Displayed");
+            appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments());
             for (int i = 0; i < AppointmentsHelper.getCurrentWeekAppointments().size(); i++) {
                 System.out.println(AppointmentsHelper.getCurrentWeekAppointments()
                         .get(i).getAppointmentID());
-                appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments());
-
             }
             System.out.println("");
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments on File");
         }
-
     }
 
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
-        if(currentMonthRadioButton.isSelected()){
+        if (currentMonthRadioButton.isSelected()) {
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
             System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getCurrentMonthAppointmentsRadio().size(); i++) {
-
                 System.out.println(AppointmentsHelper.getCurrentMonthAppointmentsRadio()
                         .get(i).getAppointmentID());
-
             }
             System.out.println("");
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
@@ -185,13 +167,12 @@ public class AppointmentsController implements Initializable {
             for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
                 System.out.println(AppointmentsHelper.getAllAppointments()
                         .get(i).getAppointmentID());
-
             }
             System.out.println("");
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
-
         }
     }
+
     public void onGenerateReports(ActionEvent actionEvent) {
     }
 }

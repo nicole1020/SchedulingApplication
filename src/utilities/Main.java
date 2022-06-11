@@ -115,8 +115,10 @@ will fix java code for combo box appointment times and proper sql code for save 
  6/11 working on radio buttons, emailed Mr. Kinkead for advice. He is checking my sql in next interaction.
 figured out how to get radio buttons to work. also Mr. Kinkead fixed a mistake I repeated on accident in my sql with timestamp.
  I also figured out how to retrieve current week and current month data in sql function to properly sort appointments with radio buttons.
-
- next I will work on generating reports and properly writing login activity to read only file login_activity.txt
+current week was not properly working because I had the table information populating after the loop. It needed to be before the loop that counted
+ quantity of appointments in the table.
+ next I will work on writing login activity to read only file login_activity.txt
+ I realized i need to set up a resource bundle and hopefully set up a lambda expression
  */
 public class Main extends Application {
 
@@ -125,10 +127,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Locale.setDefault(new Locale("fr","FR"));
 
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
