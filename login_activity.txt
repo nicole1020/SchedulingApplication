@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-06-11T20:10:41.571419100Z</date>
+  <millis>1654978241571</millis>
+  <nanos>419100</nanos>
+  <sequence>0</sequence>
+  <logger>ErrorChangeLogging</logger>
+  <level>INFO</level>
+  <class>controller.UserLoginController</class>
+  <method>onLogin</method>
+  <thread>18</thread>
+  <message>User with UserName: 'test' had valid login at 2022-06-11T14:10:41.568420300 America/Denver</message>
+</record>
+<record>
+  <date>2022-06-11T20:10:42.191418200Z</date>
+  <millis>1654978242191</millis>
+  <nanos>418200</nanos>
+  <sequence>1</sequence>
+  <logger>ErrorChangeLogging</logger>
+  <level>FINE</level>
+  <class>controller.UserLoginController</class>
+  <method>onLogin</method>
+  <thread>18</thread>
+  <message>complete</message>
+</record>
