@@ -56,8 +56,6 @@ public class AppointmentsController implements Initializable {
 
         //Appointments Table Initialized
 
-
-
             System.out.println("All Appointments Displaying");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 

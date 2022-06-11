@@ -1,18 +1,14 @@
 package DAO;
 
-import javafx.scene.control.DatePicker;
-import model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Appointments;
+import model.Contacts;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
 
 import static DAO.DBConnection.connection;
 
@@ -138,9 +134,9 @@ public class AppointmentsHelper {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                aResult.getTimestamp("Start").toLocalDateTime();
+                aResult.getTimestamp("Start").toLocalDateTime().plus(period);
                 LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
-                aResult.getTimestamp("End").toLocalDateTime();
+                aResult.getTimestamp("End").toLocalDateTime().plus(period);
                 LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
@@ -170,9 +166,9 @@ public class AppointmentsHelper {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                aResult.getTimestamp("Start").toLocalDateTime();
+                aResult.getTimestamp("Start").toLocalDateTime().plus(period);
                 LocalDateTime Start = (java.time.LocalDateTime) aResult.getObject("Start");
-                aResult.getTimestamp("End").toLocalDateTime();
+                aResult.getTimestamp("End").toLocalDateTime().plus(period);
                 LocalDateTime End = (java.time.LocalDateTime) aResult.getObject("End");
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
