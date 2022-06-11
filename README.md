@@ -17,6 +17,6 @@ JavaFX compatible JDK SDK 17.0.1
 
 mySQL Connector driver 8.0.25
 
-A.3 additional Report: Counts hours of appointments available today- lists available appointments for current day.
+A.3 additional Report: counts all appointments on file.
 
 To Launch SchedulingApplication:
