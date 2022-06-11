@@ -122,10 +122,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Locale.setDefault(new Locale("fr","FR"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);

@@ -148,7 +148,7 @@ public class AppointmentsController implements Initializable {
 
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
         if(currentWeekRadioButton.isSelected()){
-            appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments((Period.between(LocalDate.now(), LocalDate.ofEpochDay(7)))));
+            appointmentsTable.setItems(AppointmentsHelper.getCurrentAppointmentsRadio((Period.between(LocalDate.from(LocalDateTime.now()), LocalDate.from(LocalDateTime.now()).plusDays(7)))));
             System.out.println("Current Week's Appointments Displayed");
         }
 
@@ -156,7 +156,7 @@ public class AppointmentsController implements Initializable {
 
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
         if(currentMonthRadioButton.isSelected()){
-            appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointments(Period.between(LocalDate.now(), LocalDate.ofEpochDay(30))));
+            appointmentsTable.setItems(AppointmentsHelper.getCurrentAppointmentsRadio(Period.between(LocalDate.from(LocalDateTime.now()), LocalDate.now().plusDays(30))));
             System.out.println("Current Month's Appointments Displayed");
 
         }
