@@ -113,7 +113,10 @@ will fix java code for combo box appointment times and proper sql code for save 
  added delete appointment.
  working on radio buttons to sort by week, month, all.- so far onaction is not working;
  6/11 working on radio buttons, emailed Mr. Kinkead for advice. He is checking my sql in next interaction.
+figured out how to get radio buttons to work. also Mr. Kinkead fixed a mistake I repeated on accident in my sql with timestamp.
+ I also figured out how to retrieve current week and current month data in sql function to properly sort appointments with radio buttons.
 
+ next I will work on generating reports and properly writing login activity to read only file login_activity.txt
  */
 public class Main extends Application {
 

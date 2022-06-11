@@ -122,7 +122,7 @@ public class AppointmentsHelper {
         ObservableList<Appointments> currentWeekAppointmentsList = FXCollections.observableArrayList();
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID AND week(Start)=week(now()";
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID AND  week(Start)=week(now())";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -152,7 +152,7 @@ public class AppointmentsHelper {
         ObservableList<Appointments> currentMonthAppointmentsRadioList = FXCollections.observableArrayList();
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID AND month(Start)=month(now()";
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID AND  MONTH(Start) = MONTH(NOW()) and YEAR(Start) = YEAR(NOW());";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {

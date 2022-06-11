@@ -56,29 +56,30 @@ public class AppointmentsController implements Initializable {
 
         //Appointments Table Initialized
 
-            System.out.println("All Appointments Displaying");
-            appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
+        System.out.println("All Appointments Displaying");
+        appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
-            appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-            appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-            appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-            appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-            appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
-            appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-            appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-            appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-            appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-            appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-            System.out.println("Appointment IDs:");
-            for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
-                System.out.println(AppointmentsHelper.getAllAppointments()
-                        .get(i).getAppointmentID());
-
-            }
-            System.out.println("");
-            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        System.out.println("Appointment IDs:");
+        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelper.getAllAppointments()
+                    .get(i).getAppointmentID());
 
         }
+        System.out.println("");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+
+
+    }
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -150,7 +151,7 @@ public class AppointmentsController implements Initializable {
         if(currentWeekRadioButton.isSelected()){
               System.out.println("Current Week's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getCurrentWeekAppointments().size(); i++) {
-                System.out.println(AppointmentsHelper.getAllAppointments()
+                System.out.println(AppointmentsHelper.getCurrentWeekAppointments()
                         .get(i).getAppointmentID());
                 appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments());
 
@@ -167,7 +168,7 @@ public class AppointmentsController implements Initializable {
             System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getCurrentMonthAppointmentsRadio().size(); i++) {
 
-                System.out.println(AppointmentsHelper.getAllAppointments()
+                System.out.println(AppointmentsHelper.getCurrentMonthAppointmentsRadio()
                         .get(i).getAppointmentID());
 
             }
@@ -181,6 +182,14 @@ public class AppointmentsController implements Initializable {
         if (allSortRadioButton.isSelected()) {
             System.out.println("All Appointments Displayed");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
+            for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+                System.out.println(AppointmentsHelper.getAllAppointments()
+                        .get(i).getAppointmentID());
+
+            }
+            System.out.println("");
+            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+
         }
     }
     public void onGenerateReports(ActionEvent actionEvent) {
