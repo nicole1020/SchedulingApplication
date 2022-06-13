@@ -2,6 +2,9 @@ package controller;
 
 import DAO.AddressHelper;
 import DAO.CustomersHelper;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import model.Address;
 import model.Country;
 import model.Customers;
@@ -10,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,7 +60,7 @@ public class UpdateCustomerController implements Initializable {
         stage.close();
     }
 
-    public void onSaveCustomer(ActionEvent actionEvent) {
+    public void onSaveCustomer(ActionEvent actionEvent) throws IOException {
         String name = customerName.getText();
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
@@ -72,7 +76,13 @@ public class UpdateCustomerController implements Initializable {
             CustomersHelper.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
             );
         }
-
+        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home Page");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
     public void editedCustomer(Customers theCustomer) {
 

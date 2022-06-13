@@ -8,7 +8,7 @@ import model.Contacts;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Period;
+import java.time.Month;
 
 import static DAO.DBConnection.connection;
 
@@ -63,14 +63,16 @@ public class AppointmentsHelper {
     }
 
 
-    public static ObservableList<Timestamp> getAllAppointmentStartTimes() {
-        ObservableList<Timestamp> appointmentStartTimes = FXCollections.observableArrayList();
+    public static ObservableList<LocalDateTime> getAllAppointmentStartTimes() {
+        ObservableList<LocalDateTime> appointmentStartTimes = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT Start FROM appointments";
+            String sqlcB = "SELECT Start FROM appointments; " ;
+
+
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
-                Timestamp Start = cBResult.getTimestamp("Start");
+                LocalDateTime Start = cBResult.getTimestamp("Start").toLocalDateTime();
 
                 appointmentStartTimes.add(Start);
             }
@@ -79,6 +81,7 @@ public class AppointmentsHelper {
         }
         return appointmentStartTimes;
     }
+
     public static ObservableList<LocalTime> getAllAppointmentEndTimes() {
         ObservableList<LocalTime> appointmentEndTimes = FXCollections.observableArrayList();
         try {
@@ -177,6 +180,7 @@ public class AppointmentsHelper {
         }
         return currentMonthAppointmentsRadioList;
     }
+
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
@@ -202,7 +206,7 @@ public class AppointmentsHelper {
         }
     }
 
-    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type,  LocalDateTime start, LocalDateTime end, int customerID, int user, int contact) throws SQLException {
+    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerID, int user, int contact) throws SQLException {
         String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
         PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
         psCreate.setInt(1, appointmentid);
@@ -220,7 +224,7 @@ public class AppointmentsHelper {
     }
 
     public static void deleteAppointment(int appointmentID) {
-        try{
+        try {
             String sqlDC = "Delete FROM appointments WHERE Appointment_ID = ?";
             PreparedStatement psDC = connection.prepareStatement(sqlDC);
             psDC.setInt(1, appointmentID);
@@ -230,7 +234,72 @@ public class AppointmentsHelper {
             e.printStackTrace();
         }
     }
+
+
+    public static ObservableList<Appointments> getReportsDataSortByType() {
+        ObservableList<Appointments> reportsDataSortByMonthAndTypeList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID ";
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            ResultSet aResult = prepA.executeQuery();
+            while (aResult.next()) {
+
+                int Appointment_ID = aResult.getInt("Appointment_ID");
+                String Title = aResult.getString("Title");
+                String Description = aResult.getString("Description");
+                String Location = aResult.getString("Location");
+                int Contact_ID = aResult.getInt("Contact_ID");
+                String Type = aResult.getString("Type");
+                LocalDateTime Start = aResult.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
+                int Customer_ID = aResult.getInt("Customer_ID");
+                int User_ID = aResult.getInt("User_ID");
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                reportsDataSortByMonthAndTypeList.add(ap);
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return reportsDataSortByMonthAndTypeList;
+    }
+
+    public static ObservableList<Appointments> getReportsDataSortByMonth() {
+
+        ObservableList<Appointments> reportsDataSortByMonthList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            ResultSet aResult = prepA.executeQuery();
+            while (aResult.next()) {
+
+                int Appointment_ID = aResult.getInt("Appointment_ID");
+                String Title = aResult.getString("Title");
+                String Description = aResult.getString("Description");
+                String Location = aResult.getString("Location");
+                int Contact_ID = aResult.getInt("Contact_ID");
+                String Type = aResult.getString("Type");
+                Month Start = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
+                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
+                int Customer_ID = aResult.getInt("Customer_ID");
+                int User_ID = aResult.getInt("User_ID");
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                reportsDataSortByMonthList.add(ap);
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return reportsDataSortByMonthList;
+    }
+
 }
+
+
 
 
 

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.*;
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
@@ -93,16 +94,12 @@ public class UpdateAppointmentController implements Initializable {
         stage.close();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) throws SQLException {
+    public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
         String type = appointmentType.getValue();
-
-        // LocalDateTime Start = LocalDateTime.from(appointmentDate.getValue());
-
-        //    LocalDateTime Start =  LocalDateTime.parse(date, DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss"));
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStart.getValue();
         LocalTime endTime = appointmentEnd.getValue();
@@ -128,6 +125,13 @@ public class UpdateAppointmentController implements Initializable {
         else {
             AppointmentsHelper.updateAppointment(appointmentid, title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
         }
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+        Parent root = (Parent)loader.load();
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Appointments Scheduler and Reports");
+        stage.setScene(scene);
+        stage.show();
     }
 
 

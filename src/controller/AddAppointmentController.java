@@ -115,7 +115,7 @@ public class AddAppointmentController implements Initializable {
         appointmentUserName.getSelectionModel().clearSelection();
     }
 
-    public void onSaveAppointment(ActionEvent actionEvent) throws SQLException {
+    public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
@@ -142,11 +142,20 @@ public class AddAppointmentController implements Initializable {
         }
 
         if (appointmentid == 0) {
+
             AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
+
         } else {
             AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
         }
 
+         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+        Parent root = (Parent)loader.load();
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Appointments Scheduler and Reports");
+        stage.setScene(scene);
+        stage.show();
 
     }
 

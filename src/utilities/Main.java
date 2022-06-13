@@ -3,19 +3,11 @@ package utilities;
 import DAO.DBConnection;
 
 
-import com.sun.javafx.logging.Logger;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.ErrorChangeLogging;
-import java.util.logging.*;
-import java.io.IOException;
-import java.util.logging.FileHandler;
 
 /**
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
@@ -118,7 +110,8 @@ figured out how to get radio buttons to work. also Mr. Kinkead fixed a mistake I
 current week was not properly working because I had the table information populating after the loop. It needed to be before the loop that counted
  quantity of appointments in the table.
  next I will work on writing login activity to read only file login_activity.txt
- I realized i need to set up a resource bundle and hopefully set up a lambda expression
+ I realized i need to set up a resource bundle and hopefully set up a lambda expression for login activity
+
  */
 public class Main extends Application {
 
@@ -127,10 +120,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Locale.setDefault(new Locale("fr","FR"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+       // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);

@@ -5,6 +5,7 @@ import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 
 public class Appointments extends Customers {
@@ -36,7 +37,6 @@ public class Appointments extends Customers {
         this.userID = user_id;
     }**/
 
- 
 
     public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, LocalDateTime start, LocalDateTime end, int customer_id, int user_id) {
         this.appointmentID = appointment_id;
@@ -55,16 +55,14 @@ public class Appointments extends Customers {
         this.type = type;
     }
 
+    public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, Month start, LocalDateTime end, int customer_id, int user_id) {
+    }
 
     public DatePicker getDate() {
         return date;
     }
 
-
-
-
     public Appointments() {
-
     }
 
     @Override
@@ -82,35 +80,42 @@ public class Appointments extends Customers {
 
 
     public int getAppointmentID() {
-        return appointmentID;}
-
+        return appointmentID;
+    }
 
 
     public String getTitle() {
-        return title;}
+        return title;
+    }
 
     public String getDescription() {
-        return description;}
+        return description;
+    }
 
     public String getLocation() {
-        return location;}
+        return location;
+    }
 
     public int getContact() {
-        return contact;}
+        return contact;
+    }
 
     public String getType() {
-        return type;}
+        return type;
+    }
 
     public LocalDateTime getStartDateTime() {
-        return startDateTime;}
+        return startDateTime;
+    }
 
     public LocalDateTime getEndDateTime() {
-        return endDateTime;}
+        return endDateTime;
+    }
 
 
     public int getUserID() {
-        return userID;}
-
+        return userID;
+    }
 
 
     public String toString() {

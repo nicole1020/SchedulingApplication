@@ -58,7 +58,7 @@ public class AddCustomerController implements Initializable {
         stage.close();
     }
 
-    public void onSaveCustomer(ActionEvent actionEvent) {
+    public void onSaveCustomer(ActionEvent actionEvent) throws IOException {
         String name = customerName.getText();
         String address = customerAddress.getText();
         String postalcode = postalCode.getText();
@@ -74,7 +74,13 @@ public class AddCustomerController implements Initializable {
             CustomersHelper.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
             );
         }
-
+        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home Page");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
 
     }
 

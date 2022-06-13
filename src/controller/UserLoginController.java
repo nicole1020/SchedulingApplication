@@ -26,12 +26,12 @@ import java.util.logging.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class UserLoginController implements Initializable {
-    private static Logger logger = Logger.getLogger("ErrorChangeLogging");
+    private static Logger logger = Logger.getLogger("NewLogger");
    /***/ private static FileHandler fh;
 
     static {
         try {
-            fh = new FileHandler("utilities.login_activity.txt");
+            fh = new FileHandler("login_activity.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,8 +84,8 @@ public class UserLoginController implements Initializable {
 
             if(loggedUser == null){
 
-                logger.info(("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
-                logger.log(Level.WARNING,("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
+                logger.info(("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had an invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
+                logger.log(Level.WARNING,("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had an invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
 
                 System.out.println("Attempted Login by user: " + this.userName.getText() );
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -98,7 +98,7 @@ public class UserLoginController implements Initializable {
             }
         try {
             System.out.println("Successful Login by user: " + this.userName.getText() );
-            logger.info( "User with UserName: " +  "'" + this.userName.getText()+  "' " + "had valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
+            logger.info( "User with UserName: " +  "'" + this.userName.getText()+  "' " + "had a valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
 
 
             userLocationLabel.setText("Login Successful");
@@ -127,7 +127,7 @@ public class UserLoginController implements Initializable {
     }
 
 
-    public void  printLog() {
+   /* public void  printLog() {
         PrintWriter fw = null;
         try {
             fw = new PrintWriter("utilities.login_activity.txt");
@@ -143,7 +143,7 @@ public class UserLoginController implements Initializable {
 
         }
     }
-
+**/
     @FXML
     private boolean onPassword() {
         password.textProperty().addListener((observable, oldValue, newValue) ->
