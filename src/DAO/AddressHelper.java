@@ -24,7 +24,7 @@ public class AddressHelper {
                 String Division = adResult.getString("Division");
 
 
-                model.Address ad = new Address( Division_ID, Division);
+                Address ad = new Address( Division_ID, Division);
                 addressList.add(ad);
 
             }

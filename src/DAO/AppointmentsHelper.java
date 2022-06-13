@@ -236,11 +236,11 @@ public class AppointmentsHelper {
     }
 
 
-    public static ObservableList<Appointments> getReportsDataSortByType(boolean contains) {
-        ObservableList<Appointments> reportsDataSortByMonthAndTypeList = FXCollections.observableArrayList();
+    public static ObservableList<String> getReportsDataSortByType(Month m) {
+        ObservableList<String> reportsDataSortByMonthAndTypeList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID ";
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, monthname(Start), End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID  ORDER by monthname(Start)";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -255,8 +255,7 @@ public class AppointmentsHelper {
                 LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
-                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
-                reportsDataSortByMonthAndTypeList.add(ap);
+               reportsDataSortByMonthAndTypeList.add(Type);
                 //System.out.println(ap);
             }
 

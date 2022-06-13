@@ -97,7 +97,7 @@ public class CustomersHelper {
     public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> countryList = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT * FROM countries";
+            String sqlcB = "SELECT Country_ID, Country FROM countries";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {

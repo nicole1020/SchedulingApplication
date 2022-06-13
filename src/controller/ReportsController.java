@@ -1,31 +1,20 @@
 package controller;
 
-import DAO.AddressHelper;
 import DAO.AppointmentsHelper;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
+import DAO.ReportsHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Reports;
 import model.Appointments;
-import model.Country;
 
-import java.awt.*;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
 
@@ -49,8 +38,8 @@ public class ReportsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button backButton;
-    public ComboBox<String> monthComboBox;
-    public ComboBox<Appointments> typeComboBox;
+    public ComboBox<Month> monthComboBox;
+    public ComboBox<String> typeComboBox;
     public Label resultsLBLAppointments;
 
 
@@ -71,46 +60,7 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-        monthComboBox.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
-        monthComboBox.buttonCellProperty().bind(Bindings.createObjectBinding(() -> {
-
-            int indexOf = monthComboBox.getItems().indexOf(monthComboBox.getValue());
-
-            Color color = Color.blue;
-
-            switch (indexOf) {
-                case 0: color = Color.GREEN; break;
-                case 1: color = Color.RED; break;
-                default: break;
-            }
-
-            final Color finalColor = color;
-
-            // Get the arrow button of the combo-box
-            StackPane arrowButton = (StackPane) monthComboBox.lookup(".arrow-button");
-
-
-            return new ListCell<String>() {
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (empty || item == null) {
-                        setBackground(Background.EMPTY);
-                        setText("");
-                    } else {
-                        setText(item);
-                    }
-
-                    // Set the background of the arrow also
-                    if (arrowButton != null)
-                        arrowButton.setBackground(getBackground());
-                }
-
-            };
-        }, monthComboBox.valueProperty()));
+        monthComboBox.setItems(Reports.getAllMonths());
         //Appointments Table Initialized
 
         System.out.println("All Appointments Displaying");
@@ -184,38 +134,37 @@ public class ReportsController implements Initializable {
     }
 
     public void onTypeComboBox(ActionEvent actionEvent) {
+
        /* if (typeComboBox.isPressed()) {
 
-            appointmentsTable.setItems(AppointmentsHelper.getReportsDataSortByType());
+            appointmentsTable.setItems(ReportsHelper.getReportsDataSortByType());
            // System.out.println("Current Month's Appointments Displayed");
-            for (int i = 0; i < AppointmentsHelper.getReportsDataSortByType().size(); i++) {
-                System.out.println(AppointmentsHelper.getReportsDataSortByType()
+            for (int i = 0; i < ReportsHelper.getReportsDataSortByType().size(); i++) {
+                System.out.println(ReportsHelper.getReportsDataSortByType()
                         .get(i));
             }
             //System.out.println("");
-            resultsLBL.setText("Report: " + AppointmentsHelper.getReportsDataSortByType().size() + " Appointments on File");
+            resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByType().size() + " Appointments on File");
 
         }**/
     }
 
     public void onMonthComboBox(ActionEvent actionEvent) {
-        String m = monthComboBox.getValue();
-        typeComboBox.setItems(AppointmentsHelper.getReportsDataSortByType((m.contains(LocalDate.now().toString()))));
 
+        if (monthComboBox.isPressed()) {
+            Month m = monthComboBox.getValue();
+            typeComboBox.setItems(ReportsHelper.getReportsDataSortByType(m));
 
-
-       /* if (monthComboBox.isPressed()) {
-
-            appointmentsTable.setItems(AppointmentsHelper.getReportsDataSortByMonth());
+            appointmentsTable.setItems(ReportsHelper.getReportsDataSortByMonth());
           //  System.out.println("Current Month's Appointments Displayed");
-            for (int i = 0; i < AppointmentsHelper.getReportsDataSortByMonth().size(); i++) {
-                System.out.println(AppointmentsHelper.getReportsDataSortByMonth()
+            for (int i = 0; i < ReportsHelper.getReportsDataSortByMonth().size(); i++) {
+                System.out.println(ReportsHelper.getReportsDataSortByMonth()
                         .get(i).getAppointmentID());
             }
           //  System.out.println("");
-            resultsLBL.setText("Report: " + AppointmentsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
+            resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
 
-        }**/
+        }
     }
 
     public void onExitButton(ActionEvent actionEvent) {
