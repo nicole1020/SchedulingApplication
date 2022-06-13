@@ -114,6 +114,7 @@ current week was not properly working because I had the table information popula
 6/12 spoke with Ms Sunitha at LIS, she was not 195 instructor but she helped me understand where my bug was. My bug was in my getter for the "Month" property
  I will work on retrieving info from the list tomorrow and making it properly populate into the list.
  fixed layout of reports screen. removed some anchor panes.
+ 6/13 emailed support and mr kinkead for help with type and month combo boxes.
  */
 public class Main extends Application {
 

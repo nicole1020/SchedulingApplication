@@ -16,12 +16,6 @@ public class Reports extends Appointments{
         this.month = Month;
     }
 
-    public Reports(Month january, Month february, Month march, Month april, Month may, Month june, Month july, Month august, Month september, Month october, Month november, Month december) {
-
-    }
-
-
-
     public static ObservableList <Month> getAllMonths(){
     ObservableList<Month> allMonthsList = FXCollections.observableArrayList();
     Month January  = Month.of(1);
@@ -43,8 +37,6 @@ public class Reports extends Appointments{
     public String getMonth() {
         return month;
     }
-    public String toString(){
-        return(month );
-    }
+
 
 }
