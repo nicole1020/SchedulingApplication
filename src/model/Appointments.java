@@ -16,9 +16,6 @@ public class Appointments extends Customers {
     private int contact;
     private String type;
     private LocalDateTime startDateTime;
-    private LocalDateTime startTime;
-    private DatePicker date;
-    private LocalDateTime endTime;
     private LocalDateTime endDateTime;
     private int customerID;
     private int userID;
@@ -58,9 +55,6 @@ public class Appointments extends Customers {
     public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, Month start, LocalDateTime end, int customer_id, int user_id) {
     }
 
-    public DatePicker getDate() {
-        return date;
-    }
 
     public Appointments() {
     }
@@ -70,13 +64,7 @@ public class Appointments extends Customers {
         return customerID;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
 
 
     public int getAppointmentID() {

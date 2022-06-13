@@ -37,10 +37,7 @@ public class ReportsController implements Initializable {
     public ComboBox<Appointments> monthComboBox;
     public ComboBox<Appointments> typeComboBox;
 
-    public void onExitButtonPressed(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
+
 
     public void onBackButton(ActionEvent actionEvent) {
         try {
@@ -166,4 +163,8 @@ public class ReportsController implements Initializable {
         }
     }
 
+    public void onExitButton(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
 }

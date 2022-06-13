@@ -7,11 +7,11 @@ import java.time.*;
 
 public class AppointmentTimes extends Appointments {
 
-        LocalTime start;
-        LocalTime end;
-        LocalDate date;
+    LocalTime start;
+    LocalTime end;
+    LocalDate date;
 
-    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date) {
+    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date, LocalDate month) {
 
         this.start = start;
         this.end = end;
@@ -48,29 +48,5 @@ public class AppointmentTimes extends Appointments {
 
         return appointmentTime;
     }
-
-public static ObservableList<LocalDate> getCurrentWeekAppointments(boolean isWeek){
-
-
-    LocalDateTime estStart = LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 0));
-    ZonedDateTime estZoned = estStart.atZone(ZoneId.of("America/New_York"));
-    ZonedDateTime localZoned = estZoned.withZoneSameInstant(ZoneId.systemDefault());
-    LocalDate localStartDate = localZoned.toLocalDate();
-    ObservableList<LocalDate> currentWeekAppointments = FXCollections.observableArrayList();
-    LocalDate localdate = localStartDate;
-
-    if(!isWeek) {
-
-    }
-    else{
-      //  localdate.datesUntil(AppointmentsHelper.getAllAppointments(localdate), +7 );
-    }
-
-    return currentWeekAppointments;
 }
-    public static ObservableList<LocalDate> getCurrentMonthAppointments(boolean isMonth){
-        ObservableList<LocalDate> currentMonthAppointments = FXCollections.observableArrayList();
 
-        return currentMonthAppointments;
-    }
-}
