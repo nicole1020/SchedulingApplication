@@ -1,6 +1,5 @@
 package controller;
 
-import DAO.AddressHelper;
 import DAO.AppointmentsHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Country;
-
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ResourceBundle;
 
 public class ReportsController implements Initializable {
@@ -24,7 +19,7 @@ public class ReportsController implements Initializable {
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
     public Button exitButton;
-    public TableView <Appointments> appointmentsTable;
+    public TableView<Appointments> appointmentsTable;
     public TableColumn appointmentsIDCol;
     public TableColumn appointmentsTitleCol;
     public TableColumn appointmentsDescriptionCol;
@@ -39,8 +34,8 @@ public class ReportsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button backButton;
-    public ComboBox <Appointments>monthComboBox;
-    public ComboBox <Appointments>typeComboBox;
+    public ComboBox<Appointments> monthComboBox;
+    public ComboBox<Appointments> typeComboBox;
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -50,8 +45,8 @@ public class ReportsController implements Initializable {
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-            Parent root = (Parent)loader.load();
-            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setTitle("Appointments Scheduler and Reports");
             stage.setScene(scene);
@@ -63,7 +58,10 @@ public class ReportsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        System.out.println(AppointmentsHelper.getReportsDataSortByMonth());
         typeComboBox.setItems(AppointmentsHelper.getReportsDataSortByType());
+
         monthComboBox.setItems(AppointmentsHelper.getReportsDataSortByMonth());
 
         //Appointments Table Initialized
@@ -81,14 +79,14 @@ public class ReportsController implements Initializable {
         appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        System.out.println("Appointment IDs:");
+       // System.out.println("Appointment IDs:");
         for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
             System.out.println(AppointmentsHelper.getAllAppointments()
                     .get(i).getAppointmentID());
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+       // resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
 
     }
@@ -106,16 +104,17 @@ public class ReportsController implements Initializable {
             resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments on File");
         }
     }
+
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
         if (currentMonthRadioButton.isSelected()) {
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
-            System.out.println("Current Month's Appointments Displayed");
+          //  System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getCurrentMonthAppointmentsRadio().size(); i++) {
                 System.out.println(AppointmentsHelper.getCurrentMonthAppointmentsRadio()
                         .get(i).getAppointmentID());
             }
             System.out.println("");
-            resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
+           // resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
 
         }
     }
@@ -123,45 +122,48 @@ public class ReportsController implements Initializable {
 
     public void onAllSortRadioButton(ActionEvent actionEvent) {
         if (allSortRadioButton.isSelected()) {
-            System.out.println("All Appointments Displayed");
+          //  System.out.println("All Appointments Displayed");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
             for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
                 System.out.println(AppointmentsHelper.getAllAppointments()
                         .get(i).getAppointmentID());
             }
-            System.out.println("");
+          //  System.out.println("");
             resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
         }
     }
+
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
 
     public void onTypeComboBox(ActionEvent actionEvent) {
-
+        if (typeComboBox.isPressed()) {
 
             appointmentsTable.setItems(AppointmentsHelper.getReportsDataSortByType());
-            System.out.println("Current Month's Appointments Displayed");
+           // System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getReportsDataSortByType().size(); i++) {
                 System.out.println(AppointmentsHelper.getReportsDataSortByType()
                         .get(i));
             }
-            System.out.println("");
+            //System.out.println("");
             resultsLBL.setText("Report: " + AppointmentsHelper.getReportsDataSortByType().size() + " Appointments on File");
 
-
+        }
     }
 
     public void onMonthComboBox(ActionEvent actionEvent) {
+        if (monthComboBox.isPressed()) {
 
             appointmentsTable.setItems(AppointmentsHelper.getReportsDataSortByMonth());
-            System.out.println("Current Month's Appointments Displayed");
+          //  System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getReportsDataSortByMonth().size(); i++) {
                 System.out.println(AppointmentsHelper.getReportsDataSortByMonth()
                         .get(i).getAppointmentID());
             }
-            System.out.println("");
+          //  System.out.println("");
             resultsLBL.setText("Report: " + AppointmentsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
 
         }
     }
 
+}

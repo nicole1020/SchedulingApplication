@@ -111,7 +111,8 @@ current week was not properly working because I had the table information popula
  quantity of appointments in the table.
  next I will work on writing login activity to read only file login_activity.txt
  I realized i need to set up a resource bundle and hopefully set up a lambda expression for login activity
-
+6/12 spoke with Ms Sunitha at LIS, she was not 195 instructor but she helped me understand where my bug was. My bug was in my getter for the "Month" property
+ I will work on retrieving info from the list tomorrow and making it properly populate into the list.
  */
 public class Main extends Application {
 

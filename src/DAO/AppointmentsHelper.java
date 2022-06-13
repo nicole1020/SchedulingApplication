@@ -257,7 +257,7 @@ public class AppointmentsHelper {
                 int User_ID = aResult.getInt("User_ID");
                 Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
                 reportsDataSortByMonthAndTypeList.add(ap);
-
+                //System.out.println(ap);
             }
 
         } catch (SQLException throwables) {
@@ -282,12 +282,14 @@ public class AppointmentsHelper {
                 String Location = aResult.getString("Location");
                 int Contact_ID = aResult.getInt("Contact_ID");
                 String Type = aResult.getString("Type");
-                Month Start = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
+                LocalDateTime Start = aResult.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
                 Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                System.out.println("THIS HERE"+ap);
                 reportsDataSortByMonthList.add(ap);
+               // System.out.println(ap);
 
             }
 
