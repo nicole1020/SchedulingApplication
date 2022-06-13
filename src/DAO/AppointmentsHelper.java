@@ -236,7 +236,7 @@ public class AppointmentsHelper {
     }
 
 
-    public static ObservableList<Appointments> getReportsDataSortByType() {
+    public static ObservableList<Appointments> getReportsDataSortByType(boolean contains) {
         ObservableList<Appointments> reportsDataSortByMonthAndTypeList = FXCollections.observableArrayList();
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +

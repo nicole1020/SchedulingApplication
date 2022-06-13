@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="842.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ReportsController">
    <Label layoutX="86.0" layoutY="-218.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
       <font>
          <Font size="16.0" />
@@ -17,11 +17,6 @@
       <padding>
          <Insets left="16.0" />
       </padding>
-   </Label>
-   <Label layoutX="249.0" layoutY="78.0" prefHeight="20.0" prefWidth="305.0" text="Select Dropdown Menu(s) To Generate Reports:" textAlignment="RIGHT" textFill="#47218d">
-      <font>
-         <Font size="14.0" />
-      </font>
    </Label>
       <TableView fx:id="appointmentsTable" editable="true" layoutX="36.0" layoutY="106.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="806.0">
       <columns>
@@ -42,15 +37,18 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <ComboBox fx:id="typeComboBox" layoutX="565.0" layoutY="74.0" onAction="#onTypeComboBox" prefHeight="25.0" prefWidth="93.0" promptText="Type" />
-   <ComboBox fx:id="monthComboBox" layoutX="664.0" layoutY="74.0" onAction="#onMonthComboBox" prefHeight="25.0" prefWidth="114.0" promptText="Month" />
+   <ComboBox fx:id="typeComboBox" layoutX="563.0" layoutY="74.0" onAction="#onTypeComboBox" prefHeight="25.0" prefWidth="93.0" promptText="Type" style="-fx-border-color: #0c4acf;" />
+   <ComboBox fx:id="monthComboBox" layoutX="664.0" layoutY="74.0" onAction="#onMonthComboBox" prefHeight="25.0" prefWidth="114.0" promptText="Month" style="-fx-border-color: #0c4acf;" />
    <Button fx:id="backButton" layoutX="55.0" layoutY="306.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="25.0" prefWidth="206.0" text="Back to Appointments Screen" />
-   <Label fx:id="resultsLBL" layoutX="24.0" layoutY="270.0" prefHeight="40.0" prefWidth="649.0" textFill="#0c4acf">
+   <Label fx:id="resultsLBL" layoutX="36.0" layoutY="262.0" prefHeight="40.0" prefWidth="649.0" textFill="#0c4acf">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <Label fx:id="resultsLBLAppointments" layoutX="34.0" layoutY="455.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
+   <Label fx:id="resultsLBLAppointments" layoutX="416.0" layoutY="76.0" prefHeight="17.0" prefWidth="143.0" text="Sort Appointments By:" textFill="#0c4acf">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
    <Label layoutX="487.0" layoutY="482.0">
       <font>
          <Font size="14.0" />
