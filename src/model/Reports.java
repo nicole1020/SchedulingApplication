@@ -9,10 +9,10 @@ import java.time.Month;
 public class Reports extends Appointments{
 
     private String month;
-    private int appointmentID;
+    private String type;
 
-    public Reports(int appointment_ID, String Month){
-        this.appointmentID = appointment_ID;
+    public Reports( String Month, String type){
+        this.type = type;
         this.month = Month;
     }
 

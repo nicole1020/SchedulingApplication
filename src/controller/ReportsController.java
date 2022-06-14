@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Country;
 import model.Reports;
 import model.Appointments;
 
@@ -38,10 +39,10 @@ public class ReportsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button backButton;
-    public ComboBox<Month> monthComboBox;
-    public ComboBox<String> typeComboBox;
+    public ComboBox<Object> monthComboBox;
+    public ComboBox<Object> typeComboBox;
     public Label resultsLBLAppointments;
-
+    public Button runButton;
 
     public void onBackButton(ActionEvent actionEvent) {
         try {
@@ -59,8 +60,11 @@ public class ReportsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Object m = monthComboBox.getValue();
+        typeComboBox.setItems(ReportsHelper.getReportsDataSortByType(m));
 
-        monthComboBox.setItems(Reports.getAllMonths());
+        monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
+
         //Appointments Table Initialized
 
         System.out.println("All Appointments Displaying");
@@ -90,7 +94,7 @@ public class ReportsController implements Initializable {
 
 
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
-        if (currentWeekRadioButton.isSelected()) {
+     /*   if (currentWeekRadioButton.isSelected()) {
             System.out.println("Current Week's Appointments Displayed");
             appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments());
             for (int i = 0; i < AppointmentsHelper.getCurrentWeekAppointments().size(); i++) {
@@ -99,35 +103,35 @@ public class ReportsController implements Initializable {
             }
             System.out.println("");
             resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments on File");
-        }
+        }**/
     }
 
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
-        if (currentMonthRadioButton.isSelected()) {
+      /*   if (currentMonthRadioButton.isSelected()) {
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
-          //  System.out.println("Current Month's Appointments Displayed");
+            //  System.out.println("Current Month's Appointments Displayed");
             for (int i = 0; i < AppointmentsHelper.getCurrentMonthAppointmentsRadio().size(); i++) {
                 System.out.println(AppointmentsHelper.getCurrentMonthAppointmentsRadio()
                         .get(i).getAppointmentID());
             }
             System.out.println("");
-           // resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
+            // resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
 
-        }
+        }**/
     }
 
 
     public void onAllSortRadioButton(ActionEvent actionEvent) {
-        if (allSortRadioButton.isSelected()) {
-          //  System.out.println("All Appointments Displayed");
+       /*if (allSortRadioButton.isSelected()) {
+            //  System.out.println("All Appointments Displayed");
             appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
             for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
                 System.out.println(AppointmentsHelper.getAllAppointments()
                         .get(i).getAppointmentID());
             }
-          //  System.out.println("");
+            //  System.out.println("");
             resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
-        }
+        }**/
     }
 
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
@@ -151,24 +155,53 @@ public class ReportsController implements Initializable {
 
     public void onMonthComboBox(ActionEvent actionEvent) {
 
-        if (monthComboBox.isPressed()) {
-            Month m = monthComboBox.getValue();
-            typeComboBox.setItems(ReportsHelper.getReportsDataSortByType(m));
+        //   if (monthComboBox.isPressed()) {
 
-            appointmentsTable.setItems(ReportsHelper.getReportsDataSortByMonth());
-          //  System.out.println("Current Month's Appointments Displayed");
-            for (int i = 0; i < ReportsHelper.getReportsDataSortByMonth().size(); i++) {
-                System.out.println(ReportsHelper.getReportsDataSortByMonth()
-                        .get(i).getAppointmentID());
-            }
-          //  System.out.println("");
-            resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
+        //    appointmentsTable.setItems(ReportsHelper.getReportsDataSortByMonth());
+        //  System.out.println("Current Month's Appointments Displayed");
+        //  for (int i = 0; i < ReportsHelper.getReportsDataSortByMonth().size(); i++) {
+        //     System.out.println(ReportsHelper.getReportsDataSortByMonth()
+        //             .get(i).getAppointmentID());
+        // }
+        //  System.out.println("");
+        //   resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
 
-        }
     }
+
 
     public void onExitButton(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void onReportsComboBox(ActionEvent actionEvent) {
+        if (typeComboBox.isPressed() && monthComboBox.isPressed()) {
+            Object typeValue = typeComboBox.getValue();
+            Object monthValue = monthComboBox.getValue();
+            int size = typeComboBox.getVisibleRowCount();
+            int sizeM = monthComboBox.getVisibleRowCount();
+            if (typeValue == null || monthValue == null) {
+                System.out.println("select value from each combo box");
+                return;
+            }
+
+            if (size == sizeM) {
+                    System.out.println(size);
+                    resultsLBL.setText("Report (A.3.f) : " + size + " Appointments on File");
+
+
+            }
+        }
+    }
+
+    public void onRunButton(ActionEvent actionEvent) {
+        int size = typeComboBox.getVisibleRowCount();
+        int sizeM = monthComboBox.getVisibleRowCount();
+        if (size == sizeM){
+            resultsLBL.setText("Report (A.3.f) : " + size + " Appointments on File");
+
+        }
+
+
     }
 }

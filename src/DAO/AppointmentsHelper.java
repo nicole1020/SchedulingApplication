@@ -236,11 +236,11 @@ public class AppointmentsHelper {
     }
 
 
-    public static ObservableList<String> getReportsDataSortByType(Month m) {
-        ObservableList<String> reportsDataSortByMonthAndTypeList = FXCollections.observableArrayList();
+    public static ObservableList<String> getReportsDataSortByType() {
+        ObservableList<String> reportsDataSortByTypeList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, monthname(Start), End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID  ORDER by monthname(Start)";
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -255,14 +255,14 @@ public class AppointmentsHelper {
                 LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
-               reportsDataSortByMonthAndTypeList.add(Type);
+                reportsDataSortByTypeList.add(Type);
                 //System.out.println(ap);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return reportsDataSortByMonthAndTypeList;
+        return reportsDataSortByTypeList;
     }
 
     public static ObservableList<Appointments> getReportsDataSortByMonth() {
