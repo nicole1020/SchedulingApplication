@@ -84,7 +84,7 @@ public class ReportsHelper {
     public static ObservableList<Reports> getDataSortByMonthAndType(String typeValue, Month monthValue) throws SQLException {
         ObservableList<Reports> dataSortByMonthAndTypeList = FXCollections.observableArrayList();
         String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID  ORDER BY MONTH(Start)";
+                " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
         PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
         ResultSet aResult = prepA.executeQuery();
         while (aResult.next()) {
