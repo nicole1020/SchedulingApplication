@@ -16,6 +16,7 @@ import model.Reports;
 import model.Appointments;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.Month;
 import java.util.ResourceBundle;
 
@@ -39,8 +40,8 @@ public class ReportsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button backButton;
-    public ComboBox<Object> monthComboBox;
-    public ComboBox<Object> typeComboBox;
+    public ComboBox<Month> monthComboBox;
+    public ComboBox<String> typeComboBox;
     public Label resultsLBLAppointments;
     public Button runButton;
 
@@ -60,8 +61,8 @@ public class ReportsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Object m = monthComboBox.getValue();
-        typeComboBox.setItems(ReportsHelper.getReportsDataSortByType(m));
+
+        typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
         monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
 
@@ -174,34 +175,45 @@ public class ReportsController implements Initializable {
         stage.close();
     }
 
-    public void onReportsComboBox(ActionEvent actionEvent) {
-        if (typeComboBox.isPressed() && monthComboBox.isPressed()) {
-            Object typeValue = typeComboBox.getValue();
-            Object monthValue = monthComboBox.getValue();
-            int size = typeComboBox.getVisibleRowCount();
+    public void onReportsComboBox(ActionEvent actionEvent) throws SQLException {
+        /*if (typeComboBox.isPressed() && monthComboBox.isPressed()) {
+            String typeValue = typeComboBox.getValue();
+            Month monthValue = monthComboBox.getValue();
+            int sizeT = typeComboBox.getVisibleRowCount();
             int sizeM = monthComboBox.getVisibleRowCount();
             if (typeValue == null || monthValue == null) {
                 System.out.println("select value from each combo box");
                 return;
             }
+            else{
+                ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue).size();
 
-            if (size == sizeM) {
-                    System.out.println(size);
-                    resultsLBL.setText("Report (A.3.f) : " + size + " Appointments on File");
+                    System.out.println("month size "+sizeM);
+                    resultsLBL.setText("Report (A.3.f) : " + ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue).size() + " Appointments on File");
+
+}
+            }**/
+        }
+
+
+    public void onRunButton(ActionEvent actionEvent) throws SQLException {
+
+            String typeValue = typeComboBox.getValue();
+            Month monthValue = monthComboBox.getValue();
+            int sizeT = typeComboBox.getVisibleRowCount();
+            int sizeM = monthComboBox.getVisibleRowCount();
+            if (typeValue == null || monthValue == null) {
+                System.out.println("select value from each combo box");
+                return;
+            }
+            else{
+                int sizeOfReport = (ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue)).size();
+
+                System.out.println("month size "+ sizeOfReport);
+                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File");
 
 
             }
-        }
-    }
 
-    public void onRunButton(ActionEvent actionEvent) {
-        int size = typeComboBox.getVisibleRowCount();
-        int sizeM = monthComboBox.getVisibleRowCount();
-        if (size == sizeM){
-            resultsLBL.setText("Report (A.3.f) : " + size + " Appointments on File");
-
-        }
-
-
-    }
+}
 }

@@ -80,6 +80,10 @@ public class CustomerController implements Initializable {
 
 
         CustomersHelper.deleteCustomer( p.getCustomerID() );
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Customer Warning");
+        alert.setContentText( "'s customer record is being deleted.");
+        alert.showAndWait();
 
             }
 
@@ -136,6 +140,7 @@ public class CustomerController implements Initializable {
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();
+
         }
     }
 }

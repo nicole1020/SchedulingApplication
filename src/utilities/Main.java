@@ -115,6 +115,7 @@ current week was not properly working because I had the table information popula
  I will work on retrieving info from the list tomorrow and making it properly populate into the list.
  fixed layout of reports screen. removed some anchor panes.
  6/13 emailed support and mr kinkead for help with type and month combo boxes.
+ 6/14 still having issues. will work on more.
  */
 public class Main extends Application {
 

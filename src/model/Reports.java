@@ -8,10 +8,10 @@ import java.time.Month;
 
 public class Reports extends Appointments{
 
-    private String month;
+    private Month month;
     private String type;
 
-    public Reports( String Month, String type){
+    public Reports(  String type, Month Month){
         this.type = type;
         this.month = Month;
     }
@@ -34,7 +34,7 @@ public class Reports extends Appointments{
     return allMonthsList;
 }
 
-    public String getMonth() {
+    public Month getMonth() {
         return month;
     }
 
