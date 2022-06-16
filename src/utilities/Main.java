@@ -116,6 +116,9 @@ current week was not properly working because I had the table information popula
  fixed layout of reports screen. removed some anchor panes.
  6/13 emailed support and mr kinkead for help with type and month combo boxes.
  6/14 still having issues. will work on more.
+ 6/16 Mr kinkeads email helped me realize i needed to make sure i was pulling more information from each combo box class.
+ I'll pull month by number from each, type, appointment id, instead of just pulling type from one and month from another.
+
  */
 public class Main extends Application {
 

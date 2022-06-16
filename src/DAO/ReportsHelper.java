@@ -91,7 +91,9 @@ public class ReportsHelper {
         while (aResult.next()) {
             String type = aResult.getString("Type");
             Month month = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
-            Integer monthNumber = aResult.getTime("Start").compareTo(Date.valueOf (typeMonth));
+            Integer monthNumber = aResult.getTimestamp("Start").compareTo(Date.valueOf (typeMonth));
+            String monthName = aResult.getTimestamp("Start").toString();
+            int appointmentIDVerify = aResult.getInt("Appointment_ID");
             Reports nR = new Reports(typeValue, monthValue, monthNumber, monthName, appointmentIDVerify);
             dataSortByMonthAndTypeList.add(nR);
 
