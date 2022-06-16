@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Reports;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -90,7 +91,8 @@ public class ReportsHelper {
         while (aResult.next()) {
             String type = aResult.getString("Type");
             Month month = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
-       Reports nR = new Reports(typeValue, monthValue);
+            Integer monthNumber = aResult.getTime("Start").compareTo(Date.valueOf (typeMonth));
+            Reports nR = new Reports(typeValue, monthValue, monthNumber, monthName, appointmentIDVerify);
             dataSortByMonthAndTypeList.add(nR);
 
         }

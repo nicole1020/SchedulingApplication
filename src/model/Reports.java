@@ -3,17 +3,22 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDateTime;
 import java.time.Month;
 
 public class Reports extends Appointments{
 
     private Month month;
     private String type;
+    private int monthNumber;
+    private String monthName;
+    private int appointmentIDVerify;
 
-    public Reports(  String type, Month Month){
+    public Reports(String type, Month Month, int monthNumber, String monthName, int appointmentIDVerify){
         this.type = type;
         this.month = Month;
+        this.monthNumber = monthNumber;
+        this.monthName = monthName;
+        this.appointmentIDVerify = appointmentIDVerify;
     }
 
     public static ObservableList <Month> getAllMonths(){
@@ -37,6 +42,11 @@ public class Reports extends Appointments{
     public Month getMonth() {
         return month;
     }
+    public String getType(){return type;
+    }
+    public int getAppointmentIDVerify(){return appointmentIDVerify;}
+    public int getMonthNumber(){return monthNumber;    }
+    public String getMonthName(){return monthName;}
 
 
 }
