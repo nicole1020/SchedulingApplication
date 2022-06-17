@@ -13,12 +13,15 @@ public class Reports extends Appointments{
     private String monthName;
     private int appointmentIDVerify;
 
-    public Reports(String type, Month Month, int monthNumber, String monthName, int appointmentIDVerify){
-        this.type = type;
-        this.month = Month;
-        this.monthNumber = monthNumber;
-        this.monthName = monthName;
-        this.appointmentIDVerify = appointmentIDVerify;
+    public Reports(String Start){
+
+
+
+        this.monthName = Start;
+
+    }
+
+    public Reports(String typeValue, Month monthValue, Integer monthNumber, String monthName, int appointmentIDVerify) {
     }
 
     public static ObservableList <Month> getAllMonths(){

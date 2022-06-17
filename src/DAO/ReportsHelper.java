@@ -82,21 +82,21 @@ public class ReportsHelper {
         return reportsDataSortByMonthList;
     }
 
-    public static ObservableList<Reports> getDataSortByMonthAndType(String typeValue, Month monthValue) throws SQLException {
+
+    public static ObservableList<Reports> getDataSortByMonthAndType() throws SQLException {
         ObservableList<Reports> dataSortByMonthAndTypeList = FXCollections.observableArrayList();
         String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
                 " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
         PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
         ResultSet aResult = prepA.executeQuery();
         while (aResult.next()) {
-            String type = aResult.getString("Type");
-            Month month = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
-            Integer monthNumber = aResult.getTimestamp("Start").compareTo(Date.valueOf (typeMonth));
+            String typeValue = aResult.getString("Type");
+            Month monthValue = aResult.getTimestamp("Start").toLocalDateTime().getMonth();
+            Integer monthNumber = aResult.getTimestamp("Start").toLocalDateTime().getMonthValue();
             String monthName = aResult.getTimestamp("Start").toString();
             int appointmentIDVerify = aResult.getInt("Appointment_ID");
             Reports nR = new Reports(typeValue, monthValue, monthNumber, monthName, appointmentIDVerify);
-            dataSortByMonthAndTypeList.add(nR);
-
+     dataSortByMonthAndTypeList.add(nR);
         }
         return dataSortByMonthAndTypeList;
     }

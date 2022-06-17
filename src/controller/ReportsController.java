@@ -198,16 +198,17 @@ public class ReportsController implements Initializable {
 
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
-            String typeValue = typeComboBox.getValue();
-            Month monthValue = monthComboBox.getValue();
+            String type = typeComboBox.getValue();
+            Month  month = monthComboBox.getValue();
+
             int sizeT = typeComboBox.getVisibleRowCount();
             int sizeM = monthComboBox.getVisibleRowCount();
-            if (typeValue == null || monthValue == null) {
+            if (type == null || month == null) {
                 System.out.println("select value from each combo box");
                 return;
             }
             else{
-                int sizeOfReport = (ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue)).size();
+                int sizeOfReport = (ReportsHelper.getDataSortByMonthAndType()).size();
 
                 System.out.println("month size "+ sizeOfReport);
                 resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File");
