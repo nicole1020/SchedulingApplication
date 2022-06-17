@@ -120,6 +120,7 @@ current week was not properly working because I had the table information popula
  6/16 Mr kinkeads email helped me realize i needed to make sure i was pulling more information from each combo box class.
  I'll pull month by number from each, type, appointment id, instead of just pulling type from one and month from another.
 will pull more data from type and month dao helper files next time.
+ 6/17 working on javadoc and error warnings until i can figure out the report issue.
  */
 public class Main extends Application {
 
