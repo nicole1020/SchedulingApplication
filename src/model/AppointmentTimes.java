@@ -3,6 +3,10 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.*;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 
 public class AppointmentTimes extends Appointments {

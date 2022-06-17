@@ -3,6 +3,10 @@ package model;
 import javafx.collections.SetChangeListener;
 
 import java.util.logging.LogRecord;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class User {
 

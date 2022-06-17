@@ -1,9 +1,14 @@
 package model;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 
 
 public class Address extends Customers {
 
+// private(divisionID:int, division:String)
     private int divisionID;
     private String division;
 

@@ -1,4 +1,8 @@
 package model;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class Country extends Customers{
     private Integer countryID;

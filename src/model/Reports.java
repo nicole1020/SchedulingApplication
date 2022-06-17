@@ -4,6 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.Month;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class Reports extends Appointments{
 

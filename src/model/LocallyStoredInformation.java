@@ -2,6 +2,10 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class LocallyStoredInformation {
   //appointment related information

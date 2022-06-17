@@ -1,4 +1,8 @@
 package model;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class Customers {
 

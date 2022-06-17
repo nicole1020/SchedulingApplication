@@ -1,4 +1,8 @@
 package model;
+/**
+ *
+ * @author Nicole Mau
+ */
 
 public class Contacts extends Appointments{
     private int contactID;
