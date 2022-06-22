@@ -20,7 +20,6 @@ public class Appointments extends Customers {
     private String location;
     private int contact;
     private String type;
-    private Month start;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private int customerID;
@@ -89,9 +88,6 @@ public class Appointments extends Customers {
         return appointmentID;
     }
 
-public Month getStart(){
-        return start;
-}
     public String getTitle() {
         return title;
     }

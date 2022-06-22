@@ -121,6 +121,8 @@ current week was not properly working because I had the table information popula
  I'll pull month by number from each, type, appointment id, instead of just pulling type from one and month from another.
 will pull more data from type and month dao helper files next time.
  6/17 working on javadoc and error warnings until i can figure out the report issue.
+ 6/22 will work on javadoc comments and error warnings and got to LIS to help with combo boxes.
+ I am missing a key component to the logic and i havent figured it out yet.
  */
 public class Main extends Application {
 

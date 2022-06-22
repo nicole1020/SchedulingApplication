@@ -15,7 +15,7 @@ public class Reports extends Appointments{
     private String type;
     private int monthNumber;
     private String monthName;
-    private int appointmentIDVerify;
+    private int appointmentID;
 
     public Reports(String Start){
 
@@ -25,7 +25,9 @@ public class Reports extends Appointments{
 
     }
 
-    public Reports(String typeValue, Month monthValue, Integer monthNumber, String monthName, int appointmentIDVerify) {
+
+    public Reports(int appointmentIDVerify) {
+        this.appointmentID = appointmentID;
     }
 
     public static ObservableList <Month> getAllMonths(){
@@ -51,7 +53,7 @@ public class Reports extends Appointments{
     }
     public String getType(){return type;
     }
-    public int getAppointmentIDVerify(){return appointmentIDVerify;}
+    public int getAppointmentID(){return appointmentID;}
     public int getMonthNumber(){return monthNumber;    }
     public String getMonthName(){return monthName;}
 

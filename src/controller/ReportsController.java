@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Country;
 import model.Reports;
 import model.Appointments;
 
@@ -64,7 +63,7 @@ public class ReportsController implements Initializable {
 
         typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
-        monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
+        monthComboBox.setItems(Reports.getAllMonths());
 
         //Appointments Table Initialized
 
@@ -198,20 +197,19 @@ public class ReportsController implements Initializable {
 
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
-            String type = typeComboBox.getValue();
-            Month  month = monthComboBox.getValue();
 
-            int sizeT = typeComboBox.getVisibleRowCount();
-            int sizeM = monthComboBox.getVisibleRowCount();
+            String type = typeComboBox.getValue();
+            Month month = monthComboBox.getValue();
+
             if (type == null || month == null) {
                 System.out.println("select value from each combo box");
                 return;
             }
             else{
-                int sizeOfReport = (ReportsHelper.getDataSortByMonthAndType()).size();
+                String sizeOfReport = (ReportsHelper.getDataSortByMonthAndType().toString());
 
-                System.out.println("month size "+ sizeOfReport);
-                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File");
+                System.out.println( "Report (A.3.f) : "+ sizeOfReport + " Appointments on File for"+ "Type: " + type + " in Month: " + month);
+                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File"+ "Type: " + type + " in Month: " + month);
 
 
             }
