@@ -43,11 +43,9 @@ public class ReportsController implements Initializable {
     public RadioButton allSortRadioButton;
     public Button backButton;
     public ComboBox<Month> monthComboBox;
-    public ComboBox<Appointments> typeComboBox;
+    public ComboBox<String> typeComboBox;
     public Label resultsLBLAppointments;
     public Button runButton;
-
-    // ResourceBundle resourceBundleReports = ResourceBundle.getBundle("reports", Locale.getDefault());
 
     public void onBackButton(ActionEvent actionEvent) {
         try {
@@ -74,7 +72,7 @@ public class ReportsController implements Initializable {
         //Appointments Table Initialized
 
         System.out.println("All Appointments Displaying");
-        appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
+        /** appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -93,9 +91,9 @@ public class ReportsController implements Initializable {
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+       resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
-
+         */
     }
 
 
@@ -204,7 +202,7 @@ public class ReportsController implements Initializable {
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
 
-            Appointments type = typeComboBox.getValue();
+            String type = typeComboBox.getValue();
             Month month = monthComboBox.getValue();
 
             if (type == null || month == null) {
@@ -212,7 +210,7 @@ public class ReportsController implements Initializable {
 
             }
             else {
-                int sizeOfReport = (ReportsHelper.getReportsDataSortByType().size());
+                int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
 
                 System.out.println( "Report (A.3.f) : "+ sizeOfReport + " Appointments on File with- "+ "Type: " + type + " in Month: " + month);
                 resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- "+ "Type: *" + type + " in Month: *" + month);

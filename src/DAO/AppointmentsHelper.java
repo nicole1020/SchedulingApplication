@@ -208,7 +208,7 @@ public class AppointmentsHelper {
 
     public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerID, int user, int contact) throws SQLException {
         String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
-        PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement psCreate = connection.prepareStatement(sqlc);
         psCreate.setInt(1, appointmentid);
         psCreate.setString(2, String.valueOf(title));
         psCreate.setString(3, String.valueOf(description));

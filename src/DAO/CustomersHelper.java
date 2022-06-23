@@ -47,7 +47,7 @@ public class CustomersHelper {
     public static void createCustomer(String name, String address, String postalcode, String phone, Integer division) {
         try {
             String sqlc = " INSERT INTO customers VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
-            PreparedStatement psCreate = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement psCreate = connection.prepareStatement(sqlc);
             psCreate.setString(1, String.valueOf(name));
             psCreate.setString(2, String.valueOf(address));
             psCreate.setString(3, String.valueOf(postalcode));
@@ -65,7 +65,7 @@ public class CustomersHelper {
 
     public static void updateCustomer(Integer customerID, String name, String address, String postalcode, String phone, Integer division) { try {
         String sqlc3 = " UPDATE  customers set ( customerID = ?, name = ?,address = ?,postalcode = ?,phone = ?,now(),'nm',now(),'nm',division =?)";
-        PreparedStatement psCreate3 = connection.prepareStatement(sqlc3, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement psCreate3 = connection.prepareStatement(sqlc3);
         psCreate3.setString(1, String.valueOf(customerID));
         psCreate3.setString(2, String.valueOf(name));
         psCreate3.setString(3, String.valueOf(address));
