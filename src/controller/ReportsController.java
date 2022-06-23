@@ -2,6 +2,8 @@ package controller;
 
 import DAO.AppointmentsHelper;
 import DAO.ReportsHelper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import model.Appointments;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ReportsController implements Initializable {
@@ -40,9 +43,11 @@ public class ReportsController implements Initializable {
     public RadioButton allSortRadioButton;
     public Button backButton;
     public ComboBox<Month> monthComboBox;
-    public ComboBox<String> typeComboBox;
+    public ComboBox<Appointments> typeComboBox;
     public Label resultsLBLAppointments;
     public Button runButton;
+
+    // ResourceBundle resourceBundleReports = ResourceBundle.getBundle("reports", Locale.getDefault());
 
     public void onBackButton(ActionEvent actionEvent) {
         try {
@@ -64,6 +69,7 @@ public class ReportsController implements Initializable {
         typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
         monthComboBox.setItems(Reports.getAllMonths());
+
 
         //Appointments Table Initialized
 
@@ -198,18 +204,18 @@ public class ReportsController implements Initializable {
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
 
-            String type = typeComboBox.getValue();
+            Appointments type = typeComboBox.getValue();
             Month month = monthComboBox.getValue();
 
             if (type == null || month == null) {
                 System.out.println("select value from each combo box");
-                return;
-            }
-            else{
-                String sizeOfReport = (ReportsHelper.getDataSortByMonthAndType().toString());
 
-                System.out.println( "Report (A.3.f) : "+ sizeOfReport + " Appointments on File for"+ "Type: " + type + " in Month: " + month);
-                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File"+ "Type: " + type + " in Month: " + month);
+            }
+            else {
+                int sizeOfReport = (ReportsHelper.getReportsDataSortByType().size());
+
+                System.out.println( "Report (A.3.f) : "+ sizeOfReport + " Appointments on File with- "+ "Type: " + type + " in Month: " + month);
+                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- "+ "Type: *" + type + " in Month: *" + month);
 
 
             }
