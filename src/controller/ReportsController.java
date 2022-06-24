@@ -42,7 +42,7 @@ public class ReportsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button backButton;
-    public ComboBox<Month> monthComboBox;
+    public ComboBox<String> monthComboBox;
     public ComboBox<String> typeComboBox;
     public Label resultsLBLAppointments;
     public Button runButton;
@@ -66,7 +66,7 @@ public class ReportsController implements Initializable {
 
         typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
-        monthComboBox.setItems(Reports.getAllMonths());
+        monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
 
 
         //Appointments Table Initialized
@@ -203,7 +203,7 @@ public class ReportsController implements Initializable {
 
 
             String type = typeComboBox.getValue();
-            Month month = monthComboBox.getValue();
+        String month = monthComboBox.getValue();
 
             if (type == null || month == null) {
                 System.out.println("select value from each combo box");

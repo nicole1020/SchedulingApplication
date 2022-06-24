@@ -23,22 +23,15 @@ public class ReportsHelper {
     public static ObservableList<String> getReportsDataSortByType() {
         ObservableList<String> reportsDataSortByTypeList = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID ";
+            String sqlInquiryA = "SELECT DISTINCT Type from appointments ";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
 
-                int Appointment_ID = aResult.getInt("Appointment_ID");
-                String Title = aResult.getString("Title");
-                String Description = aResult.getString("Description");
-                String Location = aResult.getString("Location");
-                int Contact_ID = aResult.getInt("Contact_ID");
+
+
                 String Type = aResult.getString("Type");
-                LocalDateTime Start = aResult.getTimestamp( "Start").toLocalDateTime();
-                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
-                int Customer_ID = aResult.getInt("Customer_ID");
-                int User_ID = aResult.getInt("User_ID");
+
                     reportsDataSortByTypeList.add(Type);
             }
 
@@ -48,32 +41,21 @@ public class ReportsHelper {
         return reportsDataSortByTypeList;
     }
 
-    public static <Alert> ObservableList<Appointments> getReportsDataSortByMonth() {
+    public static <Alert> ObservableList<String> getReportsDataSortByMonth() {
 
-        ObservableList<Appointments> reportsDataSortByMonthList = FXCollections.observableArrayList();
+        ObservableList<String> reportsDataSortByMonthList = FXCollections.observableArrayList();
 
         try {
-            String sqlInquiryA = "SELECT  DISTINCT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID  ORDER BY MONTH(Start)";
+            String sqlInquiryA = "SELECT  DISTINCT MONTHNAME(Start) as monthname from appointments ";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
 
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
 
-                int Appointment_ID = aResult.getInt("Appointment_ID");
-                String Title = aResult.getString("Title");
-                String Description = aResult.getString("Description");
-                String Location = aResult.getString("Location");
-                int Contact_ID = aResult.getInt("Contact_ID");
-                String Type = aResult.getString("Type");
-                LocalDateTime Start = aResult.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
-                int Customer_ID = aResult.getInt("Customer_ID");
-                int User_ID = aResult.getInt("User_ID");
-                System.out.println("THIS HERE");
+                String startMonth = aResult.getString("monthname");
 
-                Appointments aM = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
-                reportsDataSortByMonthList.add(aM);
+
+                     reportsDataSortByMonthList.add(startMonth);
                 // System.out.println(ap);
 
             }
