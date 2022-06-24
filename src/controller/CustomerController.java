@@ -33,7 +33,7 @@ public class CustomerController implements Initializable {
     public Customers selectedCustomer = null;
     public Button addCustomer;
     public Button appointmentsButton;
-int countingClicks = 0;
+    int countingClicks = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Customer Database Main Screen");

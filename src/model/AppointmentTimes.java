@@ -49,17 +49,7 @@ public class AppointmentTimes extends Appointments {
             start = start.plusMinutes(15);
             end = end.plusMinutes(15);
         }
-        //Alerts user with popup if an appointment is within the next 15 minutes
-        if(startSoon.isAfter(start)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING!");
-            alert.setHeaderText("Appointment approaching within the next 15 minutes");
 
-            alert.setContentText("Caution!");
-
-            alert.showAndWait();
-
-        }
 
         while (start.isBefore(end)) {
             appointmentTime.add(start);
@@ -69,5 +59,28 @@ public class AppointmentTimes extends Appointments {
         return appointmentTime;
     }
 
+    public static ObservableList<LocalTime> getAppointmentSoonAlertCheck() {
+
+        LocalDateTime userTime = LocalDateTime.now();
+        ZonedDateTime userZone = userTime.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime userZoned = userZone.withZoneSameInstant(ZoneId.systemDefault());
+        LocalTime userStart = userZoned.toLocalTime();
+        LocalTime startSoon = userStart.plusMinutes(15);
+        ObservableList<LocalTime> appointmentTimeAlert = FXCollections.observableArrayList();
+
+        //Alerts user with popup if an appointment is within the next 15 minutes
+        if(userStart.isBefore(startSoon)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING!");
+            alert.setHeaderText("Appointment approaching within the next 15 minutes");
+
+            alert.setContentText("Caution!");
+
+            alert.showAndWait();
+
+        }
+        return appointmentTimeAlert;
+
+    }
 }
 

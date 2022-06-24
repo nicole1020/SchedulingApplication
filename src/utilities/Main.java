@@ -131,6 +131,7 @@ will pull more data from type and month dao helper files next time.
  worked on lambda expression to make exit button count clicks, exit, and print a message notifying of closure
 
  also worked on error coding updating the resource bundle to properly show error in french and english.
+6/24 figured out error coding in appointmentTimes for 15 minute warning. Also worked on javadoc comments and second lambda expression.
  */
 /**this is the Main Method.
  This is the first method that is called in our java program.
