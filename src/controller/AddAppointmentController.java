@@ -42,7 +42,7 @@ public class AddAppointmentController implements Initializable {
 
     private  Integer appointmentid = 0;
     private CharSequence date = null;
-
+    int countingClicks = 0;
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
@@ -94,6 +94,12 @@ public class AddAppointmentController implements Initializable {
         appointmentDate.getEditor();
         appointmentUserName.setItems(UserHelper.getAllUsers());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
 
         appointmentStartTime.setItems(AppointmentTimes.getAllAppointmentTimes(true));
 

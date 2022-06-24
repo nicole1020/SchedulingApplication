@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+
 /**
   @author Nicole Mau
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
@@ -131,13 +133,13 @@ public class Main extends Application {
     @Override
 
     public void start(Stage primaryStage) throws Exception {
-        //Locale.setDefault(new Locale("fr","FR"));
+        Locale.setDefault(new Locale("fr","FR"));
 
-       // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
@@ -150,5 +152,6 @@ public class Main extends Application {
         launch(args);
         DBConnection.closeConnection();
     }
+
 }
 

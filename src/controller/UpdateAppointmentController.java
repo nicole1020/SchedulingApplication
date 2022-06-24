@@ -36,7 +36,7 @@ public class UpdateAppointmentController implements Initializable {
     public DatePicker appointmentDate;
     public ComboBox <LocalTime>appointmentEnd;
     private  Integer appointmentid = 0;
-
+int countingClicks = 0;
     public void editedAppointment(Appointments theAppointment) {
 
         this.selectedAppointment = theAppointment;
@@ -151,6 +151,12 @@ public class UpdateAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
         appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());

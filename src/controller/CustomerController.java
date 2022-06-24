@@ -33,11 +33,16 @@ public class CustomerController implements Initializable {
     public Customers selectedCustomer = null;
     public Button addCustomer;
     public Button appointmentsButton;
-
+int countingClicks = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Customer Database Main Screen");
-
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
     //Customers Table Initialized
         customersTable.setItems(CustomersHelper.getAllCustomers());
 

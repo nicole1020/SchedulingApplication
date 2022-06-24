@@ -18,6 +18,6 @@ JavaFX compatible JDK SDK 17.0.1
 mySQL Connector driver 8.0.25
 
 A.3 additional Report: counts all appointments on file.
-A.3.d lambda expression: prints all appointment by "month" and "type" upon Submit button push in ReportsScreen.fxml.
+A.3.d lambda expression- in All Controllers I use lambda expression to streamline code to close program upon exit button press, it counts clicks on the button, prints "Exit Button Pressed" and closes the program.
 
 To Launch SchedulingApplication:

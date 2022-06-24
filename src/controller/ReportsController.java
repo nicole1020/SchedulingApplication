@@ -2,6 +2,7 @@ package controller;
 
 import DAO.AppointmentsHelper;
 import DAO.ReportsHelper;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,13 +17,14 @@ import javafx.stage.Stage;
 import model.Reports;
 import model.Appointments;
 
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ReportsController implements Initializable {
+public class ReportsController implements Initializable{
 
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
@@ -46,6 +48,8 @@ public class ReportsController implements Initializable {
     public ComboBox<String> typeComboBox;
     public Label resultsLBLAppointments;
     public Button runButton;
+    public Button clearButton;
+    int countingClicks = 0;
 
     public void onBackButton(ActionEvent actionEvent) {
         try {
@@ -61,12 +65,21 @@ public class ReportsController implements Initializable {
         }
     }
 
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
         monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
+
+        exitButton.setOnAction(e ->{
+                countingClicks++;
+        System.out.println(countingClicks);
+        System.out.println("Exit Button Pressed");
+        System.exit(0);
+        });
+
+
 
 
         //Appointments Table Initialized
@@ -74,24 +87,24 @@ public class ReportsController implements Initializable {
         System.out.println("All Appointments Displaying");
         /** appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
-        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        System.out.println("Appointment IDs:");
-        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
-            System.out.println(AppointmentsHelper.getAllAppointments()
-                    .get(i).getAppointmentID());
+         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+         appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+         appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+         appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+         appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+         appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+         appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+         System.out.println("Appointment IDs:");
+         for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+         System.out.println(AppointmentsHelper.getAllAppointments()
+         .get(i).getAppointmentID());
 
-        }
-        System.out.println("");
-       resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+         }
+         System.out.println("");
+         resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
          */
     }
@@ -173,7 +186,7 @@ public class ReportsController implements Initializable {
     }
 
 
-    public void onExitButton(ActionEvent actionEvent) {
+    public void onExitButton() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -196,27 +209,34 @@ public class ReportsController implements Initializable {
 
 }
             }**/
-        }
-
+    }
 
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
-
-            String type = typeComboBox.getValue();
+        String type = typeComboBox.getValue();
         String month = monthComboBox.getValue();
 
-            if (type == null || month == null) {
-                System.out.println("select value from each combo box");
+        if (type == null || month == null) {
+            System.out.println("select value from each combo box");
 
-            }
-            else {
-                int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
-
-                System.out.println( "Report (A.3.f) : "+ sizeOfReport + " Appointments on File with- "+ "Type: " + type + " in Month: " + month);
-                resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- "+ "Type: *" + type + " in Month: *" + month);
+        } else {
+            int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
+            System.out.println("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- " + "Type: *" + type + "* in Month: *" + month);
+            resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- " + "Type: *" + type + "* in Month: *" + month);
 
 
-            }
+        }
 
-}
+    }
+
+    public void onClearButton(ActionEvent actionEvent) {
+
+        typeComboBox.getSelectionModel().clearSelection();
+        monthComboBox.getSelectionModel().clearSelection();
+        runButton.setText("Submit");
+        resultsLBL.setText("");
+
+
+    }
+
 }

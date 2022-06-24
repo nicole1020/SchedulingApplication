@@ -46,10 +46,15 @@ public class AppointmentsController implements Initializable {
     public RadioButton currentMonthRadioButton;
     public RadioButton allSortRadioButton;
     public Button generateReportsButton;
-
+    int countingClicks = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
         //Appointments Table Initialized
 
         System.out.println("All Appointments Displaying");

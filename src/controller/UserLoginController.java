@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.User;
 import java.io.BufferedWriter;
@@ -21,6 +18,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.*;
 import java.util.logging.Level;
@@ -52,7 +50,6 @@ public class UserLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         userLocationLabel.setText(ZoneId.systemDefault().toString());
         passwordLabel.setText(resourceB.getString("password"));
         userNameLabel.setText(resourceB.getString("username"));
@@ -67,15 +64,21 @@ public class UserLoginController implements Initializable {
         String userName = this.userName.getText();
         String passwordEntry = password.getText();
         if (userName == null) {
+
             return;
             
             
         }
         if (passwordEntry == null) {
             return;
-        }
 
-         else {
+        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(resourceB.getString("Error"));
+        alert.setContentText(resourceB.getString("EnterValidInputs"));
+        Optional<ButtonType> result = alert.showAndWait();
+        alert.showAndWait();
+         if  (result.get() == ButtonType.OK) {
 
             loggedUser = UserHelper.validateUser(userName, passwordEntry);
 
@@ -88,10 +91,10 @@ public class UserLoginController implements Initializable {
                 logger.log(Level.WARNING,("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had an invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
 
                 System.out.println("Attempted Login by user: " + this.userName.getText() );
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setContentText("Enter valid inputs");
-                alert.showAndWait();
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle(resourceB.getString("Error"));
+                alert2.setContentText(resourceB.getString("EnterValidInputs"));
+                alert2.showAndWait();
 
             return;
 
@@ -112,10 +115,10 @@ public class UserLoginController implements Initializable {
                 stage.show();
             } catch (Exception var7) {
                 var7.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setContentText("Enter valid inputs");
-                alert.showAndWait();
+                Alert alert3 = new Alert(Alert.AlertType.ERROR);
+                alert3.setTitle(resourceB.getString("Error"));
+                alert3.setContentText(resourceB.getString("Valid Inputs"));
+                alert3.showAndWait();
             }
             logger.fine("complete");
 

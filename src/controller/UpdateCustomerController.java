@@ -31,6 +31,7 @@ public class UpdateCustomerController implements Initializable {
     public Customers selectedCustomer = null;
     private  Integer customerID = 0;
     private Integer divisionID = 0;
+    int countingClicks = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
         customerName.clear();
         customerAddress.clear();
@@ -112,5 +113,11 @@ public class UpdateCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerCountryCombo.setItems(CustomersHelper.getAllCountries());
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
     }
 }

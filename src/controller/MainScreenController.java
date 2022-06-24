@@ -69,11 +69,16 @@ public class MainScreenController implements Initializable {
     private  Integer customerID = 0;
     public Customers selectedCustomer = null;
     private Customers uc = null;
-
+int countingClicks = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        exitButton.setOnAction(e ->{
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
+        });
         //Customers Table Initialized
         customersTable.setItems(CustomersHelper.getAllCustomers());
 
