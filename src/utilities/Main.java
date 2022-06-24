@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.AppointmentTimes;
 
 import java.util.Locale;
 
@@ -131,18 +132,23 @@ will pull more data from type and month dao helper files next time.
 
  also worked on error coding updating the resource bundle to properly show error in french and english.
  */
+/**this is the Main Method.
+ This is the first method that is called in our java program.
+ */
 public class Main extends Application {
 
     @Override
-
+/**this is the Main Method.
+ This is the first method that is called in our java program.
+ */
     public void start(Stage primaryStage) throws Exception {
-        Locale.setDefault(new Locale("fr","FR"));
+       // Locale.setDefault(new Locale("fr","FR"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+       // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
@@ -151,10 +157,12 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-            DBConnection.openConnection();
+        DBConnection.openConnection();
+
         launch(args);
         DBConnection.closeConnection();
     }
-
+/**this is the Main Method.
+ This is the first method that is called in our java program.**/
 }
 

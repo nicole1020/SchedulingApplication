@@ -30,6 +30,7 @@ public class AddCustomerController implements Initializable {
     public Button saveCustomer;
     public TextField customerAddress;
     public Label customerIDLabel;
+    public Button back;
     private  Integer customerID = 0;
     int countingClicks = 0;
 
@@ -89,6 +90,7 @@ public class AddCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerCountryCombo.setItems(CustomersHelper.getAllCountries());
+
         exitButton.setOnAction(e ->{
             countingClicks++;
             System.out.println(countingClicks);

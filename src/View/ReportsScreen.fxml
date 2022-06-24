@@ -16,21 +16,16 @@
          <Insets left="16.0" />
       </padding>
    </Label>
-   <Label layoutX="487.0" layoutY="282.0">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Label>
    <ComboBox fx:id="typeComboBox" layoutX="47.0" layoutY="144.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="93.0" promptText="Type" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
    <ComboBox fx:id="monthComboBox" layoutX="152.0" layoutY="144.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="114.0" promptText="Month" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
    <Button fx:id="backButton" layoutX="412.0" layoutY="306.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="25.0" prefWidth="206.0" text="Back to Appointments Screen" />
    <Label fx:id="resultsLBL" layoutX="36.0" layoutY="262.0" prefHeight="40.0" prefWidth="649.0" textFill="#0c4acf" />
-   <Label layoutX="47.0" layoutY="242.0" prefHeight="20.0" prefWidth="463.0" text="Displaying Appointment Count:">
+   <Label layoutX="47.0" layoutY="242.0" prefHeight="20.0" prefWidth="463.0" text="Displaying Appointment Count By Type and Month:">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <Label layoutX="34.0" layoutY="66.0" text="Reports Select appointment:" textFill="#0c4acf">
+   <Label layoutX="34.0" layoutY="66.0" text="Report: Appointment Counter" textFill="#0c4acf">
       <font>
          <Font size="14.0" />
       </font>
@@ -38,4 +33,9 @@
    <Button fx:id="exitButton" layoutX="361.0" layoutY="306.0" mnemonicParsing="false" onAction="#onExitButton" text="Exit" />
    <Button fx:id="runButton" layoutX="385.0" layoutY="145.0" mnemonicParsing="false" onAction="#onRunButton" text="Submit" textFill="#0c4acf" />
    <Button fx:id="clearButton" layoutX="316.0" layoutY="145.0" mnemonicParsing="false" onAction="#onClearButton" text="Clear" />
+   <Label layoutX="47.0" layoutY="106.0" prefHeight="20.0" prefWidth="245.0" text="Select Type And Month:">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
 </AnchorPane>

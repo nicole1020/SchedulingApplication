@@ -2,24 +2,28 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+
 import java.time.*;
 /**
  *
  * @author Nicole Mau
  */
 
-
+// initialize (start:LocalTime, end:LocalTime, date:LocalTime)
 public class AppointmentTimes extends Appointments {
 
     LocalTime start;
     LocalTime end;
     LocalDate date;
+    LocalTime startSoon;
 
-    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date, LocalDate month) {
+    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date, LocalTime startSoon) {
 
         this.start = start;
         this.end = end;
         this.date = date;
+        this.startSoon = startSoon;
 
     }
 
@@ -39,10 +43,22 @@ public class AppointmentTimes extends Appointments {
 
         LocalTime start = localStart;
         LocalTime end = localEnd;
+        LocalTime startSoon = start.plusMinutes(15);
 
         if (!isStart) {
             start = start.plusMinutes(15);
             end = end.plusMinutes(15);
+        }
+        //Alerts user with popup if an appointment is within the next 15 minutes
+        if(startSoon.isAfter(start)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING!");
+            alert.setHeaderText("Appointment approaching within the next 15 minutes");
+
+            alert.setContentText("Caution!");
+
+            alert.showAndWait();
+
         }
 
         while (start.isBefore(end)) {
@@ -52,5 +68,6 @@ public class AppointmentTimes extends Appointments {
 
         return appointmentTime;
     }
+
 }
 

@@ -2,6 +2,10 @@ package controller;
 
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.fxml.FXML;
 import model.Appointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -47,8 +51,10 @@ public class AppointmentsController implements Initializable {
     public RadioButton allSortRadioButton;
     public Button generateReportsButton;
     int countingClicks = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         exitButton.setOnAction(e ->{
             countingClicks++;
             System.out.println(countingClicks);
@@ -60,7 +66,7 @@ public class AppointmentsController implements Initializable {
         System.out.println("All Appointments Displaying");
         appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
-        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        appointmentsIDCol.setCellValueFactory( new PropertyValueFactory<>("appointmentID"));
         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -191,4 +197,27 @@ public class AppointmentsController implements Initializable {
             var6.printStackTrace();
         }
     }
+    @FXML
+    void mouseOverTable(MouseEvent event) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nowPlus15 = now.plusMinutes(15);
+        FilteredList<Appointments> filteredData = new FilteredList<>(AppointmentsHelper.getAllAppointments());
+        filteredData.setPredicate(row -> {
+
+            LocalDateTime rowDate = row.getStartDateTime();
+
+            return rowDate.isAfter(now) && rowDate.isBefore(nowPlus15);
+
+        });
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert!");
+        alert.setHeaderText("Appointment for user *" + appointmentsUserIDCol.getText() + "in the next 15 minutes!");
+
+        alert.setContentText("Great choice! " );
+
+        alert.showAndWait();
+
+    }
+
+
 }

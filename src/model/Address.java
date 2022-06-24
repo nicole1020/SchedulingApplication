@@ -6,13 +6,14 @@ package model;
 
 
 
+// initialize private access: (divisionID:int, division:String)
+
 public class Address extends Customers {
 
-// private(divisionID:int, division:String)
     private int divisionID;
     private String division;
 
-
+ // initialize public access (divisionID:int, division:String)
     public Address(int division_ID, String division) {
 
 

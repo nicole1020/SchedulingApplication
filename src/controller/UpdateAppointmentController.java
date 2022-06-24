@@ -36,7 +36,7 @@ public class UpdateAppointmentController implements Initializable {
     public DatePicker appointmentDate;
     public ComboBox <LocalTime>appointmentEnd;
     private  Integer appointmentid = 0;
-int countingClicks = 0;
+    int countingClicks = 0;
     public void editedAppointment(Appointments theAppointment) {
 
         this.selectedAppointment = theAppointment;

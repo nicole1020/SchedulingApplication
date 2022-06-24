@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppointmentsController">
+<AnchorPane layoutY="-200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentsController">
                 <Label fx:id="resultsLBL" layoutX="26.0" layoutY="186.0" prefHeight="17.0" prefWidth="649.0" textFill="#0c4acf" />
               <Label layoutX="76.0" layoutY="-28.0" prefHeight="17.0" prefWidth="305.0" text="Scheduling Application">
                   <font>
@@ -46,7 +46,7 @@
       </RadioButton>
      <Button fx:id="exitButton" layoutX="789.0" layoutY="510.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
    <Button fx:id="addAppointment" layoutX="129.0" layoutY="470.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add New Appointment" />
-          <TableView fx:id="appointmentsTable" editable="true" layoutX="26.0" layoutY="296.0" onMouseClicked="#appointmentsIsSelected" prefHeight="149.0" prefWidth="828.0">
+          <TableView fx:id="appointmentsTable" editable="true" layoutX="26.0" layoutY="296.0" onMouseClicked="#appointmentsIsSelected" onSort="#mouseOverTable" prefHeight="149.0" prefWidth="828.0">
               <columns>
                   <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
                   <TableColumn fx:id="appointmentsTitleCol" prefWidth="36.0" text="Title" />

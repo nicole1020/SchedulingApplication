@@ -1,18 +1,14 @@
 package model;
 
 
-import javafx.scene.control.DatePicker;
-
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
+
 /**
  *
  * @author Nicole Mau
  */
 
-
+// initialize private access: (appointmentID:int, title:string, description:string, location:string, contact:int, type:string, startDateTime:LocalDateTime, endDateTime:LocalDateTime, customerID:int, userID:int)
 public class Appointments extends Customers {
     private int appointmentID;
     private String title;
@@ -26,21 +22,10 @@ public class Appointments extends Customers {
     private int userID;
 
 
-   /*public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, String start, String end, int customer_id, int user_id) {
-        this.appointmentID = appointment_id;
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.contact = contact_id;
-        this.type = type;
-        this.startDate = start;
-        this.endDate = end;
-        this.customerID = customer_id;
-        this.userID = user_id;
-    }**/
 
+// initialize public access: (appointmentID:int, title:string, description:string, location:string, contact:int, type:string, startDateTime:LocalDateTime, endDateTime:LocalDateTime, customerID:int, userID:int)
 
-    public Appointments(int appointment_id, String title, String description, String location, int contact_id, String type, LocalDateTime start, LocalDateTime end, int customer_id, int user_id) {
+    public Appointments( int appointment_id, String  title, String description, String location,  int contact_id, String type, LocalDateTime start, LocalDateTime end,  int customer_id, int user_id) {
         this.appointmentID = appointment_id;
         this.title = title;
         this.description = description;
@@ -57,16 +42,10 @@ public class Appointments extends Customers {
         this.type = type;
     }
 
-
-
     public Appointments() {
     }
 
-
-
-
-
-    public Appointments(int appointment_id, String type, LocalDateTime start, int customer_id, int user_id) {
+    public Appointments(int appointment_id, String  type, LocalDateTime start, int customer_id, int user_id) {
         this.appointmentID = appointment_id;
         this.type = type;
         this.startDateTime = start;
@@ -100,7 +79,7 @@ public class Appointments extends Customers {
         return location;
     }
 
-    public int getContact() {
+    public Integer getContact() {
         return contact;
     }
 

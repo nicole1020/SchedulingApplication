@@ -1,23 +1,15 @@
 package controller;
 
-import DAO.AppointmentsHelper;
 import DAO.ReportsHelper;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Reports;
 import model.Appointments;
-
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
@@ -82,9 +74,7 @@ public class ReportsController implements Initializable{
 
 
 
-        //Appointments Table Initialized
 
-        System.out.println("All Appointments Displaying");
         /** appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
 
          appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
@@ -172,16 +162,6 @@ public class ReportsController implements Initializable{
 
     public void onMonthComboBox(ActionEvent actionEvent) {
 
-        //   if (monthComboBox.isPressed()) {
-
-        //    appointmentsTable.setItems(ReportsHelper.getReportsDataSortByMonth());
-        //  System.out.println("Current Month's Appointments Displayed");
-        //  for (int i = 0; i < ReportsHelper.getReportsDataSortByMonth().size(); i++) {
-        //     System.out.println(ReportsHelper.getReportsDataSortByMonth()
-        //             .get(i).getAppointmentID());
-        // }
-        //  System.out.println("");
-        //   resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByMonth().size() + " Appointments on File");
 
     }
 
@@ -189,26 +169,11 @@ public class ReportsController implements Initializable{
     public void onExitButton() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+
     }
 
     public void onReportsComboBox(ActionEvent actionEvent) throws SQLException {
-        /*if (typeComboBox.isPressed() && monthComboBox.isPressed()) {
-            String typeValue = typeComboBox.getValue();
-            Month monthValue = monthComboBox.getValue();
-            int sizeT = typeComboBox.getVisibleRowCount();
-            int sizeM = monthComboBox.getVisibleRowCount();
-            if (typeValue == null || monthValue == null) {
-                System.out.println("select value from each combo box");
-                return;
-            }
-            else{
-                ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue).size();
 
-                    System.out.println("month size "+sizeM);
-                    resultsLBL.setText("Report (A.3.f) : " + ReportsHelper.getDataSortByMonthAndType(typeValue, monthValue).size() + " Appointments on File");
-
-}
-            }**/
     }
 
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
@@ -217,12 +182,18 @@ public class ReportsController implements Initializable{
         String month = monthComboBox.getValue();
 
         if (type == null || month == null) {
-            System.out.println("select value from each combo box");
 
-        } else {
+            System.out.println("select value from each combo box");
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Error");
+            alert2.setContentText("Please select both Type and Month");
+            alert2.showAndWait();
+        }
+
+        else {
             int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
-            System.out.println("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- " + "Type: *" + type + "* in Month: *" + month);
-            resultsLBL.setText("Report (A.3.f) : " + sizeOfReport + " Appointments on File with- " + "Type: *" + type + "* in Month: *" + month);
+            System.out.println("Report (A.3.f) : *" + sizeOfReport + "* Appointments on File with " + "Type: *" + type + "* in Month: *" + month + "*");
+            resultsLBL.setText("Report: *" + sizeOfReport + "* Appointments on File with " + "Type: *" + type + "* in Month: *" + month + "*");
 
 
         }
