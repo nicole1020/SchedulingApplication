@@ -18,5 +18,6 @@ JavaFX compatible JDK SDK 17.0.1
 mySQL Connector driver 8.0.25
 
 A.3 additional Report: counts all appointments on file.
+A.3.d lambda expression: prints all appointment by "month" and "type" upon Submit button push in ReportsScreen.fxml.
 
 To Launch SchedulingApplication:

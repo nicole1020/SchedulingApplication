@@ -21,11 +21,11 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <ComboBox fx:id="typeComboBox" layoutX="116.0" layoutY="108.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="93.0" promptText="Type" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
-   <ComboBox fx:id="monthComboBox" layoutX="116.0" layoutY="164.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="114.0" promptText="Month" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
+   <ComboBox fx:id="typeComboBox" layoutX="47.0" layoutY="144.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="93.0" promptText="Type" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
+   <ComboBox fx:id="monthComboBox" layoutX="152.0" layoutY="144.0" onAction="#onReportsComboBox" prefHeight="25.0" prefWidth="114.0" promptText="Month" style="-fx-border-color: #0c4acf;" visibleRowCount="11" />
    <Button fx:id="backButton" layoutX="412.0" layoutY="306.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="25.0" prefWidth="206.0" text="Back to Appointments Screen" />
    <Label fx:id="resultsLBL" layoutX="36.0" layoutY="262.0" prefHeight="40.0" prefWidth="649.0" textFill="#0c4acf" />
-   <Label layoutX="47.0" layoutY="242.0" prefHeight="20.0" prefWidth="291.0" text="Appointments by selected month and type:">
+   <Label layoutX="47.0" layoutY="242.0" prefHeight="20.0" prefWidth="383.0" text="Displaying Appointments by selected month and type:">
       <font>
          <Font size="14.0" />
       </font>
@@ -36,5 +36,5 @@
       </font>
    </Label>
    <Button fx:id="exitButton" layoutX="361.0" layoutY="306.0" mnemonicParsing="false" onAction="#onExitButton" text="Exit" />
-   <Button fx:id="runButton" layoutX="193.0" layoutY="217.0" mnemonicParsing="false" onAction="#onRunButton" text="Run" textFill="#0c4acf" />
+   <Button fx:id="runButton" layoutX="300.0" layoutY="145.0" mnemonicParsing="false" onAction="#onRunButton" text="Submit" textFill="#0c4acf" />
 </AnchorPane>
