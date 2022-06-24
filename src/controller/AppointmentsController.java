@@ -199,7 +199,7 @@ public class AppointmentsController implements Initializable {
     }
     @FXML
     void mouseOverTable(MouseEvent event) {
-        LocalDateTime now = LocalDateTime.now();
+   /*    LocalDateTime now = LocalDateTime.now();
         LocalDateTime nowPlus15 = now.plusMinutes(15);
         FilteredList<Appointments> filteredData = new FilteredList<>(AppointmentsHelper.getAllAppointments());
         filteredData.setPredicate(row -> {
@@ -217,7 +217,7 @@ public class AppointmentsController implements Initializable {
 
         alert.showAndWait();
 
+    }**/
+
     }
-
-
-}
+    }

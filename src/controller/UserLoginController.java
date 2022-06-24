@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.AppointmentsHelper;
 import DAO.UserHelper;
 import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.AppointmentTimes;
 import model.User;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -58,7 +60,7 @@ public class UserLoginController implements Initializable {
 
     }
 
-    public void onLogin(ActionEvent actionEvent) throws IOException{
+    public void onLogin(ActionEvent actionEvent) throws IOException {
 
 
         String userName = this.userName.getText();
@@ -66,53 +68,47 @@ public class UserLoginController implements Initializable {
         if (userName == null) {
 
             return;
-            
-            
+
+
         }
         if (passwordEntry == null) {
             return;
 
-        }
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(resourceB.getString("Error"));
-        alert.setContentText(resourceB.getString("EnterValidInputs"));
-        Optional<ButtonType> result = alert.showAndWait();
-        alert.showAndWait();
-         if  (result.get() == ButtonType.OK) {
-
+        } else {
             loggedUser = UserHelper.validateUser(userName, passwordEntry);
 
-             logger.addHandler(fh);
-            logger.setLevel(Level.ALL);
 
-            if(loggedUser == null){
 
-                logger.info(("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had an invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
-                logger.log(Level.WARNING,("User with UserName:"+  " '" + this.userName.getText()+  "' " +    "had an invalid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault()));
 
-                System.out.println("Attempted Login by user: " + this.userName.getText() );
+                logger.addHandler(fh);
+                logger.setLevel(Level.ALL);
+
+            if (loggedUser == null) {
+
+                logger.info(("User with UserName:" + " '" + this.userName.getText() + "' " + "had an invalid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault()));
+                logger.log(Level.WARNING, ("User with UserName:" + " '" + this.userName.getText() + "' " + "had an invalid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault()));
+
+                System.out.println("Attempted Login by user: " + this.userName.getText());
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
                 alert2.setTitle(resourceB.getString("Error"));
                 alert2.setContentText(resourceB.getString("EnterValidInputs"));
                 alert2.showAndWait();
 
-            return;
+                return;
 
             }
-        try {
-            System.out.println("Successful Login by user: " + this.userName.getText() );
-            logger.info( "User with UserName: " +  "'" + this.userName.getText()+  "' " + "had a valid login at " + LocalDateTime.now()+ " " + ZoneId.systemDefault());
+            if (AppointmentsHelper.getAppointmentsSoon()) {
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Appointment soon for *" + this.userName.getText());
+                alert2.setContentText("Appointment soon for *" + this.userName.getText());
+                alert2.showAndWait();
+            }
+
+            try {
+                System.out.println("Successful Login by user: " + this.userName.getText());
+                logger.info("User with UserName: " + "'" + this.userName.getText() + "' " + "had a valid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault());
 
 
-            userLocationLabel.setText("Login Successful");
-                Locale.setDefault(new Locale("en","US"));
-                Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-                Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setTitle("Home Page");
-                stage.setScene(scene);
-                stage.centerOnScreen();
-                stage.show();
             } catch (Exception var7) {
                 var7.printStackTrace();
                 Alert alert3 = new Alert(Alert.AlertType.ERROR);
@@ -120,10 +116,21 @@ public class UserLoginController implements Initializable {
                 alert3.setContentText(resourceB.getString("Valid Inputs"));
                 alert3.showAndWait();
             }
+            userLocationLabel.setText("Login Successful");
+
             logger.fine("complete");
+            Locale.setDefault(new Locale("en", "US"));
+            Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Home Page");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
 
         }
-        }
+    }
+
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();
         stage.close();

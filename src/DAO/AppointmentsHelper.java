@@ -1,6 +1,5 @@
 package DAO;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
@@ -9,7 +8,6 @@ import model.Contacts;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 
 import static DAO.DBConnection.connection;
 
@@ -237,11 +235,15 @@ public class AppointmentsHelper {
     }
 
 
-    public static ObservableList<String> getReportsDataSortByType() {
-        ObservableList<String> reportsDataSortByTypeList = FXCollections.observableArrayList();
+    public static boolean getAppointmentsSoon() {
+        ObservableList<Appointments> appointmentsInNext15 = FXCollections.observableArrayList();
         try {
-            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
+                    "Start, End, customers.Customer_ID, users.User_ID = ?, " +
+                    "contacts.Contact_ID FROM customers, appointments, contacts, " +
+                    "users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    " AND appointments.User_ID = users.User_ID AND " +
+                    "appointments.Contact_ID = contacts.Contact_ID and MINUTE(Start)=MINUTE(now(15))";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -256,14 +258,17 @@ public class AppointmentsHelper {
                 LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
-                reportsDataSortByTypeList.add(Type);
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                System.out.println("THIS HERE"+ap);
+                appointmentsInNext15.add(ap);
                 //System.out.println(ap);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return reportsDataSortByTypeList;
+
+        return false;
     }
 
     public static ObservableList<Appointments> getReportsDataSortByMonth() {
