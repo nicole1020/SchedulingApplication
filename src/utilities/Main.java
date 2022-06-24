@@ -127,6 +127,9 @@ will pull more data from type and month dao helper files next time.
  I am missing a key component to the logic and i havent figured it out yet.
  meeting with Mr Ruiz Shortly in LIS to get help with combo boxes.
  6/23- met with miss sunitha, she helped me fix my sql so my reports generator works! yayyy!
+ worked on lambda expression to make exit button count clicks, exit, and print a message notifying of closure
+
+ also worked on error coding updating the resource bundle to properly show error in french and english.
  */
 public class Main extends Application {
 
