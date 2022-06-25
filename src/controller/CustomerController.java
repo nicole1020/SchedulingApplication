@@ -80,7 +80,7 @@ public class CustomerController implements Initializable {
     public void onDeleteCustomer(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Customer Warning");
-        alert.setContentText( "'s customer record is being deleted.");
+        alert.setContentText( "Customer record is being deleted from database.");
         alert.showAndWait();
 
         Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();

@@ -54,7 +54,6 @@ public class CustomersHelper {
             psCreate.setString(3, String.valueOf(postalcode));
             psCreate.setString(4, String.valueOf(phone));
             psCreate.setInt(5, division);
-
             psCreate.execute();
 
         } catch (Exception e) {
@@ -73,7 +72,6 @@ public class CustomersHelper {
         psCreate3.setString(4, String.valueOf(postalcode));
         psCreate3.setString(5, String.valueOf(phone));
         psCreate3.setInt(6, division);
-
         psCreate3.execute();
 
     } catch (Exception e) {
@@ -82,12 +80,14 @@ public class CustomersHelper {
     }
     }
 
-    public static void deleteCustomer(int Customer_ID) {
+    public static void deleteCustomer(int customer_ID) {
         try{
-    String sqlDC = "Delete FROM customers WHERE Customer_ID = ?";
-    PreparedStatement psDC = connection.prepareStatement(sqlDC);
-    psDC.setInt(1, Customer_ID);
-    psDC.execute();
+
+            String sqlDC = "Delete FROM customers, appointments USING customers INNER JOIN appointments ON" +
+                    " customers.Customer_ID = appointments.Customer_ID  WHERE customers.Customer_ID = ?";
+            PreparedStatement psDC = connection.prepareStatement(sqlDC);
+            psDC.setInt(1, customer_ID);
+            psDC.execute();
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -68,7 +68,7 @@ public class UpdateCustomerController implements Initializable {
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
-        if (name == null || address == null || postalcode == null || phone == null ) {
+        if (name == null || address == null || postalcode == null || phone == null) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
@@ -83,19 +83,19 @@ public class UpdateCustomerController implements Initializable {
             alert2.setContentText("Select a Division");
             alert2.showAndWait();
             return;
-        }
-
-         else {
+        } else {
             CustomersHelper.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
             );
+
+
+            Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Home Page");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
         }
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Home Page");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
     }
     public void editedCustomer(Customers theCustomer) {
 

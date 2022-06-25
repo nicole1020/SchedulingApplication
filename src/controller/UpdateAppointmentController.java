@@ -104,7 +104,7 @@ public class UpdateAppointmentController implements Initializable {
         LocalTime startTime = appointmentStart.getValue();
         LocalTime endTime = appointmentEnd.getValue();
         LocalDateTime start = LocalDateTime.of(date, startTime);
-        LocalDateTime end   = LocalDateTime.of(date, endTime);
+        LocalDateTime end = LocalDateTime.of(date, endTime);
 
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
@@ -130,20 +130,18 @@ public class UpdateAppointmentController implements Initializable {
 
         if (appointmentid == 0) {
 
-        }
-
-        else {
+        } else {
             AppointmentsHelper.updateAppointment(appointmentid, title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
-        }
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-        Parent root = (Parent)loader.load();
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Appointments Scheduler and Reports");
-        stage.setScene(scene);
-        stage.show();
-    }
 
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();

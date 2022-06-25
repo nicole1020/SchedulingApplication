@@ -82,10 +82,11 @@ public class UserLoginController implements Initializable {
             }
             if (currentUser == null) {
                 System.out.println("you dont have an appointment");
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+               /* Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("You dont have an appointment soon *" + this.userName.getText());
                 alert2.setContentText("You dont have an appointment soon *" + this.userName.getText());
                 alert2.showAndWait();
+                **/
 
             }
 
