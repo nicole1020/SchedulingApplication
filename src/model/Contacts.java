@@ -3,7 +3,7 @@ package model;
  *
  * @author Nicole Mau
  */
-
+// Initializing Contacts extends Appointments
 public class Contacts extends Appointments{
     private int contactID;
     private String contactName;

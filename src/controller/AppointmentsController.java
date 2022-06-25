@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
+// Initializes AppointmentsController
 public class AppointmentsController implements Initializable {
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
@@ -83,7 +83,7 @@ public class AppointmentsController implements Initializable {
 
         }
         System.out.println("");
-        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+        resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments in database");
 
 
     }
@@ -153,7 +153,7 @@ public class AppointmentsController implements Initializable {
                         .get(i).getAppointmentID());
             }
             System.out.println("");
-            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments on File");
+            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments in database");
         }
     }
 
@@ -166,7 +166,7 @@ public class AppointmentsController implements Initializable {
                         .get(i).getAppointmentID());
             }
             System.out.println("");
-            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
+            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments in database");
 
         }
     }
@@ -180,7 +180,7 @@ public class AppointmentsController implements Initializable {
                         .get(i).getAppointmentID());
             }
             System.out.println("");
-            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+            resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments in database");
         }
     }
 
@@ -199,25 +199,7 @@ public class AppointmentsController implements Initializable {
     }
     @FXML
     void mouseOverTable(MouseEvent event) {
-   /*    LocalDateTime now = LocalDateTime.now();
-        LocalDateTime nowPlus15 = now.plusMinutes(15);
-        FilteredList<Appointments> filteredData = new FilteredList<>(AppointmentsHelper.getAllAppointments());
-        filteredData.setPredicate(row -> {
 
-            LocalDateTime rowDate = row.getStartDateTime();
-
-            return rowDate.isAfter(now) && rowDate.isBefore(nowPlus15);
-
-        });
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Appointment for user *" + appointmentsUserIDCol.getText() + "in the next 15 minutes!");
-
-        alert.setContentText("Great choice! " );
-
-        alert.showAndWait();
-
-    }**/
 
     }
     }

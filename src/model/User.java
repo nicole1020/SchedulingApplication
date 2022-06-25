@@ -7,7 +7,7 @@ import java.util.logging.LogRecord;
  *
  * @author Nicole Mau
  */
-
+// Initializing User
 public class User {
 
     private int userID;

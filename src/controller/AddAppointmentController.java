@@ -20,8 +20,9 @@ import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-
+// Initializes AddAppointmentsController
 public class AddAppointmentController implements Initializable {
+
     public Button saveAppointment;
     public Button exitButton;
     public DatePicker appointmentStart;
@@ -36,7 +37,7 @@ public class AddAppointmentController implements Initializable {
     public Button clearAppointment;
     public Button backButton;
     public DatePicker appointmentDate;
-    //set to business hours 8 AM to 10 PM EST
+
     public ComboBox<LocalTime> appointmentStartTime;
     public ComboBox<LocalTime> appointmentEndTime;
 
@@ -49,40 +50,6 @@ public class AddAppointmentController implements Initializable {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
-
-
-    public void appointmentsIsSelected(MouseEvent mouseEvent) {
-    }
-
-    public void onDeleteAppointment(ActionEvent actionEvent) {
-
-    }
-
-    public void onAppointmentsSearch(ActionEvent actionEvent) {
-
-
-    }
-
-    public void onEditAppointment(ActionEvent actionEvent) {
-
-    }
-
-    public void onAppointmentsTextField(ActionEvent actionEvent) {
-    }
-
-    public void onAppointmentTextField(KeyEvent keyEvent) {
-    }
-
-    public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Home Page");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

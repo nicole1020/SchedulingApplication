@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+// Initializes AddCustomersController
 public class AddCustomerController implements Initializable {
     public TextField customerName;
     public TextField customerPhone;

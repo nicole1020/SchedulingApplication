@@ -19,7 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
 import java.util.ResourceBundle;
-
+// Initializing UpdateAppointmentController
 public class UpdateAppointmentController implements Initializable {
     public ComboBox <LocalTime>appointmentStart;
     public TextField appointmentTitle;

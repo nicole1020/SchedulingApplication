@@ -8,7 +8,7 @@ import java.time.Month;
  *
  * @author Nicole Mau
  */
-
+// Initializing Reports extends Appointments
 public class Reports extends Appointments{
 
     private Month month;

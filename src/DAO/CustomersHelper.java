@@ -10,6 +10,7 @@ import java.sql.*;
 
 import static DAO.DBConnection.connection;
 
+//Initializing CustomersHelper
 public class CustomersHelper {
 
     private static TextField customerID;

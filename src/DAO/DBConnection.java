@@ -2,7 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+//Initializing DBConnection
 public abstract class DBConnection {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";

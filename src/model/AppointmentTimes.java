@@ -10,7 +10,7 @@ import java.time.*;
  * @author Nicole Mau
  */
 
-// initialize (start:LocalTime, end:LocalTime, date:LocalTime)
+// Initializing AppointmentTimes extends Appointments
 public class AppointmentTimes extends Appointments {
 
     LocalTime start;

@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 import static DAO.DBConnection.*;
-
+//Initializing UserHelper
 public class UserHelper {
 
     public static ObservableList<User> getAllUsers() {

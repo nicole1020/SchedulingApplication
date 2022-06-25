@@ -6,7 +6,7 @@ package model;
 
 
 
-// initialize private access: (divisionID:int, division:String)
+// Initializing Address extends Customers
 
 public class Address extends Customers {
 

@@ -210,7 +210,7 @@ public class ReportsController implements Initializable {
 
 
     }
-    //Lambda here filtering based on contactID
+    //Lambda here filtering appointments based on contactID
     public void onContactCombo(ActionEvent actionEvent) {
 
         int cid = contactCombo.getValue().getContactID();

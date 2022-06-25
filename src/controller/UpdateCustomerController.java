@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+// Initializing UpdateCustomerController
 public class UpdateCustomerController implements Initializable {
     public Button clearCustomer;
     public TextField customerName;

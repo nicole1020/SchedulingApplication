@@ -3,7 +3,7 @@ package model;
  *
  * @author Nicole Mau
  */
-
+// Initializing Customers
 public class Customers {
 
     private String customerName;

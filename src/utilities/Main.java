@@ -136,15 +136,12 @@ will pull more data from type and month dao helper files next time.
  6/25 Mr kinkead replied I realized I was not properly using sql to get a 15 minute warning. I needed to use logged user to
  check their appointments in the database and then see if they have appointments in the next 15 minutes.
  */
-/**this is the Main Method.
- This is the first method that is called in our java program.
- */
+//this is the Main Method. This is the first method that is called in our java program.
+
 public class Main extends Application {
 
     @Override
-/**this is the Main Method.
- This is the first method that is called in our java program.
- */
+
     public void start(Stage primaryStage) throws Exception {
        // Locale.setDefault(new Locale("fr","FR"));
 
@@ -166,7 +163,5 @@ public class Main extends Application {
         launch(args);
         DBConnection.closeConnection();
     }
-/**this is the Main Method.
- This is the first method that is called in our java program.**/
 }
 

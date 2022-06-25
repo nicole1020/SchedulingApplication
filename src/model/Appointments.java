@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
  * @author Nicole Mau
  */
 
-// initialize private access: (appointmentID:int, title:string, description:string, location:string, contact:int, type:string, startDateTime:LocalDateTime, endDateTime:LocalDateTime, customerID:int, userID:int)
+
+// Initializing Appointments extends Customers
 public class Appointments extends Customers {
     private int appointmentID;
     private String title;
@@ -23,8 +24,7 @@ public class Appointments extends Customers {
 
 
 
-// initialize public access: (appointmentID:int, title:string, description:string, location:string, contact:int, type:string, startDateTime:LocalDateTime, endDateTime:LocalDateTime, customerID:int, userID:int)
-
+// Initializing Appointments
     public Appointments( int appointment_id, String  title, String description, String location,  int contact_id, String type, LocalDateTime start, LocalDateTime end,  int customer_id, int user_id) {
         this.appointmentID = appointment_id;
         this.title = title;

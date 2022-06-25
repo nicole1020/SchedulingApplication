@@ -22,7 +22,7 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+// Initializing UserLoginController
 public class UserLoginController implements Initializable {
 
     public Button login;
@@ -73,10 +73,8 @@ public class UserLoginController implements Initializable {
             try {
                 PrintWriter pw = new PrintWriter(new FileOutputStream(
                         new File("login_activity.txt"),
-                        true /* append = true */));
-                //out.txt will appear in the project's root directory under NetBeans projects
-                //Note that Notepad will not display the following lines on separate lines
-                pw.append("Good Login Case\n");
+                        true));
+                  pw.append("Valid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now()+ "\n");
                 pw.flush();
                 pw.close();
             } catch (FileNotFoundException ex) {
@@ -91,7 +89,7 @@ public class UserLoginController implements Initializable {
 
             }
 
-            //15 min check
+
             else {
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
                 alert2.setTitle("Appointment soon for " + this.userName.getText());

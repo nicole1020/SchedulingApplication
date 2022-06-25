@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+// Initializes CustomerController
 public class CustomerController implements Initializable {
     public TableView <Customers> customersTable;
     public TableColumn customersTableCustomerNameCol;
@@ -61,7 +61,7 @@ public class CustomerController implements Initializable {
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + CustomersHelper.getAllCustomers().size() + " Customers on File");
+        resultsLBL.setText("Report: " + CustomersHelper.getAllCustomers().size() + " Customers in database");
 
 
     }

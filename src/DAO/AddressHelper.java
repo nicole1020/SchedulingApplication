@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static DAO.DBConnection.connection;
-
+//Initializing AddressHelper
 public class AddressHelper {
     public static ObservableList<Address> getAllAddresses(Integer countryID) {
         ObservableList<Address> addressList = FXCollections.observableArrayList();
