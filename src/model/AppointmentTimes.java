@@ -10,7 +10,7 @@ import java.time.*;
  * @author Nicole Mau
  */
 
-// Initializing AppointmentTimes extends Appointments
+// Initializing AppointmentTimes Class extends Appointments
 public class AppointmentTimes extends Appointments {
 
     LocalTime start;
@@ -26,7 +26,7 @@ public class AppointmentTimes extends Appointments {
         this.startSoon = startSoon;
 
     }
-
+    // Initializing ObservableList<LocalTime> getAllAppointmentTimes to make sure user time and server time unite
     public static ObservableList<LocalTime> getAllAppointmentTimes(boolean isStart) {
 
         LocalDateTime estStart = LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 0));
@@ -58,32 +58,6 @@ public class AppointmentTimes extends Appointments {
 
         return appointmentTime;
     }
-/**
-    public static ObservableList<LocalTime> getAppointmentSoonAlertCheck(boolean appointmentIsSoon) {
-
-        LocalDateTime userTime = LocalDateTime.now();
-        ZonedDateTime userZone = userTime.atZone(ZoneId.of("America/New_York"));
-        ZonedDateTime userZoned = userZone.withZoneSameInstant(ZoneId.systemDefault());
-        LocalTime userStart = userZoned.toLocalTime();
-        LocalTime startSoon = userStart.plusMinutes(15);
-        ObservableList<LocalTime> appointmentTimeAlert = FXCollections.observableArrayList();
-
-        //Alerts user with popup if an appointment is within the next 15 minutes
-        if(!appointmentIsSoon) {
-
-        }
-        while(startSoon.isAfter(userStart)){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING!");
-            alert.setHeaderText("Appointment approaching within the next 15 minutes");
-
-            alert.setContentText("Caution!");
-
-            alert.showAndWait();
-
-        }
-        return appointmentTimeAlert;
-
-    }*/
 }
+
 

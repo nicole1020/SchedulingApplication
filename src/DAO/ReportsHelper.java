@@ -19,7 +19,7 @@ import static DAO.DBConnection.connection;
 //Initializing ReportsHelper
 public class ReportsHelper {
 
-
+//retrieves getReportsDataSortByType from database
     public static ObservableList<String> getReportsDataSortByType() {
         ObservableList<String> reportsDataSortByTypeList = FXCollections.observableArrayList();
         try {
@@ -40,8 +40,8 @@ public class ReportsHelper {
         }
         return reportsDataSortByTypeList;
     }
-
-    public static <Alert> ObservableList<String> getReportsDataSortByMonth() {
+//retrieves  getReportsDataSortByMonth from database
+    public static ObservableList<String> getReportsDataSortByMonth() {
 
         ObservableList<String> reportsDataSortByMonthList = FXCollections.observableArrayList();
 
@@ -56,7 +56,7 @@ public class ReportsHelper {
 
 
                      reportsDataSortByMonthList.add(startMonth);
-                // System.out.println(ap);
+
 
             }
 
@@ -66,7 +66,7 @@ public class ReportsHelper {
         return reportsDataSortByMonthList;
     }
 
-
+// retrieves getAppointmentCountByMonthAndType from database
     public static int getAppointmentCountByMonthAndType(String month, String type) throws SQLException {
         int count = 0;
         String sqlInquiryA = "SELECT COUNT(*) as cnt FROM appointments WHERE monthName(Start)= ? AND type=?";

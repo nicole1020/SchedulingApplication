@@ -13,7 +13,7 @@ import static DAO.DBConnection.connection;
 //Initializing AppointmentsHelper
 public class AppointmentsHelper {
 
-
+//retrieves getAllAppointments from database
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
@@ -44,7 +44,7 @@ public class AppointmentsHelper {
         return appointmentsList;
     }
 
-
+    //retrieves getAllAppointmentTypes from database
     public static ObservableList<String> getAllAppointmentTypes() {
         ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
@@ -61,44 +61,7 @@ public class AppointmentsHelper {
         return appointmentTypes;
     }
 
-
-    public static ObservableList<LocalDateTime> getAllAppointmentStartTimes() {
-        ObservableList<LocalDateTime> appointmentStartTimes = FXCollections.observableArrayList();
-        try {
-            String sqlcB = "SELECT Start FROM appointments; " ;
-
-
-            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-            ResultSet cBResult = prepcB.executeQuery();
-            while (cBResult.next()) {
-                LocalDateTime Start = cBResult.getTimestamp("Start").toLocalDateTime();
-
-                appointmentStartTimes.add(Start);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return appointmentStartTimes;
-    }
-
-    public static ObservableList<LocalTime> getAllAppointmentEndTimes() {
-        ObservableList<LocalTime> appointmentEndTimes = FXCollections.observableArrayList();
-        try {
-            String sqlcB = "SELECT End FROM appointments";
-            PreparedStatement prepcB = connection.prepareStatement(sqlcB);
-            ResultSet cBResult = prepcB.executeQuery();
-            while (cBResult.next()) {
-                cBResult.getTimestamp("End").toLocalDateTime();
-                LocalDateTime End = cBResult.getTimestamp("End").toLocalDateTime();
-                appointmentEndTimes.add(LocalTime.from(End));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return appointmentEndTimes;
-    }
-
-
+    //retrieves getAllAppointmentContacts from database
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
@@ -120,6 +83,7 @@ public class AppointmentsHelper {
         return appointmentContacts;
     }
 
+    //retrieves getCurrentWeekAppointments from database
     public static ObservableList<Appointments> getCurrentWeekAppointments() {
         ObservableList<Appointments> currentWeekAppointmentsList = FXCollections.observableArrayList();
         try {
@@ -149,7 +113,7 @@ public class AppointmentsHelper {
         }
         return currentWeekAppointmentsList;
     }
-
+    //retrieves getCurrentMonthAppointmentsRadio from database
     public static ObservableList<Appointments> getCurrentMonthAppointmentsRadio() {
         ObservableList<Appointments> currentMonthAppointmentsRadioList = FXCollections.observableArrayList();
         try {
@@ -179,7 +143,7 @@ public class AppointmentsHelper {
         }
         return currentMonthAppointmentsRadioList;
     }
-
+    //creates appointment in database
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
@@ -204,32 +168,33 @@ public class AppointmentsHelper {
 
         }
     }
-
-    public static void updateAppointment(Integer appointmentid, String title,
+    //updates appointment in database
+    public static void updateAppointment(String title,
                                          String description, String location, String type,
                                          LocalDateTime start, LocalDateTime end,
-                                         int customerID, int user, int contact) {
+                                         int customerID, int user, int contact,int appointmentid) {
         try {
 
-            String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
+            String sqlc = " UPDATE  appointments set  Title = ?, Description = ?,Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID =? WHERE Appointment_ID = ?";
             PreparedStatement psCreate = connection.prepareStatement(sqlc);
-            psCreate.setInt(1, appointmentid);
-            psCreate.setString(2, String.valueOf(title));
-            psCreate.setString(3, String.valueOf(description));
-            psCreate.setString(4, String.valueOf(location));
-            psCreate.setString(5, String.valueOf(type));
-            psCreate.setTimestamp(6, Timestamp.valueOf(start));
+
+            psCreate.setString(1, String.valueOf(title));
+            psCreate.setString(2, String.valueOf(description));
+            psCreate.setString(3, String.valueOf(location));
+            psCreate.setString(4, String.valueOf(type));
+            psCreate.setTimestamp(5, Timestamp.valueOf(start));
             psCreate.setTimestamp(6, Timestamp.valueOf(end));
-            psCreate.setInt(9, customerID);
-            psCreate.setInt(10, user);
-            psCreate.setInt(11, contact);
+            psCreate.setInt(7, customerID);
+            psCreate.setInt(8, user);
+            psCreate.setInt(9, contact);
+            psCreate.setInt(10, appointmentid);
             psCreate.execute();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
-
+    //deletes appointment in database
     public static void deleteAppointment(int appointmentID) {
         try {
             String sqlDC = "Delete FROM appointments WHERE Appointment_ID = ?";
@@ -242,7 +207,7 @@ public class AppointmentsHelper {
         }
     }
 
-
+    //checks for appointments in database if current user has an appointment within 15 minutes of logging in
     public static Appointments getAppointmentsSoon(Integer userID) {
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
@@ -278,38 +243,8 @@ public class AppointmentsHelper {
         return null;
     }
 
-    public static ObservableList<Appointments> getReportsDataSortByMonth() {
 
-        ObservableList<Appointments> reportsDataSortByMonthList = FXCollections.observableArrayList();
-        try {
-            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, Start, End, customers.Customer_ID, users.User_ID, contacts.Contact_ID FROM customers, appointments, contacts, users WHERE customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND appointments.Contact_ID = contacts.Contact_ID";
-            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
-            ResultSet aResult = prepA.executeQuery();
-            while (aResult.next()) {
-
-                int Appointment_ID = aResult.getInt("Appointment_ID");
-                String Title = aResult.getString("Title");
-                String Description = aResult.getString("Description");
-                String Location = aResult.getString("Location");
-                int Contact_ID = aResult.getInt("Contact_ID");
-                String Type = aResult.getString("Type");
-                LocalDateTime Start = aResult.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
-                int Customer_ID = aResult.getInt("Customer_ID");
-                int User_ID = aResult.getInt("User_ID");
-                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
-                System.out.println("THIS HERE"+ap);
-                reportsDataSortByMonthList.add(ap);
-               // System.out.println(ap);
-
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return reportsDataSortByMonthList;
-    }
+    //replaced by lambda expression loaded all appointments by selected contact
 
     public static ObservableList<Appointments> getAllAppointmentsByContact(int cid) {
 

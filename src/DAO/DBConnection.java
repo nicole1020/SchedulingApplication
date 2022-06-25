@@ -13,7 +13,7 @@ public abstract class DBConnection {
     private static final String userName = "sqlUser"; // Username
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
-
+//opens database connection
     public static void openConnection() {
         try {
             Class.forName(driver); // Locate Driver
@@ -23,7 +23,7 @@ public abstract class DBConnection {
             System.out.println("Error:" + e.getMessage());
         }
     }
-
+//closes database connection
     public static void closeConnection() {
         try {
             connection.close();

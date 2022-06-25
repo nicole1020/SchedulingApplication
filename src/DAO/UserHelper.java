@@ -9,7 +9,7 @@ import java.sql.*;
 import static DAO.DBConnection.*;
 //Initializing UserHelper
 public class UserHelper {
-
+//retrieves getAllUsers from database
     public static ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
         try {
@@ -31,7 +31,7 @@ public class UserHelper {
         }
         return userList;
     }
-
+//validates userName and password are in database
     public static User validateUser(String userName, String passwordEntry) {
         try{
         String sqlInquiry = "SELECT User_ID, User_Name FROM users WHERE User_Name = ? AND password = ?";

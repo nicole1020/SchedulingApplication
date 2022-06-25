@@ -13,8 +13,7 @@ import static DAO.DBConnection.connection;
 //Initializing CustomersHelper
 public class CustomersHelper {
 
-    private static TextField customerID;
-
+    //retrieves getAllCustomers from database
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
@@ -62,12 +61,12 @@ public class CustomersHelper {
         }
 
     }
+    //updates customer in database
 
     public static void updateCustomer(  String name, String address,
-                                      String postalcode, String phone, Integer division,Integer customerID) {
+                                      String postalcode, String phone, int division,int customerID) {
         try {
-            String sqlc3 = " UPDATE  customers set Customer_Name = ?, Address = ?,Postal_Code = ?,Phone = ?, "+
-                   "Division_ID = ? WHERE Customer_ID = ? ";
+            String sqlc3 = " UPDATE  customers set Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ? ";
             PreparedStatement psCreate3 = connection.prepareStatement(sqlc3);
 
             psCreate3.setString(1, String.valueOf(name));
@@ -83,7 +82,7 @@ public class CustomersHelper {
 
         }
     }
-
+    //deletes customer from database
     public static void deleteCustomer(int customer_ID) {
         try{
 
@@ -103,7 +102,7 @@ public class CustomersHelper {
         }
 
     }
-
+    //retrieves getAllCountries from database
     public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> countryList = FXCollections.observableArrayList();
         try {
@@ -123,6 +122,7 @@ public class CustomersHelper {
         }
         return countryList;
     }
+    //retrieves getAllAppointmentCustomerIDs from database
     public static ObservableList<Customers> getAllAppointmentCustomerIDs() {
         ObservableList<Customers> appointmentCustomerIDs = FXCollections.observableArrayList();
         try {

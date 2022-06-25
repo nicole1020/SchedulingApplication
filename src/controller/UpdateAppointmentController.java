@@ -38,6 +38,8 @@ public class UpdateAppointmentController implements Initializable {
     public ComboBox <LocalTime>appointmentEnd;
     private  Integer appointmentid =0;
     int countingClicks = 0;
+
+    //this brings the information from the selection in table to the update window.
     public void editedAppointment(Appointments theAppointment) {
 
         this.selectedAppointment = theAppointment;
@@ -93,7 +95,7 @@ public class UpdateAppointmentController implements Initializable {
     public void onExitButtonPressed(ActionEvent actionEvent) {
 
     }
-
+    // this reacts when user presses save button and sends alert if information is invalid or blank
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
@@ -128,7 +130,7 @@ public class UpdateAppointmentController implements Initializable {
             return;
         } else {
 
-            AppointmentsHelper.updateAppointment(appointmentid, title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
+            AppointmentsHelper.updateAppointment( title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(), appointmentid);
         }
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
         Parent root = (Parent) loader.load();
@@ -138,7 +140,7 @@ public class UpdateAppointmentController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+//this reacts when user presses clear button
 
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();
@@ -171,13 +173,13 @@ public class UpdateAppointmentController implements Initializable {
         appointmentStart.setItems(AppointmentTimes.getAllAppointmentTimes(true));
     }
 
-
+//this reacts when user selects start time to show end times that begin 15 minutes after start time
     public void onAppointmentStart(ActionEvent actionEvent) {
         LocalTime start = appointmentStart.getValue();
 
         appointmentEnd.setItems(AppointmentTimes.getAllAppointmentTimes(false));
     }
-
+//this reacts when user pushes back button
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));

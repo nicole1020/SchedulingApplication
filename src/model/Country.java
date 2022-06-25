@@ -3,7 +3,7 @@ package model;
  *
  * @author Nicole Mau
  */
-// Initializing Country extends Customers
+// Initializing Country Class extends Customers
 public class Country extends Customers{
     private Integer countryID;
     private String countryName;

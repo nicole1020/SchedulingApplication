@@ -6,14 +6,13 @@ package model;
 
 
 
-// Initializing Address extends Customers
+// Initializing Address Class extends Customers
 
 public class Address extends Customers {
 
     private int divisionID;
     private String division;
 
- // initialize public access (divisionID:int, division:String)
     public Address(int division_ID, String division) {
 
 
@@ -21,12 +20,11 @@ public class Address extends Customers {
         this.division = division;
 
     }
-
-
+//get divisionID
     public int getDivisionID() {
         return divisionID;
     }
-
+    //get getDivision
     public String getDivision(){
         return division;
     }

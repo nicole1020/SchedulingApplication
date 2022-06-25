@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  */
 
 
-// Initializing Appointments extends Customers
+// Initializing Appointments Class extends Customers
 public class Appointments extends Customers {
     private int appointmentID;
     private String title;
@@ -22,9 +22,6 @@ public class Appointments extends Customers {
     private int customerID;
     private int userID;
 
-
-
-// Initializing Appointments
     public Appointments( int appointment_id, String  title, String description, String location,  int contact_id, String type, LocalDateTime start, LocalDateTime end,  int customer_id, int user_id) {
         this.appointmentID = appointment_id;
         this.title = title;
@@ -56,46 +53,47 @@ public class Appointments extends Customers {
 
 
     @Override
+    //get CustomerID
     public int getCustomerID() {
         return customerID;
     }
 
 
 
-
+    //get appointmentID
     public int getAppointmentID() {
         return appointmentID;
     }
-
+    //get title
     public String getTitle() {
         return title;
     }
-
+    //get description
     public String getDescription() {
         return description;
     }
-
+    //get location
     public String getLocation() {
         return location;
     }
-
+    //get contact
     public Integer getContact() {
         return contact;
     }
-
+    //get type
     public String getType() {
         return type;
     }
-
+    //get startDateTime
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
-
+    //get endDateTime
     public LocalDateTime getEndDateTime() {
         return endDateTime;
     }
 
-
+    //get userID
     public int getUserID() {
         return userID;
     }

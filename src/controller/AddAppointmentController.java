@@ -124,7 +124,7 @@ public class AddAppointmentController implements Initializable {
             AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
 
         } else {
-            AppointmentsHelper.updateAppointment( appointmentid,title, description, location , type , start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
+            AppointmentsHelper.updateAppointment( title, description, location , type , start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID(), appointmentid);
         }
 
          FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
