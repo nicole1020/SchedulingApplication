@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.AppointmentTimes;
+import model.Appointments;
 import model.User;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class UserLoginController implements Initializable {
     public Label userLocationLabel;
     private static User loggedUser;
     private ResourceBundle resourceB = ResourceBundle.getBundle("language", Locale.getDefault());
-
+    private static Appointments currentUser;
 
 
     @Override
@@ -77,7 +78,7 @@ public class UserLoginController implements Initializable {
         } else {
             loggedUser = UserHelper.validateUser(userName, passwordEntry);
 
-
+            currentUser = AppointmentsHelper.getAppointmentsSoon(userName);
 
 
                 logger.addHandler(fh);
@@ -97,13 +98,16 @@ public class UserLoginController implements Initializable {
                 return;
 
             }
-            if (AppointmentsHelper.getAppointmentsSoon()) {
+            if ( currentUser == null) {
+
+            }
+            else{
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
                 alert2.setTitle("Appointment soon for *" + this.userName.getText());
                 alert2.setContentText("Appointment soon for *" + this.userName.getText());
                 alert2.showAndWait();
+                System.out.println("Appointment soon for *" + this.userName.getText());
             }
-
             try {
                 System.out.println("Successful Login by user: " + this.userName.getText());
                 logger.info("User with UserName: " + "'" + this.userName.getText() + "' " + "had a valid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault());

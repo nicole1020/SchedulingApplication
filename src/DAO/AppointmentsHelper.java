@@ -235,15 +235,15 @@ public class AppointmentsHelper {
     }
 
 
-    public static boolean getAppointmentsSoon() {
-        ObservableList<Appointments> appointmentsInNext15 = FXCollections.observableArrayList();
+    public static Appointments getAppointmentsSoon(String userName) {
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
-                    "Start, End, customers.Customer_ID, users.User_ID = ?, " +
-                    "contacts.Contact_ID FROM customers, appointments, contacts, " +
-                    "users WHERE customers.Customer_ID = appointments.Customer_ID" +
+                    "Start, End, customers.Customer_ID, users.User_ID, " +
+                    "contacts.Contact_ID FROM customers, " +
+                    "appointments, contacts, users WHERE " +
+                    "customers.Customer_ID = appointments.Customer_ID" +
                     " AND appointments.User_ID = users.User_ID AND " +
-                    "appointments.Contact_ID = contacts.Contact_ID and MINUTE(Start)=MINUTE(now(15))";
+                    "appointments.Contact_ID = contacts.Contact_ID AND Start > now && Start < (now + 15) ";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
@@ -259,8 +259,7 @@ public class AppointmentsHelper {
                 int Customer_ID = aResult.getInt("Customer_ID");
                 int User_ID = aResult.getInt("User_ID");
                 Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
-                System.out.println("THIS HERE"+ap);
-                appointmentsInNext15.add(ap);
+                return ap;
                 //System.out.println(ap);
             }
 
@@ -268,7 +267,8 @@ public class AppointmentsHelper {
             throwables.printStackTrace();
         }
 
-        return false;
+
+        return null;
     }
 
     public static ObservableList<Appointments> getReportsDataSortByMonth() {

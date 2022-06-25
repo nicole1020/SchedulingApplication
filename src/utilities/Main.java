@@ -133,6 +133,8 @@ will pull more data from type and month dao helper files next time.
  also worked on error coding updating the resource bundle to properly show error in french and english.
 6/24 figured out error coding in appointmentTimes for 15 minute warning - but it's not working so i emailed
   mr kinkead. Also worked on javadoc comments and second lambda expression.
+ 6/25 Mr kinkead replied I realized I was not properly using sql to get a 15 minute warning. I needed to use logged user to
+ check their appointments in the database and then see if they have appointments in the next 15 minutes.
  */
 /**this is the Main Method.
  This is the first method that is called in our java program.
