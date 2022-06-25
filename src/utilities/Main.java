@@ -135,6 +135,10 @@ will pull more data from type and month dao helper files next time.
   mr kinkead. Also worked on javadoc comments and second lambda expression.
  6/25 Mr kinkead replied I realized I was not properly using sql to get a 15 minute warning. I needed to use logged user to
  check their appointments in the database and then see if they have appointments in the next 15 minutes.
+ he helped me create the report for contactID, and debug code for logging.
+ I emailed him later and was able to have him help fix my code for deleting appointment before customer from database.
+ i was able to execute appointment delete based on customer id before customer based on customer id.
+ also my program stopped running so i had to build> rebuild to get it to work.
  */
 //this is the Main Method. This is the first method that is called in our java program.
 

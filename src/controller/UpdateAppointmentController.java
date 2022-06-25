@@ -35,7 +35,7 @@ public class UpdateAppointmentController implements Initializable {
     public Appointments selectedAppointment = null;
     public DatePicker appointmentDate;
     public ComboBox <LocalTime>appointmentEnd;
-    private  Integer appointmentid = 0;
+    private  Integer appointmentid =0;
     int countingClicks = 0;
     public void editedAppointment(Appointments theAppointment) {
 
@@ -128,11 +128,10 @@ public class UpdateAppointmentController implements Initializable {
             return;
         }
 
-        if (appointmentid == 0) {
+        if (appointmentid != 0) {
 
-        } else {
             AppointmentsHelper.updateAppointment(appointmentid, title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
-
+        }
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
             Parent root = (Parent) loader.load();
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -141,7 +140,7 @@ public class UpdateAppointmentController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-    }
+
 
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();

@@ -63,30 +63,39 @@ public class CustomersHelper {
 
     }
 
-    public static void updateCustomer(Integer customerID, String name, String address, String postalcode, String phone, Integer division) { try {
-        String sqlc3 = " UPDATE  customers set ( customerID = ?, name = ?,address = ?,postalcode = ?,phone = ?,now(),'nm',now(),'nm',division =?)";
-        PreparedStatement psCreate3 = connection.prepareStatement(sqlc3);
-        psCreate3.setString(1, String.valueOf(customerID));
-        psCreate3.setString(2, String.valueOf(name));
-        psCreate3.setString(3, String.valueOf(address));
-        psCreate3.setString(4, String.valueOf(postalcode));
-        psCreate3.setString(5, String.valueOf(phone));
-        psCreate3.setInt(6, division);
-        psCreate3.execute();
+    public static void updateCustomer(Integer customerID, String name, String address,
+                                      String postalcode, String phone, Integer division) {
+        try {
+            String sqlc3 = " UPDATE  customers set ( customerID = ? , name = ?," +
+                    "address = ?,postalcode = ?,phone = ?,now(),'nm',now(),'nm',division =?) ";
+            PreparedStatement psCreate3 = connection.prepareStatement(sqlc3);
+            psCreate3.setInt(1, customerID);
+            psCreate3.setString(2, String.valueOf(name));
+            psCreate3.setString(3, String.valueOf(address));
+            psCreate3.setString(4, String.valueOf(postalcode));
+            psCreate3.setString(5, String.valueOf(phone));
+            psCreate3.setInt(6, division);
+            psCreate3.execute();
 
-    } catch (Exception e) {
-        e.printStackTrace();//print stack trace
+        } catch (Exception e) {
+            e.printStackTrace();//print stack trace
 
-    }
+        }
     }
 
     public static void deleteCustomer(int customer_ID) {
         try{
 
-            String sqlDC = "Delete from customers where Customer_ID = ?";
+            String sqlDC = "delete from  appointments WHERE Customer_ID = ?" ;
             PreparedStatement psDC = connection.prepareStatement(sqlDC);
             psDC.setInt(1, customer_ID);
             psDC.execute();
+
+            String sqlDC2 = "delete from  customers WHERE Customer_ID = ?" ;
+            PreparedStatement psDC2 = connection.prepareStatement(sqlDC2);
+            psDC2.setInt(1, customer_ID);
+            psDC2.execute();
+
 
         } catch (Exception e) {
             e.printStackTrace();

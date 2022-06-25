@@ -30,8 +30,8 @@ public class UpdateCustomerController implements Initializable {
     public Label customerIDLabel;
     public Customers selectedCustomer = null;
     public Button backButton;
-    private  Integer customerID = 0;
-    private Integer divisionID = 0;
+    private final Integer customerID = 0;
+    private final Integer divisionID = 0;
     int countingClicks = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
         customerName.clear();
@@ -83,11 +83,11 @@ public class UpdateCustomerController implements Initializable {
             alert2.setContentText("Select a Division");
             alert2.showAndWait();
             return;
-        } else {
-            CustomersHelper.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
+        }
+        else {
+            CustomersHelper.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
             );
-
-
+        }
             Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -96,7 +96,7 @@ public class UpdateCustomerController implements Initializable {
             stage.centerOnScreen();
             stage.show();
         }
-    }
+
     public void editedCustomer(Customers theCustomer) {
 
         this.selectedCustomer = theCustomer;
@@ -136,7 +136,7 @@ public class UpdateCustomerController implements Initializable {
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setTitle("Customer Screen");

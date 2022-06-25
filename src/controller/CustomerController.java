@@ -85,7 +85,6 @@ public class CustomerController implements Initializable {
         alert.showAndWait();
 
         Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
-        AppointmentsHelper.deleteAppointment(p.getCustomerID());
         CustomersHelper.deleteCustomer( p.getCustomerID() );
 
 

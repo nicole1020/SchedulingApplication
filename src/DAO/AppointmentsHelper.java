@@ -205,21 +205,29 @@ public class AppointmentsHelper {
         }
     }
 
-    public static void updateAppointment(Integer appointmentid, String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerID, int user, int contact) throws SQLException {
-        String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
-        PreparedStatement psCreate = connection.prepareStatement(sqlc);
-        psCreate.setInt(1, appointmentid);
-        psCreate.setString(2, String.valueOf(title));
-        psCreate.setString(3, String.valueOf(description));
-        psCreate.setString(4, String.valueOf(location));
-        psCreate.setString(5, String.valueOf(type));
-        psCreate.setTimestamp(6, Timestamp.valueOf(start));
-        psCreate.setTimestamp(6, Timestamp.valueOf(end));
-        psCreate.setInt(9, customerID);
-        psCreate.setInt(10, user);
-        psCreate.setInt(11, contact);
-        psCreate.execute();
+    public static void updateAppointment(Integer appointmentid, String title,
+                                         String description, String location, String type,
+                                         LocalDateTime start, LocalDateTime end,
+                                         int customerID, int user, int contact) {
+        try {
 
+            String sqlc = " UPDATE  appointments set ( appointmentid = ?, title = ?,description = ?,location = ?, type = ?, date = ?, startTime = ?, endTime = ?,now(),'nm',now(),'nm',customerid =?, userid = ?, contact =?)";
+            PreparedStatement psCreate = connection.prepareStatement(sqlc);
+            psCreate.setInt(1, appointmentid);
+            psCreate.setString(2, String.valueOf(title));
+            psCreate.setString(3, String.valueOf(description));
+            psCreate.setString(4, String.valueOf(location));
+            psCreate.setString(5, String.valueOf(type));
+            psCreate.setTimestamp(6, Timestamp.valueOf(start));
+            psCreate.setTimestamp(6, Timestamp.valueOf(end));
+            psCreate.setInt(9, customerID);
+            psCreate.setInt(10, user);
+            psCreate.setInt(11, contact);
+            psCreate.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public static void deleteAppointment(int appointmentID) {
