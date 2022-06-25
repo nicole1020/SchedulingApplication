@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 // Initializing UpdateAppointmentController
 public class UpdateAppointmentController implements Initializable {
@@ -90,8 +91,7 @@ public class UpdateAppointmentController implements Initializable {
     }
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+
     }
 
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
@@ -108,7 +108,7 @@ public class UpdateAppointmentController implements Initializable {
 
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
-        if (user == null || date == null || startTime == null || endTime == null || customerID == null || contact == null || type == null) {
+        if (user == null  || customerID == null || contact == null || type == null) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
@@ -126,20 +126,18 @@ public class UpdateAppointmentController implements Initializable {
             alert1.showAndWait();
             System.out.println("Start time must be before end time");
             return;
-        }
-
-        if (appointmentid != 0) {
+        } else {
 
             AppointmentsHelper.updateAppointment(appointmentid, title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
         }
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Appointments Scheduler and Reports");
-            stage.setScene(scene);
-            stage.show();
-        }
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Appointments Scheduler and Reports");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     public void onClearAppointment(ActionEvent actionEvent) {
@@ -155,6 +153,7 @@ public class UpdateAppointmentController implements Initializable {
         appointmentUserID.getSelectionModel().clearSelection();
 
     }
+  //this initializes the text/combo boxes and date picker  also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

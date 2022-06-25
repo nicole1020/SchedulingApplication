@@ -30,8 +30,7 @@ public class UpdateCustomerController implements Initializable {
     public Label customerIDLabel;
     public Customers selectedCustomer = null;
     public Button backButton;
-    private final Integer customerID = 0;
-    private final Integer divisionID = 0;
+    private  Integer customerID = 0;
     int countingClicks = 0;
     public void onClearCustomer(ActionEvent actionEvent) {
         customerName.clear();
@@ -85,7 +84,7 @@ public class UpdateCustomerController implements Initializable {
             return;
         }
         else {
-            CustomersHelper.updateCustomer( customerID, name, address, postalcode,phone , division.getDivisionID()
+            CustomersHelper.updateCustomer(  name, address, postalcode, phone , division.getDivisionID(), customerID
             );
         }
             Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
@@ -122,6 +121,8 @@ public class UpdateCustomerController implements Initializable {
             }
         }
     }
+   //this initializes the combo box and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerCountryCombo.setItems(CustomersHelper.getAllCountries());

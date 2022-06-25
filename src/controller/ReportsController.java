@@ -63,7 +63,8 @@ public class ReportsController implements Initializable {
             var6.printStackTrace();
         }
     }
-//Lambda expression: on exit button
+//This initializes combo boxes,labels, components of the appointments table, and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCombo.setItems(AppointmentsHelper.getAllAppointmentContacts());
@@ -102,83 +103,14 @@ public class ReportsController implements Initializable {
 
     }
 
-
-    public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
-     /*   if (currentWeekRadioButton.isSelected()) {
-            System.out.println("Current Week's Appointments Displayed");
-            appointmentsTable.setItems(AppointmentsHelper.getCurrentWeekAppointments());
-            for (int i = 0; i < AppointmentsHelper.getCurrentWeekAppointments().size(); i++) {
-                System.out.println(AppointmentsHelper.getCurrentWeekAppointments()
-                        .get(i).getAppointmentID());
-            }
-            System.out.println("");
-            resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments on File");
-        }**/
-    }
-
-    public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
-      /*   if (currentMonthRadioButton.isSelected()) {
-            appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
-            //  System.out.println("Current Month's Appointments Displayed");
-            for (int i = 0; i < AppointmentsHelper.getCurrentMonthAppointmentsRadio().size(); i++) {
-                System.out.println(AppointmentsHelper.getCurrentMonthAppointmentsRadio()
-                        .get(i).getAppointmentID());
-            }
-            System.out.println("");
-            // resultsLBL.setText("Report: " + AppointmentsHelper.getCurrentMonthAppointmentsRadio().size() + " Appointments on File");
-
-        }**/
-    }
-
-
-    public void onAllSortRadioButton(ActionEvent actionEvent) {
-       /*if (allSortRadioButton.isSelected()) {
-            //  System.out.println("All Appointments Displayed");
-            appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
-            for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
-                System.out.println(AppointmentsHelper.getAllAppointments()
-                        .get(i).getAppointmentID());
-            }
-            //  System.out.println("");
-            resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
-        }**/
-    }
-
-    public void appointmentsIsSelected(MouseEvent mouseEvent) {
-    }
-
-    public void onTypeComboBox(ActionEvent actionEvent) {
-
-       /* if (typeComboBox.isPressed()) {
-
-            appointmentsTable.setItems(ReportsHelper.getReportsDataSortByType());
-           // System.out.println("Current Month's Appointments Displayed");
-            for (int i = 0; i < ReportsHelper.getReportsDataSortByType().size(); i++) {
-                System.out.println(ReportsHelper.getReportsDataSortByType()
-                        .get(i));
-            }
-            //System.out.println("");
-            resultsLBL.setText("Report: " + ReportsHelper.getReportsDataSortByType().size() + " Appointments on File");
-
-        }**/
-    }
-
-    public void onMonthComboBox(ActionEvent actionEvent) {
-
-
-    }
-
-
     public void onExitButton() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
 
     }
 
     public void onReportsComboBox(ActionEvent actionEvent) throws SQLException {
 
     }
-
+//this reacts when user presses submit button to run counter for Reports requirement. this counts appointments by type and month
     public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
         String type = typeComboBox.getValue();
@@ -200,7 +132,7 @@ public class ReportsController implements Initializable {
         }
 
     }
-
+//this reacts when user presses clear button
     public void onClearButton(ActionEvent actionEvent) {
 
         typeComboBox.getSelectionModel().clearSelection();
@@ -210,7 +142,7 @@ public class ReportsController implements Initializable {
 
 
     }
-    //Lambda here filtering appointments based on contactID
+    //Lambda here filtering appointments based on contactID for report requirement to count appointments based on contactID
     public void onContactCombo(ActionEvent actionEvent) {
 
         int cid = contactCombo.getValue().getContactID();

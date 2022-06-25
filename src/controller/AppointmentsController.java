@@ -51,6 +51,7 @@ public class AppointmentsController implements Initializable {
     public RadioButton allSortRadioButton;
     public Button generateReportsButton;
     int countingClicks = 0;
+    //Appointments Table Initialized with additional Report: counting all appointments in database also Lambda expression to exit, count clicks on exit button, and print exit program
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,7 +62,7 @@ public class AppointmentsController implements Initializable {
             System.out.println("Exit Button Pressed");
             System.exit(0);
         });
-        //Appointments Table Initialized
+
 
         System.out.println("All Appointments Displaying");
         appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
@@ -90,11 +91,10 @@ public class AppointmentsController implements Initializable {
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+
     }
 
-
+// this reacts when user presses add appointment button
     public void onAddAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/AddNewAppointment.fxml")));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -107,16 +107,26 @@ public class AppointmentsController implements Initializable {
 
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
-
+    // this reacts when user presses delete appointment button
     public void onDeleteAppointment(ActionEvent actionEvent) {
+        try{
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Appointment Warning");
         alert.setContentText( "Appointment is being deleted from database.");
         alert.showAndWait();
         Appointments ap = (Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem();
         AppointmentsHelper.deleteAppointment(ap.getAppointmentID());
+    } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Please select an appointment to delete");
+            alert.setContentText( "Please select an appointment to delete");
+            alert.showAndWait();
+
+        }
     }
 
+    // this reacts when user presses edit appointment button
     public void onEditAppointment(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
@@ -132,8 +142,13 @@ public class AppointmentsController implements Initializable {
             stage.show();
         } catch (Exception var7) {
             var7.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Please select an appointment to update");
+            alert.setContentText( "Please select an appointment to update");
+            alert.showAndWait();
         }
     }
+    // this reacts when user presses back to customers screen button
     public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
@@ -148,6 +163,8 @@ public class AppointmentsController implements Initializable {
         }
     }
 
+    // this reacts when user presses current week radio button
+
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
         if (currentWeekRadioButton.isSelected()) {
             System.out.println("Current Week's Appointments Displayed");
@@ -160,7 +177,7 @@ public class AppointmentsController implements Initializable {
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments in database");
         }
     }
-
+    // this reacts when user presses current month radio button
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
         if (currentMonthRadioButton.isSelected()) {
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
@@ -174,7 +191,7 @@ public class AppointmentsController implements Initializable {
 
         }
     }
-
+    // this reacts when user presses all appointments radio button
     public void onAllSortRadioButton(ActionEvent actionEvent) {
         if (allSortRadioButton.isSelected()) {
             System.out.println("All Appointments Displayed");
@@ -187,7 +204,7 @@ public class AppointmentsController implements Initializable {
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments in database");
         }
     }
-
+    // this reacts when user presses generate reports button
     public void onGenerateReports(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/ReportsScreen.fxml"));

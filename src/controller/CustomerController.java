@@ -36,6 +36,7 @@ public class CustomerController implements Initializable {
     public Button appointmentsButton;
     int countingClicks = 0;
     @Override
+    //this initializes the customers table, also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program, and has an extra Report to show all customers in database
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Customer Database Main Screen");
         exitButton.setOnAction(e ->{
@@ -69,27 +70,27 @@ public class CustomerController implements Initializable {
     public void customerIsSelected(MouseEvent mouseEvent) {
     }
 
-    public void lookupCustomer(KeyEvent keyEvent) {
-    }
-
-    public void onCustomerTextField(ActionEvent actionEvent) {
-    }
-
-    public void onCustomerSearch(ActionEvent actionEvent) {
-    }
-
+//this reacts to when user presses delete button with error message it deletes from database from appointments table based on customerid and then customers table.
     public void onDeleteCustomer(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete Customer Warning");
-        alert.setContentText( "Customer record is being deleted from database.");
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete Customer Warning");
+            alert.setContentText("Customer record is being deleted from database.");
+            alert.showAndWait();
 
-        Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
-        CustomersHelper.deleteCustomer( p.getCustomerID() );
+            Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
+            CustomersHelper.deleteCustomer(p.getCustomerID());
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Please select a customer to delete");
+            alert.setContentText( "Please select a customer to delete");
+            alert.showAndWait();
 
-            }
+        }
+    }
 
 
 
@@ -116,6 +117,10 @@ public class CustomerController implements Initializable {
             stage.show();
         } catch (Exception var7) {
             var7.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Please select a customer to update");
+            alert.setContentText( "Please select a customer to update");
+            alert.showAndWait();
         }
     }
 

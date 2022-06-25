@@ -63,18 +63,19 @@ public class CustomersHelper {
 
     }
 
-    public static void updateCustomer(Integer customerID, String name, String address,
-                                      String postalcode, String phone, Integer division) {
+    public static void updateCustomer(  String name, String address,
+                                      String postalcode, String phone, Integer division,Integer customerID) {
         try {
-            String sqlc3 = " UPDATE  customers set ( customerID = ? , name = ?," +
-                    "address = ?,postalcode = ?,phone = ?,now(),'nm',now(),'nm',division =?) ";
+            String sqlc3 = " UPDATE  customers set Customer_Name = ?, Address = ?,Postal_Code = ?,Phone = ?, "+
+                   "Division_ID = ? WHERE Customer_ID = ? ";
             PreparedStatement psCreate3 = connection.prepareStatement(sqlc3);
-            psCreate3.setInt(1, customerID);
-            psCreate3.setString(2, String.valueOf(name));
-            psCreate3.setString(3, String.valueOf(address));
-            psCreate3.setString(4, String.valueOf(postalcode));
-            psCreate3.setString(5, String.valueOf(phone));
-            psCreate3.setInt(6, division);
+
+            psCreate3.setString(1, String.valueOf(name));
+            psCreate3.setString(2, String.valueOf(address));
+            psCreate3.setString(3, String.valueOf(postalcode));
+            psCreate3.setString(4, String.valueOf(phone));
+            psCreate3.setInt(5, division);
+            psCreate3.setInt(6, customerID);
             psCreate3.execute();
 
         } catch (Exception e) {

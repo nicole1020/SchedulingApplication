@@ -31,7 +31,7 @@
      <Button fx:id="exitButton" layoutX="709.0" layoutY="252.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Close" />
           <Button fx:id="addCustomer" layoutX="57.0" layoutY="202.0" mnemonicParsing="false" onAction="#onAddCustomer" text="Add New Customer" />
              <Label fx:id="resultsLBLAppointments" layoutX="24.0" layoutY="445.0" prefHeight="17.0" prefWidth="386.0" textFill="#0c4acf" />
-   <Button fx:id="editCustomer" layoutX="189.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" prefHeight="25.0" prefWidth="179.0" text="Update Selected Customer" />
+   <Button fx:id="editCustomer" layoutX="189.0" layoutY="202.0" mnemonicParsing="false" onAction="#onEditCustomer" prefHeight="25.0" prefWidth="179.0" text="Edit Selected Customer" />
    <Label layoutX="477.0" layoutY="472.0">
       <font>
          <Font size="14.0" />

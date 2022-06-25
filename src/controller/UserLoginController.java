@@ -36,6 +36,7 @@ public class UserLoginController implements Initializable {
     private ResourceBundle resourceB = ResourceBundle.getBundle("language", Locale.getDefault());
     private static Appointments currentUser;
 
+//this initializes the labels and text fields with the resourcebundle resourceB and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

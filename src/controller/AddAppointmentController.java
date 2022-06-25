@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 // Initializes AddAppointmentsController
@@ -47,9 +48,9 @@ public class AddAppointmentController implements Initializable {
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+
     }
+    // this initializes  text/combo boxes for add appointment screen also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -72,9 +73,7 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-    public void onAddAppointment(ActionEvent actionEvent) {
-    }
-
+    // this reacts when user presses clear button
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();
         appointmentDescription.clear();
@@ -87,17 +86,13 @@ public class AddAppointmentController implements Initializable {
         appointmentCustomerID.getSelectionModel().clearSelection();
         appointmentUserName.getSelectionModel().clearSelection();
     }
-
+    // this reacts when user presses save button and sends alert if information is invalid or blank
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
         Contacts contact = appointmentContact.getValue();
         String type = appointmentType.getValue();
-
-       // LocalDateTime Start = LocalDateTime.from(appointmentDate.getValue());
-
-    //    LocalDateTime Start =  LocalDateTime.parse(date, DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss"));
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStartTime.getValue();
         LocalTime endTime = appointmentEndTime.getValue();
@@ -105,7 +100,8 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime end   = LocalDateTime.of(date, endTime);
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
-        if (user == null || date == null || startTime == null || endTime == null || customerID == null || contact == null || type == null) {
+
+        if (user == null || customerID == null || contact == null || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -141,7 +137,7 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-
+    // this reacts when user presses back button
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
@@ -156,13 +152,13 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
-
+// this initializes start times to make sure end times are 15 minutes after start.
     public void onAppointmentStartTime(ActionEvent actionEvent) {
         LocalTime start = appointmentStartTime.getValue();
 
         appointmentEndTime.setItems(AppointmentTimes.getAllAppointmentTimes(false));
     }
-
+//this sets appointments dates for today or later
     public void onAppointmentDate(ActionEvent actionEvent) {
         appointmentDate.setPromptText(String.valueOf(LocalDate.now()));
     }
