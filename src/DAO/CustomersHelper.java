@@ -83,8 +83,7 @@ public class CustomersHelper {
     public static void deleteCustomer(int customer_ID) {
         try{
 
-            String sqlDC = "Delete FROM customers, appointments USING customers INNER JOIN appointments ON" +
-                    " customers.Customer_ID = appointments.Customer_ID  WHERE customers.Customer_ID = ?";
+            String sqlDC = "Delete from customers where Customer_ID = ?";
             PreparedStatement psDC = connection.prepareStatement(sqlDC);
             psDC.setInt(1, customer_ID);
             psDC.execute();

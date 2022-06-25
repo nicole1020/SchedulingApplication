@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
 import model.Customers;
 import javafx.event.ActionEvent;
@@ -84,9 +85,9 @@ public class CustomerController implements Initializable {
         alert.showAndWait();
 
         Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
-       // int customerID = Integer.parseInt(customersTableCustomerID.getText());
-      //  String DivisionID = customersTableDivision.getText();
+        AppointmentsHelper.deleteAppointment(p.getCustomerID());
         CustomersHelper.deleteCustomer( p.getCustomerID() );
+
 
 
             }
