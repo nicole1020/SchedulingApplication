@@ -14,29 +14,16 @@ import javafx.stage.Stage;
 import model.AppointmentTimes;
 import model.Appointments;
 import model.User;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public class UserLoginController implements Initializable {
-    private static Logger logger = Logger.getLogger("NewLogger");
-   /***/ private static FileHandler fh;
 
-    static {
-        try {
-            fh = new FileHandler("login_activity.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+public class UserLoginController implements Initializable {
 
     public Button login;
     public Button cancel;
@@ -75,54 +62,46 @@ public class UserLoginController implements Initializable {
         if (passwordEntry == null) {
             return;
 
-        } else {
-            loggedUser = UserHelper.validateUser(userName, passwordEntry);
-
-            currentUser = AppointmentsHelper.getAppointmentsSoon(userName);
+        }
 
 
-                logger.addHandler(fh);
-                logger.setLevel(Level.ALL);
+        loggedUser = UserHelper.validateUser(userName, passwordEntry);
+        if (loggedUser != null) {
+            currentUser = AppointmentsHelper.getAppointmentsSoon(loggedUser.getUserID());
 
-            if (loggedUser == null) {
 
-                logger.info(("User with UserName:" + " '" + this.userName.getText() + "' " + "had an invalid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault()));
-                logger.log(Level.WARNING, ("User with UserName:" + " '" + this.userName.getText() + "' " + "had an invalid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault()));
-
-                System.out.println("Attempted Login by user: " + this.userName.getText());
-                Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                alert2.setTitle(resourceB.getString("Error"));
-                alert2.setContentText(resourceB.getString("EnterValidInputs"));
-                alert2.showAndWait();
-
-                return;
-
-            }
-            if ( currentUser == null) {
-
-            }
-            else{
-                Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                alert2.setTitle("Appointment soon for *" + this.userName.getText());
-                alert2.setContentText("Appointment soon for *" + this.userName.getText());
-                alert2.showAndWait();
-                System.out.println("Appointment soon for *" + this.userName.getText());
-            }
             try {
-                System.out.println("Successful Login by user: " + this.userName.getText());
-                logger.info("User with UserName: " + "'" + this.userName.getText() + "' " + "had a valid login at " + LocalDateTime.now() + " " + ZoneId.systemDefault());
+                PrintWriter pw = new PrintWriter(new FileOutputStream(
+                        new File("login_activity.txt"),
+                        true /* append = true */));
+                //out.txt will appear in the project's root directory under NetBeans projects
+                //Note that Notepad will not display the following lines on separate lines
+                pw.append("Good Login Case\n");
+                pw.flush();
+                pw.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            if (currentUser == null) {
+                System.out.println("you dont have an appointment");
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("You dont have an appointment soon *" + this.userName.getText());
+                alert2.setContentText("You dont have an appointment soon *" + this.userName.getText());
+                alert2.showAndWait();
 
+            }
 
-            } catch (Exception var7) {
-                var7.printStackTrace();
-                Alert alert3 = new Alert(Alert.AlertType.ERROR);
-                alert3.setTitle(resourceB.getString("Error"));
-                alert3.setContentText(resourceB.getString("Valid Inputs"));
-                alert3.showAndWait();
+            //15 min check
+            else {
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Appointment soon for " + this.userName.getText());
+                alert2.setContentText("Appointment soon for user " + this.userName.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
+                alert2.showAndWait();
+                System.out.println("Appointment soon for " + this.userName.getText());
             }
             userLocationLabel.setText("Login Successful");
 
-            logger.fine("complete");
+
             Locale.setDefault(new Locale("en", "US"));
             Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -131,9 +110,31 @@ public class UserLoginController implements Initializable {
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
+        }
+        //bad case
+        else {
 
+            try {
+                PrintWriter pw = new PrintWriter(new FileOutputStream(
+                        new File("login_activity.txt"),
+                        true /* append = true */));
+                pw.append("Invalid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now() + "\n");
+                pw.flush();
+                pw.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+            System.out.println("Attempted Login by user: " + this.userName.getText());
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle(resourceB.getString("Error"));
+            alert2.setContentText(resourceB.getString("EnterValidInputs"));
+            alert2.showAndWait();
+
+            return;
         }
     }
+
 
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();

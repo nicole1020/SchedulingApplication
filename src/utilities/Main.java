@@ -152,7 +152,7 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
-       // Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
+     //  Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);

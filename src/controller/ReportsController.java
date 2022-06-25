@@ -1,22 +1,28 @@
 package controller;
 
+import DAO.AppointmentsHelper;
 import DAO.ReportsHelper;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Contacts;
+
+import javax.sql.rowset.Predicate;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ReportsController implements Initializable{
+public class ReportsController implements Initializable {
 
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
@@ -41,6 +47,7 @@ public class ReportsController implements Initializable{
     public Label resultsLBLAppointments;
     public Button runButton;
     public Button clearButton;
+    public ComboBox<Contacts> contactCombo;
     int countingClicks = 0;
 
     public void onBackButton(ActionEvent actionEvent) {
@@ -56,47 +63,43 @@ public class ReportsController implements Initializable{
             var6.printStackTrace();
         }
     }
-
+//Lambda expression: on exit button
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        contactCombo.setItems(AppointmentsHelper.getAllAppointmentContacts());
 
         typeComboBox.setItems(ReportsHelper.getReportsDataSortByType());
 
         monthComboBox.setItems(ReportsHelper.getReportsDataSortByMonth());
 
-        exitButton.setOnAction(e ->{
-                countingClicks++;
-        System.out.println(countingClicks);
-        System.out.println("Exit Button Pressed");
-        System.exit(0);
+        exitButton.setOnAction(e -> {
+            countingClicks++;
+            System.out.println(countingClicks);
+            System.out.println("Exit Button Pressed");
+            System.exit(0);
         });
 
 
+        appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        System.out.println("Appointment IDs:");
+        for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
+            System.out.println(AppointmentsHelper.getAllAppointments()
+                    .get(i).getAppointmentID());
+
+        }
+        System.out.println("");
+        resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
 
 
-
-        /** appointmentsTable.setItems(AppointmentsHelper.getAllAppointments());
-
-         appointmentsIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-         appointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-         appointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-         appointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-         appointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
-         appointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-         appointmentsStartDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-         appointmentsEndDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-         appointmentsCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-         appointmentsUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-         System.out.println("Appointment IDs:");
-         for (int i = 0; i < AppointmentsHelper.getAllAppointments().size(); i++) {
-         System.out.println(AppointmentsHelper.getAllAppointments()
-         .get(i).getAppointmentID());
-
-         }
-         System.out.println("");
-         resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
-
-         */
     }
 
 
@@ -188,12 +191,10 @@ public class ReportsController implements Initializable{
             alert2.setTitle("Error");
             alert2.setContentText("Please select both Type and Month");
             alert2.showAndWait();
-        }
-
-        else {
+        } else {
             int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
-            System.out.println("Report (A.3.f) : *" + sizeOfReport + "* Appointments on File with " + "Type: *" + type + "* in Month: *" + month + "*");
-            resultsLBL.setText("Report: *" + sizeOfReport + "* Appointments on File with " + "Type: *" + type + "* in Month: *" + month + "*");
+            System.out.println("Report (A.3.f) : *" + sizeOfReport + "* Appointments in database with " + "Type: *" + type + "* in Month: *" + month + "*");
+            resultsLBL.setText("Report: *" + sizeOfReport + "* Appointments in database with " + "Type: *" + type + "* in Month: *" + month + "*");
 
 
         }
@@ -209,5 +210,19 @@ public class ReportsController implements Initializable{
 
 
     }
+    //Lambda here filtering based on contactID
+    public void onContactCombo(ActionEvent actionEvent) {
 
+        int cid = contactCombo.getValue().getContactID();
+        ObservableList<Appointments> allAppointments = AppointmentsHelper.getAllAppointments();
+        ObservableList<Appointments> contactAppointments = allAppointments.filtered(a->{
+            if(cid == a.getContact()){
+                return true;
+            }
+            return false;
+        });
+        appointmentsTable.setItems(contactAppointments);
+
+
+    }
 }

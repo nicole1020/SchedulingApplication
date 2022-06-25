@@ -235,16 +235,15 @@ public class AppointmentsHelper {
     }
 
 
-    public static Appointments getAppointmentsSoon(String userName) {
+    public static Appointments getAppointmentsSoon(Integer userID) {
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
-                    "Start, End, customers.Customer_ID, users.User_ID, " +
-                    "contacts.Contact_ID FROM customers, " +
-                    "appointments, contacts, users WHERE " +
-                    "customers.Customer_ID = appointments.Customer_ID" +
-                    " AND appointments.User_ID = users.User_ID AND " +
-                    "appointments.Contact_ID = contacts.Contact_ID AND Start > now && Start < (now + 15) ";
+                    "Start, End, Customer_ID, User_ID, " +
+                    "Contact_ID FROM  appointments  WHERE  Start > ? AND Start < ?  AND User_ID = ?";
             PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            prepA.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            prepA.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)));
+            prepA.setInt(3, userID);
             ResultSet aResult = prepA.executeQuery();
             while (aResult.next()) {
 
@@ -304,6 +303,40 @@ public class AppointmentsHelper {
         return reportsDataSortByMonthList;
     }
 
+    public static ObservableList<Appointments> getAllAppointmentsByContact(int cid) {
+
+        ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
+        try {
+            String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, " +
+                    "Description, Location, Type, Start, End, " +
+                    "Customer_ID, User_ID, Contact_ID FROM appointments WHERE  "+
+                    "  appointments.Contact_ID = ? ";
+            PreparedStatement prepA = connection.prepareStatement(sqlInquiryA);
+            prepA.setInt(1, cid);
+            ResultSet aResult = prepA.executeQuery();
+            while (aResult.next()) {
+                int Appointment_ID = aResult.getInt("Appointment_ID");
+                String Title = aResult.getString("Title");
+                String Description = aResult.getString("Description");
+                String Location = aResult.getString("Location");
+                int Contact_ID = aResult.getInt("Contact_ID");
+                String Type = aResult.getString("Type");
+                LocalDateTime Start = aResult.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime End = aResult.getTimestamp("End").toLocalDateTime();
+                int Customer_ID = aResult.getInt("Customer_ID");
+                int User_ID = aResult.getInt("User_ID");
+
+                Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                appointmentsList.add(ap);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentsList;
+
+    }
 }
 
 
