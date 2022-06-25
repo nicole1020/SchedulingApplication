@@ -2,6 +2,7 @@ package controller;
 
 import DAO.AddressHelper;
 import DAO.CustomersHelper;
+import javafx.scene.control.*;
 import model.Address;
 import model.Country;
 import javafx.event.ActionEvent;
@@ -9,10 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -67,8 +64,20 @@ public class AddCustomerController implements Initializable {
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
+        if (name == null || address == null || postalcode == null || phone == null ) {
+            System.out.println("enter proper data");
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
 
+            return;
+        }
         if (division == null) {
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Select a Division");
+            alert2.setContentText("Select a Division");
+            alert2.showAndWait();
             return;
         }
         if (customerID == 0) {

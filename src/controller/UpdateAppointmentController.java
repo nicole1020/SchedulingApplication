@@ -110,16 +110,26 @@ public class UpdateAppointmentController implements Initializable {
         User user = appointmentUserID.getValue();
         if (user == null || date == null || startTime == null || endTime == null || customerID == null || contact == null || type == null) {
             System.out.println("enter proper data");
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
+            System.out.println("Enter Valid Inputs");
             return;
         }
 
         if (!start.isBefore(end)) {
             System.out.println("enter proper times");
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Start time must be before end time");
+            alert1.setContentText("Start time must be before end time");
+            alert1.showAndWait();
+            System.out.println("Start time must be before end time");
             return;
         }
 
         if (appointmentid == 0) {
-            AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
+
         }
 
         else {

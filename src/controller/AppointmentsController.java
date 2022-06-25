@@ -109,6 +109,10 @@ public class AppointmentsController implements Initializable {
     }
 
     public void onDeleteAppointment(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Appointment Warning");
+        alert.setContentText( "Appointment is being deleted from database.");
+        alert.showAndWait();
         Appointments ap = (Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem();
         AppointmentsHelper.deleteAppointment(ap.getAppointmentID());
     }

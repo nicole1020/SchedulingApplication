@@ -29,6 +29,7 @@ public class UpdateCustomerController implements Initializable {
     public TextField customerAddress;
     public Label customerIDLabel;
     public Customers selectedCustomer = null;
+    public Button backButton;
     private  Integer customerID = 0;
     private Integer divisionID = 0;
     int countingClicks = 0;
@@ -67,13 +68,24 @@ public class UpdateCustomerController implements Initializable {
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
+        if (name == null || address == null || postalcode == null || phone == null ) {
+            System.out.println("enter proper data");
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
 
-        if (division == null) {
             return;
         }
-        if (customerID == 0) {
-            CustomersHelper.createCustomer(name, address, postalcode, phone, division.getDivisionID());
-        } else {
+        if (division == null) {
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Select a Division");
+            alert2.setContentText("Select a Division");
+            alert2.showAndWait();
+            return;
+        }
+
+         else {
             CustomersHelper.updateCustomer(customerID, name, address, postalcode, phone, division.getDivisionID()
             );
         }
@@ -119,5 +131,19 @@ public class UpdateCustomerController implements Initializable {
             System.out.println("Exit Button Pressed");
             System.exit(0);
         });
+    }
+
+    public void onBackButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Customer Screen");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
     }
 }

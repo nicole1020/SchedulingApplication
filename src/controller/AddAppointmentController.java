@@ -106,11 +106,20 @@ public class AddAppointmentController implements Initializable {
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
         if (user == null || date == null || startTime == null || endTime == null || customerID == null || contact == null || type == null) {
-            System.out.println("enter proper data");
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
+            System.out.println("Enter Valid Inputs");
             return;
         }
         if(!startTime.isBefore(endTime)){
             System.out.println("enter proper times");
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Start time must be before end time");
+            alert1.setContentText("Start time must be before end time");
+            alert1.showAndWait();
+            System.out.println("Start time must be before end time");
             return;
         }
 

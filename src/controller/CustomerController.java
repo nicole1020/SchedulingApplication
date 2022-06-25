@@ -78,17 +78,16 @@ public class CustomerController implements Initializable {
     }
 
     public void onDeleteCustomer(ActionEvent actionEvent) {
-
-        Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
-       // int customerID = Integer.parseInt(customersTableCustomerID.getText());
-      //  String DivisionID = customersTableDivision.getText();
-
-
-        CustomersHelper.deleteCustomer( p.getCustomerID() );
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Customer Warning");
         alert.setContentText( "'s customer record is being deleted.");
         alert.showAndWait();
+
+        Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
+       // int customerID = Integer.parseInt(customersTableCustomerID.getText());
+      //  String DivisionID = customersTableDivision.getText();
+        CustomersHelper.deleteCustomer( p.getCustomerID() );
+
 
             }
 
