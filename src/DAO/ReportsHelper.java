@@ -7,11 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static DAO.DBConnection.connection;
+/**
+ * @author Nicole Mau
+ *  Initializing ReportsHelper
+ */
 
-//Initializing ReportsHelper
 public class ReportsHelper {
+    /**
+     *
+     * @return returns unique types of appointments from database
+     */
 
-//retrieves getReportsDataSortByType from database
     public static ObservableList<String> getReportsDataSortByType() {
         ObservableList<String> reportsDataSortByTypeList = FXCollections.observableArrayList();
         try {
@@ -32,7 +38,12 @@ public class ReportsHelper {
         }
         return reportsDataSortByTypeList;
     }
-//retrieves  getReportsDataSortByMonth from database
+
+    /**
+     *
+     * @return returns unique month of appointments from database
+     */
+
     public static ObservableList<String> getReportsDataSortByMonth() {
 
         ObservableList<String> reportsDataSortByMonthList = FXCollections.observableArrayList();
@@ -58,7 +69,14 @@ public class ReportsHelper {
         return reportsDataSortByMonthList;
     }
 
-// retrieves getAppointmentCountByMonthAndType from database
+    /**
+     *
+     * @param month selected month
+     * @param type selected type
+     * @return returns appointment count by month and type selections
+     * @throws SQLException if unable to retrieve a count it throws error
+     */
+
     public static int getAppointmentCountByMonthAndType(String month, String type) throws SQLException {
         int count = 0;
         String sqlInquiryA = "SELECT COUNT(*) as cnt FROM appointments WHERE monthName(Start)= ? AND type=?";

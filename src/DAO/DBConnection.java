@@ -2,7 +2,11 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-//Initializing DBConnection
+/**
+ * @author Nicole Mau
+ *  Initializing DBConnection class
+ */
+
 public abstract class DBConnection {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
@@ -13,7 +17,11 @@ public abstract class DBConnection {
     private static final String userName = "sqlUser"; // Username
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
-//opens database connection
+
+
+    /**
+     *  opens database connection
+     */
     public static void openConnection() {
         try {
             Class.forName(driver); // Locate Driver
@@ -23,7 +31,11 @@ public abstract class DBConnection {
             System.out.println("Error:" + e.getMessage());
         }
     }
-//closes database connection
+
+
+    /**
+     *  closes database connection
+     */
     public static void closeConnection() {
         try {
             connection.close();

@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 import static DAO.DBConnection.*;
-//Initializing UserHelper
+/**
+ * @author Nicole Mau
+ *  Initializing UserHelperclass
+ */
+
 public class UserHelper {
-//retrieves getAllUsers from database
+    /**
+     *
+     * @return returns all userList from database
+     */
+
     public static ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
         try {
@@ -31,7 +39,14 @@ public class UserHelper {
         }
         return userList;
     }
-//validates userName and password are in database
+
+    /**
+     *
+     * @param userName username entered for validation by database
+     * @param passwordEntry username entered for validation by database
+     * @return if username and password are in system it validates otherwise it prints stacktrace
+     */
+
     public static User validateUser(String userName, String passwordEntry) {
         try{
         String sqlInquiry = "SELECT User_ID, User_Name FROM users WHERE User_Name = ? AND password = ?";

@@ -10,10 +10,17 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static DAO.DBConnection.connection;
-//Initializing AppointmentsHelper
+/**
+ * @author Nicole Mau
+ *  Initializing AppointmentsHelper class
+ */
+
 public class AppointmentsHelper {
 
-//retrieves getAllAppointments from database
+    /**
+     *
+     * @return  returns all appointmentsList from database
+     */
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
@@ -44,7 +51,11 @@ public class AppointmentsHelper {
         return appointmentsList;
     }
 
-    //retrieves getAllAppointmentTypes from database
+    /**
+     *
+     * @return returns all appointmentTypes from database
+     */
+
     public static ObservableList<String> getAllAppointmentTypes() {
         ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
@@ -61,7 +72,10 @@ public class AppointmentsHelper {
         return appointmentTypes;
     }
 
-    //retrieves getAllAppointmentContacts from database
+    /**
+     *
+     * @return returns all contacts from database
+     */
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
@@ -83,7 +97,11 @@ public class AppointmentsHelper {
         return appointmentContacts;
     }
 
-    //retrieves getCurrentWeekAppointments from database
+    /**
+     *
+     * @return returns current week of appointments from database
+     */
+
     public static ObservableList<Appointments> getCurrentWeekAppointments() {
         ObservableList<Appointments> currentWeekAppointmentsList = FXCollections.observableArrayList();
         try {
@@ -113,7 +131,12 @@ public class AppointmentsHelper {
         }
         return currentWeekAppointmentsList;
     }
-    //retrieves getCurrentMonthAppointmentsRadio from database
+
+    /**
+     *
+     * @return returns current month of appointments from database
+     */
+
     public static ObservableList<Appointments> getCurrentMonthAppointmentsRadio() {
         ObservableList<Appointments> currentMonthAppointmentsRadioList = FXCollections.observableArrayList();
         try {
@@ -144,8 +167,20 @@ public class AppointmentsHelper {
         return currentMonthAppointmentsRadioList;
     }
 
+    /**
+     * Adds new appointment to database
+     * @param title  title of appointment added to database
+     * @param description description of appointment added to database
+     * @param location location of appointment added to database
+     * @param type type of appointment added to database
+     * @param Start start timestamp of appointment added to database
+     * @param endTime end timestamp of appointment added to database
+     * @param customerID customerID of appointment added to database
+     * @param userID userID of appointment added to database
+     * @param contact contactID of appointment added to database
+     */
 
-    //creates appointment in database
+
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
@@ -170,7 +205,21 @@ public class AppointmentsHelper {
 
         }
     }
-    //updates appointment in database
+
+    /**
+     *
+     * @param title title of appointment updated
+     * @param description description of appointment updated
+     * @param location location of appointment updated
+     * @param type type of appointment updated
+     * @param start start timestamp of appointment updated
+     * @param end  end timestamp of appointment updated
+     * @param customerID customerID of appointment updated
+     * @param user user of appointment updated
+     * @param contact contact of appointment updated
+     * @param appointmentid appointment ID  of appointment updated
+     */
+
     public static void updateAppointment(String title,
                                          String description, String location, String type,
                                          LocalDateTime start, LocalDateTime end,
@@ -196,7 +245,12 @@ public class AppointmentsHelper {
             throwables.printStackTrace();
         }
     }
-    //deletes appointment in database
+
+    /**
+     *
+     * @param appointmentID  deletes appointment from database
+     */
+
     public static void deleteAppointment(int appointmentID) {
         try {
             String sqlDC = "Delete FROM appointments WHERE Appointment_ID = ?";
@@ -209,8 +263,13 @@ public class AppointmentsHelper {
         }
     }
 
-    //checks for appointments in database if current user has an appointment within 15 minutes of logging in
-    public static Appointments getAppointmentsSoon(Integer userID) {
+    /**
+     *
+     * @param userID  by userID it checks for appointments in database if current user has an appointment within 15 minutes of logging in
+     *
+     * @return returns if there is an appointment within the next 15 minutes for the user
+     */
+      public static Appointments getAppointmentsSoon(Integer userID) {
         try {
             String sqlInquiryA = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
                     "Start, End, Customer_ID, User_ID, " +
@@ -245,8 +304,12 @@ public class AppointmentsHelper {
         return null;
     }
 
+    /**
+     *
+     * @param cid replaced by lambda expression loaded all appointments by selected contact
+     * @return replaced by lambda expression- all appointments by selected contact
+     */
 
-    //replaced by lambda expression loaded all appointments by selected contact
 
     public static ObservableList<Appointments> getAllAppointmentsByContact(int cid) {
 

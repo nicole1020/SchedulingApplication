@@ -9,8 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static DAO.DBConnection.connection;
-//Initializing AddressHelper getAllAddresses from database
+/**
+ * @author Nicole Mau
+ *  Initializing AddressHelper class
+ *
+ */
+
+
 public class AddressHelper {
+    /**
+     *
+     * @param countryID passes countryID into all addresses
+     * @return address list based on country id
+     */
     public static ObservableList<Address> getAllAddresses(Integer countryID) {
         ObservableList<Address> addressList = FXCollections.observableArrayList();
         try {

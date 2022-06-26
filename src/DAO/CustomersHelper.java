@@ -9,11 +9,17 @@ import javafx.scene.control.TextField;
 import java.sql.*;
 
 import static DAO.DBConnection.connection;
+/**
+ * @author Nicole Mau
+ *  Initializing CustomersHelper
+ */
 
-//Initializing CustomersHelper
 public class CustomersHelper {
+    /**
+     *
+     * @return returns  all customerList from database
+     */
 
-    //retrieves getAllCustomers from database
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
         try {
@@ -42,8 +48,14 @@ public class CustomersHelper {
         return customerList;
     }
 
-
-    //create new customer
+    /**
+     *
+     * @param name new customer's name added to database
+     * @param address new customer's address added to database
+     * @param postalcode new customer's postalcode added to database
+     * @param phone new customer's phone added to database
+     * @param division new customer's division added to database
+     */
     public static void createCustomer(String name, String address, String postalcode, String phone, Integer division) {
         try {
             String sqlc = " INSERT INTO customers VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?)";
@@ -61,8 +73,17 @@ public class CustomersHelper {
         }
 
     }
-    //updates customer in database
 
+
+    /**
+     *
+     * @param name customer's name updated in database
+     * @param address customer's address updated in database
+     * @param postalcode customer's postalcode updated in database
+     * @param phone customer's phone updated in database
+     * @param division customer's division updated in database
+     * @param customerID customer's customerID updated in database
+     */
     public static void updateCustomer(  String name, String address,
                                       String postalcode, String phone, int division,int customerID) {
         try {
@@ -82,7 +103,12 @@ public class CustomersHelper {
 
         }
     }
-    //deletes customer from database
+
+
+    /**
+     *
+     * @param customer_ID    deletes customer from database by customer ID
+     */
     public static void deleteCustomer(int customer_ID) {
         try{
 
@@ -102,7 +128,12 @@ public class CustomersHelper {
         }
 
     }
-    //retrieves getAllCountries from database
+
+    /**
+     *
+     * @return returns all countryList from database
+     */
+
     public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> countryList = FXCollections.observableArrayList();
         try {
@@ -122,7 +153,12 @@ public class CustomersHelper {
         }
         return countryList;
     }
-    //retrieves getAllAppointmentCustomerIDs from database
+
+    /**
+     *
+     * @return customerIDs of customers who have appointments from database
+     */
+
     public static ObservableList<Customers> getAllAppointmentCustomerIDs() {
         ObservableList<Customers> appointmentCustomerIDs = FXCollections.observableArrayList();
         try {
