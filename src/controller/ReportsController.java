@@ -52,6 +52,7 @@ public class ReportsController implements Initializable {
     public Button runButton;
     public Button clearButton;
     public ComboBox<Contacts> contactCombo;
+    public Label resultsLBLContacts;
     int countingClicks = 0;
 
     /**
@@ -66,6 +67,7 @@ public class ReportsController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Appointments Scheduler and Reports");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();
@@ -112,7 +114,7 @@ public class ReportsController implements Initializable {
 
         }
         System.out.println("");
-        resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments on File");
+        resultsLBL.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments in database");
 
 
     }
@@ -145,8 +147,8 @@ public class ReportsController implements Initializable {
             alert2.showAndWait();
         } else {
             int sizeOfReport = ReportsHelper.getAppointmentCountByMonthAndType(month, type);
-            System.out.println("Report (A.3.f) : *" + sizeOfReport + "* Appointments in database with " + "Type: *" + type + "* in Month: *" + month + "*");
-            resultsLBL.setText("Report: *" + sizeOfReport + "* Appointments in database with " + "Type: *" + type + "* in Month: *" + month + "*");
+            System.out.println("Report (A.3.f) : " + sizeOfReport + " Appointments in database with " + "Type: " + type + " in Month: " + month + "");
+            resultsLBL.setText("Report: " + sizeOfReport + " Appointments in database with " + "Type: " + type + " in Month: " + month + "");
 
 
         }
@@ -185,6 +187,9 @@ public class ReportsController implements Initializable {
         });
         appointmentsTable.setItems(contactAppointments);
 
+          resultsLBLContacts.setText("Report: " + contactAppointments.size() + " Appointments in database with " + "ContactID: " + cid );
 
-    }
+
+
+      }
 }

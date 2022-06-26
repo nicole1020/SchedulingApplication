@@ -129,6 +129,7 @@ public class CustomerController implements Initializable {
             Scene scene = new Scene(UpdateCustomerScreen);
             stage.setTitle("Update Customer Record");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var7) {
             var7.printStackTrace();
@@ -151,6 +152,7 @@ public class CustomerController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Add New Customer");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();
@@ -169,6 +171,7 @@ public class CustomerController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Appointments Scheduler and Reports");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();

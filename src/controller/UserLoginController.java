@@ -68,20 +68,24 @@ public class UserLoginController implements Initializable {
 
         String userName = this.userName.getText();
         String passwordEntry = password.getText();
-        if (userName == null) {
-
-            return;
-
-
-        }
-        if (passwordEntry == null) {
-            return;
-
-        }
+        if (userName.isEmpty() || passwordEntry.isEmpty()) {
+            System.out.println("Attempted Login by user: " + userName);
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle(resourceB.getString("Error"));
+            alert2.setContentText(resourceB.getString("EnterValidInputs"));
+            alert2.showAndWait();
 
 
-        loggedUser = UserHelper.validateUser(userName, passwordEntry);
-        if (loggedUser != null) {
+               PrintWriter pw = new PrintWriter(new FileOutputStream(
+                       new File("login_activity.txt"),
+                       true /* append = true */));
+               pw.append("Invalid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now() + "\n");
+               pw.flush();
+               pw.close();
+               return;
+           }
+            loggedUser = UserHelper.validateUser(userName, passwordEntry);
+        if(loggedUser != null) {
             currentUser = AppointmentsHelper.getAppointmentsSoon(loggedUser.getUserID());
 
 
@@ -107,15 +111,13 @@ public class UserLoginController implements Initializable {
 
 
             else {
-                Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                alert2.setTitle("Appointment soon for " + this.userName.getText());
-                alert2.setContentText("Appointment soon for user " + this.userName.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
-                alert2.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Appointment soon for " + this.userName.getText());
+                alert.setContentText("Appointment soon for user " + this.userName.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
+                alert.showAndWait();
                 System.out.println("Appointment soon for " + this.userName.getText());
             }
             userLocationLabel.setText("Login Successful");
-
-
             Locale.setDefault(new Locale("en", "US"));
             Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -125,28 +127,8 @@ public class UserLoginController implements Initializable {
             stage.centerOnScreen();
             stage.show();
         }
-        //bad case
-        else {
-
-            try {
-                PrintWriter pw = new PrintWriter(new FileOutputStream(
-                        new File("login_activity.txt"),
-                        true /* append = true */));
-                pw.append("Invalid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now() + "\n");
-                pw.flush();
-                pw.close();
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-
-            System.out.println("Attempted Login by user: " + this.userName.getText());
-            Alert alert2 = new Alert(Alert.AlertType.ERROR);
-            alert2.setTitle(resourceB.getString("Error"));
-            alert2.setContentText(resourceB.getString("EnterValidInputs"));
-            alert2.showAndWait();
-
         }
-    }
+
 
     /**
      *

@@ -119,7 +119,7 @@ public class AddAppointmentController implements Initializable {
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
 
-        if ( title.isEmpty()|| description.isEmpty() ||location.isEmpty()|| date.isBefore(ChronoLocalDate.from(LocalDateTime.now()))|| user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
+        if ( title.isEmpty()|| description.isEmpty() ||location.isEmpty()|| user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -147,6 +147,7 @@ public class AddAppointmentController implements Initializable {
         Scene scene = new Scene(root);
         stage.setTitle("Appointments Scheduler and Reports");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -165,6 +166,7 @@ public class AddAppointmentController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Appointments Scheduler and Reports");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();

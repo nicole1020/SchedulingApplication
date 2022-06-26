@@ -93,7 +93,7 @@ public class UpdateCustomerController implements Initializable {
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
         int customerID = Integer.parseInt(customerIDLabel.getText());
-        if (name == null || address == null || postalcode == null || phone == null) {
+        if (name.isEmpty() || address.isEmpty() || postalcode.isEmpty() || phone.isEmpty()) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
@@ -183,6 +183,7 @@ public class UpdateCustomerController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Customer Screen");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();

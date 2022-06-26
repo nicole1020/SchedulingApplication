@@ -187,6 +187,7 @@ public class AppointmentsController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Customer Screen");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();
@@ -261,6 +262,7 @@ public class AppointmentsController implements Initializable {
             Scene scene = new Scene(root);
             stage.setTitle("Reports Screen");
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception var6) {
             var6.printStackTrace();
