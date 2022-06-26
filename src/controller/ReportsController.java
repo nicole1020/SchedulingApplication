@@ -22,6 +22,10 @@ import java.time.Month;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * @author Nicole Mau
+ * this initializes reports controller class
+ */
 public class ReportsController implements Initializable {
 
     public Label resultsLBL;
@@ -50,6 +54,10 @@ public class ReportsController implements Initializable {
     public ComboBox<Contacts> contactCombo;
     int countingClicks = 0;
 
+    /**
+     *
+     * @param actionEvent this is what happens when back button is selected
+     */
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
@@ -63,7 +71,13 @@ public class ReportsController implements Initializable {
             var6.printStackTrace();
         }
     }
-//This initializes combo boxes,labels, components of the appointments table, and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+
+    /**
+     *
+     * @param url This initializes combo boxes,labels, components of the appointments table, and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for initialize.
+     */
+
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -110,8 +124,14 @@ public class ReportsController implements Initializable {
     public void onReportsComboBox(ActionEvent actionEvent) throws SQLException {
 
     }
-//this reacts when user presses submit button to run counter for Reports requirement. this counts appointments by type and month
-    public void onRunButton(ActionEvent actionEvent) throws SQLException {
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses submit button to run counter for Reports requirement. this counts appointments by type and month
+     *
+     * @throws SQLException if one or both combo boxes arent selected, it pops up an error
+     */
+ public void onRunButton(ActionEvent actionEvent) throws SQLException {
 
         String type = typeComboBox.getValue();
         String month = monthComboBox.getValue();
@@ -132,7 +152,12 @@ public class ReportsController implements Initializable {
         }
 
     }
-//this reacts when user presses clear button
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses clear button
+     */
+
     public void onClearButton(ActionEvent actionEvent) {
 
         typeComboBox.getSelectionModel().clearSelection();
@@ -142,8 +167,13 @@ public class ReportsController implements Initializable {
 
 
     }
-    //Lambda here filtering appointments based on contactID for report requirement to count appointments based on contactID
-    public void onContactCombo(ActionEvent actionEvent) {
+
+    /**
+     *
+     * @param actionEvent Lambda here: filtering appointments based on contactID for report requirement to count appointments based on contactID and said appointments in table
+     *
+     */
+      public void onContactCombo(ActionEvent actionEvent) {
 
         int cid = contactCombo.getValue().getContactID();
         ObservableList<Appointments> allAppointments = AppointmentsHelper.getAllAppointments();

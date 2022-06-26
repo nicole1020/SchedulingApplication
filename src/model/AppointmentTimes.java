@@ -8,9 +8,10 @@ import java.time.*;
 /**
  *
  * @author Nicole Mau
+ * Initializing AppointmentTimes Class extends Appointments
  */
 
-// Initializing AppointmentTimes Class extends Appointments
+
 public class AppointmentTimes extends Appointments {
 
     LocalTime start;
@@ -18,15 +19,27 @@ public class AppointmentTimes extends Appointments {
     LocalDate date;
     LocalTime startSoon;
 
-    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date, LocalTime startSoon) {
+    /**
+     *
+     * @param start start time for appointment
+     * @param end end time for appointment
+     * @param date date of appointment
+     *
+     */
+    public AppointmentTimes(LocalTime start, LocalTime end, LocalDate date) {
 
         this.start = start;
         this.end = end;
         this.date = date;
-        this.startSoon = startSoon;
 
     }
-    // Initializing ObservableList<LocalTime> getAllAppointmentTimes to make sure user time and server time unite
+
+    /**
+     *
+     * @param isStart Initializing ObservableList<LocalTime> getAllAppointmentTimes to make sure user time and server time unite
+     *
+     * @return appointment time in user's timezone.
+     */
     public static ObservableList<LocalTime> getAllAppointmentTimes(boolean isStart) {
 
         LocalDateTime estStart = LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 0));
@@ -43,7 +56,6 @@ public class AppointmentTimes extends Appointments {
 
         LocalTime start = localStart;
         LocalTime end = localEnd;
-        LocalTime startSoon = start.plusMinutes(15);
 
         if (!isStart) {
             start = start.plusMinutes(15);

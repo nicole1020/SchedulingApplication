@@ -6,8 +6,9 @@ import java.util.logging.LogRecord;
 /**
  *
  * @author Nicole Mau
+ *  Initializing User Class
  */
-// Initializing User Class
+
 public class User {
 
     private int userID;
@@ -15,7 +16,12 @@ public class User {
     private String password;
 private LogRecord loginRecord;
 
-
+    /**
+     *
+     * @param userID  userid  user
+     * @param userName username of user
+     * @param password  password of user
+     */
     public User(int userID, String userName, String password) {
         this.userID = userID;
         this.userName = userName;
@@ -24,28 +30,35 @@ private LogRecord loginRecord;
 
     }
 
-    public User(LogRecord loginRecord) {
-        this.loginRecord= loginRecord;
-    }
-
+    /**
+     *
+     * @return userID
+     */
     public int getUserID() {
         return userID;
     }
 
-    public LogRecord getLoginRecord() {
-        return loginRecord;
-
-    }
-
+    /**
+     *
+     * @return username of user
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     *
+     * @return password of user
+     */
     public String getPassword() {
         return password;
     }
 
-public String toString(){
+    /**
+     *
+     * @return userName to populate as a string instead of database location
+     */
+    public String toString(){
         return String.valueOf((userName));
 }
 

@@ -16,7 +16,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-// Initializes CustomerController
+/**
+ * @author nicole mau
+ * Initializes CustomerController class
+  */
+
 public class CustomerController implements Initializable {
     public TableView <Customers> customersTable;
     public TableColumn customersTableCustomerNameCol;
@@ -35,9 +39,14 @@ public class CustomerController implements Initializable {
     public Button addCustomer;
     public Button appointmentsButton;
     int countingClicks = 0;
+
+    /**
+     *
+     * @param url this initializes the customers table, also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program, and has an extra Report to show all customers in database
+     * @param resourceBundle resources for override
+     */
     @Override
-    //this initializes the customers table, also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program, and has an extra Report to show all customers in database
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+   public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Customer Database Main Screen");
         exitButton.setOnAction(e ->{
             countingClicks++;
@@ -70,8 +79,12 @@ public class CustomerController implements Initializable {
     public void customerIsSelected(MouseEvent mouseEvent) {
     }
 
-//this reacts to when user presses delete button with error message it deletes from database from appointments table based on customerid and then customers table.
-    public void onDeleteCustomer(ActionEvent actionEvent) {
+    /**
+     *
+     * @param actionEvent this reacts to when user presses delete customer from database throws error if nothing is selected.
+     *
+     */
+  public void onDeleteCustomer(ActionEvent actionEvent) {
         try {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Delete Customer Warning");
@@ -97,11 +110,13 @@ public class CustomerController implements Initializable {
 
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+
     }
 
-
+    /**
+     *
+     * @param actionEvent reacts when edit customer button is pushed. if nothing is selected it pops up an alert
+     */
 
     public void onEditCustomer(ActionEvent actionEvent) {
         try {
@@ -124,6 +139,10 @@ public class CustomerController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param actionEvent  this reacts when add customer button pushed
+     */
     public void onAddCustomer(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/View/AddNewCustomer.fxml"));
@@ -138,6 +157,10 @@ public class CustomerController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param actionEvent this reacts when appointents screen button pushed
+     */
     public void onAppointmentsButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));

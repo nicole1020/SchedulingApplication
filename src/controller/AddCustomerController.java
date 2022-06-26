@@ -15,7 +15,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-// Initializes AddCustomersController
+/**@author Nicole Mau
+ * Initializes AddCustomersController class
+  */
+
 public class AddCustomerController implements Initializable {
     public TextField customerName;
     public TextField customerPhone;
@@ -30,7 +33,12 @@ public class AddCustomerController implements Initializable {
     public Button back;
     private  Integer customerID = 0;
     int countingClicks = 0;
-    // this reacts when user presses clear button
+
+    /**
+     *
+     * @param actionEvent  this reacts when user presses clear button
+     */
+
     public void onClearCustomer(ActionEvent actionEvent) {
         customerName.clear();
         customerAddress.clear();
@@ -39,7 +47,12 @@ public class AddCustomerController implements Initializable {
         customerCountryCombo.getSelectionModel().clearSelection();
         customerDivisionCombo.getSelectionModel().clearSelection();
     }
-    // this reacts when user presses country combo box and sets the division combo box values based on country selection
+
+    /**
+     *
+     * @param actionEvent   this reacts when user presses country combo box and sets the division combo box values based on country selection
+     *
+     */
     public void onCustomerCountry(ActionEvent actionEvent) {
         Country c = customerCountryCombo.getValue();
         customerDivisionCombo.setItems(AddressHelper.getAllAddresses(c.getCountryID()));
@@ -48,7 +61,12 @@ public class AddCustomerController implements Initializable {
         System.out.println(customerDivisionCombo.getValue());
 
     }
-    // this reacts when user presses division combo box
+
+    /**
+     *
+     * @param actionEvent    this reacts when user presses division combo box
+     */
+
 
     public void onCustomerDivision(ActionEvent actionEvent) {
         System.out.println(customerDivisionCombo.getValue());
@@ -58,6 +76,10 @@ public class AddCustomerController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param actionEvent    this reacts when user presses save customer button with error checking for valid inputs
+     */
 
     public void onSaveCustomer(ActionEvent actionEvent) throws IOException {
         String name = customerName.getText();
@@ -93,8 +115,12 @@ public class AddCustomerController implements Initializable {
         stage.show();
 
     }
-//this initializes the country combo box, also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
 
+    /**
+     *
+     * @param url this initializes the country combo box, also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for override
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerCountryCombo.setItems(CustomersHelper.getAllCountries());
@@ -107,13 +133,23 @@ public class AddCustomerController implements Initializable {
         });
     }
 
+    /**
+     *
+     * @param actionEvent this reacts when user presses back button
+     * @throws IOException if unable to load prints stack trace
+     */
+
     public void onBackButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+       try{ Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home Page");
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+    } catch (IOException e) {
+           e.printStackTrace();
+
+       }
     }
 }

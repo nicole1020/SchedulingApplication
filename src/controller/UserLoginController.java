@@ -22,7 +22,12 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-// Initializing UserLoginController
+
+/**
+ * @author Nicole Mau
+ *  Initializing UserLoginController class
+ */
+
 public class UserLoginController implements Initializable {
 
     public Button login;
@@ -36,8 +41,12 @@ public class UserLoginController implements Initializable {
     private ResourceBundle resourceB = ResourceBundle.getBundle("language", Locale.getDefault());
     private static Appointments currentUser;
 
-//this initializes the labels and text fields with the resourcebundle resourceB and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
 
+    /**
+     *
+     * @param url this initializes the labels and text fields with the resourcebundle resourceB and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for Override
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -49,6 +58,11 @@ public class UserLoginController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param actionEvent checks to make sure username and password exist in tandem in database
+     * @throws IOException will pop up a window if invalid entries or if username and password do not exist in database
+     */
     public void onLogin(ActionEvent actionEvent) throws IOException {
 
 
@@ -131,34 +145,20 @@ public class UserLoginController implements Initializable {
             alert2.setContentText(resourceB.getString("EnterValidInputs"));
             alert2.showAndWait();
 
-            return;
         }
     }
 
-
+    /**
+     *
+     * @param actionEvent reacts when user presses cancel
+     */
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage)this.cancel.getScene().getWindow();
         stage.close();
     }
 
 
-   /* public void  printLog() {
-        PrintWriter fw = null;
-        try {
-            fw = new PrintWriter("utilities.login_activity.txt");
-            BufferedWriter bufferedW = new BufferedWriter(fw);
-            bufferedW.write(this.userName.getText());
-            bufferedW.write(String.valueOf(LocalDateTime.now()));
-            bufferedW.write(ZoneId.systemDefault().toString());
-            bufferedW.newLine();
-            fw.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-**/
     @FXML
     private boolean onPassword() {
         password.textProperty().addListener((observable, oldValue, newValue) ->
@@ -172,7 +172,5 @@ public class UserLoginController implements Initializable {
 
     }
 
-    public <E> void writeLoginActivity(SetChangeListener.Change<? extends E> change) {
 
-    }
 }

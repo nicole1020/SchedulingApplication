@@ -16,7 +16,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-// Initializing UpdateCustomerController
+
+/**
+ * @author nicole mau
+ *  Initializing UpdateCustomerController class
+ */
+
 public class UpdateCustomerController implements Initializable {
     public Button clearCustomer;
     public TextField customerName;
@@ -32,7 +37,12 @@ public class UpdateCustomerController implements Initializable {
     public Button backButton;
     private  Integer customerID = 0;
     int countingClicks = 0;
-    //this reacts when user pushes clear button
+
+    /**
+     *
+     * @param actionEvent  this reacts when user pushes clear button
+     */
+
     public void onClearCustomer(ActionEvent actionEvent) {
         customerName.clear();
         customerAddress.clear();
@@ -43,7 +53,12 @@ public class UpdateCustomerController implements Initializable {
 
 
     }
-//this initializes country combo box ensuring division populates based on country
+
+    /**
+     *
+     * @param actionEvent this initializes country combo box ensuring division populates based on country
+     */
+
     public void onCustomerCountry(ActionEvent actionEvent) {
         Country c = customerCountryCombo.getValue();
         customerDivisionCombo.setItems(AddressHelper.getAllAddresses(c.getCountryID()));
@@ -52,7 +67,11 @@ public class UpdateCustomerController implements Initializable {
         System.out.println(customerDivisionCombo.getValue());
     }
 
-//this makes sure customer division combo box is working
+    /**
+     *
+     * @param actionEvent this makes sure customer division combo box is working
+     */
+
     public void onCustomerDivision(ActionEvent actionEvent) {
         System.out.println(customerDivisionCombo.getValue());
     }
@@ -60,7 +79,13 @@ public class UpdateCustomerController implements Initializable {
     public void onExitButtonPressed(ActionEvent actionEvent) {
 
     }
-    // this reacts when user presses save button and sends alert if information is invalid or blank
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses save button and sends alert if information is invalid or blank
+     *
+     * @throws IOException if save is not completed it pops up an alert
+     */
     public void onSaveCustomer(ActionEvent actionEvent) throws IOException {
         String name = customerName.getText();
         String address = customerAddress.getText();
@@ -95,7 +120,12 @@ public class UpdateCustomerController implements Initializable {
             stage.centerOnScreen();
             stage.show();
         }
-    //this brings the information from the selection in table to the update window.
+
+    /**
+     *
+     * @param theCustomer this brings the information from the selection in table to the update window.
+     */
+
     public void editedCustomer(Customers theCustomer) {
 
         this.selectedCustomer = theCustomer;
@@ -121,7 +151,12 @@ public class UpdateCustomerController implements Initializable {
             }
         }
     }
-   //this initializes the combo box and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+
+    /**
+     *
+     * @param url //this initializes the combo box and also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for override
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -133,7 +168,12 @@ public class UpdateCustomerController implements Initializable {
             System.exit(0);
         });
     }
-    //this reacts when user pushes back button
+
+    /**
+     *
+     * @param actionEvent this reacts when user pushes back button
+     */
+
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));

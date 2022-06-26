@@ -20,7 +20,13 @@ import java.sql.SQLException;
 import java.time.*;
 import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
-// Initializing UpdateAppointmentController
+
+
+/**
+ * @author Nicole Mau
+ * Initializing UpdateAppointmentController class
+ */
+
 public class UpdateAppointmentController implements Initializable {
     public ComboBox <LocalTime>appointmentStart;
     public TextField appointmentTitle;
@@ -39,7 +45,11 @@ public class UpdateAppointmentController implements Initializable {
     private  Integer appointmentid =0;
     int countingClicks = 0;
 
-    //this brings the information from the selection in table to the update window.
+    /**
+     *
+     * @param theAppointment this brings the information from the selection in the appointment screen to the update screen.
+     */
+
     public void editedAppointment(Appointments theAppointment) {
 
         this.selectedAppointment = theAppointment;
@@ -95,7 +105,14 @@ public class UpdateAppointmentController implements Initializable {
     public void onExitButtonPressed(ActionEvent actionEvent) {
 
     }
-    // this reacts when user presses save button and sends alert if information is invalid or blank
+
+    /**
+     *
+     * @param actionEvent     this reacts when user presses save button and sends alert if information is invalid or blank
+     * @throws SQLException alerts if invalid entries are entered/selected
+     * @throws IOException if unable to save it pops up a window
+     */
+
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
@@ -140,8 +157,12 @@ public class UpdateAppointmentController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-//this reacts when user presses clear button
 
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses clear button
+     */
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();
         appointmentDescription.clear();
@@ -155,8 +176,12 @@ public class UpdateAppointmentController implements Initializable {
         appointmentUserID.getSelectionModel().clearSelection();
 
     }
-  //this initializes the text/combo boxes and date picker  also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
 
+    /**
+     *
+     * @param url this initializes the text/combo boxes and date picker  also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle  resources for override
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         exitButton.setOnAction(e ->{
@@ -173,13 +198,22 @@ public class UpdateAppointmentController implements Initializable {
         appointmentStart.setItems(AppointmentTimes.getAllAppointmentTimes(true));
     }
 
-//this reacts when user selects start time to show end times that begin 15 minutes after start time
+    /**
+     *
+     * @param actionEvent this reacts when user selects start time to show end times that begin 15 minutes after start time
+     */
+
     public void onAppointmentStart(ActionEvent actionEvent) {
         LocalTime start = appointmentStart.getValue();
 
         appointmentEnd.setItems(AppointmentTimes.getAllAppointmentTimes(false));
     }
-//this reacts when user pushes back button
+
+    /**
+     *
+     * @param actionEvent this reacts when user pushes back button
+     */
+
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));

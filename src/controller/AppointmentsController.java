@@ -25,7 +25,11 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 import java.util.ResourceBundle;
-// Initializes AppointmentsController
+/**
+ * @author Nicole Mau
+ * Initializes AppointmentsController class
+  */
+
 public class AppointmentsController implements Initializable {
     public Label resultsLBL;
     public ToggleGroup appointmentsToggle;
@@ -51,8 +55,12 @@ public class AppointmentsController implements Initializable {
     public RadioButton allSortRadioButton;
     public Button generateReportsButton;
     int countingClicks = 0;
-    //Appointments Table Initialized with additional Report: counting all appointments in database also Lambda expression to exit, count clicks on exit button, and print exit program
 
+    /**
+     *
+     * @param url Appointments Table Initialized with additional Report: counting all appointments in database also Lambda expression to exit, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for override
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -94,20 +102,32 @@ public class AppointmentsController implements Initializable {
 
     }
 
-// this reacts when user presses add appointment button
-    public void onAddAppointment(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/AddNewAppointment.fxml")));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Home Page");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-    }
+    /**
+     *
+     * @param actionEvent this reacts when user presses add appointment button
+     * @throws IOException if unable to load prints stack trace
+     */
 
+    public void onAddAppointment(ActionEvent actionEvent) throws IOException {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/AddNewAppointment.fxml")));
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Home Page");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void appointmentsIsSelected(MouseEvent mouseEvent) {
     }
-    // this reacts when user presses delete appointment button
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses delete appointment button if user hasnt selected an appointment to delete it pops up a alert box
+     */
     public void onDeleteAppointment(ActionEvent actionEvent) {
         try{
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -126,7 +146,12 @@ public class AppointmentsController implements Initializable {
         }
     }
 
-    // this reacts when user presses edit appointment button
+    /**
+     *
+     * @param actionEvent     this reacts when user presses edit appointment button and pops up an alert box if nothing is selected
+     */
+
+
     public void onEditAppointment(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
@@ -148,7 +173,12 @@ public class AppointmentsController implements Initializable {
             alert.showAndWait();
         }
     }
-    // this reacts when user presses back to customers screen button
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses back to customers screen button
+     * @throws IOException prints stack trace if unable to load character screen
+     */
     public void onToCustomersScreen(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/CustomerScreen.fxml"));
@@ -163,7 +193,11 @@ public class AppointmentsController implements Initializable {
         }
     }
 
-    // this reacts when user presses current week radio button
+    /**
+     *
+     * @param actionEvent this reacts when user presses current week radio button
+     */
+
 
     public void onCurrentWeekRadioButton(ActionEvent actionEvent) {
         if (currentWeekRadioButton.isSelected()) {
@@ -177,7 +211,11 @@ public class AppointmentsController implements Initializable {
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getCurrentWeekAppointments().size() + " Appointments in database");
         }
     }
-    // this reacts when user presses current month radio button
+    /**
+     *
+     * @param actionEvent this reacts when user presses current month radio button
+     */
+
     public void onCurrentMonthRadioButton(ActionEvent actionEvent) {
         if (currentMonthRadioButton.isSelected()) {
             appointmentsTable.setItems(AppointmentsHelper.getCurrentMonthAppointmentsRadio());
@@ -191,7 +229,12 @@ public class AppointmentsController implements Initializable {
 
         }
     }
-    // this reacts when user presses all appointments radio button
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses all appointments radio button
+     */
+
     public void onAllSortRadioButton(ActionEvent actionEvent) {
         if (allSortRadioButton.isSelected()) {
             System.out.println("All Appointments Displayed");
@@ -204,7 +247,12 @@ public class AppointmentsController implements Initializable {
             resultsLBLAppointments.setText("Report: " + AppointmentsHelper.getAllAppointments().size() + " Appointments in database");
         }
     }
-    // this reacts when user presses generate reports button
+
+    /**
+     *
+     * @param actionEvent this reacts when user presses generate reports button
+     */
+
     public void onGenerateReports(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/ReportsScreen.fxml"));

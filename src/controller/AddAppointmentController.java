@@ -21,7 +21,11 @@ import java.time.*;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-// Initializes AddAppointmentsController
+/**
+ * @author Nicole Mau
+ * Initializes AddAppointmentsController class
+  */
+
 public class AddAppointmentController implements Initializable {
 
     public Button saveAppointment;
@@ -50,7 +54,12 @@ public class AddAppointmentController implements Initializable {
     public void onExitButtonPressed(ActionEvent actionEvent) {
 
     }
-    // this initializes  text/combo boxes for add appointment screen also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+
+    /**
+     *
+     * @param url this initializes  text/combo boxes for add appointment screen also the Lambda expression when exit button is pressed, count clicks on exit button, and print exit program
+     * @param resourceBundle resources for override
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -74,7 +83,11 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-    // this reacts when user presses clear button
+    /**
+     *
+     * @param actionEvent this reacts when user presses clear button
+     */
+
     public void onClearAppointment(ActionEvent actionEvent) {
         appointmentTitle.clear();
         appointmentDescription.clear();
@@ -87,7 +100,12 @@ public class AddAppointmentController implements Initializable {
         appointmentCustomerID.getSelectionModel().clearSelection();
         appointmentUserName.getSelectionModel().clearSelection();
     }
-    // this reacts when user presses save button and sends alert if information is invalid or blank
+    /**
+     *
+     * @param actionEvent this reacts when user presses save button and sends alert if information is invalid or blank
+     */
+
+
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
@@ -138,7 +156,11 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-    // this reacts when user presses back button
+    /**
+     *
+     * @param actionEvent    this reacts when user presses back button
+     */
+
     public void onBackButton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
@@ -153,13 +175,21 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
-// this initializes start times to make sure end times are 15 minutes after start.
+    /**
+     *
+     * @param actionEvent this initializes start times to make sure end times are 15 minutes after start.
+     */
+
     public void onAppointmentStartTime(ActionEvent actionEvent) {
         LocalTime start = appointmentStartTime.getValue();
 
         appointmentEndTime.setItems(AppointmentTimes.getAllAppointmentTimes(false));
     }
-//this sets appointments dates for today or later
+    /**
+     *
+     * @param actionEvent this sets appointments dates for today or later
+     */
+
     public void onAppointmentDate(ActionEvent actionEvent) {
         appointmentDate.setPromptText(String.valueOf(LocalDate.now()));
     }

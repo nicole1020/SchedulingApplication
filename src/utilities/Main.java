@@ -13,6 +13,7 @@ import model.AppointmentTimes;
 import java.util.Locale;
 
 /**
+ JavaDoc is in folder C:\Users\LabUser\IdeaProjects\SchedulingApplication > index
   @author Nicole Mau
  1/24/2022 I asked for help through email on user login screen. I was having trouble validating the inputs.
  I received email back from Miss Carolyn asking if it was my inputs I was comparing or comparing themselves to strings.
@@ -147,6 +148,7 @@ public class Main extends Application {
     @Override
 
     public void start(Stage primaryStage) throws Exception {
+
        // Locale.setDefault(new Locale("fr","FR"));
 
        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
@@ -160,6 +162,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+ /**
+  *
+  * @param args launches program
+  *            
+  */
     public static void main(String[] args) {
 
         DBConnection.openConnection();
