@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.AppointmentTimes;
 
-import java.util.Locale;
 
 /**
  JavaDoc is in folder C:\Users\LabUser\IdeaProjects\SchedulingApplication > index
@@ -144,8 +142,10 @@ will pull more data from type and month dao helper files next time.
  I fixed it and it works!
 
  I also had issues somehow deleting all appointments from database, I figured out how to add them by making type box in add and update appointments editable.
+
+ Cleaned up code to make it ready for submission, generated javadoc and will zip to submit
  */
-//this is the Main Method. This is the first method that is called in our java program.
+
 
 public class Main extends Application {
 
@@ -153,13 +153,13 @@ public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-       // Locale.setDefault(new Locale("fr","FR"));
+        // Locale.setDefault(new Locale("fr","FR"));
 
        Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
-     //  Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");
         primaryStage.setScene(scene);
