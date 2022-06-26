@@ -183,7 +183,7 @@ public class AppointmentsHelper {
 
     public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
         try {
-            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
+            String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?, ?, ?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
 
             PreparedStatement psCreate4 = connection.prepareStatement(sqlc4);
             psCreate4.setString(1, String.valueOf(title));

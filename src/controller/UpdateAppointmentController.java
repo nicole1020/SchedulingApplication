@@ -42,7 +42,8 @@ public class UpdateAppointmentController implements Initializable {
     public Appointments selectedAppointment = null;
     public DatePicker appointmentDate;
     public ComboBox <LocalTime>appointmentEnd;
-    private  Integer appointmentid =0;
+    public Label appointmentIDLabel;
+    public Button back;
     int countingClicks = 0;
 
     /**
@@ -56,6 +57,7 @@ public class UpdateAppointmentController implements Initializable {
         this.appointmentTitle.setText(String.valueOf(this.selectedAppointment.getTitle()));
         this.appointmentDescription.setText(String.valueOf(this.selectedAppointment.getDescription()));
         this.appointmentLocation.setText(String.valueOf(this.selectedAppointment.getLocation()));
+        this.appointmentIDLabel.setText(String.valueOf(this.selectedAppointment.getAppointmentID()));
         for (Contacts con : appointmentContact.getItems()) {
             if (con.getContactID() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(con);
@@ -124,7 +126,7 @@ public class UpdateAppointmentController implements Initializable {
         LocalTime endTime = appointmentEnd.getValue();
         LocalDateTime start = LocalDateTime.of(date, startTime);
         LocalDateTime end = LocalDateTime.of(date, endTime);
-
+        int appointmentid = Integer.parseInt(appointmentIDLabel.getText());
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
         if (user == null  || customerID == null || contact == null || type == null) {

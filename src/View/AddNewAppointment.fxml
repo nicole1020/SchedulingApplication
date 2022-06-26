@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="578.0" prefWidth="472.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AddAppointmentController">
+<AnchorPane prefHeight="578.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="100.0" prefHeight="25.0" prefWidth="223.0" text="New Appointment Creator">
       <font>
          <Font size="16.0" />
@@ -70,13 +70,13 @@
    <TextField fx:id="appointmentDescription" layoutX="182.0" layoutY="243.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="181.0" layoutY="273.0" promptText="Location" />
    <ComboBox fx:id="appointmentContact" layoutX="181.0" layoutY="308.0" prefWidth="150.0" promptText="contact" />
-   <ComboBox fx:id="appointmentType" layoutX="181.0" layoutY="341.0" prefWidth="150.0" promptText="select type" />
+   <ComboBox fx:id="appointmentType" editable="true" layoutX="181.0" layoutY="341.0" prefWidth="150.0" promptText="select type" />
    <ComboBox fx:id="appointmentCustomerID" layoutX="184.0" layoutY="436.0" prefWidth="150.0" promptText="CustomerID" />
    <ComboBox fx:id="appointmentUserName" layoutX="184.0" layoutY="466.0" prefWidth="150.0" promptText="UserName" />
    <Button fx:id="exitButton" layoutX="385.0" layoutY="539.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
    <Button fx:id="saveAppointment" layoutX="181.0" layoutY="505.0" mnemonicParsing="false" onAction="#onSaveAppointment" text="Save Appointment" />
    <Button fx:id="clearAppointment" layoutX="95.0" layoutY="505.0" mnemonicParsing="false" onAction="#onClearAppointment" text="Clear" />
-   <ComboBox fx:id="appointmentStartTime" layoutX="181.0" layoutY="410.0" prefHeight="25.0" onAction="#onAppointmentStartTime" prefWidth="74.0" promptText="start" />
+   <ComboBox fx:id="appointmentStartTime" layoutX="181.0" layoutY="410.0" onAction="#onAppointmentStartTime" prefHeight="25.0" prefWidth="74.0" promptText="start" />
    <ComboBox fx:id="appointmentEndTime" layoutX="258.0" layoutY="410.0" prefHeight="25.0" prefWidth="74.0" promptText="end" />
    <Button fx:id="backButton" layoutX="42.0" layoutY="539.0" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
 </AnchorPane>

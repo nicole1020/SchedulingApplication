@@ -35,7 +35,7 @@ public class UpdateCustomerController implements Initializable {
     public Label customerIDLabel;
     public Customers selectedCustomer = null;
     public Button backButton;
-    private  Integer customerID = 0;
+
     int countingClicks = 0;
 
     /**
@@ -92,6 +92,7 @@ public class UpdateCustomerController implements Initializable {
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
+        int customerID = Integer.parseInt(customerIDLabel.getText());
         if (name == null || address == null || postalcode == null || phone == null) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);

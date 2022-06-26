@@ -87,13 +87,12 @@ public class AddCustomerController implements Initializable {
         String postalcode = postalCode.getText();
         String phone = customerPhone.getText();
         Address division = customerDivisionCombo.getValue();
-        if (name == null || address == null || postalcode == null || phone == null ) {
+        if (name.isEmpty() || address.isEmpty() || postalcode.isEmpty() || phone.isEmpty()) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
             alert2.showAndWait();
-
             return;
         }
         if (division == null) {
@@ -102,18 +101,28 @@ public class AddCustomerController implements Initializable {
             alert2.setContentText("Select a Division");
             alert2.showAndWait();
             return;
-        }
-        if (customerID == 0) {
-            CustomersHelper.createCustomer(name, address, postalcode, phone, division.getDivisionID());
-        }
-        Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Home Page");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+        }  if (customerID == 0) {
+            try {
+                CustomersHelper.createCustomer(name, address, postalcode, phone, division.getDivisionID());
 
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Customer not saved-enter valid inputs");
+                alert2.setContentText("Customer not saved-enter valid inputs");
+                alert2.showAndWait();
+
+            }
+            Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Home Page");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+            System.out.println("New customer saved");
+        }
     }
 
     /**

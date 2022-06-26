@@ -68,7 +68,6 @@ public class AddAppointmentController implements Initializable {
         DatePicker aDate = appointmentDate;
         appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
-        appointmentType.setPromptText("Planning Session");
         appointmentDate.getEditor();
         appointmentUserName.setItems(UserHelper.getAllUsers());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
@@ -116,11 +115,11 @@ public class AddAppointmentController implements Initializable {
         LocalTime startTime = appointmentStartTime.getValue();
         LocalTime endTime = appointmentEndTime.getValue();
         LocalDateTime start = LocalDateTime.of(date, startTime);
-        LocalDateTime end   = LocalDateTime.of(date, endTime);
+        LocalDateTime end = LocalDateTime.of(date, endTime);
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
 
-        if (user == null || customerID == null || contact == null || type == null) {
+        if ( title.isEmpty()|| description.isEmpty() ||location.isEmpty()|| date.isBefore(ChronoLocalDate.from(LocalDateTime.now()))|| user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -128,7 +127,7 @@ public class AddAppointmentController implements Initializable {
             System.out.println("Enter Valid Inputs");
             return;
         }
-        if(!startTime.isBefore(endTime)){
+        if (!startTime.isBefore(endTime)) {
             System.out.println("enter proper times");
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setTitle("Start time must be before end time");
@@ -139,22 +138,19 @@ public class AddAppointmentController implements Initializable {
         }
 
         if (appointmentid == 0) {
-
-            AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID());
-
-        } else {
-            AppointmentsHelper.updateAppointment( title, description, location , type , start, end, customerID.getCustomerID(),user.getUserID(), contact.getContactID(), appointmentid);
+            AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
         }
 
-         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-        Parent root = (Parent)loader.load();
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Appointments Scheduler and Reports");
         stage.setScene(scene);
         stage.show();
-
     }
+
+
 
     /**
      *

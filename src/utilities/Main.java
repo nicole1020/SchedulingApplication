@@ -140,6 +140,10 @@ will pull more data from type and month dao helper files next time.
  I emailed him later and was able to have him help fix my code for deleting appointment before customer from database.
  i was able to execute appointment delete based on customer id before customer based on customer id.
  also my program stopped running so i had to build> rebuild to get it to work.
+ mr kinkead helped me figure out why update appointment and customer was not saving right. I had the wrong value for appointment and customer id saving to the database.
+ I fixed it and it works!
+
+ I also had issues somehow deleting all appointments from database, I figured out how to add them by making type box in add and update appointments editable.
  */
 //this is the Main Method. This is the first method that is called in our java program.
 
@@ -165,7 +169,7 @@ public class Main extends Application {
  /**
   *
   * @param args launches program
-  *            
+  *
   */
     public static void main(String[] args) {
 
