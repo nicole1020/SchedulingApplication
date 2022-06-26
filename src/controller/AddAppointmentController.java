@@ -59,6 +59,7 @@ public class AddAppointmentController implements Initializable {
         DatePicker aDate = appointmentDate;
         appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
+        appointmentType.setPromptText("Planning Session");
         appointmentDate.getEditor();
         appointmentUserName.setItems(UserHelper.getAllUsers());
         appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());

@@ -2,17 +2,9 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointments;
-import model.Reports;
-
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import java.time.LocalDateTime;
-import java.time.Month;
-
 
 import static DAO.DBConnection.connection;
 
