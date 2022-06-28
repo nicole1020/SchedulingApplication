@@ -103,7 +103,7 @@ public class AddAppointmentController implements Initializable {
     }
     /**
      *
-     * @param actionEvent this reacts when user presses save button and sends alert if information is invalid or blank
+     * @param actionEvent this reacts when user presses save button and sends alert if information is invalid or blank or if appointment times overrlap
      */
 
 

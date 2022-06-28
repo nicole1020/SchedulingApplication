@@ -183,7 +183,7 @@ public class AppointmentsHelper {
      */
 
 
-    public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, int contact) {
+    public static void createAppointment(String title, String description, String location, String type, LocalDateTime Start, LocalDateTime endTime, int customerID, int userID, Integer contact) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?, ?, ?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
 
