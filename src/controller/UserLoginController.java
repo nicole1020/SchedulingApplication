@@ -113,7 +113,7 @@ public class UserLoginController implements Initializable {
             pw.close();
 
         }
-        else{
+        if(loggedUser == null){
 
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
                 alert2.setTitle(resourceB.getString("Error"));
@@ -131,7 +131,8 @@ public class UserLoginController implements Initializable {
                 alert.setContentText("Appointment soon for user " + userNameField.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
                 alert.showAndWait();
                 System.out.println("Appointment soon for " + userNameField.getText());
-            } else {
+            }
+            if (currentUser == null){
                 System.out.println("You dont have an appointment soon");
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("You dont have an appointment soon *" + userNameField.getText());

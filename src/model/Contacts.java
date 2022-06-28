@@ -56,14 +56,17 @@ public class Contacts extends Appointments{
     public String getEmail() {
         return email;
     }
-    @Override
+
 
     /**
      *
-     * @return contactID to populate as a string instead of database location
+     * @return contactID and    contactName  in combo box for contacts
      */
-    public String toString(){
-        return String.valueOf((contactName));
+    @Override
+
+
+   public String toString(){
+          return("["+contactID +"] " + contactName );
     }
 
 }
