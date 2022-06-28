@@ -17,6 +17,7 @@ public class Appointments extends Customers {
     private String description;
     private String location;
     private int contact;
+    private String contactName;
     private String type;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
@@ -70,6 +71,11 @@ public class Appointments extends Customers {
 
     }
 
+    public Appointments(LocalDateTime start, LocalDateTime end) {
+        this.startDateTime = start;
+        this.endDateTime = end;
+    }
+
 
     @Override
 
@@ -81,6 +87,15 @@ public class Appointments extends Customers {
         return customerID;
     }
 
+    /**
+     *
+     * @return  contactName of customer who's appointment it is
+     */
+
+    public String getContactName() {
+
+        return contactName;
+    }
 
     /**
      *

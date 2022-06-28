@@ -101,7 +101,11 @@ public class AddCustomerController implements Initializable {
             alert2.setContentText("Select a Division");
             alert2.showAndWait();
             return;
-        }  if (customerID == 0) {
+        }
+        if(customerID != 0){
+            CustomersHelper.updateCustomer(name, address, postalcode, phone, division.getDivisionID(), customerID);
+        }
+        if (customerID == 0) {
             try {
                 CustomersHelper.createCustomer(name, address, postalcode, phone, division.getDivisionID());
 
@@ -123,6 +127,7 @@ public class AddCustomerController implements Initializable {
             stage.show();
             System.out.println("New customer saved");
         }
+
     }
 
     /**

@@ -82,17 +82,19 @@ public class CustomerController implements Initializable {
     /**
      *
      * @param actionEvent this reacts to when user presses delete customer from database throws error if nothing is selected.
+     *                    also Displays custom message with customer ID of the record being deleted
      *
      */
   public void onDeleteCustomer(ActionEvent actionEvent) {
         try {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Delete Customer Warning");
-            alert.setContentText("Customer record is being deleted from database.");
-            alert.showAndWait();
+
 
             Customers p = (Customers) this.customersTable.getSelectionModel().getSelectedItem();
             CustomersHelper.deleteCustomer(p.getCustomerID());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete Customer Warning");
+            alert.setContentText("Customer record is being deleted from database CustomerID:" + p.getCustomerID() );
+            alert.showAndWait();
 
 
         } catch (Exception e) {

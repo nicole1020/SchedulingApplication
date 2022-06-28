@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 /**
@@ -49,7 +50,7 @@ public class AddAppointmentController implements Initializable {
     private  Integer appointmentid = 0;
     private CharSequence date = null;
     int countingClicks = 0;
-
+    private static Appointments loggedAppointment;
 
     public void onExitButtonPressed(ActionEvent actionEvent) {
 
@@ -66,6 +67,7 @@ public class AddAppointmentController implements Initializable {
         //Appointments
         String cid = appointmentID.getText();
         DatePicker aDate = appointmentDate;
+
         appointmentCustomerID.setItems(CustomersHelper.getAllAppointmentCustomerIDs());
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
         appointmentDate.getEditor();
@@ -118,13 +120,23 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime end = LocalDateTime.of(date, endTime);
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
+        loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end);
 
-        if ( title.isEmpty()|| description.isEmpty() ||location.isEmpty()|| user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
+        if (date.isBefore(LocalDate.now())|| title.isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
             alert2.showAndWait();
             System.out.println("Enter Valid Inputs");
+            return;
+        }
+        if (loggedAppointment != null) {
+            System.out.println("Appointment time not available");
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Appointment time not available");
+            alert1.setContentText("Please select a different time-Appointment time not available");
+            alert1.showAndWait();
+
             return;
         }
         if (!startTime.isBefore(endTime)) {
@@ -140,20 +152,24 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid == 0) {
             AppointmentsHelper.createAppointment(title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID());
         }
-
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-        Parent root = (Parent) loader.load();
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Appointments Scheduler and Reports");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+        if (appointmentid != 0) {
+            AppointmentsHelper.updateAppointment(title, description, location, type, start, end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(), appointmentid);
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
-
-    /**
+        /**
      *
      * @param actionEvent    this reacts when user presses back button
      */

@@ -127,15 +127,17 @@ public class AppointmentsController implements Initializable {
     /**
      *
      * @param actionEvent this reacts when user presses delete appointment button if user hasnt selected an appointment to delete it pops up a alert box
+     *                    with custom appointmentID and appointment type displayed
      */
     public void onDeleteAppointment(ActionEvent actionEvent) {
         try{
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete Appointment Warning");
-        alert.setContentText( "Appointment is being deleted from database.");
-        alert.showAndWait();
+
         Appointments ap = (Appointments) this.appointmentsTable.getSelectionModel().getSelectedItem();
         AppointmentsHelper.deleteAppointment(ap.getAppointmentID());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete Appointment Warning");
+            alert.setContentText( "Appointment is being deleted from database AppointmentID: "  + ap.getAppointmentID() + " with appointment type "+ ap.getType() );
+            alert.showAndWait();
     } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

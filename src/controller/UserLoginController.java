@@ -32,12 +32,13 @@ public class UserLoginController implements Initializable {
 
     public Button login;
     public Button cancel;
-    public TextField userName;
+    public TextField userNameField;
     public TextField password;
     public Label userNameLabel;
     public Label passwordLabel;
     public Label userLocationLabel;
     private static User loggedUser;
+    public Label label;
     private ResourceBundle resourceB = ResourceBundle.getBundle("language", Locale.getDefault());
     private static Appointments currentUser;
 
@@ -53,8 +54,11 @@ public class UserLoginController implements Initializable {
         userLocationLabel.setText(ZoneId.systemDefault().toString());
         passwordLabel.setText(resourceB.getString("password"));
         userNameLabel.setText(resourceB.getString("username"));
-        userName.setPromptText(resourceB.getString("enter_username"));
+        userNameField.setPromptText(resourceB.getString("enter_username"));
         password.setPromptText(resourceB.getString("enter_password"));
+        login.setText(resourceB.getString("login"));
+        cancel.setText(resourceB.getString("cancel"));
+        label.setText(resourceB.getString("label"));
 
     }
 
@@ -66,9 +70,21 @@ public class UserLoginController implements Initializable {
     public void onLogin(ActionEvent actionEvent) throws IOException {
 
 
-        String userName = this.userName.getText();
+        String userName = userNameField.getText();
         String passwordEntry = password.getText();
-        if (userName.isEmpty() || passwordEntry.isEmpty()) {
+        loggedUser = UserHelper.validateUser(userName, passwordEntry);
+
+        if (userName == null || passwordEntry == null){
+            System.out.println("Attempted Login by user: " + userName);
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle(resourceB.getString("Error"));
+            alert2.setContentText(resourceB.getString("EnterValidInputs"));
+            alert2.showAndWait();
+
+            return;
+        }
+        if(loggedUser == null ) {
+
             System.out.println("Attempted Login by user: " + userName);
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle(resourceB.getString("Error"));
@@ -79,44 +95,52 @@ public class UserLoginController implements Initializable {
                PrintWriter pw = new PrintWriter(new FileOutputStream(
                        new File("login_activity.txt"),
                        true /* append = true */));
-               pw.append("Invalid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now() + "\n");
+               pw.append("Invalid Login by user" + userNameField.getText() + " " + "at " + LocalDateTime.now() + "\n");
                pw.flush();
                pw.close();
                return;
            }
-            loggedUser = UserHelper.validateUser(userName, passwordEntry);
-        if(loggedUser != null) {
-            currentUser = AppointmentsHelper.getAppointmentsSoon(loggedUser.getUserID());
 
+         if(loggedUser != null) {
 
-            try {
-                PrintWriter pw = new PrintWriter(new FileOutputStream(
-                        new File("login_activity.txt"),
-                        true));
-                  pw.append("Valid Login by user" + this.userName.getText() + " " + "at " + LocalDateTime.now()+ "\n");
-                pw.flush();
-                pw.close();
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            if (currentUser == null) {
-                System.out.println("you dont have an appointment");
-               /* Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("You dont have an appointment soon *" + this.userName.getText());
-                alert2.setContentText("You dont have an appointment soon *" + this.userName.getText());
+             currentUser = AppointmentsHelper.getAppointmentsSoon(loggedUser.getUserID());
+
+            PrintWriter pw = new PrintWriter(new FileOutputStream(
+                    new File("login_activity.txt"),
+                    true));
+            pw.append("Valid Login by user" + userNameField.getText() + " " + "at " + LocalDateTime.now() + "\n");
+            pw.flush();
+            pw.close();
+
+        }
+        else{
+
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle(resourceB.getString("Error"));
+                alert2.setContentText(resourceB.getString("EnterValidInputs"));
                 alert2.showAndWait();
-                **/
-
-            }
+                return;
 
 
-            else {
+        }
+
+
+            if (currentUser != null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Appointment soon for " + this.userName.getText());
-                alert.setContentText("Appointment soon for user " + this.userName.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
+                alert.setTitle("Appointment soon for " + userNameField.getText());
+                alert.setContentText("Appointment soon for user " + userNameField.getText() + " #" + currentUser.getAppointmentID() + " at " + currentUser.getStartDateTime());
                 alert.showAndWait();
-                System.out.println("Appointment soon for " + this.userName.getText());
-            }
+                System.out.println("Appointment soon for " + userNameField.getText());
+            } else {
+                System.out.println("You dont have an appointment soon");
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("You dont have an appointment soon *" + userNameField.getText());
+                alert2.setContentText("You dont have an appointment soon *" + userNameField.getText());
+                alert2.showAndWait();
+
+
+
+        }
             userLocationLabel.setText("Login Successful");
             Locale.setDefault(new Locale("en", "US"));
             Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
@@ -127,7 +151,7 @@ public class UserLoginController implements Initializable {
             stage.centerOnScreen();
             stage.show();
         }
-        }
+
 
 
     /**
@@ -149,7 +173,7 @@ public class UserLoginController implements Initializable {
     }
     @FXML
     private void onUserNameField() {
-        userName.textProperty().addListener((observable, oldValue, newValue) ->
+        userNameField.textProperty().addListener((observable, oldValue, newValue) ->
                 System.out.println(("userName Text Changed (newValue: " + newValue + ")\n")));
 
     }

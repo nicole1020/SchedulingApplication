@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Contacts;
+import model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -59,7 +61,7 @@ public class AppointmentsHelper {
     public static ObservableList<String> getAllAppointmentTypes() {
         ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT type FROM appointments";
+            String sqlcB = "SELECT DISTINCT type FROM appointments";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
@@ -345,7 +347,47 @@ public class AppointmentsHelper {
         return appointmentsList;
 
     }
-}
+
+    /**
+     *
+     * @param start validate start time request from save/update appointment
+     * @param end validate end time request from save/update appointment
+     * @return if appointment slot is unavailable - checks database
+     */
+    public static Appointments validateAppointmentTimes(LocalDateTime start, LocalDateTime end) {
+
+            try{
+                String sqlInquiry = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
+                            "       Start, End, Customer_ID, User_ID, " +
+                             "      Contact_ID FROM  appointments  WHERE  ? <= End AND ? >= Start";
+
+                PreparedStatement preps = connection.prepareStatement(sqlInquiry);
+                preps.setTimestamp(1, Timestamp.valueOf(start));
+                preps.setTimestamp(2, Timestamp.valueOf(end));
+                ResultSet result = preps.executeQuery();
+                while (result.next()) {
+
+                        int Appointment_ID = result.getInt("Appointment_ID");
+                        String Title = result.getString("Title");
+                        String Description = result.getString("Description");
+                        String Location = result.getString("Location");
+                        int Contact_ID = result.getInt("Contact_ID");
+                        String Type = result.getString("Type");
+                        LocalDateTime Start = result.getTimestamp("Start").toLocalDateTime();
+                        LocalDateTime End = result.getTimestamp("End").toLocalDateTime();
+                        int Customer_ID = result.getInt("Customer_ID");
+                        int User_ID = result.getInt("User_ID");
+                        Appointments ap = new Appointments(Appointment_ID, Title, Description, Location, Contact_ID, Type, Start, End, Customer_ID, User_ID);
+                        return ap;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
 
 
 

@@ -63,7 +63,7 @@ public class Contacts extends Appointments{
      * @return contactID to populate as a string instead of database location
      */
     public String toString(){
-        return String.valueOf((contactID));
+        return String.valueOf((contactName));
     }
 
 }
