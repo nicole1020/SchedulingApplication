@@ -81,14 +81,14 @@ public class AppointmentsHelper {
     public static ObservableList<Contacts> getAllAppointmentContacts() {
         ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
         try {
-            String sqlAC = "SELECT Contact_ID, Contact_Name, Email FROM contacts";
+            String sqlAC = "SELECT Contact_ID, Contact_Name FROM contacts ";
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
             ResultSet ACResult = prepAC.executeQuery();
             while (ACResult.next()) {
                 Integer Contact_ID = ACResult.getInt("Contact_ID");
                 String Contact_Name = ACResult.getString("Contact_Name");
-                String Email = ACResult.getString("Email");
-                Contacts aC = new Contacts(Contact_ID, Contact_Name, Email);
+
+                Contacts aC = new Contacts(Contact_ID, Contact_Name);
 
 
                 appointmentContacts.add(aC);
@@ -228,7 +228,9 @@ public class AppointmentsHelper {
                                          int customerID, int user, int contact,int appointmentid) {
         try {
 
-            String sqlc = " UPDATE  appointments set  Title = ?, Description = ?,Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID =? WHERE Appointment_ID = ?";
+            String sqlc = " UPDATE  appointments set  Title = ?, Description = ?,Location = ?," +
+                    " Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID =? " +
+                    "WHERE Appointment_ID = ?";
             PreparedStatement psCreate = connection.prepareStatement(sqlc);
 
             psCreate.setString(1, String.valueOf(title));
@@ -354,16 +356,17 @@ public class AppointmentsHelper {
      * @param end validate end time request from save/update appointment
      * @return if appointment slot is unavailable - checks database
      */
-    public static Appointments validateAppointmentTimes(LocalDateTime start, LocalDateTime end) {
+    public static Appointments validateAppointmentTimes(LocalDateTime start, LocalDateTime end, Integer appointmentid) {
 
             try{
                 String sqlInquiry = "SELECT appointments.Appointment_ID, Title, Description, Location, Type, " +
                             "       Start, End, Customer_ID, User_ID, " +
-                             "      Contact_ID FROM  appointments  WHERE  ? <= End AND ? >= Start";
+                             "      Contact_ID FROM  appointments  WHERE  ? <= End AND ? >= Start AND Appointment_ID != ? ";
 
                 PreparedStatement preps = connection.prepareStatement(sqlInquiry);
                 preps.setTimestamp(1, Timestamp.valueOf(start));
                 preps.setTimestamp(2, Timestamp.valueOf(end));
+                preps.setInt(3, appointmentid);
                 ResultSet result = preps.executeQuery();
                 while (result.next()) {
 

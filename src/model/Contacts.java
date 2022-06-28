@@ -30,6 +30,11 @@ public class Contacts extends Appointments{
         this.contactID = contact_id;
     }
 
+    public Contacts(Integer contact_id, String contact_name) {
+        this.contactID = contact_id;
+        this.contactName = contact_name;
+    }
+
     /**
      *
      * @return contact's contact id number
@@ -66,7 +71,7 @@ public class Contacts extends Appointments{
 
 
    public String toString(){
-          return("["+contactID +"] " + contactName );
+          return (   "["+contactID +"] " + contactName );
     }
 
 }

@@ -120,9 +120,9 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime end = LocalDateTime.of(date, endTime);
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserName.getValue();
-        loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end);
+        loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end, appointmentid);
 
-        if (date.isBefore(LocalDate.now())|| title.isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty() || contact.toString().isEmpty() || type == null) {
+        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contact.toString().isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty()  || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -151,26 +151,49 @@ public class AddAppointmentController implements Initializable {
 
 
         if (appointmentid != 0) {
-            AppointmentsHelper.updateAppointment(title, description, location, type, start,
-                    end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(),
-                    appointmentid);
+
+            try {
+                AppointmentsHelper.deleteAppointment(appointmentid);
+                try {
+                    AppointmentsHelper.updateAppointment(title, description, location, type, start,
+                            end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(),
+                            appointmentid);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setTitle("Enter Valid Inputs");
+                    alert2.setContentText("Enter Valid Inputs ");
+                    alert2.showAndWait();
+                    System.out.println("Enter Valid Inputs");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        if (appointmentid == 0) {
-            AppointmentsHelper.createAppointment(title, description, location,
-                    type, start, end, customerID.getCustomerID(), user.getUserID(),
-                    contact.getContactID());
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Appointments Scheduler and Reports");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (appointmentid == 0) {
+            try {
+                AppointmentsHelper.createAppointment(title, description, location,
+                        type, start, end, customerID.getCustomerID(), user.getUserID(),
+                        contact.getContactID());
+
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+                Parent root = (Parent) loader.load();
+                Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setTitle("Appointments Scheduler and Reports");
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Enter Valid Inputs");
+                alert2.setContentText("Enter Valid Inputs ");
+                alert2.showAndWait();
+                System.out.println("Enter Valid Inputs");
+
+            }
         }
     }
 

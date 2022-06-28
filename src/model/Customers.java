@@ -112,7 +112,7 @@ public String getDivision(){
  * @return customerID to populate as a string instead of database location
  */
     public String toString() {
-        return String.valueOf((customerID));
+        return ("["+customerID +"]" );
     }
 
 }

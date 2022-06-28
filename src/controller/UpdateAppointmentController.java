@@ -44,6 +44,7 @@ public class UpdateAppointmentController implements Initializable {
     public ComboBox <LocalTime>appointmentEnd;
     public Label appointmentIDLabel;
     public Button back;
+    private Appointments loggedAppointment;
     int countingClicks = 0;
 
     /**
@@ -116,6 +117,8 @@ public class UpdateAppointmentController implements Initializable {
      */
 
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
+
+
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
@@ -129,6 +132,74 @@ public class UpdateAppointmentController implements Initializable {
         int appointmentid = Integer.parseInt(appointmentIDLabel.getText());
         Customers customerID = appointmentCustomerID.getValue();
         User user = appointmentUserID.getValue();
+
+        loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end, appointmentid);
+
+        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contact.toString().isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty() || type == null) {
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
+            System.out.println("Enter Valid Inputs");
+            return;
+        }
+        if (loggedAppointment != null) {
+            System.out.println("Appointment time not available");
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Appointment time not available");
+            alert1.setContentText("Please select a different time-Appointment time not available");
+            alert1.showAndWait();
+
+            return;
+        }
+        if (!startTime.isBefore(endTime)) {
+            System.out.println("enter proper times");
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Start time must be before end time");
+            alert1.setContentText("Start time must be before end time");
+            alert1.showAndWait();
+            System.out.println("Start time must be before end time");
+            return;
+        }
+
+        if (appointmentid != 0) {
+
+            try {
+                AppointmentsHelper.updateAppointment(title, description, location, type, start,
+                        end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(),
+                        appointmentid);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Enter Valid Inputs");
+                alert2.setContentText("Enter Valid Inputs ");
+                alert2.showAndWait();
+                System.out.println("Enter Valid Inputs");
+            }
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments Scheduler and Reports");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+            alert2.setTitle("Enter Valid Inputs");
+            alert2.setContentText("Enter Valid Inputs ");
+            alert2.showAndWait();
+            System.out.println("Enter Valid Inputs");
+
+
+        }
+    }
+    /*    loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end);
         if (title.isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty()|| contact.toString().isEmpty() || type == null) {
             System.out.println("enter proper data");
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -159,7 +230,7 @@ public class UpdateAppointmentController implements Initializable {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
-    }
+    }*/
 
 
     /**

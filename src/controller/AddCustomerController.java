@@ -103,7 +103,16 @@ public class AddCustomerController implements Initializable {
             return;
         }
         if(customerID != 0){
-            CustomersHelper.updateCustomer(name, address, postalcode, phone, division.getDivisionID(), customerID);
+           try{
+               CustomersHelper.updateCustomer(name, address, postalcode, phone, division.getDivisionID(), customerID);
+           } catch (Exception e) {
+               e.printStackTrace();
+               e.printStackTrace();
+               Alert alert2 = new Alert(Alert.AlertType.ERROR);
+               alert2.setTitle("Customer not saved-enter valid inputs");
+               alert2.setContentText("Customer not saved-enter valid inputs");
+               alert2.showAndWait();
+           }
         }
         if (customerID == 0) {
             try {
