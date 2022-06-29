@@ -69,8 +69,8 @@
    <TextField fx:id="appointmentTitle" layoutX="181.0" layoutY="213.0" promptText="Title" />
    <TextField fx:id="appointmentDescription" layoutX="182.0" layoutY="243.0" promptText="Description" />
    <TextField fx:id="appointmentLocation" layoutX="181.0" layoutY="273.0" promptText="Location" />
-   <ComboBox fx:id="contactCombo" editable="true" layoutX="181.0" layoutY="308.0" prefWidth="150.0" promptText="contact" />
-   <ComboBox fx:id="appointmentType" editable="true" layoutX="181.0" layoutY="341.0" prefWidth="150.0" promptText="select type" />
+   <ComboBox fx:id="contactCombo" layoutX="181.0" layoutY="308.0" prefWidth="150.0" promptText="contact" />
+   <ComboBox fx:id="appointmentType" layoutX="181.0" layoutY="341.0" prefWidth="150.0" promptText="select type" />
    <ComboBox fx:id="appointmentCustomerID" layoutX="184.0" layoutY="436.0" prefWidth="150.0" promptText="CustomerID" />
    <ComboBox fx:id="appointmentUserName" layoutX="184.0" layoutY="466.0" prefWidth="150.0" promptText="UserName" />
    <Button fx:id="exitButton" layoutX="385.0" layoutY="539.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
