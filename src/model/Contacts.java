@@ -28,9 +28,9 @@ public class Contacts extends Appointments {
         this.contactID = contact_id;
     }
 
-    public Contacts(Integer contact_id, String contact_name) {
-        this.contactID = contact_id;
-        this.contactName = contact_name;
+    public Contacts(Integer contactids, String contactnames) {
+        this.contactID = contactids;
+        this.contactName = contactnames;
     }
 
     /**

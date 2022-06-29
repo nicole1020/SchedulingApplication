@@ -120,7 +120,7 @@ public class UpdateAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contacts contact = appointmentContact.getValue();
+        Contacts contactID = appointmentContact.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStart.getValue();
@@ -129,11 +129,11 @@ public class UpdateAppointmentController implements Initializable {
         LocalDateTime end = LocalDateTime.of(date, endTime);
         int appointmentid = Integer.parseInt(appointmentIDLabel.getText());
         Customers customerID = appointmentCustomerID.getValue();
-        User user = appointmentUserID.getValue();
+        User userID = appointmentUserID.getValue();
 
         loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end, appointmentid);
 
-        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contact.toString().isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty() || type == null) {
+        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contactID.toString().isEmpty() || description.isEmpty() || location.isEmpty() || userID.toString().isEmpty() || customerID.toString().isEmpty() || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -164,7 +164,7 @@ public class UpdateAppointmentController implements Initializable {
 
             try {
                 AppointmentsHelper.updateAppointment(title, description, location, type, start,
-                        end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(),
+                        end, customerID.getCustomerID(), userID.getUserID(), contactID.getContactID(),
                         appointmentid);
 
             } catch (Exception e) {

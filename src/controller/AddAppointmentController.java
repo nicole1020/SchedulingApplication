@@ -111,7 +111,7 @@ public class AddAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contacts contact = appointmentContact.getValue();
+        Contacts contactID = appointmentContact.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStartTime.getValue();
@@ -119,10 +119,10 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime start = LocalDateTime.of(date, startTime);
         LocalDateTime end = LocalDateTime.of(date, endTime);
         Customers customerID = appointmentCustomerID.getValue();
-        User user = appointmentUserName.getValue();
+        User userID = appointmentUserName.getValue();
         loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end, appointmentid);
 
-        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contact.toString().isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty() || type == null) {
+        if (date.isBefore(LocalDate.now()) || title.isEmpty() || contactID.toString().isEmpty() || description.isEmpty() || location.isEmpty() || userID.toString().isEmpty() || customerID.toString().isEmpty() || type == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
             alert2.setTitle("Enter Valid Inputs");
             alert2.setContentText("Enter Valid Inputs ");
@@ -152,7 +152,7 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid != 0) {
             try {
                 AppointmentsHelper.updateAppointment(title, description, location, type, start,
-                        end, customerID.getCustomerID(), user.getUserID(), Integer.valueOf(contact.getContactID()),
+                        end, customerID.getCustomerID(), userID.getUserID(), Integer.valueOf(contactID.getContactID()),
                         appointmentid);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -168,8 +168,8 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid == 0) {
             try {
                 AppointmentsHelper.createAppointment(title, description, location,
-                        type, start, end, customerID.getCustomerID(), user.getUserID(),
-                        Integer.valueOf(contact.getContactID()));
+                        type, start, end, customerID.getCustomerID(), userID.getUserID(),
+                        Integer.valueOf(contactID.getContactID()));
 
             } catch (Exception e) {
                 e.printStackTrace();

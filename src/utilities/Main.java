@@ -146,6 +146,10 @@ will pull more data from type and month dao helper files next time.
  I also had issues somehow deleting all appointments from database, I figured out how to add them by making type box in add and update appointments editable.
 
  Cleaned up code to make it ready for submission, generated javadoc and will zip to submit
+ 6.28 received feedback after submission, added proper language settings on login form, error checking on login, save/update appointment is functional, combo box-for contacts now shows contact name,
+ appointment ID and type now displaying upon deletion. added appointment overlap confirmation in validationAppointments method,
+ also  set combo box to show no upcoming appointments soon.
+ went to live support because the combo box is throwing an error when i save it in db.
  */
 
 

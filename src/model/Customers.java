@@ -56,6 +56,11 @@ public class Customers {
 
     this.customerID = customer_id;}
 
+    public Customers(int customer_id, String customer_name) {
+        this.customerID =customer_id;
+        this.customerName=customer_name;
+    }
+
     /**
      *
      * @return customers customer ID number
@@ -114,7 +119,7 @@ public String getDivision(){
  */
  @Override
     public String toString() {
-        return ("["+customerID +"]" );
+        return ("["+customerID +"]" + customerName );
     }
 
 }

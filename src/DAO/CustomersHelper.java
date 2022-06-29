@@ -162,12 +162,13 @@ public class CustomersHelper {
     public static ObservableList<Customers> getAllAppointmentCustomerIDs() {
         ObservableList<Customers> appointmentCustomerIDs = FXCollections.observableArrayList();
         try {
-            String sqlcB = "SELECT Customer_ID FROM customers";
+            String sqlcB = "SELECT Customer_ID, Customer_Name FROM customers";
             PreparedStatement prepcB = connection.prepareStatement(sqlcB);
             ResultSet cBResult = prepcB.executeQuery();
             while (cBResult.next()) {
                 int Customer_ID = cBResult.getInt("Customer_ID");
-                Customers cC = new Customers(Customer_ID);
+                String Customer_Name = cBResult.getString("Customer_Name");
+                Customers cC = new Customers(Customer_ID, Customer_Name);
                 appointmentCustomerIDs.add(cC);
             }
 

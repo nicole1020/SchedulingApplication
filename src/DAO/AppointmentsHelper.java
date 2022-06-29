@@ -85,9 +85,9 @@ public class AppointmentsHelper {
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
             ResultSet ACResult = prepAC.executeQuery();
             while (ACResult.next()) {
-                Integer Contact_ID = ACResult.getInt("Contact_ID");
-                String Contact_Name = ACResult.getString("Contact_Name");
-                Contacts aC = new Contacts(Contact_ID, Contact_Name);
+                Integer ContactIDS = ACResult.getInt("Contact_ID");
+                String ContactNameS = ACResult.getString("Contact_Name");
+                Contacts aC = new Contacts(ContactIDS, ContactNameS);
                 appointmentContacts.add(aC);
                 System.out.println("contacts printing ");
             }
@@ -178,12 +178,12 @@ public class AppointmentsHelper {
      * @param start start timestamp of appointment added to database
      * @param end end timestamp of appointment added to database
      * @param customerID customerID of appointment added to database
-     * @param user userID of appointment added to database
-     * @param contact contactID of appointment added to database
+     * @param userID userID of appointment added to database
+     * @param contactID contactID of appointment added to database
      */
 
 
-    public static void createAppointment(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerID, int user, int contact) {
+    public static void createAppointment(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
         try {
             String sqlc4 = " INSERT INTO appointments VALUES (NULL, ?, ?, ?,?,?,?,now(),'nm',now(),'nm',?,?,?)";
 
@@ -195,8 +195,8 @@ public class AppointmentsHelper {
             psCreate4.setTimestamp(5, Timestamp.valueOf(start));
             psCreate4.setTimestamp(6, Timestamp.valueOf(end));
             psCreate4.setInt(7, customerID);
-            psCreate4.setInt(8, user);
-            psCreate4.setInt(9, contact);
+            psCreate4.setInt(8, userID);
+            psCreate4.setInt(9, contactID);
             psCreate4.execute();
         } catch (Exception e) {
             e.printStackTrace();//print stack trace
