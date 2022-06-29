@@ -32,7 +32,7 @@ public class UpdateAppointmentController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox<Contacts> appointmentContact;
+    public ComboBox<Contact> appointmentContact;
     public ComboBox<String> appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
     public ComboBox<User> appointmentUserID;
@@ -58,7 +58,7 @@ public class UpdateAppointmentController implements Initializable {
         this.appointmentDescription.setText(String.valueOf(this.selectedAppointment.getDescription()));
         this.appointmentLocation.setText(String.valueOf(this.selectedAppointment.getLocation()));
         this.appointmentIDLabel.setText(String.valueOf(this.selectedAppointment.getAppointmentID()));
-        for (Contacts con : appointmentContact.getItems()) {
+        for (Contact con : appointmentContact.getItems()) {
             if (con.getContactID() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(con);
                 break;
@@ -96,7 +96,7 @@ public class UpdateAppointmentController implements Initializable {
                 break;
             }
         }
-        for (Contacts contact : appointmentContact.getItems()) {
+        for (Contact contact : appointmentContact.getItems()) {
             if (contact.getContact() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(contact);
             }
@@ -120,7 +120,7 @@ public class UpdateAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contacts contactID = appointmentContact.getValue();
+        Contact contactID = appointmentContact.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStart.getValue();

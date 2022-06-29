@@ -3,11 +3,11 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
-import model.Contacts;
-import model.User;
+import model.Contact;
+
 
 import java.sql.*;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -78,8 +78,8 @@ public class AppointmentsHelper {
      *
      * @return returns all contacts from database
      */
-    public static ObservableList<Contacts> getAllAppointmentContacts() {
-        ObservableList<Contacts> appointmentContacts = FXCollections.observableArrayList();
+    public static ObservableList<Contact> getAllAppointmentContacts() {
+        ObservableList<Contact> appointmentContacts = FXCollections.observableArrayList();
         try {
             String sqlAC = "SELECT Contact_ID, Contact_Name FROM contacts ";
             PreparedStatement prepAC = connection.prepareStatement(sqlAC);
@@ -87,9 +87,10 @@ public class AppointmentsHelper {
             while (ACResult.next()) {
                 Integer ContactIDS = ACResult.getInt("Contact_ID");
                 String ContactNameS = ACResult.getString("Contact_Name");
-                Contacts aC = new Contacts(ContactIDS, ContactNameS);
+                Contact aC = new Contact(ContactIDS, ContactNameS);
                 appointmentContacts.add(aC);
-                System.out.println("contacts printing ");
+
+                System.out.println("contacts printing " );
             }
         } catch (SQLException e) {
             e.printStackTrace();

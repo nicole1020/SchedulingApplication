@@ -36,7 +36,7 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox <Contacts> appointmentContact;
+    public ComboBox <Contact> contactCombo;
     public ComboBox <String>appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
     public ComboBox<User> appointmentUserName;
@@ -72,7 +72,7 @@ public class AddAppointmentController implements Initializable {
         appointmentType.setItems(AppointmentsHelper.getAllAppointmentTypes());
         appointmentDate.getEditor();
         appointmentUserName.setItems(UserHelper.getAllUsers());
-        appointmentContact.setItems(AppointmentsHelper.getAllAppointmentContacts());
+        contactCombo.setItems(AppointmentsHelper.getAllAppointmentContacts());
         exitButton.setOnAction(e ->{
             countingClicks++;
             System.out.println(countingClicks);
@@ -93,7 +93,7 @@ public class AddAppointmentController implements Initializable {
         appointmentTitle.clear();
         appointmentDescription.clear();
         appointmentLocation.clear();
-        appointmentContact.getSelectionModel().clearSelection();
+        contactCombo.getSelectionModel().clearSelection();
         appointmentType.getSelectionModel().clearSelection();
         appointmentDate.getEditor().clear();
         appointmentStartTime.getSelectionModel().clearSelection();
@@ -111,7 +111,7 @@ public class AddAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contacts contactID = appointmentContact.getValue();
+        Contact contactID = contactCombo.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStartTime.getValue();
@@ -152,7 +152,7 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid != 0) {
             try {
                 AppointmentsHelper.updateAppointment(title, description, location, type, start,
-                        end, customerID.getCustomerID(), userID.getUserID(), Integer.valueOf(contactID.getContactID()),
+                        end, customerID.getCustomerID(), userID.getUserID(), contactID.getContactID(),
                         appointmentid);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -169,7 +169,7 @@ public class AddAppointmentController implements Initializable {
             try {
                 AppointmentsHelper.createAppointment(title, description, location,
                         type, start, end, customerID.getCustomerID(), userID.getUserID(),
-                        Integer.valueOf(contactID.getContactID()));
+                        contactID.getContactID());
 
             } catch (Exception e) {
                 e.printStackTrace();

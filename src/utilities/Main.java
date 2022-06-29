@@ -161,10 +161,10 @@ public class Main extends Application {
 
          //Locale.setDefault(new Locale("fr","FR"));
 
-      // Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
+       Parent root = FXMLLoader.load(getClass().getResource("/View/UserLoginScreen.fxml") );
         //Parent root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
         // Parent root = FXMLLoader.load(getClass().getResource("/View/CustomerScreen.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/View/AppointmentsScreen.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/View/ReportsScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("");

@@ -46,7 +46,7 @@
       </RadioButton>
      <Button fx:id="exitButton" layoutX="789.0" layoutY="510.0" mnemonicParsing="false" onAction="#onExitButtonPressed" text="Exit" />
    <Button fx:id="addAppointment" layoutX="129.0" layoutY="470.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add New Appointment" />
-          <TableView fx:id="appointmentsTable" editable="true" layoutX="26.0" layoutY="296.0" onMouseClicked="#appointmentsIsSelected" onSort="#mouseOverTable" prefHeight="149.0" prefWidth="828.0">
+          <TableView fx:id="appointmentsTable" editable="true" layoutX="26.0" layoutY="296.0" onMouseClicked="#appointmentsIsSelected"  prefHeight="149.0" prefWidth="828.0">
               <columns>
                   <TableColumn fx:id="appointmentsIDCol" prefWidth="96.0" text="AppointmentID" />
                   <TableColumn fx:id="appointmentsTitleCol" prefWidth="36.0" text="Title" />

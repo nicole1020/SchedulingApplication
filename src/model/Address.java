@@ -5,10 +5,6 @@ package model;
  *  Initializing Address Class extends Customers
  */
 
-
-
-
-
 public class Address extends Customers {
 
     private int divisionID;

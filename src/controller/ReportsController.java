@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Contacts;
+import model.Contact;
 
 import javax.sql.rowset.Predicate;
 import java.net.URL;
@@ -51,7 +51,7 @@ public class ReportsController implements Initializable {
     public Label resultsLBLAppointments;
     public Button runButton;
     public Button clearButton;
-    public ComboBox<Contacts> contactCombo;
+    public ComboBox<Contact> contactCombo;
     public Label resultsLBLContacts;
     int countingClicks = 0;
 
