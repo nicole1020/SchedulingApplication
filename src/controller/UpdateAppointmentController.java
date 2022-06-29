@@ -28,27 +28,26 @@ import java.util.ResourceBundle;
  */
 
 public class UpdateAppointmentController implements Initializable {
-    public ComboBox <LocalTime>appointmentStart;
+    public ComboBox<LocalTime> appointmentStart;
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox <Contacts>appointmentContact;
-    public ComboBox <String>appointmentType;
+    public ComboBox<Contacts> appointmentContact;
+    public ComboBox<String> appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
-    public ComboBox <User>appointmentUserID;
+    public ComboBox<User> appointmentUserID;
     public Button exitButton;
     public Button saveAppointment;
     public Button clearAppointment;
     public Appointments selectedAppointment = null;
     public DatePicker appointmentDate;
-    public ComboBox <LocalTime>appointmentEnd;
+    public ComboBox<LocalTime> appointmentEnd;
     public Label appointmentIDLabel;
     public Button back;
     private Appointments loggedAppointment;
     int countingClicks = 0;
 
     /**
-     *
      * @param theAppointment this brings the information from the selection in the appointment screen to the update screen.
      */
 
@@ -65,8 +64,8 @@ public class UpdateAppointmentController implements Initializable {
                 break;
             }
         }
-        for(String type : appointmentType.getItems()){
-            if(type.equals(theAppointment.getType())){
+        for (String type : appointmentType.getItems()) {
+            if (type.equals(theAppointment.getType())) {
                 appointmentType.getSelectionModel().select(type);
                 break;
             }
@@ -76,7 +75,7 @@ public class UpdateAppointmentController implements Initializable {
         LocalDate date = start.toLocalDate();
         this.appointmentDate.setValue(date);
 
-        LocalTime startTime  = start.toLocalTime();
+        LocalTime startTime = start.toLocalTime();
         this.appointmentStart.setValue(startTime);
 
         LocalDateTime end = theAppointment.getEndDateTime();
@@ -85,20 +84,20 @@ public class UpdateAppointmentController implements Initializable {
 
 
         for (Customers customerID : appointmentCustomerID.getItems()) {
-            if (customerID.getCustomerID() ==(theAppointment.getCustomerID())) {
+            if (customerID.getCustomerID() == (theAppointment.getCustomerID())) {
                 appointmentCustomerID.getSelectionModel().select(customerID);
                 break;
             }
         }
 
         for (User userID : appointmentUserID.getItems()) {
-            if (userID.getUserID() ==(theAppointment.getUserID())) {
+            if (userID.getUserID() == (theAppointment.getUserID())) {
                 appointmentUserID.getSelectionModel().select(userID);
                 break;
             }
         }
-        for(Contacts contact : appointmentContact.getItems()){
-            if(contact.getContact() == (theAppointment.getContact())){
+        for (Contacts contact : appointmentContact.getItems()) {
+            if (contact.getContact() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(contact);
             }
         }
@@ -110,10 +109,9 @@ public class UpdateAppointmentController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent     this reacts when user presses save button and sends alert if information is invalid or blank
+     * @param actionEvent this reacts when user presses save button and sends alert if information is invalid or blank
      * @throws SQLException alerts if invalid entries are entered/selected
-     * @throws IOException if unable to save it pops up a window
+     * @throws IOException  if unable to save it pops up a window
      */
 
     public void onSaveAppointment(ActionEvent actionEvent) throws SQLException, IOException {
@@ -179,26 +177,20 @@ public class UpdateAppointmentController implements Initializable {
             }
         }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
-            Parent root = (Parent) loader.load();
-            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Appointments Scheduler and Reports");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alert2 = new Alert(Alert.AlertType.ERROR);
-            alert2.setTitle("Enter Valid Inputs");
-            alert2.setContentText("Enter Valid Inputs ");
-            alert2.showAndWait();
-            System.out.println("Enter Valid Inputs");
 
-
-        }
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
+        Parent root = (Parent) loader.load();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Appointments Scheduler and Reports");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
+
+
+
+
     /*    loggedAppointment = AppointmentsHelper.validateAppointmentTimes(start, end);
         if (title.isEmpty() || description.isEmpty() || location.isEmpty() || user.toString().isEmpty() || customerID.toString().isEmpty()|| contact.toString().isEmpty() || type == null) {
             System.out.println("enter proper data");

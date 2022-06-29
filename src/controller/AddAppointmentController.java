@@ -181,7 +181,7 @@ public class AddAppointmentController implements Initializable {
 
             }
         }
-            try {
+
                 FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AppointmentsScreen.fxml"));
                 Parent root = (Parent) loader.load();
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -190,9 +190,7 @@ public class AddAppointmentController implements Initializable {
                 stage.setScene(scene);
                 stage.centerOnScreen();
                 stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }
 
 
