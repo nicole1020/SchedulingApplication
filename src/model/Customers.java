@@ -106,11 +106,13 @@ public class Customers {
 public String getDivision(){
         return division;
 }
-    @Override
+
 /**
  *
  * @return customerID to populate as a string instead of database location
+ *
  */
+ @Override
     public String toString() {
         return ("["+customerID +"]" );
     }

@@ -40,7 +40,7 @@ public class Address extends Customers {
     public String getDivision(){
         return division;
     }
-   @Override
+@Override
 /**
  *
  * @return divisionID and division populate as a string instead of database location

@@ -77,7 +77,7 @@ public class Appointments extends Customers {
     }
 
 
-    @Override
+
 
     /**
      *
@@ -166,6 +166,7 @@ public class Appointments extends Customers {
      *
      * @return type to populate as a string instead of database location
      */
+    @Override
     public String toString() {
         return (type);
     }
