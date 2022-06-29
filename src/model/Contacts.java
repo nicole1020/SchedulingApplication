@@ -34,9 +34,6 @@ public class Contacts extends Appointments {
         return contactName;
     }
 
-    /**
-     * @return contact's email name
-     */
 
     /**
      * @return contactID and    contactName  in combo box for contacts

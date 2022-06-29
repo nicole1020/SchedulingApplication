@@ -31,7 +31,6 @@ public class AddAppointmentController implements Initializable {
 
     public Button saveAppointment;
     public Button exitButton;
-    public DatePicker appointmentStart;
     public TextField appointmentID;
     public TextField appointmentTitle;
     public TextField appointmentDescription;
