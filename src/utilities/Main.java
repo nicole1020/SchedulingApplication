@@ -151,6 +151,7 @@ will pull more data from type and month dao helper files next time.
  also  set combo box to show no upcoming appointments soon.
  went to live support because the combo box is throwing an error when i save it in db. I can add 2 values to the customer combo box in appointments without issue.
  I cant figure out the bug. I believe the error lies in the VM
+ 6.29 mr kinkead emailed saying to make all combo boxes not editable. removing that in add appointment and submitting.
  */
 
 
