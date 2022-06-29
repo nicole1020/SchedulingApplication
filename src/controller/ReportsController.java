@@ -10,16 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Contact;
+import model.Contacts;
 
-import javax.sql.rowset.Predicate;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Month;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -51,7 +47,7 @@ public class ReportsController implements Initializable {
     public Label resultsLBLAppointments;
     public Button runButton;
     public Button clearButton;
-    public ComboBox<Contact> contactCombo;
+    public ComboBox<Contacts> contactCombo;
     public Label resultsLBLContacts;
     int countingClicks = 0;
 

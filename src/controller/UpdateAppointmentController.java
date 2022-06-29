@@ -1,10 +1,8 @@
 package controller;
 
-import DAO.AddressHelper;
 import DAO.AppointmentsHelper;
 import DAO.CustomersHelper;
 import DAO.UserHelper;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -18,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ResourceBundle;
 
 
@@ -32,7 +29,7 @@ public class UpdateAppointmentController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox<Contact> appointmentContact;
+    public ComboBox<Contacts> appointmentContact;
     public ComboBox<String> appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
     public ComboBox<User> appointmentUserID;
@@ -58,7 +55,7 @@ public class UpdateAppointmentController implements Initializable {
         this.appointmentDescription.setText(String.valueOf(this.selectedAppointment.getDescription()));
         this.appointmentLocation.setText(String.valueOf(this.selectedAppointment.getLocation()));
         this.appointmentIDLabel.setText(String.valueOf(this.selectedAppointment.getAppointmentID()));
-        for (Contact con : appointmentContact.getItems()) {
+        for (Contacts con : appointmentContact.getItems()) {
             if (con.getContactID() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(con);
                 break;
@@ -96,7 +93,7 @@ public class UpdateAppointmentController implements Initializable {
                 break;
             }
         }
-        for (Contact contact : appointmentContact.getItems()) {
+        for (Contacts contact : appointmentContact.getItems()) {
             if (contact.getContact() == (theAppointment.getContact())) {
                 appointmentContact.getSelectionModel().select(contact);
             }
@@ -120,7 +117,7 @@ public class UpdateAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contact contactID = appointmentContact.getValue();
+        Contacts contactID = appointmentContact.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStart.getValue();

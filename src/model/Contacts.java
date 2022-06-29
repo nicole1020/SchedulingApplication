@@ -5,7 +5,7 @@ package model;
  *  Initializing Contacts Class extends Appointments
  */
 
-public class Contact extends Appointments {
+public class Contacts extends Appointments {
     private int contactID;
     private String contactName;
 
@@ -15,7 +15,7 @@ public class Contact extends Appointments {
      *
      */
 
-      public Contact(Integer contactids, String contactnames) {
+      public Contacts(Integer contactids, String contactnames) {
         this.contactID = contactids;
         this.contactName = contactnames;
     }

@@ -36,7 +36,7 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentTitle;
     public TextField appointmentDescription;
     public TextField appointmentLocation;
-    public ComboBox <Contact> contactCombo;
+    public ComboBox <Contacts> contactCombo;
     public ComboBox <String>appointmentType;
     public ComboBox<Customers> appointmentCustomerID;
     public ComboBox<User> appointmentUserName;
@@ -111,7 +111,7 @@ public class AddAppointmentController implements Initializable {
         String title = appointmentTitle.getText();
         String description = appointmentDescription.getText();
         String location = appointmentLocation.getText();
-        Contact contactID = contactCombo.getValue();
+        Contacts contactID = contactCombo.getValue();
         String type = appointmentType.getValue();
         LocalDate date = appointmentDate.getValue();
         LocalTime startTime = appointmentStartTime.getValue();
