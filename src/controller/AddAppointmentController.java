@@ -152,7 +152,7 @@ public class AddAppointmentController implements Initializable {
         if (appointmentid != 0) {
             try {
                 AppointmentsHelper.updateAppointment(title, description, location, type, start,
-                        end, customerID.getCustomerID(), user.getUserID(), contact.getContactID(),
+                        end, customerID.getCustomerID(), user.getUserID(), Integer.valueOf(contact.getContactID()),
                         appointmentid);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -169,7 +169,7 @@ public class AddAppointmentController implements Initializable {
             try {
                 AppointmentsHelper.createAppointment(title, description, location,
                         type, start, end, customerID.getCustomerID(), user.getUserID(),
-                        contact.getContactID());
+                        Integer.valueOf(contact.getContactID()));
 
             } catch (Exception e) {
                 e.printStackTrace();
