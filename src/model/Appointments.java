@@ -120,7 +120,8 @@ public class Appointments extends Customers {
     }
     /**
      *
-     * @return
+     * @return location of customer
+     *
      */
     public String getLocation() {
         return location;
